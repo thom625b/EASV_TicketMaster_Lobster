@@ -65,9 +65,6 @@ public class LoginController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load App.fxml");
                 alert.showAndWait();
             }
-
-
-
     }
 
 
@@ -92,9 +89,6 @@ public class LoginController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load App.fxml");
                 alert.showAndWait();
             }
-
-
-
         }
     }
 

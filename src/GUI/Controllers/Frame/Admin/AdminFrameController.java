@@ -17,7 +17,7 @@ import java.util.Stack;
 public class AdminFrameController implements Initializable {
 
     @FXML
-    private StackPane stackPaneFrameAdmin;
+    private StackPane adminStackPane;
 
     private static AdminFrameController instance;
     private Stack<Node> pageHistory = new Stack<>();
@@ -27,7 +27,7 @@ public class AdminFrameController implements Initializable {
 
     @FXML
     private void homeScreenWindow() throws IOException {
-        loadpage("/fxml/Admin/AdminFrontPage.fxml");
+        loadpage("/fxml/Admin/AdminFrontPage");
     }
 
     public static AdminFrameController getInstance() {
@@ -41,16 +41,16 @@ public class AdminFrameController implements Initializable {
         }
         Parent root = FXMLLoader.load(url);
 
-        if (!stackPaneFrameAdmin.getChildren().isEmpty()) {
-            pageHistory.push(stackPaneFrameAdmin.getChildren().get(0));
+        if (!adminStackPane.getChildren().isEmpty()) {
+            pageHistory.push(adminStackPane.getChildren().get(0));
         }
 
         setCenterNode(root);
     }
 
     public void setCenterNode(Node node) {
-        stackPaneFrameAdmin.getChildren().clear();
-        stackPaneFrameAdmin.getChildren().add(node);
+        adminStackPane.getChildren().clear();
+        adminStackPane.getChildren().add(node);
         StackPane.setAlignment(node, javafx.geometry.Pos.CENTER);
     }
 
@@ -58,7 +58,7 @@ public class AdminFrameController implements Initializable {
         if (!pageHistory.isEmpty()) {
             System.out.println("Going back...");
             Node previousNode = pageHistory.pop();
-            stackPaneFrameAdmin.getChildren().setAll(previousNode);
+            adminStackPane.getChildren().setAll(previousNode);
         } else {
             System.out.println("No history to go back to.");
         }
