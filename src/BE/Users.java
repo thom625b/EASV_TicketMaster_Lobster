@@ -1,25 +1,30 @@
 package BE;
 
-public class Coordinator {
+public class Users {
 
-    private int coordinatorId;
+    private int userId;
     private String username;
     private String hashedPassword;
 
 
-    public Coordinator(int coordinatorId, String username, String hashedPassword) {
-        this.coordinatorId = coordinatorId;
+    public Users(int userId, String username, String hashedPassword) {
+        this.userId = userId;
         this.username = username;
         this.hashedPassword = hashedPassword;
     }
 
-    // Getters and setters
-    private int getCoordinatorId() {
-        return coordinatorId;
+    public enum ROLE{
+        ADMIN,
+        COORDINATOR;
     }
 
-    private void setCoordinatorId(int coordinatorId) {
-        this.coordinatorId = coordinatorId;
+    // Getters and setters
+    private int getUserId() {
+        return userId;
+    }
+
+    private void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

@@ -1,22 +1,18 @@
 package GUI.Controllers.Frame;
 
-import GUI.Model.AdminModel;
-import javafx.event.ActionEvent;
+import GUI.Model.UsersModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
-import java.util.function.Consumer;
 
 public class WindowFrameController implements Initializable {
 
@@ -25,7 +21,7 @@ public class WindowFrameController implements Initializable {
 
     private static WindowFrameController instance;
     private Stack<Node> pageHistory = new Stack<>();
-    private AdminModel adminModel;
+    private UsersModel usersModel;
 
 
 
@@ -81,7 +77,7 @@ public class WindowFrameController implements Initializable {
     }
 
 
-    public void setModel(AdminModel adminModel) {
-        this.adminModel = adminModel;
+    public void setModel(UsersModel usersModel) {
+        this.usersModel = usersModel;
     }
 }

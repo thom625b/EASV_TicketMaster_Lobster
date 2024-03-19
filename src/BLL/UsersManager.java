@@ -5,12 +5,12 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 
-public class AdminManager {
+public class UsersManager {
 
 
     private USER_DAO adminDao;
 
-    public AdminManager() throws SQLServerException, IOException {
+    public UsersManager() throws SQLServerException, IOException {
         adminDao = new USER_DAO();
     }
 }

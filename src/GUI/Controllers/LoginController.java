@@ -1,7 +1,7 @@
 package GUI.Controllers;
 
 import GUI.Controllers.Frame.WindowFrameController;
-import GUI.Model.AdminModel;
+import GUI.Model.UsersModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,13 +26,13 @@ public class LoginController implements Initializable {
     @FXML
     private Label loginLabel;
 
-    private AdminModel adminModel;
+    private UsersModel usersModel;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            adminModel = new AdminModel();
+            usersModel = new UsersModel();
         } catch (SQLServerException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -54,7 +54,7 @@ public class LoginController implements Initializable {
                 stage.show();
                 stage.setResizable(false);
                 WindowFrameController frameController = loader.getController();
-                frameController.setModel(adminModel);
+                frameController.setModel(usersModel);
 
                 Stage currentStage = (Stage) userId.getScene().getWindow();
                 currentStage.close();

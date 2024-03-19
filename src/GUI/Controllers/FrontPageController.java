@@ -1,8 +1,8 @@
 package GUI.Controllers;
 
-import GUI.Model.AdminModel;
+import GUI.Model.UsersModel;
 
 public class FrontPageController {
-    private void setModel(AdminModel adminModel) {
+    private void setModel(UsersModel usersModel) {
     }
 }
