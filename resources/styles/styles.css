@@ -1,0 +1,25 @@
+#adminStackPane {
+    -fx-background-color: FFFFFF;
+}
+
+#frameAdminBorder {
+    -fx-background-color: FFFFFF;
+}
+
+
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black ;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+
+#btnadminLogout {
+    -fx-background-color: C00000;
+    -fx-text-fill: FFFFFF ;
+    -fx-background-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
