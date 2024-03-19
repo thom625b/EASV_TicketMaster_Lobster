@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane id="borderPaneID" maxHeight="667.0" maxWidth="375.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="375.0"  xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.LoginController">
+<BorderPane id="borderPaneID" maxHeight="667.0" maxWidth="375.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.LoginController">
     <top>
         <VBox alignment="BOTTOM_CENTER" prefHeight="206.0" prefWidth="375.0" BorderPane.alignment="CENTER">
             <children>
@@ -61,11 +61,12 @@
             </padding>
 
             <!-- Login Button -->
-            <Button fx:id="SubmitBtn" maxWidth="361.0" onAction="#SubmitLoginPage" prefHeight="26.0" prefWidth="361.0" text="Submit">
+            <Button fx:id="submitAdminBtn" maxWidth="361.0" onAction="#SubmitLoginPageAdmin" prefHeight="26.0" prefWidth="361.0" text="Submit Admin">
                 <VBox.margin>
                     <Insets top="10.0" />
                 </VBox.margin>
             </Button>
+         <Button fx:id="submitCoordinatorbtn" mnemonicParsing="false" onAction="#SubmitLoginPageCoordinator" text="Submit Coordinator" />
         </VBox>
     </center>
 </BorderPane>

@@ -1,4 +1,4 @@
-package GUI.Controllers.Frame;
+package GUI.Controllers.Frame.Coordinator;
 
 import GUI.Model.UsersModel;
 import javafx.fxml.FXML;
@@ -14,12 +14,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
-public class WindowFrameController implements Initializable {
+public class CoordinatorFrameController implements Initializable {
 
     @FXML
-    private StackPane stackPaneFrame;
+    private StackPane stackPaneFrameCoordinator;
 
-    private static WindowFrameController instance;
+    private static CoordinatorFrameController instance;
     private Stack<Node> pageHistory = new Stack<>();
     private UsersModel usersModel;
 
@@ -27,10 +27,10 @@ public class WindowFrameController implements Initializable {
 
     @FXML
     private void homeScreenWindow() throws IOException {
-        loadpage("/fxml/FrontPage.fxml");
+        loadpage("/fxml/Admin/AdminFrontPage.fxml");
     }
 
-    public static WindowFrameController getInstance() {
+    public static CoordinatorFrameController getInstance() {
         return instance;
     }
 
@@ -41,16 +41,16 @@ public class WindowFrameController implements Initializable {
         }
         Parent root = FXMLLoader.load(url);
 
-        if (!stackPaneFrame.getChildren().isEmpty()) {
-            pageHistory.push(stackPaneFrame.getChildren().get(0));
+        if (!stackPaneFrameCoordinator.getChildren().isEmpty()) {
+            pageHistory.push(stackPaneFrameCoordinator.getChildren().get(0));
         }
 
         setCenterNode(root);
     }
 
     public void setCenterNode(Node node) {
-        stackPaneFrame.getChildren().clear();
-        stackPaneFrame.getChildren().add(node);
+        stackPaneFrameCoordinator.getChildren().clear();
+        stackPaneFrameCoordinator.getChildren().add(node);
         StackPane.setAlignment(node, javafx.geometry.Pos.CENTER);
     }
 
@@ -58,7 +58,7 @@ public class WindowFrameController implements Initializable {
         if (!pageHistory.isEmpty()) {
             System.out.println("Going back...");
             Node previousNode = pageHistory.pop();
-            stackPaneFrame.getChildren().setAll(previousNode);
+            stackPaneFrameCoordinator.getChildren().setAll(previousNode);
         } else {
             System.out.println("No history to go back to.");
         }
@@ -68,7 +68,7 @@ public class WindowFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
         try {
-            loadpage("/fxml/FrontPage");
+            loadpage("/fxml/Coordinator/CoordinatorFrontPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

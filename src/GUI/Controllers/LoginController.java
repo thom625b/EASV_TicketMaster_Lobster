@@ -1,6 +1,7 @@
 package GUI.Controllers;
 
-import GUI.Controllers.Frame.WindowFrameController;
+import GUI.Controllers.Frame.Admin.AdminFrameController;
+import GUI.Controllers.Frame.Coordinator.CoordinatorFrameController;
 import GUI.Model.UsersModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.event.ActionEvent;
@@ -42,18 +43,18 @@ public class LoginController implements Initializable {
 
 
 
-
-    public void SubmitLoginPage(ActionEvent actionEvent) {
+    @FXML
+    public void SubmitLoginPageAdmin(ActionEvent actionEvent) {
 
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/FrameWindow.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin/AdminFrameWindow.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("");
                 stage.show();
                 stage.setResizable(false);
-                WindowFrameController frameController = loader.getController();
+                AdminFrameController frameController = loader.getController();
                 frameController.setModel(usersModel);
 
                 Stage currentStage = (Stage) userId.getScene().getWindow();
@@ -67,5 +68,34 @@ public class LoginController implements Initializable {
 
 
 
-    }}
+    }
+
+
+    @FXML
+    private void SubmitLoginPageCoordinator(ActionEvent actionEvent) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Coordinator/CoordinatorFrameWindow.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("");
+                stage.show();
+                stage.setResizable(false);
+                CoordinatorFrameController frameController = loader.getController();
+                frameController.setModel(usersModel);
+
+                Stage currentStage = (Stage) userId.getScene().getWindow();
+                currentStage.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load App.fxml");
+                alert.showAndWait();
+            }
+
+
+
+        }
+    }
+
 

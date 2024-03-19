@@ -8,9 +8,9 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.Controllers.Frame.WindowFrameController"
+            fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController"
             prefHeight="400.0" prefWidth="600.0">
 
-        <StackPane id="stackPaneCSS" fx:id="stackPaneFrame" prefHeight="566.0" prefWidth="375.0" BorderPane.alignment="CENTER" />
+        <StackPane id="stackPaneCSS" fx:id="stackPaneFrameAdmin" prefHeight="566.0" prefWidth="375.0" BorderPane.alignment="CENTER" />
 
 </AnchorPane>
