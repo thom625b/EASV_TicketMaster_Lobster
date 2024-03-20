@@ -5,21 +5,24 @@ public class Users {
     private int userId;
     private String username;
     private String hashedPassword;
+    private Role role;
 
 
-    public Users(int userId, String username, String hashedPassword) {
+
+    public Users(int userId, String username, String hashedPassword, Role role) {
         this.userId = userId;
         this.username = username;
         this.hashedPassword = hashedPassword;
+        this.role = role;
     }
 
-    public enum ROLE{
+    public enum Role{
         ADMIN,
         COORDINATOR;
     }
 
     // Getters and setters
-    private int getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -41,5 +44,13 @@ public class Users {
 
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    private void setRole(Role role) {
+        this.role = role;
     }
 }
