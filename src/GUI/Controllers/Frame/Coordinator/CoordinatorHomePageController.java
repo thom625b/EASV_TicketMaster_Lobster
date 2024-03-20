@@ -1,8 +1,8 @@
-package GUI.Controllers.Frame.Admin;
+package GUI.Controllers.Frame.Coordinator;
 
 import GUI.Model.UsersModel;
 
-public class AdminFrontPageController {
+public class CoordinatorHomePageController {
     private void setModel(UsersModel usersModel) {
     }
 }

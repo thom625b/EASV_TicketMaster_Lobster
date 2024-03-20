@@ -1,12 +1,14 @@
 package GUI.Controllers.Frame.Admin;
 
 import GUI.Model.UsersModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -23,6 +25,8 @@ public class AdminFrameController implements Initializable {
     private Stack<Node> pageHistory = new Stack<>();
     private UsersModel usersModel;
 
+    @FXML
+    private Button btnadminCoordinator, btnadminLogout, btnadminEvents, btnadminHome;
 
 
     @FXML
@@ -68,7 +72,7 @@ public class AdminFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
         try {
-            loadpage("/fxml/Admin/AdminFrontPage");
+            loadpage("/fxml/Admin/AdminHomePage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -79,5 +83,32 @@ public class AdminFrameController implements Initializable {
 
     public void setModel(UsersModel usersModel) {
         this.usersModel = usersModel;
+    }
+
+    @FXML
+    private void goToAdminHome(ActionEvent actionEvent) {
+        try {
+            loadpage("/fxml/Admin/AdminHomePage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void goToAdminEvents(ActionEvent actionEvent)  {
+        try {
+            loadpage("/fxml/Admin/AdminEventsPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void goToAdminCoordinators(ActionEvent actionEvent) {
+        try {
+            loadpage("/fxml/Admin/AdminCoordinatorPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
