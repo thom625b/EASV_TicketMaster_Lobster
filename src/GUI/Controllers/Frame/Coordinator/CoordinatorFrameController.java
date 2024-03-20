@@ -16,18 +16,18 @@ import java.util.Stack;
 
 public class CoordinatorFrameController implements Initializable {
 
-    @FXML
-    private StackPane stackPaneFrameCoordinator;
+
 
     private static CoordinatorFrameController instance;
     private Stack<Node> pageHistory = new Stack<>();
     private UsersModel usersModel;
-
+    @FXML
+    private StackPane coorStackPane;
 
 
     @FXML
     private void homeScreenWindow() throws IOException {
-        loadpage("/fxml/Admin/AdminFrontPage.fxml");
+        loadpage("FXML/Coordinator/CoordinatorFrontPage");
     }
 
     public static CoordinatorFrameController getInstance() {
@@ -41,16 +41,16 @@ public class CoordinatorFrameController implements Initializable {
         }
         Parent root = FXMLLoader.load(url);
 
-        if (!stackPaneFrameCoordinator.getChildren().isEmpty()) {
-            pageHistory.push(stackPaneFrameCoordinator.getChildren().get(0));
+        if (!coorStackPane.getChildren().isEmpty()) {
+            pageHistory.push(coorStackPane.getChildren().get(0));
         }
 
         setCenterNode(root);
     }
 
     public void setCenterNode(Node node) {
-        stackPaneFrameCoordinator.getChildren().clear();
-        stackPaneFrameCoordinator.getChildren().add(node);
+        coorStackPane.getChildren().clear();
+        coorStackPane.getChildren().add(node);
         StackPane.setAlignment(node, javafx.geometry.Pos.CENTER);
     }
 
@@ -58,7 +58,7 @@ public class CoordinatorFrameController implements Initializable {
         if (!pageHistory.isEmpty()) {
             System.out.println("Going back...");
             Node previousNode = pageHistory.pop();
-            stackPaneFrameCoordinator.getChildren().setAll(previousNode);
+            coorStackPane.getChildren().setAll(previousNode);
         } else {
             System.out.println("No history to go back to.");
         }

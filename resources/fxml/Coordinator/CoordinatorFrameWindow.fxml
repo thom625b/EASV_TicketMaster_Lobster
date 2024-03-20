@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController"
-            prefHeight="400.0" prefWidth="600.0">
-    <StackPane id="stackPaneCSS" fx:id="stackPaneFrameCoordinator" prefHeight="566.0" prefWidth="375.0" BorderPane.alignment="CENTER" />
-
-</AnchorPane>
+<BorderPane fx:id="frameCoorBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="825.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
+    <left>
+        <VBox fx:id="vBoxCoordBack" prefHeight="496.0" prefWidth="159.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="125.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../pictures/Customer.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets left="8.0" right="8.0" top="8.0" />
+                    </VBox.margin>
+                </ImageView>
+                <VBox fx:id="vBoxCoorButtons" prefHeight="182.0" prefWidth="132.0" spacing="16.0">
+                    <children>
+                        <Button fx:id="btnCoorHome" mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" text="Home">
+                            <VBox.margin>
+                                <Insets top="32.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnCoorEvents" mnemonicParsing="false" prefHeight="40.0" prefWidth="202.0" text="Events" />
+                        <Button fx:id="btnCoorTickets" mnemonicParsing="false" prefHeight="40.0" prefWidth="182.0" text="Catering Tickets" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="24.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox fx:id="vBoxCoorLogout" alignment="BOTTOM_CENTER" prefHeight="254.0" prefWidth="132.0">
+                    <children>
+                        <Button fx:id="btncoorLogout" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Logout" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="16.0" />
+                    </VBox.margin>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="coorStackPane" prefHeight="496.0" prefWidth="678.0" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
