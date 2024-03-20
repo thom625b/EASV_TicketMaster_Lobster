@@ -1,15 +1,22 @@
 package GUI.Controllers;
 
+import BE.Users;
+import GUI.Controllers.Frame.Admin.AdminFrameController;
+import GUI.Controllers.Frame.Coordinator.CoordinatorFrameController;
 import GUI.Model.UsersModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -101,7 +108,7 @@ public class LoginController implements Initializable {
     }
 
 
-/*
+
     @FXML
     public void SubmitLoginPageAdmin(ActionEvent actionEvent) {
 
@@ -116,7 +123,7 @@ public class LoginController implements Initializable {
                 AdminFrameController frameController = loader.getController();
                 frameController.setModel(usersModel);
 
-                Stage currentStage = (Stage) userId.getScene().getWindow();
+                Stage currentStage = (Stage) adminMail.getScene().getWindow();
                 currentStage.close();
 
             } catch (IOException e) {
@@ -140,7 +147,7 @@ public class LoginController implements Initializable {
                 CoordinatorFrameController frameController = loader.getController();
                 frameController.setModel(usersModel);
 
-                Stage currentStage = (Stage) userId.getScene().getWindow();
+                Stage currentStage = (Stage) userMail.getScene().getWindow();
                 currentStage.close();
 
             } catch (IOException e) {
@@ -150,7 +157,7 @@ public class LoginController implements Initializable {
             }
         }
 
- */
+
 
 
 

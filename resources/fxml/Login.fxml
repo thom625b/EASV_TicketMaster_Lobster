@@ -51,7 +51,7 @@
                             <children>
                                 <Pane fx:id="slidingPane" prefHeight="39.0" prefWidth="400.0">
                                     <children>
-                                        <Label fx:id="lblAdmin" onMouseClicked="#openAdminTab" layoutX="1.0" layoutY="1.0" prefHeight="35.0" prefWidth="185.0" text="ADMINISTRATOR">
+                                        <Label fx:id="lblAdmin" layoutX="1.0" layoutY="1.0" onMouseClicked="#openAdminTab" prefHeight="35.0" prefWidth="185.0" text="ADMINISTRATOR">
                                             <cursor>
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
@@ -59,7 +59,7 @@
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="lblUser" onMouseClicked="#openUserTab" layoutX="216.0" layoutY="2.0" prefHeight="35.0" prefWidth="185.0" text="EVENT COORDINATOR">
+                                        <Label fx:id="lblUser" layoutX="216.0" layoutY="2.0" onMouseClicked="#openUserTab" prefHeight="35.0" prefWidth="185.0" text="EVENT COORDINATOR">
                                             <cursor>
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
@@ -116,7 +116,7 @@
                                                         <Insets bottom="16.0" left="50.0" top="16.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                    <Button fx:id="btnSubmitAdmin" mnemonicParsing="false" prefHeight="35.0" prefWidth="400.0" text="Submit">
+                                    <Button fx:id="btnSubmitAdmin" mnemonicParsing="false" onAction="#SubmitLoginPageAdmin" prefHeight="35.0" prefWidth="400.0" text="Submit">
                                        <VBox.margin>
                                           <Insets left="50.0" />
                                        </VBox.margin>
@@ -164,7 +164,7 @@
                                                         <Insets bottom="16.0" left="50.0" top="16.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                    <Button fx:id="btnSubmitEvent" mnemonicParsing="false" prefHeight="35.0" prefWidth="400.0" text="Submit">
+                                    <Button fx:id="btnSubmitEvent" mnemonicParsing="false" onAction="#SubmitLoginPageCoordinator" prefHeight="35.0" prefWidth="400.0" text="Submit">
                                        <VBox.margin>
                                           <Insets left="50.0" />
                                        </VBox.margin>
@@ -201,7 +201,7 @@
                      <children>
                         <ImageView fx:id="ImgLogin" fitHeight="419.0" fitWidth="433.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../pictures/imgLogin.jpg" />
+                              <Image url="@../pictures/Ticketing%20System.jpg" />
                            </image>
                         </ImageView>
                      </children>
