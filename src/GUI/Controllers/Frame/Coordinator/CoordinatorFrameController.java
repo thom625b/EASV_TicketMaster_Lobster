@@ -90,4 +90,32 @@ public class CoordinatorFrameController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    private void goToUserHome(ActionEvent actionEvent) {
+        try {
+            loadpage("/fxml/Coordinator/CoordinatorHomePage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void goToCateringTickets(ActionEvent actionEvent) {
+        try {
+            loadpage("/fxml/Coordinator/CoordinatorTickets");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void goToUserManageEvents(ActionEvent actionEvent) {
+        try {
+            loadpage("/fxml/Coordinator/CoordinatorManageEvents");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

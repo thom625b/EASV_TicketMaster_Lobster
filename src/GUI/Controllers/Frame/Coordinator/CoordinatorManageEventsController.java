@@ -18,4 +18,12 @@ public class CoordinatorManageEventsController {
     @FXML
     private void mergeCoordAndEvent(ActionEvent actionEvent) {
     }
+
+    @FXML
+    private void getCoordinators(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void getEvents(ActionEvent actionEvent) {
+    }
 }

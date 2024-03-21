@@ -33,12 +33,12 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="24.0" BorderPane.alignment="CENTER">
          <children>
-            <ComboBox prefHeight="21.0" prefWidth="90.0" promptText="Name*">
+            <ComboBox fx:id="btnCoordinatorsDropDown" onAction="#getCoordinators" prefHeight="21.0" prefWidth="90.0" promptText="Name*">
                <VBox.margin>
                   <Insets left="8.0" top="8.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox prefHeight="25.0" prefWidth="90.0" promptText="Event*">
+            <ComboBox fx:id="btnEventsDropDown" onAction="#getEvents" prefHeight="25.0" prefWidth="90.0" promptText="Events*">
                <VBox.margin>
                   <Insets left="8.0" />
                </VBox.margin>
