@@ -11,5 +11,6 @@
     <orderEntry type="library" name="microsoft.sqlserver.mssql.jdbc" level="project" />
     <orderEntry type="library" name="io.github.palexdev.materialfx" level="project" />
     <orderEntry type="library" name="mindrot.jbcrypt" level="project" />
+    <orderEntry type="library" name="google.zxing.javase" level="project" />
   </component>
 </module>
