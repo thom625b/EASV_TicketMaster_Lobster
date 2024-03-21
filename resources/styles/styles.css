@@ -1,0 +1,93 @@
+
+/* CSS til login side */
+
+#borderInside {
+    -fx-background-color: #F5F5F5;
+    -fx-background-radius: 8px;
+
+}
+
+#backBorder {
+    -fx-background-color: #DAE4EA;
+}
+
+#hBoxTop, #vBoxLeft, #hBoxBottom, #vBoxRight {
+    -fx-background-color: #DAE4EA;
+}
+#btnSubmitAdmin, #btnSubmitEvent {
+    -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
+}
+
+#lblstatus {
+    -fx-background-color: #FBBB2C;
+    -fx-text-fill: white 20714310;
+    -fx-alignment: Center;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
+}
+
+#lblAdmin {
+
+    -fx-text-fill: black;
+    -fx-alignment: Center;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+
+}
+
+#lblUser {
+
+    -fx-text-fill: black;
+    -fx-alignment: Center;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+
+}
+
+.tab-pane {
+    -fx-tab-max-height: 0px;
+
+}
+
+.tab-pane .tab-header-area {
+    max-height: 0;
+    visibility: collapse;
+}
+
+#stackImg {
+    -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
+
+}
+
+/*  AdminFrame
+---------------------------------------------------------------------------------------------------------------*/
+
+#adminStackPane {
+    -fx-background-color: FFFFFF;
+}
+
+#frameAdminBorder {
+    -fx-background-color: FFFFFF;
+}
+
+
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black ;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+
+#btnadminLogout {
+    -fx-background-color: C00000;
+    -fx-text-fill: FFFFFF ;
+    -fx-background-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
