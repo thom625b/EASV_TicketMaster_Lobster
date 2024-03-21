@@ -1,6 +1,7 @@
 package DAL;
 
 import BE.Users;
+import CostumException.ApplicationWideException;
 import DAL.DBConnector.DBConnector;
 
 import java.io.IOException;
@@ -8,8 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public class USERS_DAO {
+public class USERS_DAO implements IUserDataAccess {
 
     private DBConnector dbConnector;
 
@@ -17,7 +19,12 @@ public class USERS_DAO {
         dbConnector = new DBConnector();
     }
 
-    public void addUser(Users users) {
+    @Override
+    public List<Users> getAllUsers() throws ApplicationWideException {
+        return null;
+    }
+
+    public Users addUser(Users users) {
         String sql = "INSERT INTO Users (userFName, userLName, userEmail, hashedPassword, userRole, userPicture) VALUES (?, ?, ?, ?, ?, ?);";
 
         try (Connection conn = dbConnector.getConnection();
@@ -35,6 +42,17 @@ public class USERS_DAO {
             e.printStackTrace();
             // Proper exception handling goes here
         }
+        return users;
+    }
+
+    @Override
+    public void deleteUser(Users users) throws ApplicationWideException {
+
+    }
+
+    @Override
+    public void updateUsers(Users users) throws ApplicationWideException {
+
     }
 
 
