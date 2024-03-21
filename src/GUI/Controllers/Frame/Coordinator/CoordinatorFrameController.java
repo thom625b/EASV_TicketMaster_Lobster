@@ -29,7 +29,7 @@ public class CoordinatorFrameController implements Initializable {
 
     @FXML
     private void homeScreenWindow() throws IOException {
-        loadpage("FXML/Coordinator/CoordinatorHomePageWindow");
+        loadpage("FXML/Coordinator/CoordinatorHomePage");
     }
 
     public static CoordinatorFrameController getInstance() {
@@ -85,7 +85,7 @@ public class CoordinatorFrameController implements Initializable {
 
     public void btnGoToEventsPage(ActionEvent actionEvent) {
         try {
-            loadpage("/fxml/Coordinator/CoordinatorEventPageWindow");
+            loadpage("/fxml/Coordinator/CoordinatorEventPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

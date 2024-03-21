@@ -2,14 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="frameCoorBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="825.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
+<BorderPane fx:id="frameCoorBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="825.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
     <left>
         <VBox fx:id="vBoxCoordBack" prefHeight="496.0" prefWidth="159.0" BorderPane.alignment="CENTER">
             <children>
@@ -28,7 +27,7 @@
                                 <Insets top="32.0" />
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="btnCoorEvents" mnemonicParsing="false" prefHeight="40.0" prefWidth="202.0" text="Events" />
+                        <Button fx:id="btnCoorEvents" mnemonicParsing="false" onAction="#btnGoToEventsPage" prefHeight="40.0" prefWidth="202.0" text="Events" />
                         <Button fx:id="btnCoorTickets" mnemonicParsing="false" prefHeight="40.0" prefWidth="182.0" text="Catering Tickets" />
                     </children>
                     <VBox.margin>
