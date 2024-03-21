@@ -59,7 +59,7 @@
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="lblUser" layoutX="216.0" layoutY="2.0" onMouseClicked="#openUserTab" prefHeight="35.0" prefWidth="185.0" text="EVENT COORDINATOR">
+                                        <Label fx:id="lblUser" layoutX="216.0" layoutY="1.0" onMouseClicked="#openUserTab" prefHeight="35.0" prefWidth="185.0" text="EVENT COORDINATOR">
                                             <cursor>
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
@@ -67,7 +67,7 @@
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label id="lblstatus" fx:id="lblstatus" layoutX="1.0" layoutY="2.0" prefHeight="35.0" prefWidth="190.0" text="ADMINISTRATOR">
+                                        <Label id="lblstatus" fx:id="lblstatus" layoutX="1.0" layoutY="1.0" prefHeight="35.0" prefWidth="190.0" text="ADMINISTRATOR">
                                             <cursor>
                                                 <Cursor fx:constant="DEFAULT" />
                                             </cursor>

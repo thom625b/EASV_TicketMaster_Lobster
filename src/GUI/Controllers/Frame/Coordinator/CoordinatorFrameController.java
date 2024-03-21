@@ -21,7 +21,6 @@ public class CoordinatorFrameController implements Initializable {
 
 
     private static CoordinatorFrameController instance;
-    public Button btnCoorEvents;
     private Stack<Node> pageHistory = new Stack<>();
     private UsersModel usersModel;
     @FXML
@@ -71,7 +70,7 @@ public class CoordinatorFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
         try {
-            loadpage("/fxml/Coordinator/CoordinatorHomePageWindow");
+            loadpage("/fxml/Coordinator/CoordinatorHomePage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
