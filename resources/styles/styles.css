@@ -91,3 +91,55 @@
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
+
+/*  Admin Coordinators
+---------------------------------------------------------------------------------------------------------------*/
+
+#hBoxCoorAdminTop {
+    -fx-background-color: white;
+}
+
+#txtSearchCoorAdmin {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-background-insets: 0;
+}
+
+#hBoxCoorAdminSec {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#lblCoorAdmin {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#hBoxCoorAdminColor, #hboxCoorBottom {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+
+
+#bordercoorAdmin {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#tblViewCoorAdmin .column-header-background .filler,
+#tblViewCoorAdmin .column-header-background .column-header {
+    -fx-background-color: transparent;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
+    -fx-border-width: 0 0 1 0;
+
+}
+
+#tblViewCoorAdmin {
+    -fx-table-cell-border-color: transparent;
+}
+#tblViewCoorAdmin:even {
+    -fx-background-color: #ffffff;
+}
+
+#tblViewCoorAdmin:odd {
+    -fx-background-color: #f2f2f2;
+}

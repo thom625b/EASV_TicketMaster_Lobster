@@ -68,7 +68,7 @@ public class CoordinatorFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
         try {
-            loadpage("/fxml/Coordinator/CoordinatorFrontPage");
+            loadpage("/fxml/Coordinator/CoordinatorHomePage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

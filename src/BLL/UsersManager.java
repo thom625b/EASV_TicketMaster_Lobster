@@ -1,16 +1,52 @@
 package BLL;
 
-import DAL.USER_DAO;
+import BE.Users;
+import CostumException.ValidationException;
+import DAL.USERS_DAO;
+import GUI.Utility.PasswordUtils;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UsersManager {
 
 
-    private USER_DAO adminDao;
+    private USERS_DAO usersDao;
 
     public UsersManager() throws SQLServerException, IOException {
-        adminDao = new USER_DAO();
+        usersDao = new USERS_DAO();
     }
+
+
+    public void createUser(String userFName, String userLName, String userEmail, String password, Users.Role role, String userPicture) {
+        String hashedPassword = PasswordUtils.hashPassword(password);
+
+        Users newUser = new Users(userFName, userLName, userEmail, hashedPassword, role, userPicture);
+        usersDao.addUser(newUser);
+    }
+
+
+
+    public boolean verifyLoginWithRole(String email, String password, Users.Role expectedRole) throws ValidationException {
+        if (!isValidEmail(email)) {
+            throw new ValidationException("Invalid email format.");
+        }
+
+        Users user = usersDao.getUserByEmail(email);
+        if (user != null && PasswordUtils.checkPassword(password, user.getHashedPassword())) {
+            // Check if the user's role matches the expected role
+            return user.getRole().equals(expectedRole);
+        }
+        return false;
+    }
+
+    private boolean isValidEmail(String email) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+
 }
