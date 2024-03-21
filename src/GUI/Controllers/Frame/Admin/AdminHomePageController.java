@@ -25,7 +25,7 @@ public class AdminHomePageController {
     @FXML
     private void initialize() throws SQLServerException, IOException {
 
-        comboRole.getItems().addAll(Users.Role.ADMIN.name(), Users.Role.COORDINATOR.name());
+
 
 
         usersModel = new UsersModel();
@@ -55,4 +55,6 @@ public class AdminHomePageController {
             // This can be done using a dialog or updating a status label in your UI
         }
     }
+
+
 }

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
@@ -43,7 +44,7 @@ public class AdminFrameController implements Initializable {
         if (url == null) {
             throw new IOException("FXML file not found: " + page);
         }
-        Parent root = FXMLLoader.load(url);
+        Node root = FXMLLoader.load(url); // Keep it as Node
 
         if (!adminStackPane.getChildren().isEmpty()) {
             pageHistory.push(adminStackPane.getChildren().get(0));
@@ -54,8 +55,8 @@ public class AdminFrameController implements Initializable {
 
     public void setCenterNode(Node node) {
         adminStackPane.getChildren().clear();
-        adminStackPane.getChildren().add(node);
         StackPane.setAlignment(node, javafx.geometry.Pos.CENTER);
+        adminStackPane.getChildren().add(node);
     }
 
     public void goBack() {
