@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="bordercoorAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="bordercoorAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" styleClass="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminCoordinatorPageController">
    <top>
       <VBox prefHeight="93.0" prefWidth="779.0" BorderPane.alignment="CENTER">
          <children>
@@ -62,8 +62,8 @@
       <TableView fx:id="tblViewCoorAdmin" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="67.99993896484375" text="Code" />
-          <TableColumn prefWidth="156.0001220703125" text="First Name" />
-            <TableColumn prefWidth="155.199951171875" text="Last Name" />
+          <TableColumn fx:id="colName" prefWidth="156.0001220703125" text="First Name" />
+            <TableColumn fx:id="colEmail" prefWidth="155.199951171875" text="Last Name" />
             <TableColumn prefWidth="189.60009765625" text="Email" />
             <TableColumn prefWidth="78.4000244140625" text="Registered events" />
             <TableColumn prefWidth="113.5999755859375">

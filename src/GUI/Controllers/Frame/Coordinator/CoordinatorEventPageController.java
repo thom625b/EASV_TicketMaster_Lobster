@@ -1,6 +1,8 @@
 package GUI.Controllers.Frame.Coordinator;
 
 import BE.MOCK.Event_Mock;
+import GUI.Controllers.IController;
+import GUI.Model.UsersModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class CoordinatorEventPageController {
+public class CoordinatorEventPageController implements IController {
 
     @FXML
     private TableView<Event_Mock> tblEventTable;
@@ -86,4 +88,8 @@ public class CoordinatorEventPageController {
         });
     }
 
+    @Override
+    public void setModel(UsersModel usersModel) {
+
+    }
 }

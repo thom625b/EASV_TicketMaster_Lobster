@@ -1,12 +1,14 @@
 package GUI.Controllers.Frame.Coordinator;
 
+import GUI.Controllers.IController;
+import GUI.Model.UsersModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
 
 
-public class CoordinatorManageEventsController {
+public class CoordinatorManageEventsController implements IController {
 
 
     @FXML
@@ -25,5 +27,10 @@ public class CoordinatorManageEventsController {
 
     @FXML
     private void getEvents(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void setModel(UsersModel usersModel) {
+
     }
 }

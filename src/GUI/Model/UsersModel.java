@@ -2,17 +2,25 @@ package GUI.Model;
 
 import BE.Users;
 import BLL.UsersManager;
+import CostumException.ApplicationWideException;
 import CostumException.ValidationException;
+import DAL.IUserDataAccess;
 import GUI.Utility.PasswordUtils;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.util.List;
 
 public class UsersModel {
     private UsersManager usersManager;
+    private ObservableList<Users> usersObservableList;
 
-    public UsersModel() throws SQLServerException, IOException {
+    public UsersModel() throws SQLServerException, IOException, ApplicationWideException {
         usersManager = new UsersManager();
+        usersObservableList = FXCollections.observableArrayList();
+        usersObservableList.addAll(usersManager.getAllUsers());
     }
 
     public boolean verifyLoginWithRole(String email, String password, Users.Role expectedRole) throws ValidationException {
@@ -22,5 +30,32 @@ public class UsersModel {
     public void createUser(String userFName, String userLName, String userEmail, String password, Users.Role role, String userPicture) {
         usersManager.createUser(userFName, userLName, userEmail, password, role, userPicture);
     }
+
+    public void updateFirstName(Users users) throws ApplicationWideException{
+        try{
+            usersManager.updateFirstName(users);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ObservableList<Users> getObservableUsers() {
+        return usersObservableList;
+    }
+
+
+
+
+    public void loadUsers() throws ApplicationWideException {
+        try {
+            usersObservableList.clear();
+            List<Users> allUsers = usersManager.getAllUsers();
+            usersObservableList.addAll(allUsers);
+        } catch (ApplicationWideException e) {
+            throw new ApplicationWideException("Could not load users", e);
+        }
+    }
+
+
 
 }

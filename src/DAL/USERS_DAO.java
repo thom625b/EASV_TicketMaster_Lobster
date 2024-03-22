@@ -3,12 +3,12 @@ package DAL;
 import BE.Users;
 import CostumException.ApplicationWideException;
 import DAL.DBConnector.DBConnector;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
+import javax.management.relation.Role;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class USERS_DAO implements IUserDataAccess {
@@ -21,8 +21,32 @@ public class USERS_DAO implements IUserDataAccess {
 
     @Override
     public List<Users> getAllUsers() throws ApplicationWideException {
-        return null;
+        ArrayList<Users> allUsers = new ArrayList<>();
+        try(Connection conn = dbConnector.getConnection();
+            Statement stmt = conn.createStatement()) {
+            String sql =
+                    """
+                    Select * FROM Users
+                    """;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                int userId = rs.getInt("userID");
+                String firstName = rs.getString("userFName");
+                String lastName = rs.getString("userLName");
+                String email = rs.getString("userEmail");
+                String hashedPassword = rs.getString("hashedPassword");
+                String role = rs.getString("userRole");
+                Users usersAll = new Users(userId, firstName, lastName, email, Users.Role.valueOf(role), hashedPassword);
+                allUsers.add(usersAll);
+            }
+        } catch (SQLServerException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return allUsers;
     }
+
 
     public Users addUser(Users users) {
         String sql = "INSERT INTO Users (userFName, userLName, userEmail, hashedPassword, userRole, userPicture) VALUES (?, ?, ?, ?, ?, ?);";
@@ -40,7 +64,6 @@ public class USERS_DAO implements IUserDataAccess {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Proper exception handling goes here
         }
         return users;
     }
@@ -52,7 +75,16 @@ public class USERS_DAO implements IUserDataAccess {
 
     @Override
     public void updateUsers(Users users) throws ApplicationWideException {
-
+        String sql = "UPDATE Users SET userFName = ? WHERE userID = ?;";
+        try(Connection conn = dbConnector.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, users.getFirstName());
+            pstmt.executeUpdate();
+        } catch (SQLServerException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -70,7 +102,7 @@ public class USERS_DAO implements IUserDataAccess {
                     String firstName = rs.getString("userFName");
                     String lastName = rs.getString("userLName");
                     String userEmail = rs.getString("userEmail");
-                    String hashedPassword = rs.getString("hashedPassword"); // Ensure this column name matches your DB schema
+                    String hashedPassword = rs.getString("hashedPassword");
                     Users.Role role = Users.Role.valueOf(rs.getString("userRole"));
                     String userPicture = rs.getString("userPicture");
 
@@ -79,7 +111,6 @@ public class USERS_DAO implements IUserDataAccess {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Proper exception handling strategy should be implemented
         }
         return null;
     }

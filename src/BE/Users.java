@@ -25,6 +25,16 @@ public class Users {
         this(-1, firstName, lastName, email, hashedPassword, role, userPicture);
     }
 
+    public Users(int userId, String firstName, String lastName, String email, Role role, String hashedPassword) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.hashedPassword = hashedPassword;
+        this.role = role;
+
+    }
+
 
     public enum Role{
         ADMIN,

@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.Controllers.Frame.Coordinator.CoordTicketsController"
+            fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController"
             prefHeight="400.0" prefWidth="600.0">
     <children>
         <Label layoutX="242.0" layoutY="172.0" text="Tickets" />
