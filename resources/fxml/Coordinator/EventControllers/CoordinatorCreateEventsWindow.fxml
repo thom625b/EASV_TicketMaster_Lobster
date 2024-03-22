@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Create Event ">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <VBox prefHeight="300.0" prefWidth="298.0">
+                     <children>
+                        <GridPane prefHeight="325.0" prefWidth="298.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Design">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Address" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="City" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Event Type" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField prefHeight="17.0" prefWidth="111.0" promptText="PNG" GridPane.columnIndex="1">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </TextField>
+                              <TextField promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </TextField>
+                              <TextField promptText="ZIP/CITY" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </TextField>
+                              <TextField promptText="Name of event" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </TextField>
+                              <HBox alignment="CENTER_LEFT" GridPane.rowIndex="4">
+                                 <children>
+                                    <MenuButton mnemonicParsing="false" text="Start Date">
+                                      <items>
+                                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                      </items>
+                                    </MenuButton>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <MenuButton mnemonicParsing="false" text="End Date">
+                                      <items>
+                                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                      </items>
+                                    </MenuButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="300.0" prefWidth="279.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label text="Description">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" right="10.0" top="15.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <TextArea prefHeight="196.0" prefWidth="249.0" promptText="Write a description for your event here ">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </TextArea>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
