@@ -33,7 +33,7 @@ public class DBConnector {
         return dataSource.getConnection();
     }
 
-    public static void main(String[] args) throws SQLException, IOException {
+    /*public static void main(String[] args) throws SQLException, IOException {
 
         DBConnector databaseConnector = new DBConnector();
 
@@ -42,5 +42,5 @@ public class DBConnector {
             System.out.println("Is it open? " + !connection.isClosed());
 
         }
-    }
+    }*/
 }
