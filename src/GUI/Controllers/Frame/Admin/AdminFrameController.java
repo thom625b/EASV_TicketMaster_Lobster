@@ -9,8 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +30,8 @@ public class AdminFrameController implements Initializable {
 
     @FXML
     private Button btnadminCoordinator, btnadminLogout, btnadminEvents, btnadminHome;
+    @FXML
+    private Button btnadminManageEvents;
 
 
     @FXML
@@ -98,6 +102,17 @@ public class AdminFrameController implements Initializable {
         }
     }
 
+
+    @FXML
+    private void goToAdminManageEvents(ActionEvent actionEvent) {
+        try {
+            loadpage("/fxml/Admin/AdminManageEvents");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     @FXML
     private void goToAdminEvents(ActionEvent actionEvent)  {
         try {
@@ -115,4 +130,25 @@ public class AdminFrameController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    private void logoutToLogin(ActionEvent actionEvent) {
+        try {
+            URL loginPageURL = getClass().getResource("/fxml/Login.fxml");
+            if (loginPageURL == null) {
+                throw new IllegalArgumentException("Cannot find resource Login.fxml");
+            }
+            Parent loginRoot = FXMLLoader.load(loginPageURL);
+            Scene loginScene = new Scene(loginRoot);
+             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(loginScene);
+            currentStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO
+        }
+
+    }
+
+
 }
