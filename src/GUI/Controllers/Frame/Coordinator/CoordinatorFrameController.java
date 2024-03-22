@@ -27,6 +27,9 @@ public class CoordinatorFrameController implements Initializable, IController {
     @FXML
     private StackPane coorStackPane;
 
+    // Define the FXML file path here
+    private final String CREATE_EVENTS_WINDOW_FXML = "/fxml/Coordinator/EventControllers/CoordinatorCreateEventsWindow.fxml";
+
 
     @FXML
     private void homeScreenWindow() throws IOException {
@@ -86,7 +89,7 @@ public class CoordinatorFrameController implements Initializable, IController {
 
     public void btnGoToEventsPage(ActionEvent actionEvent) {
         try {
-            loadpage("/fxml/Coordinator/CoordinatorEventPage");
+            loadpage("/fxml/Coordinator/EventControllers/CoordinatorEventPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -114,6 +117,24 @@ public class CoordinatorFrameController implements Initializable, IController {
     private void goToUserManageEvents(ActionEvent actionEvent) {
         try {
             loadpage("/fxml/Coordinator/CoordinatorManageEvents");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loadPageCoordinatorCreateEventPage() {
+        try {
+            URL url = getClass().getResource(CREATE_EVENTS_WINDOW_FXML);
+            if (url == null) {
+                throw new IOException("FXML file not found: " + CREATE_EVENTS_WINDOW_FXML);
+            }
+            Parent root = FXMLLoader.load(url);
+
+            if (!coorStackPane.getChildren().isEmpty()) {
+                pageHistory.push(coorStackPane.getChildren().get(0));
+            }
+
+            setCenterNode(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
