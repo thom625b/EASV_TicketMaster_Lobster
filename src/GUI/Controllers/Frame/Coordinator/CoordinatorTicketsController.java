@@ -1,10 +1,11 @@
-package GUI.Controllers.Frame.Admin;
+package GUI.Controllers.Frame.Coordinator;
 
 import GUI.Controllers.IController;
 import GUI.Model.UsersModel;
 
-public class AdminEventsPageController implements IController {
-
+public class CoordinatorTicketsController implements IController {
+    @Override
     public void setModel(UsersModel usersModel) {
+
     }
 }

@@ -1,5 +1,6 @@
 package GUI.Controllers.Frame.Admin;
 
+import GUI.Controllers.IController;
 import GUI.Model.UsersModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,8 +44,11 @@ public class AdminFrameController implements Initializable {
         if (url == null) {
             throw new IOException("FXML file not found: " + page);
         }
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader fxmlLoader = new FXMLLoader(url);
+        Parent root = fxmlLoader.load();
 
+        IController controller = fxmlLoader.getController();
+        controller.setModel(usersModel);
         if (!adminStackPane.getChildren().isEmpty()) {
             pageHistory.push(adminStackPane.getChildren().get(0));
         }

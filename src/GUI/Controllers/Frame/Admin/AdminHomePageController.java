@@ -1,6 +1,8 @@
 package GUI.Controllers.Frame.Admin;
 
 import BE.Users;
+import CostumException.ApplicationWideException;
+import GUI.Controllers.IController;
 import GUI.Model.UsersModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.event.ActionEvent;
@@ -11,7 +13,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class AdminHomePageController {
+public class AdminHomePageController implements IController {
 
     @FXML
     private ComboBox<String> comboRole;
@@ -23,9 +25,9 @@ public class AdminHomePageController {
     private UsersModel usersModel;
 
     @FXML
-    private void initialize() throws SQLServerException, IOException {
+    private void initialize() throws SQLServerException, IOException, ApplicationWideException {
 
-        comboRole.getItems().addAll(Users.Role.ADMIN.name(), Users.Role.COORDINATOR.name());
+
 
 
         usersModel = new UsersModel();
@@ -33,9 +35,7 @@ public class AdminHomePageController {
 
 
     // Setter method for usersModel, in case it needs to be set externally
-    public void setUsersModel(UsersModel usersModel) {
-        this.usersModel = usersModel;
-    }
+
 
     @FXML
     void handleAddUser(ActionEvent event) {
@@ -54,5 +54,11 @@ public class AdminHomePageController {
             // Show an error message to the user
             // This can be done using a dialog or updating a status label in your UI
         }
+    }
+
+    @Override
+    public void setModel(UsersModel usersModel) {
+        this.usersModel = usersModel;
+
     }
 }

@@ -92,6 +92,8 @@
     -fx-font-weight: bold;
 }
 
+
+
 /*  Admin Coordinators
 ---------------------------------------------------------------------------------------------------------------*/
 
@@ -142,4 +144,57 @@
 
 #tblViewCoorAdmin:odd {
     -fx-background-color: #f2f2f2;
+}
+
+#btnRefreshCoor {
+    -fx-background-color: #108CDC ;
+}
+
+/*  Admin: create Coordinator/Admin
+---------------------------------------------------------------------------------------------------------------*/
+
+#borderBackCreate {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#vBoxCenterCreate {
+    -fx-background-color: white;
+}
+
+#lblEvenCoordinatorAdmin {
+
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#hBoxAdminProfileCreate {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#btnCreateCoordinator {
+    -fx-background-color: #108CDC;
+}
+
+#lblFirstNameCreate, #lblEmailCreate, #lblLarstnameCreate, #lblPasswordCreate, #lblRoleCreate {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#lblAdminCreateNewCoordinator {
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+}
+
+#txtCreateFirstName, #txtCreateLastName, #txtCreateEmail, #txtCreatePassword {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: black;
+}
+
+#CreatecomboRole {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }

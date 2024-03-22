@@ -1,10 +1,12 @@
 package GUI.Controllers.Frame.Coordinator;
 
+import GUI.Controllers.IController;
+import GUI.Model.UsersModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 
-public class CoordinatorEditEventPageController {
+public class CoordinatorEditEventPageController implements IController {
 
     @FXML
     private TextField txtEventName;
@@ -37,5 +39,10 @@ public class CoordinatorEditEventPageController {
 
         // Close the edit window
         txtEventName.getScene().getWindow().hide();
+    }
+
+    @Override
+    public void setModel(UsersModel usersModel) {
+
     }
 }

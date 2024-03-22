@@ -22,13 +22,14 @@
                 </ImageView>
                 <VBox fx:id="vBoxCoorButtons" prefHeight="182.0" prefWidth="132.0" spacing="16.0">
                     <children>
-                        <Button fx:id="btnCoorHome" mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" text="Home">
+                        <Button fx:id="btnCoorHome" mnemonicParsing="false" onAction="#goToUserHome" prefHeight="40.0" prefWidth="190.0" text="Home">
                             <VBox.margin>
                                 <Insets top="32.0" />
                             </VBox.margin>
                         </Button>
                         <Button fx:id="btnCoorEvents" mnemonicParsing="false" onAction="#btnGoToEventsPage" prefHeight="40.0" prefWidth="202.0" text="Events" />
-                        <Button fx:id="btnCoorTickets" mnemonicParsing="false" prefHeight="40.0" prefWidth="182.0" text="Catering Tickets" />
+                        <Button fx:id="btnCoorTickets" mnemonicParsing="false" onAction="#goToCateringTickets" prefHeight="40.0" prefWidth="182.0" text="Catering Tickets" />
+                  <Button fx:id="btnCoorManageEvents" layoutX="10.0" layoutY="126.0" mnemonicParsing="false" onAction="#goToUserManageEvents" prefHeight="40.0" prefWidth="182.0" text="Manage Events" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="24.0" />

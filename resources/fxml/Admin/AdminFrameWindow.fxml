@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="frameAdminBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="825.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController">
+<BorderPane fx:id="frameAdminBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController">
    <left>
       <VBox fx:id="vBoxadminBack" prefHeight="496.0" prefWidth="159.0" BorderPane.alignment="CENTER">
          <children>
@@ -46,6 +46,6 @@
       </VBox>
    </left>
    <center>
-      <StackPane fx:id="adminStackPane" prefHeight="496.0" prefWidth="678.0" BorderPane.alignment="CENTER" />
+      <StackPane fx:id="adminStackPane" maxHeight="602.0" maxWidth="776.0" prefHeight="602.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

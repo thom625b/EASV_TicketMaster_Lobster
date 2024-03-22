@@ -1,12 +1,14 @@
 package BLL;
 
 import BE.Users;
+import CostumException.ApplicationWideException;
 import CostumException.ValidationException;
 import DAL.USERS_DAO;
 import GUI.Utility.PasswordUtils;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +49,24 @@ public class UsersManager {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
+
+    public void updateFirstName(Users users) {
+        try {
+            usersDao.updateUsers(users);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Users> getAllUsers() throws ApplicationWideException{
+        try{
+            return usersDao.getAllUsers();
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 }

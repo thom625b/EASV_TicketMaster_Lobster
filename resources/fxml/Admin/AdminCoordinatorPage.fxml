@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="bordercoorAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="678.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="bordercoorAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" styleClass="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminCoordinatorPageController">
    <top>
       <VBox prefHeight="93.0" prefWidth="779.0" BorderPane.alignment="CENTER">
          <children>
@@ -33,7 +33,7 @@
                            <children>
                               <HBox fx:id="hBoxCoorAdminSec" alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="231.0">
                                  <children>
-                                    <ImageView fitHeight="37.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../pictures/Customer.png" />
                                        </image>
@@ -61,12 +61,12 @@
    <center>
       <TableView fx:id="tblViewCoorAdmin" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="65.59997254610062" text="Code" />
-          <TableColumn prefWidth="126.39999389648438" text="Name" />
-            <TableColumn prefWidth="164.6666717529297" text="Email" />
-            <TableColumn prefWidth="99.3333740234375" text="Start Date" />
-            <TableColumn prefWidth="112.66659545898438" text="Registered events" />
-            <TableColumn prefWidth="124.0">
+          <TableColumn prefWidth="67.99993896484375" text="Code" />
+          <TableColumn fx:id="colName" prefWidth="156.0001220703125" text="First Name" />
+            <TableColumn fx:id="colEmail" prefWidth="155.199951171875" text="Last Name" />
+            <TableColumn prefWidth="189.60009765625" text="Email" />
+            <TableColumn prefWidth="78.4000244140625" text="Registered events" />
+            <TableColumn prefWidth="113.5999755859375">
                <graphic>
                   <Button fx:id="btnRefreshCoor" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Refresh 🔄" />
                </graphic>
@@ -81,6 +81,6 @@
       </TableView>
    </center>
    <bottom>
-      <HBox fx:id="hboxCoorBottom" prefHeight="39.0" prefWidth="779.0" BorderPane.alignment="CENTER" />
+      <HBox fx:id="hboxCoorBottom" prefHeight="70.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
