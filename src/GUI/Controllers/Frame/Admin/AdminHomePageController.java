@@ -25,11 +25,8 @@ public class AdminHomePageController implements IController {
 
     private UsersModel usersModel;
 
-
-
     @FXML
     private void initialize() throws SQLServerException, IOException, ApplicationWideException {
-
         usersModel = new UsersModel();
     }
 

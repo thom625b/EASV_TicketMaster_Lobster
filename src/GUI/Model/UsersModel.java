@@ -31,9 +31,18 @@ public class UsersModel {
         usersManager.createUser(userFName, userLName, userEmail, password, role, userPicture);
     }
 
-    public void updateFirstName(Users users) throws ApplicationWideException{
+    public void updateFirstName(Users user) throws ApplicationWideException{
         try{
-            usersManager.updateFirstName(users);
+            usersManager.updateFirstName(user);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateLastName(Users user) {
+        try{
+            usersManager.updateLastName(user);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -47,6 +56,25 @@ public class UsersModel {
     public void deleteUser(Users user) throws ApplicationWideException {
         usersManager.deleteUser(user);
         usersObservableList.remove(user);
-
     }
+
+
+    public void updateEmail(Users user) {
+        try{
+            usersManager.updateEmail(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateRole(Users user) {
+        try{
+            usersManager.updateRole(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 }

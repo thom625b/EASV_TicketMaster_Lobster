@@ -13,5 +13,4 @@ public interface IUserDataAccess {
     void deleteUser(int userId) throws ApplicationWideException;
 
     void updateUsers(Users users) throws ApplicationWideException;
-
 }

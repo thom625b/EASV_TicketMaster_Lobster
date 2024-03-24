@@ -26,11 +26,12 @@ public class AdminUpdateCoordinatorController implements IController {
 
     private UsersModel usersModel;
 
-    private Users selectedUsers;
     private Map<ComboBox, Users> usersMap = new HashMap<>();
 
-
     private Users user;
+
+    @FXML
+    private Button btnUpdateCoordinator;
 
     public void setUser(Users user) {
         this.user = user;
@@ -39,29 +40,37 @@ public class AdminUpdateCoordinatorController implements IController {
 
     @FXML
     private void updateCoordinator(ActionEvent actionEvent) {
-        String newPassword = txtUpdateFirstName.getText();
-        if (usersModel == null || selectedUsers == null){
+        String firstNameText = txtUpdateFirstName.getText();
+        String lastNameText = txtUpdateLastName.getText();
+        String emailText = txtUpdateEmail.getText();
+        String selectedRole = UpdatecomboRole.getValue();
+        if (usersModel == null || user == null){
             return;
         }
-        if (newPassword.isEmpty()){
+        if (firstNameText.isEmpty() && lastNameText.isEmpty()){
             return;
         }
         try {
-            selectedUsers.getFirstName();
-            usersModel.updateFirstName(selectedUsers);
+
+            user.setFirstName(firstNameText);
+            user.setLastName(lastNameText);
+            user.setEmail(emailText);
+            user.setRole(Users.Role.valueOf(selectedRole.toUpperCase()));
+            usersModel.updateFirstName(user);
+            usersModel.updateLastName(user);
+            usersModel.updateEmail(user);
+            usersModel.updateRole(user);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-
+    @FXML
     private void updateFields(Users user) {
         if(user != null) {
             txtUpdateFirstName.setText(user.getFirstName());
             txtUpdateLastName.setText(user.getLastName());
             txtUpdateEmail.setText(user.getEmail());
-
-
 
             ObservableList<String> roles = FXCollections.observableArrayList(
                     Users.Role.ADMIN.toString(),
@@ -72,16 +81,16 @@ public class AdminUpdateCoordinatorController implements IController {
         }
     }
 
-    @FXML
-    private void initialize() throws Exception{
-        usersModel = new UsersModel();
-    }
+
 
     @Override
     public void setModel(UsersModel usersModel) {
         this.usersModel = usersModel;
     }
-
+    @FXML
+    private void initialize() throws Exception{
+        usersModel = new UsersModel();
+    }
 
     @FXML
     void deleteUser(ActionEvent actionEvent) throws ApplicationWideException {

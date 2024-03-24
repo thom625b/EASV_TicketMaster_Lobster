@@ -50,14 +50,14 @@ public class EventsManager {
         return matcher.matches();
     }
 
-
+/*
     public void updateFirstName(Users users) {
         try {
             usersDao.updateUsers(users);
         } catch (ApplicationWideException e) {
             throw new RuntimeException(e);
         }
-    }
+    } */
 
     public List<Users> getAllUsers() throws ApplicationWideException{
         try{

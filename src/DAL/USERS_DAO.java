@@ -5,7 +5,6 @@ import CostumException.ApplicationWideException;
 import DAL.DBConnector.DBConnector;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
-import javax.management.relation.Role;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class USERS_DAO implements IUserDataAccess {
              Statement stmt = conn.createStatement()) {
             String sql =
                     """
-                    
                             Select * FROM Users
                     """;
             ResultSet rs = stmt.executeQuery(sql);
@@ -82,19 +80,23 @@ public class USERS_DAO implements IUserDataAccess {
     }
 
 
-
     @Override
     public void updateUsers(Users users) throws ApplicationWideException {
-        String sql = "UPDATE Users SET userFName = ? WHERE user ID = ?;";
-        try(Connection conn = dbConnector.
-             getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(sql)){
+        String sql =
+                """
+                UPDATE Users SET userFName = ?, userLName = ?, userEmail = ?, userRole = ?
+                WHERE userID = ?
+                """;
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, users.getFirstName());
+            pstmt.setString(2, users.getLastName());
+            pstmt.setString(3, users.getEmail());
+            pstmt.setString(4, users.getRole().toString());
+            pstmt.setInt(5, users.getUserId());
             pstmt.executeUpdate();
-        } catch (SQLServerException e) {
-            throw new RuntimeException(e);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ApplicationWideException("Failed to update user", e);
         }
     }
 
@@ -125,4 +127,6 @@ public class USERS_DAO implements IUserDataAccess {
         }
         return null;
     }
+
+
 }

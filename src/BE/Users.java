@@ -46,7 +46,7 @@ public class Users {
         return userId;
     }
 
-    private void setUserId(int userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -88,7 +88,7 @@ public class Users {
         return firstName;
     }
 
-    private void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -96,7 +96,7 @@ public class Users {
         return lastName;
     }
 
-    private void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -104,15 +104,29 @@ public class Users {
         return email;
     }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-   public String getUserPicture() {
+    public String getUserPicture() {
         return userPicture;
     }
 
     public void setUserPicture(String userPicture) {
         this.userPicture = userPicture;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", hashedPassword='" + hashedPassword + '\'' +
+                ", userPicture='" + userPicture + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
 }

@@ -53,9 +53,9 @@ public class UsersManager {
     }
 
 
-    public void updateFirstName(Users users) {
+    public void updateFirstName(Users user) {
         try {
-            usersDao.updateUsers(users);
+            usersDao.updateUsers(user);
         } catch (ApplicationWideException e) {
             throw new RuntimeException(e);
         }
@@ -71,5 +71,29 @@ public class UsersManager {
 
     public void deleteUser(Users user) throws ApplicationWideException {
         usersDao.deleteUser(user.getUserId());
+    }
+
+    public void updateLastName(Users user) {
+        try {
+            usersDao.updateUsers(user);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateEmail(Users user) {
+        try {
+            usersDao.updateUsers(user);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateRole(Users user) {
+        try {
+            usersDao.updateUsers(user);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
