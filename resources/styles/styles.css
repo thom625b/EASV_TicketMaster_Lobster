@@ -91,11 +91,19 @@
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
-
+ #lblChangeProfilePicture, #lblChangePassword {
+     -fx-text-fill: black ;
+     -fx-font-size: 12px;
+     -fx-font-weight: bold;
+ }
 
 
 /*  Admin Coordinators
 ---------------------------------------------------------------------------------------------------------------*/
+
+.table-cell {
+    -fx-alignment: CENTER;
+}
 
 #hBoxCoorAdminTop {
     -fx-background-color: white;
@@ -198,3 +206,149 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+
+/*  Admin: create Coordinator/Admin
+---------------------------------------------------------------------------------------------------------------*/
+
+#borderBackUpdate {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#vBoxCenterUpdate {
+    -fx-background-color: white;
+}
+
+#lblEventCoordinatorAdminUpdate {
+
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#hBoxAdminProfileUpdate {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#btnUpdateCoordinator {
+    -fx-background-color: #108CDC;
+}
+
+#btnDeleteUser {
+    -fx-background-color: #FBBB2C;
+}
+
+#lblFirstNameUpdate, #lblEmailUpdate, #lblLarstnameUpdate, #lblPasswordUpdate, #lblRoleUpdate {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#lblAdminUpdateNewCoordinator {
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+}
+
+#UpdateFirstName, #txtUpdateLastName, #txtUpdateEmail, #txtUpdatePassword {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: black;
+}
+
+#UpdatecomboRole {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/*  Admin: Manage Coordinator Events
+---------------------------------------------------------------------------------------------------------------*/
+
+#BPAdminManageCoor {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#vBoxCenterMangageCoorEvent {
+   -fx-background-color:white;
+}
+
+#hBoxManageCoorEvent {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#lblManageCoorHeader {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#btnAdminAddToEvent {
+    -fx-background-color: #108CDC;
+}
+
+#btnAdminCloseManage {
+    -fx-background-color: #FBBB2C;
+}
+
+#comboAdminManageEvent, #comboAdminManageName {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/*  Admin Coordinators
+---------------------------------------------------------------------------------------------------------------*/
+
+.table-cell {
+    -fx-alignment: CENTER;
+}
+
+#hBoxCoorAdminTop {
+    -fx-background-color: white;
+}
+
+#txtSearchAdminEvents {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-background-insets: 0;
+}
+
+#hBoxeventsAdminSec {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#lblEventsAdmin {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+
+#borderEventsAdmin {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#tblViewAdminEvents .column-header-background .filler,
+#tblViewAdminEvents .column-header-background .column-header {
+    -fx-background-color: transparent;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
+    -fx-border-width: 0 0 1 0;
+
+}
+
+#tblViewAdminEvents {
+    -fx-table-cell-border-color: transparent;
+}
+#tblViewAdminEvents:even {
+    -fx-background-color: #ffffff;
+}
+
+#tblViewAdminEvents:odd {
+    -fx-background-color: #f2f2f2;
+}
+
+#btnRefreshAdminEvents {
+    -fx-background-color: #108CDC ;
+}
+
+

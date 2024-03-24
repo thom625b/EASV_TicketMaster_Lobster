@@ -10,7 +10,7 @@ public interface IUserDataAccess {
 
     Users addUser(Users newCategory) throws ApplicationWideException;
 
-    void deleteUser(Users users) throws ApplicationWideException;
+    void deleteUser(int userId) throws ApplicationWideException;
 
     void updateUsers(Users users) throws ApplicationWideException;
 

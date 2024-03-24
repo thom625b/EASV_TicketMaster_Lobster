@@ -61,12 +61,13 @@
    <center>
       <TableView fx:id="tblViewCoorAdmin" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="67.99993896484375" text="Code" />
+            <TableColumn fx:id="colUserId" prefWidth="75.0" text="ID" visible="false" />
           <TableColumn fx:id="colName" prefWidth="156.0001220703125" text="First Name" />
-            <TableColumn fx:id="colEmail" prefWidth="155.199951171875" text="Last Name" />
-            <TableColumn prefWidth="189.60009765625" text="Email" />
-            <TableColumn prefWidth="78.4000244140625" text="Registered events" />
-            <TableColumn prefWidth="113.5999755859375">
+            <TableColumn fx:id="colLastName" prefWidth="155.199951171875" text="Last Name" />
+            <TableColumn fx:id="colEmail" prefWidth="185.5999755859375" text="Email" />
+            <TableColumn fx:id="colRole" prefWidth="109.5999755859375" text="Role" />
+            <TableColumn fx:id="colRegistered1" prefWidth="109.5999755859375" text="Registered events" />
+            <TableColumn fx:id="tblColButtons" prefWidth="113.5999755859375">
                <graphic>
                   <Button fx:id="btnRefreshCoor" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Refresh 🔄" />
                </graphic>

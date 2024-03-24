@@ -8,13 +8,15 @@ import GUI.Utility.PasswordUtils;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UsersManager {
 
-
+    private List<Users> usersList = new ArrayList<>();
     private USERS_DAO usersDao;
 
     public UsersManager() throws SQLServerException, IOException {
@@ -67,6 +69,7 @@ public class UsersManager {
         }
     }
 
-
-
+    public void deleteUser(Users user) throws ApplicationWideException {
+        usersDao.deleteUser(user.getUserId());
+    }
 }

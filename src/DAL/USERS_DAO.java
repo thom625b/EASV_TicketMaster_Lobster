@@ -22,11 +22,12 @@ public class USERS_DAO implements IUserDataAccess {
     @Override
     public List<Users> getAllUsers() throws ApplicationWideException {
         ArrayList<Users> allUsers = new ArrayList<>();
-        try(Connection conn = dbConnector.getConnection();
-            Statement stmt = conn.createStatement()) {
+        try (Connection conn = dbConnector.getConnection();
+             Statement stmt = conn.createStatement()) {
             String sql =
                     """
-                    Select * FROM Users
+                    
+                            Select * FROM Users
                     """;
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
@@ -69,14 +70,24 @@ public class USERS_DAO implements IUserDataAccess {
     }
 
     @Override
-    public void deleteUser(Users users) throws ApplicationWideException {
-
+    public void deleteUser(int userId) throws ApplicationWideException {
+        String sql = "DELETE FROM Users WHERE userID = ?;";
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new ApplicationWideException("Failed to delete user", e);
+        }
     }
+
+
 
     @Override
     public void updateUsers(Users users) throws ApplicationWideException {
-        String sql = "UPDATE Users SET userFName = ? WHERE userID = ?;";
-        try(Connection conn = dbConnector.getConnection();
+        String sql = "UPDATE Users SET userFName = ? WHERE user ID = ?;";
+        try(Connection conn = dbConnector.
+             getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setString(1, users.getFirstName());
             pstmt.executeUpdate();

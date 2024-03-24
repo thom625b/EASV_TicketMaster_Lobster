@@ -44,18 +44,9 @@ public class UsersModel {
     }
 
 
+    public void deleteUser(Users user) throws ApplicationWideException {
+        usersManager.deleteUser(user);
+        usersObservableList.remove(user);
 
-
-    public void loadUsers() throws ApplicationWideException {
-        try {
-            usersObservableList.clear();
-            List<Users> allUsers = usersManager.getAllUsers();
-            usersObservableList.addAll(allUsers);
-        } catch (ApplicationWideException e) {
-            throw new ApplicationWideException("Could not load users", e);
-        }
     }
-
-
-
 }

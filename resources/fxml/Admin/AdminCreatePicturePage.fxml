@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="New"/>
+                        <MenuItem text="Open"/>
+                        <MenuItem text="Save"/>
+                        <MenuItem text="Exit"/>
+                    </items>
+                </Menu>
+                <Menu text="Edit">
+                    <items>
+                        <MenuItem text="Undo"/>
+                        <MenuItem text="Redo"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <left>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <Button text="Button 1" maxWidth="Infinity"/>
+                <Button text="Button 2" maxWidth="Infinity"/>
+                <Button text="Button 3" maxWidth="Infinity"/>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <StackPane BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Main Content Area"/>
+            </children>
+        </StackPane>
+    </center>
+    <bottom>
+        <HBox BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Status: Ready"/>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

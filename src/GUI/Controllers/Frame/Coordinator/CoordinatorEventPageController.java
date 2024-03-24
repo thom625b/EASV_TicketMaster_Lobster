@@ -1,6 +1,6 @@
 package GUI.Controllers.Frame.Coordinator;
 
-import BE.MOCK.Event_Mock;
+
 import GUI.Controllers.IController;
 import GUI.Model.UsersModel;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class CoordinatorEventPageController implements IController {
-
+/*
     @FXML
     private TableView<Event_Mock> tblEventTable;
     @FXML
@@ -35,6 +35,8 @@ public class CoordinatorEventPageController implements IController {
     @FXML
     private TableColumn<Event_Mock, Void> editButton;
 
+
+ */
     @FXML
     public void goToCreateNewEvent(ActionEvent actionEvent) {
         CoordinatorFrameController.getInstance().loadPageCoordinatorCreateEventPage();

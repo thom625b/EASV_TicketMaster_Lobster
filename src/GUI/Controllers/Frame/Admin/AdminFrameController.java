@@ -1,5 +1,6 @@
 package GUI.Controllers.Frame.Admin;
 
+import BE.Users;
 import GUI.Controllers.IController;
 import GUI.Model.UsersModel;
 import javafx.event.ActionEvent;
@@ -11,11 +12,13 @@ import javafx.scene.Parent;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
@@ -33,6 +36,7 @@ public class AdminFrameController implements Initializable {
     @FXML
     private Button btnadminManageEvents;
 
+    private final String UPDATE_COORDINATOR_WINDOW_FXML = "/fxml/Admin/AdminUpdateCoordinator.fxml";
 
     @FXML
     private void homeScreenWindow() throws IOException {
@@ -131,6 +135,35 @@ public class AdminFrameController implements Initializable {
         }
     }
 
+    public void loadAdminUpdateCoordinatorPage(Users user) {
+        try {
+            URL url = getClass().getResource(UPDATE_COORDINATOR_WINDOW_FXML);
+            if (url == null) {
+                throw new IOException("FXML file not found: " + UPDATE_COORDINATOR_WINDOW_FXML);
+            }
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            if (user != null) {
+                AdminUpdateCoordinatorController controller = loader.getController();
+                controller.setUser(user);
+            }
+
+            transitionToNewScene(root);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load the Admin Update Coordinator page", e);
+        }
+    }
+
+    private void transitionToNewScene(Parent root) {
+        if (!adminStackPane.getChildren().isEmpty()) {
+            pageHistory.push(adminStackPane.getChildren().get(0));
+        }
+        setCenterNode(root);
+    }
+
+
+
     @FXML
     private void logoutToLogin(ActionEvent actionEvent) {
         try {
@@ -151,4 +184,8 @@ public class AdminFrameController implements Initializable {
     }
 
 
+    @FXML
+    private void openChangeProfilePicture(MouseEvent mouseEvent) {
+
+    }
 }
