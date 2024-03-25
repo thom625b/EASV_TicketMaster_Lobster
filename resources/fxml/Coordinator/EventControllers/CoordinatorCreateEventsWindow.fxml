@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorCreateEventsController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -35,19 +34,20 @@
                   <VBox prefHeight="300.0" prefWidth="298.0">
                      <children>
                         <GridPane prefHeight="325.0" prefWidth="298.0">
-                          <columnConstraints>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <columnConstraints>
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <Label text="Design">
+                              <Label text="Event Design">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -62,54 +62,60 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <Label text="Event Type" GridPane.rowIndex="3">
+                              <Label text="Event Title" GridPane.rowIndex="4">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <TextField prefHeight="17.0" prefWidth="111.0" promptText="PNG" GridPane.columnIndex="1">
+                              <TextField fx:id="txtEventPicture" prefHeight="17.0" prefWidth="111.0" promptText="PNG" GridPane.columnIndex="1">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </TextField>
-                              <TextField promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="txtEventCity" promptText="City Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </TextField>
-                              <TextField promptText="ZIP/CITY" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="txtEventTitle" promptText="Name of event" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </TextField>
-                              <TextField promptText="Name of event" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <DatePicker fx:id="dpEventStartDate" onAction="#EventStartDate" promptText="Start Date" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" />
+                                 </GridPane.margin>
+                              </DatePicker>
+                              <Label text="Postal code" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="txtEventZipCode" promptText=" ZIP Code" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </TextField>
-                              <HBox alignment="CENTER_LEFT" GridPane.rowIndex="4">
-                                 <children>
-                                    <MenuButton mnemonicParsing="false" text="Start Date">
-                                      <items>
-                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                                      </items>
-                                    </MenuButton>
-                                 </children>
+                              <Label text="Start date" GridPane.rowIndex="5">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                 <children>
-                                    <MenuButton mnemonicParsing="false" text="End Date">
-                                      <items>
-                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                                      </items>
-                                    </MenuButton>
-                                 </children>
-                              </HBox>
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtEventAddress" prefHeight="17.0" prefWidth="111.0" promptText="PNG" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </TextField>
                            </children>
                         </GridPane>
                      </children>
@@ -128,12 +134,32 @@
                               </Label>
                            </children>
                         </HBox>
-                        <TextArea prefHeight="196.0" prefWidth="249.0" promptText="Write a description for your event here ">
+                        <TextArea prefHeight="229.0" prefWidth="249.0" promptText="Write a description for your event here ">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="279.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="61.0" prefWidth="150.0">
+                                 <children>
+                                    <Button fx:id="btnUploadImageToEvent" mnemonicParsing="false" onAction="#UploadImageToEvent" text="Upload Image">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="71.0" prefWidth="150.0">
+                                 <children>
+                                    <Button fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#AddNewEvent" text="Add New Event">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" right="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children></HBox>
                      </children>
                   </VBox>
                </children>
