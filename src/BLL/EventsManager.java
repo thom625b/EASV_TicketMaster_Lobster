@@ -15,9 +15,8 @@ public class EventsManager {
         eventsDao = new Events_DAO();
     }
 
-    public void createEvent(String eventName, String eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventDescription) throws ApplicationWideException {
-        Events newEvent = new Events(eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZipCode, eventDescription);
-        eventsDao.addEvent(newEvent);
+    public void createEvent(Events event) throws ApplicationWideException {
+        eventsDao.addEvent(event);
     }
 
     public List<Events> getAllEvents() throws ApplicationWideException {
@@ -26,6 +25,12 @@ public class EventsManager {
 
     public List<Events> getEventsByCoordinator(int coordinatorID) throws ApplicationWideException {
         return eventsDao.getEventsByCoordinator(coordinatorID);
+    }
+
+    public void updateEvent(Events event) {
+    }
+
+    public void deleteEvent(Events event) {
     }
 
     // Implement additional methods as needed for managing events

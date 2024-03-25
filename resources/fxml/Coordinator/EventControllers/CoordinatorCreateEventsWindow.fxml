@@ -134,7 +134,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <TextArea prefHeight="229.0" prefWidth="249.0" promptText="Write a description for your event here ">
+                        <TextArea fx:id="txtEventDescription" prefHeight="229.0" prefWidth="249.0" promptText="Write a description for your event here ">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                            </VBox.margin>

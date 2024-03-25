@@ -6,34 +6,32 @@ public class Events {
     private String eventAddress, eventName, eventDate, eventCity, eventDescription;
     private int eventID, eventStatus, eventRemainingDays, eventParticipants, eventZipCode;
 
-
-
-
-    public Events(String eventName, String date, int eventStatus, int remainingDays, int eventParticipants, String adresse, int zipCode, String eventCity, String description) {
+    public Events(String eventName, String eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
         this.eventName = eventName;
-        this.eventDate = date;
+        this.eventDate = eventDate;
         this.eventStatus = eventStatus;
-        this.eventRemainingDays = remainingDays;
+        this.eventRemainingDays = eventRemainingDays;
         this.eventParticipants = eventParticipants;
-        this.eventAddress = adresse;
-        this.eventZipCode = zipCode;
+        this.eventAddress = eventAddress;
+        this.eventZipCode = eventZipCode;
         this.eventCity = eventCity;
-        this.eventDescription = description;
-
+        this.eventDescription = eventDescription;
     }
 
-    public Events(String eventName, String date, int eventID, int eventStatus, int remainingDays, int eventParticipants, String adresse, int zipCode,String eventCity, String description) {
+
+    public Events(String eventName, String date, int eventID, int eventStatus, int remainingDays, int eventParticipants, String address, int zipCode, String eventCity, String description) {
         this.eventName = eventName;
         this.eventDate = date;
         this.eventID = eventID;
         this.eventStatus = eventStatus;
         this.eventRemainingDays = remainingDays;
         this.eventParticipants = eventParticipants;
-        this.eventAddress = adresse;
+        this.eventAddress = address;
         this.eventZipCode = zipCode;
         this.eventCity = eventCity;
         this.eventDescription = description;
     }
+
 
     public String getEventName() {
         return eventName;

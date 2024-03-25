@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -140,4 +141,8 @@ public class CoordinatorFrameController implements Initializable, IController {
         }
     }
 
+    public void closeWindow(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.close();
+    }
 }
