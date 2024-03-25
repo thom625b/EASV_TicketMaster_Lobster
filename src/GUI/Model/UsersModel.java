@@ -75,6 +75,8 @@ public class UsersModel {
         }
     }
 
-
-
+    public ObservableList<Users> getCoordinatorsObservable() throws ApplicationWideException {
+        List<Users> coordinators = usersManager.getCoordinators();
+        return FXCollections.observableArrayList(coordinators);
+    }
 }

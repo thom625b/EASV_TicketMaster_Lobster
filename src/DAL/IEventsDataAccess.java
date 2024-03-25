@@ -1,17 +1,20 @@
 package DAL;
 
+import BE.Events;
 import BE.Users;
 import CostumException.ApplicationWideException;
 
 import java.util.List;
 
 public interface IEventsDataAccess {
-    List<Users> getAllUsers() throws ApplicationWideException;
+    List<Events> getAllEvents() throws ApplicationWideException;
 
-    Users addUser(Users newCategory) throws ApplicationWideException;
+    Users addEvent(Events newEvent) throws ApplicationWideException;
 
-    void deleteUser(Users users) throws ApplicationWideException;
+    void deleteEvent(Events events) throws ApplicationWideException;
 
-    void updateUsers(Users users) throws ApplicationWideException;
+    void updateEvent(Events events) throws ApplicationWideException;
+
+    List<Events> getEventsByCoordinator(int coordinatorID) throws ApplicationWideException;
 
 }

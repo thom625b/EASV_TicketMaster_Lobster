@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class UsersManager {
 
@@ -31,8 +32,14 @@ public class UsersManager {
         usersDao.addUser(newUser);
     }
 
-
-
+    public List<Users> getCoordinators() throws ApplicationWideException {
+        List<Users> allUsers = usersDao.getAllUsers();
+        // filterer users efter deres rolle, så det kun er @COORDINATOR der bliver sendt videre.
+        List<Users> coordinators = allUsers.stream()
+                .filter(user -> user.getRole() == Users.Role.COORDINATOR)
+                .collect(Collectors.toList());
+        return coordinators;
+    }
     public boolean verifyLoginWithRole(String email, String password, Users.Role expectedRole) throws ValidationException {
         if (!isValidEmail(email)) {
             throw new ValidationException("Invalid email format.");

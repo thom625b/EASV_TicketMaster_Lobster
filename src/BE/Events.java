@@ -2,26 +2,32 @@ package BE;
 
 public class Events {
 
-    private String eventName;
-    private String date;
-    private int eventID, eventStatus, remainingDays, eventParticipants;
+
+    private String adresse, eventName, date, description;
+    private int eventID, eventStatus, remainingDays, eventParticipants, zipCode;
 
 
-    private Events(String eventName, String date, int eventStatus, int remainingDays, int eventParticipants) {
+    public Events(String eventName, String date, int eventStatus, int remainingDays, int eventParticipants, String adresse, int zipCode, String description) {
         this.eventName = eventName;
         this.date = date;
         this.eventStatus = eventStatus;
         this.remainingDays = remainingDays;
         this.eventParticipants = eventParticipants;
+        this.adresse = adresse;
+        this.zipCode = zipCode;
+        this.description = description;
     }
 
-    private Events(String eventName, String date, int eventID, int eventStatus, int remainingDays, int eventParticipants) {
+    public Events(String eventName, String date, int eventID, int eventStatus, int remainingDays, int eventParticipants, String adresse, int zipCode, String description) {
         this.eventName = eventName;
         this.date = date;
         this.eventID = eventID;
         this.eventStatus = eventStatus;
         this.remainingDays = remainingDays;
         this.eventParticipants = eventParticipants;
+        this.adresse = adresse;
+        this.zipCode = zipCode;
+        this.description = description;
     }
 
     private String getEventName() {
@@ -70,5 +76,20 @@ public class Events {
 
     private void setEventParticipants(int eventParticipants) {
         this.eventParticipants = eventParticipants;
+    }
+    private String getAdresse() {
+        return adresse;
+    }
+
+    private void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    private int getZipCode() {
+        return zipCode;
+    }
+
+    private void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 }

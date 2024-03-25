@@ -116,7 +116,7 @@
                                                         <Insets bottom="16.0" left="50.0" top="16.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                    <Button fx:id="btnSubmitAdmin" mnemonicParsing="false" onAction="#SubmitLoginPageAdmin" prefHeight="35.0" prefWidth="400.0" text="Submit">
+                                    <Button fx:id="btnSubmitAdmin" mnemonicParsing="false" onAction="#submitLoginPageAdmin" prefHeight="35.0" prefWidth="400.0" text="Submit">
                                        <VBox.margin>
                                           <Insets left="50.0" />
                                        </VBox.margin>
@@ -164,7 +164,7 @@
                                                         <Insets bottom="16.0" left="50.0" top="16.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                    <Button fx:id="btnSubmitEvent" mnemonicParsing="false" onAction="#SubmitLoginPageCoordinator" prefHeight="35.0" prefWidth="400.0" text="Submit">
+                                    <Button fx:id="btnSubmitEvent" mnemonicParsing="false" onAction="#submitLoginPageCoordinator" prefHeight="35.0" prefWidth="400.0" text="Submit">
                                        <VBox.margin>
                                           <Insets left="50.0" />
                                        </VBox.margin>

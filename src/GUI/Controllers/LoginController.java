@@ -5,8 +5,6 @@ import CostumException.ValidationException;
 import GUI.Controllers.Frame.Admin.AdminFrameController;
 import GUI.Controllers.Frame.Coordinator.CoordinatorFrameController;
 import GUI.Model.UsersModel;
-import GUI.Utility.LoginResult;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -17,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -105,12 +104,37 @@ public class LoginController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize UsersModel.", e);
         }
+
+        adminMail.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                submitLoginPageAdmin(new ActionEvent());
+            }
+        });
+
+        adminPassword.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                submitLoginPageAdmin(new ActionEvent());
+            }
+        });
+
+
+        userMail.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                submitLoginPageCoordinator(new ActionEvent());
+            }
+        });
+
+        userPassword.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                submitLoginPageCoordinator(new ActionEvent());
+            }
+        });
     }
 
 
 
     @FXML
-    public void SubmitLoginPageAdmin(ActionEvent actionEvent) {
+    public void submitLoginPageAdmin(ActionEvent actionEvent) {
         try {
             String email = adminMail.getText();
             String password = adminPassword.getText();
@@ -152,7 +176,7 @@ public class LoginController implements Initializable {
 
 
     @FXML
-    private void SubmitLoginPageCoordinator(ActionEvent actionEvent) {
+    private void submitLoginPageCoordinator(ActionEvent actionEvent) {
         try {
             String email = userMail.getText();
             String password = userPassword.getText();
