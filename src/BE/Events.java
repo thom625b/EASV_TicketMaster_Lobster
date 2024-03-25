@@ -3,34 +3,39 @@ package BE;
 public class Events {
 
 
-    private String adresse, eventName, date, description;
-    private int eventID, eventStatus, remainingDays, eventParticipants, zipCode;
+    private String eventAddress, eventName, eventDate, eventCity, eventDescription;
+    private int eventID, eventStatus, eventRemainingDays, eventParticipants, eventZipCode;
 
 
-    public Events(String eventName, String date, int eventStatus, int remainingDays, int eventParticipants, String adresse, int zipCode, String description) {
+
+
+    public Events(String eventName, String date, int eventStatus, int remainingDays, int eventParticipants, String adresse, int zipCode, String eventCity, String description) {
         this.eventName = eventName;
-        this.date = date;
+        this.eventDate = date;
         this.eventStatus = eventStatus;
-        this.remainingDays = remainingDays;
+        this.eventRemainingDays = remainingDays;
         this.eventParticipants = eventParticipants;
-        this.adresse = adresse;
-        this.zipCode = zipCode;
-        this.description = description;
+        this.eventAddress = adresse;
+        this.eventZipCode = zipCode;
+        this.eventCity = eventCity;
+        this.eventDescription = description;
+
     }
 
-    public Events(String eventName, String date, int eventID, int eventStatus, int remainingDays, int eventParticipants, String adresse, int zipCode, String description) {
+    public Events(String eventName, String date, int eventID, int eventStatus, int remainingDays, int eventParticipants, String adresse, int zipCode,String eventCity, String description) {
         this.eventName = eventName;
-        this.date = date;
+        this.eventDate = date;
         this.eventID = eventID;
         this.eventStatus = eventStatus;
-        this.remainingDays = remainingDays;
+        this.eventRemainingDays = remainingDays;
         this.eventParticipants = eventParticipants;
-        this.adresse = adresse;
-        this.zipCode = zipCode;
-        this.description = description;
+        this.eventAddress = adresse;
+        this.eventZipCode = zipCode;
+        this.eventCity = eventCity;
+        this.eventDescription = description;
     }
 
-    private String getEventName() {
+    public String getEventName() {
         return eventName;
     }
 
@@ -38,12 +43,12 @@ public class Events {
         this.eventName = eventName;
     }
 
-    private String getDate() {
-        return date;
+    public String getEventDate() {
+        return eventDate;
     }
 
-    private void setDate(String date) {
-        this.date = date;
+    private void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
     }
 
     private int getEventID() {
@@ -54,7 +59,7 @@ public class Events {
         this.eventID = eventID;
     }
 
-    private int getEventStatus() {
+    public int getEventStatus() {
         return eventStatus;
     }
 
@@ -62,34 +67,50 @@ public class Events {
         this.eventStatus = eventStatus;
     }
 
-    private int getRemainingDays() {
-        return remainingDays;
+    public int getEventRemainingDays() {
+        return eventRemainingDays;
     }
 
-    private void setRemainingDays(int remainingDays) {
-        this.remainingDays = remainingDays;
+    private void setEventRemainingDays(int eventRemainingDays) {
+        this.eventRemainingDays = eventRemainingDays;
     }
 
-    private int getEventParticipants() {
+    public int getEventParticipants() {
         return eventParticipants;
     }
 
     private void setEventParticipants(int eventParticipants) {
         this.eventParticipants = eventParticipants;
     }
-    private String getAdresse() {
-        return adresse;
+    public String getEventAddress() {
+        return eventAddress;
     }
 
-    private void setAdresse(String adresse) {
-        this.adresse = adresse;
+    private void setEventAddress(String eventAddress) {
+        this.eventAddress = eventAddress;
     }
 
-    private int getZipCode() {
-        return zipCode;
+    public int getEventZipCode() {
+        return eventZipCode;
     }
 
-    private void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+    private void setEventZipCode(int eventZipCode) {
+        this.eventZipCode = eventZipCode;
+    }
+
+    public String getEventCity() {
+        return eventCity;
+    }
+
+    public void setEventCity(String eventCity) {
+        this.eventCity = eventCity;
+    }
+
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
     }
 }

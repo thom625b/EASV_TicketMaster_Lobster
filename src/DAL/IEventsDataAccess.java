@@ -1,7 +1,6 @@
 package DAL;
 
 import BE.Events;
-import BE.Users;
 import CostumException.ApplicationWideException;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 public interface IEventsDataAccess {
     List<Events> getAllEvents() throws ApplicationWideException;
 
-    Users addEvent(Events newEvent) throws ApplicationWideException;
+    Events addEvent(Events newEvent) throws ApplicationWideException;
 
     void deleteEvent(Events events) throws ApplicationWideException;
 
