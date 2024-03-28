@@ -1,5 +1,6 @@
 package GUI.Controllers.Frame.Coordinator;
 
+import BE.Events;
 import BE.Users;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
@@ -14,20 +15,25 @@ import javafx.scene.control.ComboBox;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class CoordinatorManageEventsController implements IController {
     UsersModel usersModel;
+    EventsModel eventsModel;
     @FXML
     private ComboBox<Users> btnCoordinatorsDropDown;
     @FXML
-    private ComboBox btnEventsDropDown;
+    private ComboBox<Events> btnEventsDropDown;
 
 
     @FXML
     public void initialize() throws ApplicationWideException, SQLServerException, IOException {
         usersModel = new UsersModel();
+        eventsModel = new EventsModel();
         getCoordinators(null);
+        getEvents(null);
     }
     @FXML
     private void goToHomePage(ActionEvent actionEvent) {
@@ -61,15 +67,39 @@ public class CoordinatorManageEventsController implements IController {
         }
     }
 
-    @FXML
-    private void getEvents(ActionEvent actionEvent) {
 
-    }
 
     @Override
-    public void setModel(UsersModel usersModel) {
+    public void setModel(UsersModel usersModel) throws ApplicationWideException {
 
     }
 
+    @FXML
+    private void getEvents(ActionEvent actionEvent) {
+        System.out.println("pressed events");
+        try {
+            ObservableList<Events> events = eventsModel.getObsEvents();
+            btnEventsDropDown.setItems(events);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            btnEventsDropDown.setConverter(new StringConverter<Events>() {
+                @Override
+                public String toString(Events event) {
+                    if (event != null && event.getEventDate() != null) {
+                        LocalDate date = LocalDate.parse(event.getEventDate());
+                        String dateStr = date.format(formatter);
+                        return event.getEventName() + " - " + dateStr;
+                    }
+                    return "";
+                }
 
+                @Override
+                public Events fromString(String string) {
+                    return null;
+                }
+            });
+        } catch (ApplicationWideException e) {
+            new ApplicationWideException("Error loading events", e);
+        }
+    }
 }
+

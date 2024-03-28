@@ -51,4 +51,9 @@ public class EventsModel {
         eventsManager.addCoordinatorToEvents(coordinatorId, eventId);
     }
 
+    public ObservableList<Events> getObsEvents() throws ApplicationWideException {
+        List<Events> allEvents = eventsManager.getAllEvents();
+        return FXCollections.observableArrayList(allEvents);
+    }
+
 }
