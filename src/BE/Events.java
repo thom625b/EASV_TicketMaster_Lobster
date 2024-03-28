@@ -19,17 +19,17 @@ public class Events {
     }
 
 
-    public Events(String eventName, String date, int eventID, int eventStatus, int remainingDays, int eventParticipants, String address, int zipCode, String eventCity, String description) {
-        this.eventName = eventName;
-        this.eventDate = date;
+    public Events(int eventID, String eventName, String eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
         this.eventID = eventID;
+        this.eventName = eventName;
+        this.eventDate = eventDate;
         this.eventStatus = eventStatus;
-        this.eventRemainingDays = remainingDays;
+        this.eventRemainingDays = eventRemainingDays;
         this.eventParticipants = eventParticipants;
-        this.eventAddress = address;
-        this.eventZipCode = zipCode;
+        this.eventAddress = eventAddress;
+        this.eventZipCode = eventZipCode;
         this.eventCity = eventCity;
-        this.eventDescription = description;
+        this.eventDescription = eventDescription;
     }
 
 
@@ -49,7 +49,7 @@ public class Events {
         this.eventDate = eventDate;
     }
 
-    private int getEventID() {
+    public int getEventID() {
         return eventID;
     }
 
@@ -110,5 +110,21 @@ public class Events {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "Events{" +
+                "eventName='" + eventName + '\'' +
+                ", eventDate='" + eventDate + '\'' +
+                ", eventID=" + eventID +
+                ", eventStatus=" + eventStatus +
+                ", eventRemainingDays=" + eventRemainingDays +
+                ", eventParticipants=" + eventParticipants +
+                ", eventAddress='" + eventAddress + '\'' +
+                ", eventZipCode=" + eventZipCode +
+                ", eventCity='" + eventCity + '\'' +
+                ", eventDescription='" + eventDescription + '\'' +
+                '}';
     }
 }

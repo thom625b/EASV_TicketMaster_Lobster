@@ -1,5 +1,6 @@
 package GUI.Controllers.Frame.Coordinator;
 
+import BE.Events;
 import GUI.Controllers.IController;
 import GUI.Model.UsersModel;
 import javafx.event.ActionEvent;
@@ -9,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -30,6 +30,7 @@ public class CoordinatorFrameController implements Initializable, IController {
 
     // Define the FXML file path here
     private final String CREATE_EVENTS_WINDOW_FXML = "/fxml/Coordinator/EventControllers/CoordinatorCreateEventsWindow.fxml";
+    private final String EDIT_EVENT_WINDOW_FXML = "fxml/Coordinator/EventControllers/CoordinatorEditEventWindow.fxml";
 
 
     @FXML
@@ -96,6 +97,8 @@ public class CoordinatorFrameController implements Initializable, IController {
         }
     }
 
+
+
     @FXML
     private void goToUserHome(ActionEvent actionEvent) {
         try {
@@ -123,13 +126,36 @@ public class CoordinatorFrameController implements Initializable, IController {
         }
     }
 
-    public void loadPageCoordinatorCreateEventPage() {
+    public void openPageCoordinatorCreateEventPage() {
         try {
             URL url = getClass().getResource(CREATE_EVENTS_WINDOW_FXML);
             if (url == null) {
                 throw new IOException("FXML file not found: " + CREATE_EVENTS_WINDOW_FXML);
             }
             Parent root = FXMLLoader.load(url);
+
+            if (!coorStackPane.getChildren().isEmpty()) {
+                pageHistory.push(coorStackPane.getChildren().get(0));
+            }
+
+            setCenterNode(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void openEditEventPage(Events selectedEvent) {
+        try {
+            URL url = getClass().getClassLoader().getResource(EDIT_EVENT_WINDOW_FXML);
+            if (url == null) {
+                throw new IOException("FXML file not found: " + EDIT_EVENT_WINDOW_FXML);
+            }
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            // Pass the selected event to the controller of the loaded FXML file
+            CoordinatorEditEventPageController editEventController = loader.getController();
+            editEventController.initData(selectedEvent.getEventName(), selectedEvent.getEventDate(), String.valueOf(selectedEvent.getEventStatus()));
 
             if (!coorStackPane.getChildren().isEmpty()) {
                 pageHistory.push(coorStackPane.getChildren().get(0));

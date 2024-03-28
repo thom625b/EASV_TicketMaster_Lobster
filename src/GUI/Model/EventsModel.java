@@ -3,9 +3,10 @@ package GUI.Model;
 import BE.Events;
 import BLL.EventsManager;
 import CostumException.ApplicationWideException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
-import java.util.List;
 
 public class EventsModel {
 
@@ -15,8 +16,8 @@ public class EventsModel {
         eventsManager = new EventsManager();
     }
 
-    public List<Events> getAllEvents() throws ApplicationWideException {
-        return eventsManager.getAllEvents();
+    public ObservableList<Events> getAllEvents() throws ApplicationWideException {
+        return FXCollections.observableArrayList(eventsManager.getAllEvents());
     }
 
     public void createEvent(Events event) throws ApplicationWideException {

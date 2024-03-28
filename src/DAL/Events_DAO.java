@@ -26,6 +26,7 @@ public class Events_DAO implements IEventsDataAccess {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Events event = new Events(
+                        rs.getInt("eventID"),
                         rs.getString("eventName"),
                         rs.getString("eventDate"),
                         rs.getInt("eventStatus"),

@@ -111,7 +111,7 @@
                                     <Insets bottom="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="txtEventAddress" prefHeight="17.0" prefWidth="111.0" promptText="PNG" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="txtEventAddress" prefHeight="17.0" prefWidth="111.0" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>

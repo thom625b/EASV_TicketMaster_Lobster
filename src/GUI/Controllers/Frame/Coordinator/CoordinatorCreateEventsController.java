@@ -52,7 +52,15 @@ public class CoordinatorCreateEventsController implements IController {
     }
 
     @FXML
-    public void AddNewEvent(ActionEvent actionEvent) {
+    private void AddNewEvent(ActionEvent actionEvent) {
+        // Check if any of the required fields are empty
+        if (txtEventTitle.getText().isEmpty() || dpEventStartDate.getValue() == null || txtEventAddress.getText().isEmpty() ||
+                txtEventZipCode.getText().isEmpty() || txtEventCity.getText().isEmpty() || txtEventDescription.getText().isEmpty()) {
+            showAlert("Missing Information", "Please fill in all required fields.");
+            return; // Stop execution if any required field is empty
+        }
+
+        // Parse input values
         String eventName = txtEventTitle.getText();
         LocalDate eventDate = dpEventStartDate.getValue();
         int eventStatus = 1; // Set default status or retrieve from UI
@@ -74,11 +82,21 @@ public class CoordinatorCreateEventsController implements IController {
         long remainingDays = ChronoUnit.DAYS.between(LocalDate.now(), eventDate);
         int eventRemainingDays = (int) remainingDays;
 
+        // Create new event
         Events newEvent = new Events(eventName, eventDate.toString(), eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZipCode, eventCity, eventDescription);
 
         try {
+            // Create the event
             eventsModel.createEvent(newEvent);
-            coordinatorFrameController.goBack();
+
+            // Show success message
+            showSuccessAlert("Event Created", "The event has been successfully created.");
+
+            // Clear input fields
+            clearInputFields();
+
+            // Optionally, you can go back to the previous page or perform other actions here
+
         } catch (ApplicationWideException e) {
             e.printStackTrace();
         }
@@ -90,6 +108,23 @@ public class CoordinatorCreateEventsController implements IController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void showSuccessAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void clearInputFields() {
+        txtEventTitle.clear();
+        dpEventStartDate.setValue(null);
+        txtEventAddress.clear();
+        txtEventZipCode.clear();
+        txtEventCity.clear();
+        txtEventDescription.clear();
     }
 
     @Override
