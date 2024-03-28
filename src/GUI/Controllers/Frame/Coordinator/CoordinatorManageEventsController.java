@@ -3,6 +3,7 @@ package GUI.Controllers.Frame.Coordinator;
 import BE.Users;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
+import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
@@ -69,4 +70,6 @@ public class CoordinatorManageEventsController implements IController {
     public void setModel(UsersModel usersModel) {
 
     }
+
+
 }

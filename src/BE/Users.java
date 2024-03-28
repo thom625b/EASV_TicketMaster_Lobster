@@ -116,7 +116,6 @@ public class Users {
         this.userPicture = userPicture;
     }
 
-    @Override
     public String toString() {
         return "Users{" +
                 "userId=" + userId +
@@ -128,5 +127,26 @@ public class Users {
                 ", role=" + role +
                 '}';
     }
+
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Users users = (Users) o;
+
+        return userId == users.userId;
+    }
+
+    @Override
+    public int hashCode() {
+        return userId;
+    }
+
+
+
 
 }

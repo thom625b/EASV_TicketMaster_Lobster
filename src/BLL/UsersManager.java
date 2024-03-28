@@ -25,12 +25,18 @@ public class UsersManager {
     }
 
 
-    public void createUser(String userFName, String userLName, String userEmail, String password, Users.Role role, String userPicture) {
-        String hashedPassword = PasswordUtils.hashPassword(password);
+    public void createUser(String userFName, String userLName, String userEmail, String password, Users.Role role, String userPicture) throws ValidationException {
+        Users existingUser = usersDao.getUserByEmail(userEmail);
+        if (existingUser != null) {
+            throw new ValidationException("Email already in use.");
+        }
 
+
+        String hashedPassword = PasswordUtils.hashPassword(password);
         Users newUser = new Users(userFName, userLName, userEmail, hashedPassword, role, userPicture);
         usersDao.addUser(newUser);
     }
+
 
     public List<Users> getCoordinators() throws ApplicationWideException {
         List<Users> allUsers = usersDao.getAllUsers();
@@ -40,18 +46,21 @@ public class UsersManager {
                 .collect(Collectors.toList());
         return coordinators;
     }
-    public boolean verifyLoginWithRole(String email, String password, Users.Role expectedRole) throws ValidationException {
+    public Users verifyLoginWithRole(String email, String password, Users.Role expectedRole) throws ValidationException {
         if (!isValidEmail(email)) {
             throw new ValidationException("Invalid email format.");
         }
 
         Users user = usersDao.getUserByEmail(email);
         if (user != null && PasswordUtils.checkPassword(password, user.getHashedPassword())) {
-            // Check if the user's role matches the expected role
-            return user.getRole().equals(expectedRole);
+
+            if(user.getRole().equals(expectedRole)) {
+                return user;
+            }
         }
-        return false;
+        return null;
     }
+
 
     private boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
@@ -103,4 +112,13 @@ public class UsersManager {
             throw new RuntimeException(e);
         }
     }
+
+    public void updateUserImage(int userId, String imagePath) throws ApplicationWideException {
+        try {
+            usersDao.updateUserImage(userId, imagePath);
+        } catch (ApplicationWideException e) {
+            throw e;
+        }
+    }
+
 }

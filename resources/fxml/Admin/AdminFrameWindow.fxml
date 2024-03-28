@@ -13,7 +13,7 @@
    <left>
       <VBox fx:id="vBoxadminBack" prefHeight="496.0" prefWidth="159.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="125.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgProfilePictureAdmin" fitHeight="125.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../pictures/Customer.png" />
                </image>

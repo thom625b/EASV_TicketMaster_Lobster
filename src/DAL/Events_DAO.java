@@ -71,7 +71,27 @@ public class Events_DAO implements IEventsDataAccess {
 
     @Override
     public void deleteEvent(Events event) throws ApplicationWideException {
-        // Implement deletion of an event from the database
+        String deleteEventUsersSQL = "DELETE FROM EventUsers WHERE eventID = ?";
+        String deleteEventSQL = "DELETE FROM Events WHERE eventID = ?";
+
+        try (Connection conn = dbConnector.getConnection()) {
+            conn.setAutoCommit(false); // Start transaction block
+
+
+            try (PreparedStatement pstmt = conn.prepareStatement(deleteEventUsersSQL)) {
+                pstmt.setInt(1, event.getEventID());
+                pstmt.executeUpdate();
+            }
+
+            try (PreparedStatement pstmt = conn.prepareStatement(deleteEventSQL)) {
+                pstmt.setInt(1, event.getEventID());
+                pstmt.executeUpdate();
+            }
+
+            conn.commit();
+        } catch (SQLException e) {
+            throw new ApplicationWideException("Error deleting the event from the database.", e);
+        }
     }
 
     @Override
@@ -83,5 +103,25 @@ public class Events_DAO implements IEventsDataAccess {
     public List<Events> getEventsByCoordinator(int coordinatorID) throws ApplicationWideException {
         // Implement retrieval of events by coordinator from the database
         return null;
+    }
+
+    public void addCoordinatorToEvents(int coordinatorId, int eventId) throws ApplicationWideException {
+        String sql = "INSERT INTO EventUsers (eventID, userID) VALUES (?, ?);";
+
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, eventId);
+            pstmt.setInt(2, coordinatorId);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user-event association failed, no rows affected.");
+            }
+        } catch (SQLException e) {
+            throw new ApplicationWideException("Error occurred while associating coordinator with event.", e);
+        }
+
     }
 }

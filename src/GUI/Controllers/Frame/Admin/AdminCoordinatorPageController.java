@@ -3,8 +3,10 @@ package GUI.Controllers.Frame.Admin;
 import BE.Users;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
+import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,6 +47,14 @@ public class AdminCoordinatorPageController implements Initializable, IControlle
             colLastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLastName()));
             colEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
             colRole.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getRole())));
+
+
+            usersModel.getObservableUsers().addListener((ListChangeListener<Users>)change -> {
+                while (change.next()) {
+                    tblViewCoorAdmin.refresh();
+                }
+
+            });
         } else {
             System.err.println("UsersModel is not initialized.");
         }
@@ -55,8 +65,7 @@ public class AdminCoordinatorPageController implements Initializable, IControlle
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        tblViewCoorAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-        });
+
         initializeButtonColumn();
 
     }
@@ -67,6 +76,7 @@ public class AdminCoordinatorPageController implements Initializable, IControlle
         showAllUsersInTable();
 
     }
+
 
 
 

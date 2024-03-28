@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderEventsAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" styleClass="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminManageEventsController">
+<BorderPane fx:id="borderEventsAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" styleClass="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminEventsPageController">
    <top>
       <VBox prefHeight="93.0" prefWidth="779.0" BorderPane.alignment="CENTER">
          <children>
@@ -58,7 +58,7 @@
       <TableView fx:id="tblViewAdminEvents" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <columns>
             <TableColumn fx:id="colAdminEventId" prefWidth="75.0" text="ID" visible="false" />
-            <TableColumn fx:id="colName" prefWidth="156.0001220703125" text="Event" />
+            <TableColumn fx:id="colEventAdmin" prefWidth="156.0001220703125" text="Event" />
             <TableColumn fx:id="colAdminStartDate" prefWidth="155.199951171875" text="Start Date" />
             <TableColumn fx:id="colAdminStatus" prefWidth="185.5999755859375" text="Status" />
             <TableColumn fx:id="colAdminDaysLeft" prefWidth="109.5999755859375" text="Days Left " />

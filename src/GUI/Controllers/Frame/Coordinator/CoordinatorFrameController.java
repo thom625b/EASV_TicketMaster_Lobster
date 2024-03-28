@@ -2,6 +2,7 @@ package GUI.Controllers.Frame.Coordinator;
 
 import BE.Events;
 import GUI.Controllers.IController;
+import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -88,6 +89,8 @@ public class CoordinatorFrameController implements Initializable, IController {
     public void setModel(UsersModel usersModel) {
         this.usersModel = usersModel;
     }
+
+
 
     public void btnGoToEventsPage(ActionEvent actionEvent) {
         try {

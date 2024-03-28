@@ -1,6 +1,7 @@
 package GUI.Controllers.Frame.Coordinator;
 
 import GUI.Controllers.IController;
+import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -45,4 +46,5 @@ public class CoordinatorEditEventPageController implements IController {
     public void setModel(UsersModel usersModel) {
 
     }
+
 }

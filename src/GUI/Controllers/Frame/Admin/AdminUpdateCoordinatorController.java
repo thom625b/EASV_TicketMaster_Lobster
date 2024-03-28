@@ -4,6 +4,7 @@ import BE.Users;
 import BLL.UsersManager;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
+import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,7 @@ public class AdminUpdateCoordinatorController implements IController {
     private UsersModel usersModel;
 
     private Map<ComboBox, Users> usersMap = new HashMap<>();
+
 
     private Users user;
 
@@ -72,6 +74,8 @@ public class AdminUpdateCoordinatorController implements IController {
             txtUpdateLastName.setText(user.getLastName());
             txtUpdateEmail.setText(user.getEmail());
 
+
+
             ObservableList<String> roles = FXCollections.observableArrayList(
                     Users.Role.ADMIN.toString(),
                     Users.Role.COORDINATOR.toString()
@@ -87,10 +91,9 @@ public class AdminUpdateCoordinatorController implements IController {
     public void setModel(UsersModel usersModel) {
         this.usersModel = usersModel;
     }
-    @FXML
-    private void initialize() throws Exception{
-        usersModel = new UsersModel();
-    }
+
+
+
 
     @FXML
     void deleteUser(ActionEvent actionEvent) throws ApplicationWideException {

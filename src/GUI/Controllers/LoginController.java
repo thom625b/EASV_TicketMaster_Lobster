@@ -5,6 +5,7 @@ import CostumException.ValidationException;
 import GUI.Controllers.Frame.Admin.AdminFrameController;
 import GUI.Controllers.Frame.Coordinator.CoordinatorFrameController;
 import GUI.Model.UsersModel;
+import GUI.Utility.UserContext;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -140,7 +141,9 @@ public class LoginController implements Initializable {
             String password = adminPassword.getText();
             Users.Role expectedRole = Users.Role.ADMIN;
 
-            if (usersModel.verifyLoginWithRole(email, password,expectedRole)) {
+            Users user = usersModel.verifyLoginWithRole(email, password, expectedRole);
+            if (user != null) {
+                UserContext.getInstance().setCurrentUser(user);
                 loadAdminDashboard();
             } else {
                 lblLoginAdmin.setText("Login Failed. Please check your credentials.");
@@ -164,7 +167,7 @@ public class LoginController implements Initializable {
             stage.setResizable(false);
             AdminFrameController frameController = loader.getController();
             frameController.setModel(usersModel);
-
+            frameController.loadpage("/fxml/Admin/AdminHomePage");
             Stage currentStage = (Stage) adminMail.getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
@@ -182,7 +185,9 @@ public class LoginController implements Initializable {
             String password = userPassword.getText();
             Users.Role expectedRole = Users.Role.COORDINATOR;
 
-            if (usersModel.verifyLoginWithRole(email, password,expectedRole)) {
+            Users user = usersModel.verifyLoginWithRole(email, password, expectedRole);
+            if (user != null) {
+                UserContext.getInstance().setCurrentUser(user);
                 loadCoordinatorDashboard();
             } else {
                 lblLoginEventCoordinator.setText("Login Failed. Please check your credentials.");

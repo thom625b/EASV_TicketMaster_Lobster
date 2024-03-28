@@ -18,7 +18,7 @@ public class CoordinatorCreateEventsController implements IController {
     private final EventsModel eventsModel;
     private CoordinatorFrameController coordinatorFrameController;
 
-    public CoordinatorCreateEventsController() throws IOException {
+    public CoordinatorCreateEventsController() throws IOException, ApplicationWideException {
         eventsModel = new EventsModel();
         coordinatorFrameController = new CoordinatorFrameController();
     }
@@ -131,4 +131,5 @@ public class CoordinatorCreateEventsController implements IController {
     public void setModel(UsersModel usersModel) {
 
     }
+
 }

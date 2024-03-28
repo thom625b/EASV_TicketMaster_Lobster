@@ -1,8 +1,12 @@
 package GUI.Controllers.Frame.Admin;
 
 import BE.Users;
+
+import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
+import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +16,7 @@ import javafx.scene.Parent;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -31,12 +36,18 @@ public class AdminFrameController implements Initializable {
     private Stack<Node> pageHistory = new Stack<>();
     private UsersModel usersModel;
 
+    private EventsModel eventsModel;
+    private Users currentUser;
     @FXML
     private Button btnadminCoordinator, btnadminLogout, btnadminEvents, btnadminHome;
     @FXML
     private Button btnadminManageEvents;
 
     private final String UPDATE_COORDINATOR_WINDOW_FXML = "/fxml/Admin/AdminUpdateCoordinator.fxml";
+    @FXML
+    private ImageView imgProfilePictureAdmin;
+    @FXML
+    private ImageView imgNewUserPictureAdmin;
 
     @FXML
     private void homeScreenWindow() throws IOException {
@@ -56,7 +67,19 @@ public class AdminFrameController implements Initializable {
         Parent root = fxmlLoader.load();
 
         IController controller = fxmlLoader.getController();
-        controller.setModel(usersModel);
+
+        if (usersModel != null) {
+            try {
+                controller.setModel(usersModel);
+            } catch (ApplicationWideException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+
+
+
         if (!adminStackPane.getChildren().isEmpty()) {
             pageHistory.push(adminStackPane.getChildren().get(0));
         }
@@ -83,11 +106,7 @@ public class AdminFrameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
-        try {
-            loadpage("/fxml/Admin/AdminHomePage");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
 
 
     }
@@ -95,7 +114,9 @@ public class AdminFrameController implements Initializable {
 
     public void setModel(UsersModel usersModel) {
         this.usersModel = usersModel;
+
     }
+
 
     @FXML
     private void goToAdminHome(ActionEvent actionEvent) {
@@ -147,6 +168,7 @@ public class AdminFrameController implements Initializable {
             if (user != null) {
                 AdminUpdateCoordinatorController controller = loader.getController();
                 controller.setUser(user);
+                controller.setModel(usersModel);
             }
 
             transitionToNewScene(root);
@@ -184,8 +206,26 @@ public class AdminFrameController implements Initializable {
     }
 
 
-    @FXML
-    private void openChangeProfilePicture(MouseEvent mouseEvent) {
 
+
+    @FXML
+    private void openChangeProfilePicture(MouseEvent mouseEvent ) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin/AdminCreatePicturePage.fxml"));
+            Parent root = loader.load();
+
+            transitionToNewScene(root);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open the profile picture change window", e);
+        }
+    }
+
+
+    @FXML
+    private void loadNewUserPicture(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void insertNewUserPicture(ActionEvent actionEvent) {
     }
 }

@@ -7,13 +7,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.util.List;
 
 public class EventsModel {
 
     private final EventsManager eventsManager;
 
-    public EventsModel() throws IOException {
+    private final ObservableList<Events> eventList = FXCollections.observableArrayList();
+
+    public EventsModel() throws IOException, ApplicationWideException {
         eventsManager = new EventsManager();
+        loadEvents();
+    }
+
+
+    public void loadEvents() throws ApplicationWideException {
+        List<Events> events = getAllEvents();
+        eventList.setAll(events);
+
+    }
+
+    public ObservableList<Events> getEventList() {
+        return eventList;
     }
 
     public ObservableList<Events> getAllEvents() throws ApplicationWideException {
@@ -31,4 +46,9 @@ public class EventsModel {
     public void deleteEvent(Events event) throws ApplicationWideException {
         eventsManager.deleteEvent(event);
     }
+
+    public void addCoordinatorToEvents(int coordinatorId, int eventId) throws ApplicationWideException {
+        eventsManager.addCoordinatorToEvents(coordinatorId, eventId);
+    }
+
 }

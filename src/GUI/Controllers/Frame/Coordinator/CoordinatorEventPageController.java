@@ -40,7 +40,7 @@ public class CoordinatorEventPageController implements IController {
 
     private final EventsModel eventsModel;
 
-    public CoordinatorEventPageController() throws IOException {
+    public CoordinatorEventPageController() throws IOException, ApplicationWideException {
         eventsModel = new EventsModel();
     }
 

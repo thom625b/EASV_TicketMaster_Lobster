@@ -1,54 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController"
-            prefHeight="400.0" prefWidth="600.0">
-
-    <top>
-        <MenuBar BorderPane.alignment="CENTER">
-            <menus>
-                <Menu text="File">
-                    <items>
-                        <MenuItem text="New"/>
-                        <MenuItem text="Open"/>
-                        <MenuItem text="Save"/>
-                        <MenuItem text="Exit"/>
-                    </items>
-                </Menu>
-                <Menu text="Edit">
-                    <items>
-                        <MenuItem text="Undo"/>
-                        <MenuItem text="Redo"/>
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-    </top>
-    <left>
-        <VBox BorderPane.alignment="CENTER">
-            <children>
-                <Button text="Button 1" maxWidth="Infinity"/>
-                <Button text="Button 2" maxWidth="Infinity"/>
-                <Button text="Button 3" maxWidth="Infinity"/>
-            </children>
-        </VBox>
-    </left>
-    <center>
-        <StackPane BorderPane.alignment="CENTER">
-            <children>
-                <Label text="Main Content Area"/>
-            </children>
-        </StackPane>
-    </center>
-    <bottom>
-        <HBox BorderPane.alignment="CENTER">
-            <children>
-                <Label text="Status: Ready"/>
-            </children>
-        </HBox>
-    </bottom>
+<BorderPane fx:id="BPLoadPicture" prefHeight="202.0" prefWidth="292.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController">
+   <center>
+      <HBox alignment="CENTER" prefHeight="400.0" prefWidth="75.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnLoadPicture" mnemonicParsing="false" onAction="#loadNewUserPicture" text="Load picture" />
+         </children>
+      </HBox>
+   </center>
+   <right>
+      <VBox alignment="CENTER" spacing="16.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="imgNewUserPictureAdmin" fitHeight="138.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnInsertPicture" mnemonicParsing="false" onAction="#insertNewUserPicture" text="Insert picture" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

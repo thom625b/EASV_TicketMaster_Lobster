@@ -128,5 +128,23 @@ public class USERS_DAO implements IUserDataAccess {
         return null;
     }
 
+    public void updateUserImage(int userId, String imagePath) throws ApplicationWideException {
+        String sql = "UPDATE Users SET userPicture = ? WHERE userID = ?;";
 
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, imagePath);
+            pstmt.setInt(2, userId);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new ApplicationWideException("Updating user image failed, no rows affected.");
+            }
+
+        } catch (SQLException e) {
+            throw new ApplicationWideException("Failed to update user image", e);
+        }
+    }
 }

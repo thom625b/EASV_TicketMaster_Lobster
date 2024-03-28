@@ -30,7 +30,12 @@ public class EventsManager {
     public void updateEvent(Events event) {
     }
 
-    public void deleteEvent(Events event) {
+    public void deleteEvent(Events event) throws ApplicationWideException {
+        eventsDao.deleteEvent(event);
+    }
+
+    public void addCoordinatorToEvents(int coordinatorId, int eventId) throws ApplicationWideException {
+        eventsDao.addCoordinatorToEvents(coordinatorId, eventId);
     }
 
     // Implement additional methods as needed for managing events
