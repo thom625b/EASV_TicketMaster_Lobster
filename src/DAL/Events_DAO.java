@@ -101,9 +101,36 @@ public class Events_DAO implements IEventsDataAccess {
 
     @Override
     public List<Events> getEventsByCoordinator(int coordinatorID) throws ApplicationWideException {
-        // Implement retrieval of events by coordinator from the database
-        return null;
+        List<Events> eventsByCoordinator = new ArrayList<>();
+        String sql = "SELECT * FROM Events INNER JOIN EventUsers ON Events.eventID = EventUsers.eventID WHERE EventUsers.userID = ?";
+
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, coordinatorID);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Events event = new Events(
+                        rs.getInt("eventID"),
+                        rs.getString("eventName"),
+                        rs.getString("eventDate"),
+                        rs.getInt("eventStatus"),
+                        rs.getInt("eventRemainingDays"),
+                        rs.getInt("eventParticipants"),
+                        rs.getString("eventAddress"),
+                        rs.getInt("eventZIP"),
+                        rs.getString("eventCity"),
+                        rs.getString("eventDescription")
+                );
+                eventsByCoordinator.add(event);
+            }
+        } catch (SQLException e) {
+            throw new ApplicationWideException("Error occurred while retrieving events by coordinator", e);
+        }
+        return eventsByCoordinator;
     }
+
 
     public void addCoordinatorToEvents(int coordinatorId, int eventId) throws ApplicationWideException {
         String sql = "INSERT INTO EventUsers (eventID, userID) VALUES (?, ?);";

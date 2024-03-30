@@ -5,6 +5,7 @@ import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
+import GUI.Utility.UserContext;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -51,7 +52,8 @@ public class CoordinatorEventPageController implements IController {
 
     @FXML
     public void initialize() {
-        initializeColumns();
+        int coordinatorID = UserContext.getInstance().getCurrentUserId(); // Replace 1 with the actual coordinator ID
+        initializeColumns(coordinatorID);
         initializeEditButtonColumn();
     }
 
@@ -87,9 +89,9 @@ public class CoordinatorEventPageController implements IController {
         };
     }
 
-    private void initializeColumns() {
+    private void initializeColumns(int coordinatorID) {
         try {
-            List<Events> events = eventsModel.getAllEvents();
+            List<Events> events = eventsModel.getEventsByCoordinator(coordinatorID);
             ObservableList<Events> eventList = FXCollections.observableArrayList(events);
 
             tblEventTableCode.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEventID())));
@@ -101,7 +103,7 @@ public class CoordinatorEventPageController implements IController {
 
             tblEventTable.setItems(eventList);
         } catch (ApplicationWideException e) {
-            showAlert("Error", "Failed to retrieve events from the database.");
+            showAlert("Error", "Failed to retrieve events by coordinator from the database.");
             e.printStackTrace();
         }
     }
