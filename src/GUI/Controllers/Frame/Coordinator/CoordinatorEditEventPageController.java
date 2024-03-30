@@ -1,50 +1,84 @@
 package GUI.Controllers.Frame.Coordinator;
 
+import BE.Events; // Assuming the Event class is named Event
 import GUI.Controllers.IController;
-import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 public class CoordinatorEditEventPageController implements IController {
 
     @FXML
-    private TextField txtEventName;
+    public TextField txtEditEventPicture;
     @FXML
-    private TextField txtStartDate;
+    public TextField txtEditEventCity;
     @FXML
-    private TextField txtStatus;
+    public TextField txtEditEventTitle;
+    @FXML
+    public TextField txtEditEventZipCode;
+    @FXML
+    public TextField txtEditEventAddress;
+    @FXML
+    public TextArea txtEditEventDescription;
+
+    @FXML
+    public DatePicker dpEditEventStartDate;
+    @FXML
+    public Button btnEditUploadImageToEvent;
+    @FXML
+    public Button btnEditSaveEvent;
+    @FXML
+    public Button btnEditDeleteEvent;
+
+
 
     // Method to initialize the fields with the current event details
-    public void initData(String eventName, String startDate, String status) {
-        txtEventName.setText(eventName);
-        txtStartDate.setText(startDate);
-        txtStatus.setText(status);
+    public void initData(Events selectedEvent) {
+        try {
+            // Extract data from the selected event
+            String eventName = selectedEvent.getEventName();
+            String startDate = selectedEvent.getEventDate(); // Assuming getStartDate returns a String
+            String city = selectedEvent.getEventCity();
+            String zipCode = String.valueOf(selectedEvent.getEventZipCode());
+            String address = selectedEvent.getEventAddress();
+            String description = selectedEvent.getEventDescription();
+
+            // Populate the text fields with the extracted data
+            txtEditEventTitle.setText(eventName);
+            dpEditEventStartDate.setValue(LocalDate.parse(startDate));
+            txtEditEventCity.setText(city);
+            txtEditEventZipCode.setText(zipCode);
+            txtEditEventAddress.setText(address);
+            txtEditEventDescription.setText(description);
+        } catch (DateTimeParseException e) {
+            System.err.println("Error parsing start date: " + e.getMessage());
+            // Handle the error appropriately, e.g., show an error message to the user
+        }
     }
 
-    // Method to save the edited event details
-    @FXML
-    private void saveEdit() {
-        // Get the edited event details from the text fields
-        String eventName = txtEventName.getText();
-        String startDate = txtStartDate.getText();
-        String status = txtStatus.getText();
+    public void EditUploadImageToEvent(ActionEvent actionEvent) {
+    }
 
-        // Update the event details
-        // You can perform any necessary validation and update operations here
-        // For now, let's just print the updated details
-        System.out.println("Edited Event Name: " + eventName);
-        System.out.println("Edited Start Date: " + startDate);
-        System.out.println("Edited Status: " + status);
+    public void EditEventStartDate(ActionEvent actionEvent) {
+    }
 
-        // Close the edit window
-        txtEventName.getScene().getWindow().hide();
+    public void editSaveEvent(ActionEvent actionEvent) {
+    }
+
+    public void editDeleteEvent(ActionEvent actionEvent) {
     }
 
     @Override
     public void setModel(UsersModel usersModel) {
 
     }
-
 }

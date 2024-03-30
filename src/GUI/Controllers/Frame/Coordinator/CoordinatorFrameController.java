@@ -2,7 +2,6 @@ package GUI.Controllers.Frame.Coordinator;
 
 import BE.Events;
 import GUI.Controllers.IController;
-import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
@@ -156,9 +156,11 @@ public class CoordinatorFrameController implements Initializable, IController {
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
 
-            // Pass the selected event to the controller of the loaded FXML file
+            // Pass the selected event details to the controller of the loaded FXML file
             CoordinatorEditEventPageController editEventController = loader.getController();
-            editEventController.initData(selectedEvent.getEventName(), selectedEvent.getEventDate(), String.valueOf(selectedEvent.getEventStatus()));
+
+            // Initialize the edit event page with the selected event details
+            editEventController.initData(selectedEvent);
 
             if (!coorStackPane.getChildren().isEmpty()) {
                 pageHistory.push(coorStackPane.getChildren().get(0));
@@ -169,6 +171,7 @@ public class CoordinatorFrameController implements Initializable, IController {
             throw new RuntimeException(e);
         }
     }
+
 
     public void closeWindow(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
