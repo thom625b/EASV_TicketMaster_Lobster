@@ -105,7 +105,7 @@ public class CoordinatorFrameController implements Initializable, IController {
     @FXML
     private void goToUserHome(ActionEvent actionEvent) {
         try {
-            loadpage("/fxml/Coordinator/CoordinatorHomePage");
+            loadpage("/fxml/Coordinator/EventControllers/CoordinatorEventPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

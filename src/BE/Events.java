@@ -1,10 +1,13 @@
 package BE;
 
+import java.util.List;
+
 public class Events {
 
 
     private String eventAddress, eventName, eventDate, eventCity, eventDescription;
     private int eventID, eventStatus, eventRemainingDays, eventParticipants, eventZipCode;
+    private List<Users> users;
 
     public Events(String eventName, String eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
         this.eventName = eventName;
@@ -18,7 +21,6 @@ public class Events {
         this.eventDescription = eventDescription;
     }
 
-
     public Events(int eventID, String eventName, String eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
         this.eventID = eventID;
         this.eventName = eventName;
@@ -31,7 +33,6 @@ public class Events {
         this.eventCity = eventCity;
         this.eventDescription = eventDescription;
     }
-
 
     public String getEventName() {
         return eventName;
@@ -110,6 +111,14 @@ public class Events {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+    }
+
+    private List<Users> getUsers() {
+        return users;
+    }
+
+    private void setUsers(List<Users> users) {
+        this.users = users;
     }
 
     @Override

@@ -15,6 +15,8 @@ public class UserContext {
         return instance;
     }
 
+
+
     public void setCurrentUser(Users user) {
         this.currentUser = user;
     }

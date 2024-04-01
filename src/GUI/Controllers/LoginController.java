@@ -211,7 +211,7 @@ public class LoginController implements Initializable {
             stage.setResizable(false);
             CoordinatorFrameController frameController = loader.getController();
             frameController.setModel(usersModel);
-
+            frameController.loadpage("/fxml/Coordinator/EventControllers/CoordinatorEventPage");
             Stage currentStage = (Stage) userMail.getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {

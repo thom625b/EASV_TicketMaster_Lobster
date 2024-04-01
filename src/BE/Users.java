@@ -1,5 +1,7 @@
 package BE;
 
+import java.util.List;
+
 public class Users {
 
     private int userId;
@@ -9,6 +11,7 @@ public class Users {
     private String hashedPassword;
     private String userPicture;
     private Role role;
+    private List<Events> events;
 
 
     public Users(int userId, String firstName, String lastName, String email, String hashedPassword, Role role, String userPicture) {
@@ -115,6 +118,13 @@ public class Users {
     public void setUserPicture(String userPicture) {
         this.userPicture = userPicture;
     }
+    public List<Events> getEvents(){
+        return events;
+    }
+
+    private void setEvents(List<Events> events) {
+        this.events = events;
+    }
 
     public String toString() {
         return "Users{" +
@@ -127,9 +137,6 @@ public class Users {
                 ", role=" + role +
                 '}';
     }
-
-
-
 
     @Override
     public boolean equals(Object o) {
@@ -145,8 +152,5 @@ public class Users {
     public int hashCode() {
         return userId;
     }
-
-
-
 
 }

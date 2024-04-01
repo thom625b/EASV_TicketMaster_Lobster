@@ -25,8 +25,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#goToHomePage" prefHeight="74.0" prefWidth="189.0" text="Close" />
-            <Button mnemonicParsing="false" onAction="#mergeCoordAndEvent" prefHeight="74.0" prefWidth="189.0" text="Add To Event" />
+            <Button mnemonicParsing="false" onAction="#linkCoordinatorAndEvent" prefHeight="74.0" prefWidth="189.0" text="Add To Event" />
          </children>
       </HBox>
    </bottom>

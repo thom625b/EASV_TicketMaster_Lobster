@@ -3,6 +3,7 @@ package GUI.Model;
 import BE.Events;
 import BLL.EventsManager;
 import CostumException.ApplicationWideException;
+import GUI.Utility.UserContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

@@ -3,8 +3,10 @@ package BLL;
 import BE.Events;
 import CostumException.ApplicationWideException;
 import DAL.Events_DAO;
+import GUI.Utility.UserContext;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventsManager {
@@ -38,5 +40,13 @@ public class EventsManager {
         eventsDao.addCoordinatorToEvents(coordinatorId, eventId);
     }
 
-    // Implement additional methods as needed for managing events
+    public void getEventsConnectedToUser() throws ApplicationWideException {
+        int currentUserId = UserContext.getInstance().getCurrentUserId();
+
+        eventsDao.getAllEvents();
+        List<Events> usersEvents = new ArrayList<>();
+
+
+    }
+        // Implement additional methods as needed for managing events
 }
