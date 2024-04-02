@@ -43,7 +43,6 @@ public class CoordinatorManageEventsController implements IController {
         Users selectedCoordinatorID = btnCoordinatorsDropDown.getSelectionModel().getSelectedItem();
         Events selectedEventID = btnEventsDropDown.getSelectionModel().getSelectedItem();
 
-
         if (selectedCoordinatorID == null && selectedEventID == null){
             showAlert("Selection trouble", "Please select a coordinator and an event");
         } else if (selectedCoordinatorID == null) {
