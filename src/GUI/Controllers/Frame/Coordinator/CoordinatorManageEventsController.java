@@ -35,23 +35,14 @@ public class CoordinatorManageEventsController implements IController {
     public void initialize() throws ApplicationWideException, SQLServerException, IOException {
         usersModel = new UsersModel();
         eventsModel = new EventsModel();
-        getCoordinators(null);
-        getEvents(null);
-        btnCoordinatorsDropDown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-            }
-        });
-        btnEventsDropDown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-            }
-        });
+        populateEventButton();
+        populateCoordinatorButton();
     }
     @FXML
     private void linkCoordinatorAndEvent(ActionEvent actionEvent) {
-        Users selectedCoordinatorID = getCoordinatorID();
-        //System.out.println(selectedCoordinatorID.getUserId());
-        Events selectedEventID = getEventID();
-        //System.out.println(selectedEventID.getEventID());
+        Users selectedCoordinatorID = btnCoordinatorsDropDown.getSelectionModel().getSelectedItem();
+        Events selectedEventID = btnEventsDropDown.getSelectionModel().getSelectedItem();
+
 
         if (selectedCoordinatorID == null && selectedEventID == null){
             showAlert("Selection trouble", "Please select a coordinator and an event");
@@ -66,7 +57,7 @@ public class CoordinatorManageEventsController implements IController {
         int eventID = selectedEventID.getEventID();
 
         try {
-            eventsModel.addCoordinatorToEvents(eventID, coordinatorID);
+            eventsModel.addCoordinatorToEvents(coordinatorID, eventID);
             showAlert("Succes", "The coordinator has been added to the event");
         } catch (ApplicationWideException e){
             showAlert("Error", "Coldn't add the coordinator to the event");
@@ -74,82 +65,64 @@ public class CoordinatorManageEventsController implements IController {
             new ApplicationWideException("Error communicating with the database");
         }
     }
+    private void populateCoordinatorButton() throws ApplicationWideException {
+        int currentCoordinator = UserContext.getInstance().getCurrentUserId();
+        ObservableList<Users> allCoordinator = usersModel.getCoordinatorsObservable();
+        ObservableList<Users> filteredCoordinators = allCoordinator.filtered(coordinator -> coordinator.getUserId() != currentCoordinator);
+        btnCoordinatorsDropDown.setItems(filteredCoordinators);
+        btnCoordinatorsDropDown.setConverter(new StringConverter<Users>() {
+            @Override
+            public String toString(Users user) {
+                return user == null ? "" : user.getFirstName() + " " + user.getLastName();
+            }
 
-    private Users getCoordinatorID(){
-         return btnCoordinatorsDropDown.getSelectionModel().getSelectedItem();
+            @Override
+            public Users fromString(String string) {
+                return btnCoordinatorsDropDown.getItems().stream()
+                        .filter(user -> (user.getFirstName() + " " + user.getLastName()).equals(string))
+                        .findFirst().orElse(null);
+            }
+        });
     }
-
-    private Events getEventID(){
-        return btnEventsDropDown.getSelectionModel().getSelectedItem();
-    }
-
-    @FXML
-    private void getCoordinators(ActionEvent actionEvent) throws ApplicationWideException, SQLServerException, IOException {
-        try {
-            ObservableList<Users> allCoordinators = usersModel.getCoordinatorsObservable();
-            int currentCoordinator = UserContext.getInstance().getCurrentUserId();
-            ObservableList<Users> filteredCoordinators = allCoordinators.filtered(coordinator -> coordinator.getUserId() != currentCoordinator);
-            btnCoordinatorsDropDown.setItems(filteredCoordinators);
-
-            // laver BE om til en læsbar tekst
-            btnCoordinatorsDropDown.setConverter(new StringConverter<Users>() {
-                @Override
-                public String toString(Users user) {
-                    return user != null ? user.getFirstName() + " " + user.getLastName() : "";
-                }
-                @Override
-                public Users fromString(String string) {
-                    return null;
-                }
-            });
-        } catch (ApplicationWideException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    private void getEvents(ActionEvent actionEvent) {
-        try {
-            int coordinatorsEvents = UserContext.getInstance().getCurrentUserId();
-            ObservableList<Events> events = eventsModel.getEventsByCoordinator(coordinatorsEvents);
-            btnEventsDropDown.setItems(events);
-            //System.out.println("number of events in the list: " +events.size());
-            DateTimeFormatter oldFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            btnEventsDropDown.setConverter(new StringConverter<Events>() {
-                @Override
-                public String toString(Events event) {
-                    try {
-                        if (event != null && event.getEventDate() != null) {
-                            LocalDate date = LocalDate.parse(event.getEventDate(), oldFormat);
-                            //System.out.println("Events aften formatting: " + events.size());
-                            return event.getEventName() + " - " + date.format(newFormat);
-                        }
-                    } catch (DateTimeParseException e) {
-                        // håndtere hvis datoen ikke kan læses eller den står i et andet format
-                        System.out.println("Error parsing date: " + e.getMessage());
-
-                        return event != null ? event.getEventName() + " - Invalid date" : "";
+    private void populateEventButton() throws ApplicationWideException {
+        int currentCoordinator = UserContext.getInstance().getCurrentUserId();
+        ObservableList<Events> allEvents = eventsModel.getEventsByCoordinator(currentCoordinator);
+        btnEventsDropDown.setItems(allEvents);
+        DateTimeFormatter oldFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        btnEventsDropDown.setConverter(new StringConverter<Events>() {
+            @Override
+            public String toString(Events event) {
+                try {
+                    if (event != null && event.getEventDate() != null) {
+                        LocalDate date = LocalDate.parse(event.getEventDate(), oldFormat);
+                        return event.getEventName() + " - " + date.format(newFormat);
                     }
-                    return "";
+                } catch (DateTimeParseException e) {
+                    // håndtere hvis datoen ikke kan læses eller den står i et andet format
+                    System.out.println("Error parsing date: " + e.getMessage());
+
+                    return event != null ? event.getEventName() + " - Invalid date" : "";
                 }
-                @Override
-                public Events fromString(String string) {
-                    return null;
-                }
-            });
-        } catch (ApplicationWideException e) {
-            new ApplicationWideException("Error loading events", e);
-        }
+                return "";
+            }
+            @Override
+            public Events fromString(String string) {
+                return null;
+            }
+        });
     }
-    @Override
-    public void setModel(UsersModel usersModel) throws ApplicationWideException {
-    }
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @Override
+    public void setModel(UsersModel usersModel) throws ApplicationWideException {
     }
 }
 

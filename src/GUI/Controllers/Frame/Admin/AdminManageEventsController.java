@@ -56,8 +56,6 @@ public class AdminManageEventsController implements IController, Initializable {
                         event.getEventName().equals(string)).findFirst().orElse(null);
             }
         });
-
-
     }
 
     private void setupNameComboBox() {
