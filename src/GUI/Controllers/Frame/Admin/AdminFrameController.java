@@ -29,11 +29,9 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -264,6 +262,14 @@ public class AdminFrameController implements Initializable, IController {
         System.out.println("Image copied to: " + outputPath);
     }
 
+    private void copyFileWithChannel(File source, File destination) throws IOException {
+        try (FileChannel sourceChannel = new FileInputStream(source).getChannel();
+             FileChannel destChannel = new FileOutputStream(destination, true).getChannel()) {
+            destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+        } catch (IOException e) {
+            throw new IOException("Error copying file: " + source + " to " + destination, e);
+        }
+    }
     @FXML
     private void loadNewUserPicture(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -281,21 +287,59 @@ public class AdminFrameController implements Initializable, IController {
                 String userDirectoryPath = System.getProperty("user.dir") + "/resources/Data/profile_images/user" + userId;
                 File userDirectory = new File(userDirectoryPath);
 
-                if (!userDirectory.exists()) {
-                    boolean isDirectoryCreated = userDirectory.mkdirs();
-                    if (!isDirectoryCreated) {
-                        throw new IOException("Could not create directory: " + userDirectoryPath);
-                    }
+                if (!userDirectory.exists() && !userDirectory.mkdirs()) {
+                    throw new IOException("Could not create directory: " + userDirectoryPath);
                 }
-                String fileName = selectedFile.getName();
+
+                File destinationFile = new File(userDirectory, selectedFile.getName());
+                copyFileWithChannel(selectedFile, destinationFile); // Using the method to copy file
+
+                newimageObjectProperty.set(new Image(destinationFile.toURI().toString()));
+                newUserPicturePath = selectedFile.getName(); // Storing only the file name for database reference
+
+            } catch (IOException ex) {
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to update the profile picture", ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /*
+    @FXML
+    private void loadNewUserPicture(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose profile picture");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("pictures", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            try {
+                String userId = String.valueOf(UserContext.getInstance().getCurrentUserId());
+                String userDirectoryPath = System.getProperty("user.dir") + "/resources/Data/profile_images/user" + userId;
+                File userDirectory = new File(userDirectoryPath);
+
+                if (!userDirectory.exists() && userDirectory.mkdirs()) {
+                   throw new IOException("Could not create directory: " + userDirectoryPath);
+                }
+                //String fileName = selectedFile.getName();
 
                 if (!Files.exists(selectedFile.toPath())) {
                     File destinationFile = new File(userDirectoryPath, newUserPicturePath);
                     Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 }
 
+
+
+                File destinationFile = new File(userDirectory, selectedFile.getName());
+                Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+
                 newimageObjectProperty.set(new Image(selectedFile.toURI().toString()));
-                newUserPicturePath = fileName;  // Storing only the file name for database reference
+                newUserPicturePath = selectedFile.getName(); // Storing only the file name for database reference
 
             } catch (IOException ex) {
 
@@ -304,6 +348,9 @@ public class AdminFrameController implements Initializable, IController {
             }
         }
     }
+
+     */
+
 
     private File selectedFile;
 
@@ -317,6 +364,7 @@ public class AdminFrameController implements Initializable, IController {
 
                 //copyImageToDir(selectedFile.toURI().toString(),userDirectoryPath, newUserPicturePath);
                 showAlert(Alert.AlertType.INFORMATION, "Update Successful", null, "Profile picture updated successfully.");
+
             } catch (Exception e) {
                 e.printStackTrace();
                 showAlert(Alert.AlertType.ERROR, "Error", "Update Failed", "Failed to update the profile picture.");
@@ -338,7 +386,6 @@ public class AdminFrameController implements Initializable, IController {
 
         try {
             // if (imgProfilePictureAdmin != null) {
-
 
             String imageName = usersModel.getCurrentUserImageName();
 

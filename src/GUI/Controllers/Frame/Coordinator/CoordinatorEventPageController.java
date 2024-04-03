@@ -53,7 +53,7 @@ public class CoordinatorEventPageController implements IController {
 
     @FXML
     public void initialize() {
-        int coordinatorID = UserContext.getInstance().getCurrentUserId(); // Replace 1 with the actual coordinator ID
+        int coordinatorID = UserContext.getInstance().getCurrentUserId();
         initializeColumns(coordinatorID);
         initializeEditButtonColumn();
     }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<Pane prefHeight="538.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <ImageView fx:id="eventImage" fitHeight="280.0" fitWidth="510.0" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="qrCode" fitHeight="228.0" fitWidth="236.0" layoutX="255.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox fx:id="ticketLayout" alignment="CENTER" layoutX="14.0" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="236.0">
+          <Label fx:id="eventName" contentDisplay="CENTER" text="Event Name" />
+          <Label fx:id="customerName" text="Customer Name" />
+      </VBox>
+   </children>
+</Pane>
