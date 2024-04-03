@@ -8,7 +8,7 @@ import java.util.List;
 public interface IEventsDataAccess {
     List<Events> getAllEvents() throws ApplicationWideException;
 
-    Events addEvent(Events newEvent) throws ApplicationWideException;
+    Events addEvent(Events event, int currentUserId) throws ApplicationWideException;
 
     void deleteEvent(Events events) throws ApplicationWideException;
 

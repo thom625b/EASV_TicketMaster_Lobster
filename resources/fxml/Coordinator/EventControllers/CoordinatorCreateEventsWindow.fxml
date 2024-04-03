@@ -82,7 +82,7 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </TextField>
-                              <DatePicker fx:id="dpEventStartDate" onAction="#EventStartDate" promptText="Start Date" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <DatePicker fx:id="dpEventStartDate" promptText="Start Date" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -143,7 +143,7 @@
                            <children>
                               <VBox alignment="CENTER" prefWidth="150.0">
                                  <children>
-                                    <Button fx:id="btnUploadImageToEvent" mnemonicParsing="false" onAction="#UploadImageToEvent" text="Upload Image">
+                                    <Button fx:id="btnUploadImageToEvent" mnemonicParsing="false" text="Upload Image">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" top="10.0" />
                                        </VBox.margin>

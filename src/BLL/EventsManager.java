@@ -17,8 +17,8 @@ public class EventsManager {
         eventsDao = new Events_DAO();
     }
 
-    public void createEvent(Events event) throws ApplicationWideException {
-        eventsDao.addEvent(event);
+    public void createEvent(Events event, int currentUserId) throws ApplicationWideException {
+        eventsDao.addEvent(event, currentUserId);
     }
 
     public List<Events> getAllEvents() throws ApplicationWideException {

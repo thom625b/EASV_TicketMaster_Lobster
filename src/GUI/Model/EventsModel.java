@@ -37,7 +37,8 @@ public class EventsModel {
     }
 
     public void createEvent(Events event) throws ApplicationWideException {
-        eventsManager.createEvent(event);
+        int currentCoordinatorId = UserContext.getInstance().getCurrentUserId();
+        eventsManager.createEvent(event, currentCoordinatorId);
     }
 
     public void updateEvent(Events event) throws ApplicationWideException {
@@ -46,6 +47,7 @@ public class EventsModel {
 
     public void deleteEvent(Events event) throws ApplicationWideException {
         eventsManager.deleteEvent(event);
+        eventList.remove(event);
     }
 
     public void addCoordinatorToEvents(int coordinatorId, int eventId) throws ApplicationWideException {

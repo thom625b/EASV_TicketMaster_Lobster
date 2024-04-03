@@ -5,12 +5,13 @@ import java.util.List;
 
 public class Events {
 
+    private int coordinatorId;
     private String eventAddress, eventName, eventCity, eventDescription;
     private int eventID, eventStatus, eventRemainingDays, eventParticipants, eventZipCode;
     private List<Users> users;
     private LocalDate eventDate;
 
-    public Events(String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
+    public Events(String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription, int coordinatorId) {
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventStatus = eventStatus;
@@ -20,6 +21,7 @@ public class Events {
         this.eventZipCode = eventZipCode;
         this.eventCity = eventCity;
         this.eventDescription = eventDescription;
+        this.coordinatorId = coordinatorId;
     }
 
     public Events(int eventID, String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
@@ -83,6 +85,12 @@ public class Events {
         this.users = users;
     }
 
+    public void setCoordinatorId(int currentCoordinatorId) {
+        this.coordinatorId = currentCoordinatorId;
+    }
+    public void setEventID(int eventID) {
+        this.eventID = eventID;
+    }
     @Override
     public String toString() {
         return "Events{" +
@@ -98,4 +106,7 @@ public class Events {
                 ", eventDescription='" + eventDescription + '\'' +
                 '}';
     }
+
+
+
 }

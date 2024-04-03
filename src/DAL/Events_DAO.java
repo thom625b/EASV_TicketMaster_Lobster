@@ -46,26 +46,47 @@ public class Events_DAO implements IEventsDataAccess {
     }
 
 
-    public Events addEvent(Events event) throws ApplicationWideException {
-        String sql = "INSERT INTO Events (eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZIP, eventCity, eventDescription) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    @Override
+    public Events addEvent(Events event, int currentUserId) throws ApplicationWideException {
+        String insertEventSQL = "INSERT INTO Events (eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZIP, eventCity, eventDescription) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String insertEventUserSQL = "INSERT INTO EventUsers (eventID, userID) VALUES (?, ?);";
 
         try (Connection conn = dbConnector.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmtEvent = conn.prepareStatement(insertEventSQL, Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement pstmtEventUser = conn.prepareStatement(insertEventUserSQL)) {
 
-            pstmt.setString(1, event.getEventName());
-            pstmt.setString(2, event.getEventDate().toString()); // Convert LocalDate to String
-            pstmt.setInt(3, event.getEventStatus());
-            pstmt.setInt(4, event.getEventRemainingDays());
-            pstmt.setInt(5, event.getEventParticipants());
-            pstmt.setString(6, event.getEventAddress());
-            pstmt.setInt(7, event.getEventZipCode());
-            pstmt.setString(8, event.getEventCity());
-            pstmt.setString(9, event.getEventDescription());
+            pstmtEvent.setString(1, event.getEventName());
+            pstmtEvent.setString(2, event.getEventDate().toString());
+            pstmtEvent.setInt(3, event.getEventStatus());
+            pstmtEvent.setInt(4, event.getEventRemainingDays());
+            pstmtEvent.setInt(5, event.getEventParticipants());
+            pstmtEvent.setString(6, event.getEventAddress());
+            pstmtEvent.setInt(7, event.getEventZipCode());
+            pstmtEvent.setString(8, event.getEventCity());
+            pstmtEvent.setString(9, event.getEventDescription());
 
-            pstmt.executeUpdate();
+            int affectedRows = pstmtEvent.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating event failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = pstmtEvent.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    event.setEventID(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating event failed, no ID obtained.");
+                }
+            }
+
+            pstmtEventUser.setInt(1, event.getEventID());
+            pstmtEventUser.setInt(2, currentUserId);
+            pstmtEventUser.executeUpdate();
+
         } catch (SQLException e) {
             throw new ApplicationWideException("Error occurred while adding event", e);
         }
+
         return event;
     }
 

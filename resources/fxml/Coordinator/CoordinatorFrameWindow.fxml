@@ -38,7 +38,7 @@
                 </VBox>
                 <VBox fx:id="vBoxCoorLogout" alignment="BOTTOM_CENTER" prefHeight="254.0" prefWidth="132.0">
                     <children>
-                  <Label onMouseClicked="#openChangeProfilePictureCoordinator" text="Change profile Picture">
+                  <Label text="Change profile Picture">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>

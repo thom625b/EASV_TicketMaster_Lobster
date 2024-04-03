@@ -56,6 +56,7 @@ public class CoordinatorEventPageController implements IController {
         int coordinatorID = UserContext.getInstance().getCurrentUserId();
         initializeColumns(coordinatorID);
         initializeEditButtonColumn();
+        refreshEventData();
     }
 
     private void initializeEditButtonColumn() {
@@ -125,6 +126,11 @@ public class CoordinatorEventPageController implements IController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void refreshEventData() {
+        int coordinatorID = UserContext.getInstance().getCurrentUserId();
+        initializeColumns(coordinatorID);
     }
 
     @Override

@@ -5,6 +5,7 @@ import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
+import GUI.Utility.UserContext;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,14 +15,6 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class CoordinatorCreateEventsController implements IController {
-
-    private final EventsModel eventsModel;
-    private CoordinatorFrameController coordinatorFrameController;
-
-    public CoordinatorCreateEventsController() throws IOException, ApplicationWideException {
-        eventsModel = new EventsModel();
-        coordinatorFrameController = new CoordinatorFrameController();
-    }
 
     @FXML
     public TextField txtEventPicture;
@@ -42,61 +35,46 @@ public class CoordinatorCreateEventsController implements IController {
     @FXML
     public TextArea txtEventDescription;
 
-    @FXML
-    public void EventStartDate(ActionEvent actionEvent) {
+    private final EventsModel eventsModel;
 
+    public CoordinatorCreateEventsController() throws IOException, ApplicationWideException {
+        eventsModel = new EventsModel();
     }
 
     @FXML
-    public void UploadImageToEvent(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    private void AddNewEvent(ActionEvent actionEvent) {
-        // Check if any of the required fields are empty
+    public void AddNewEvent(ActionEvent actionEvent) {
         if (txtEventTitle.getText().isEmpty() || dpEventStartDate.getValue() == null || txtEventAddress.getText().isEmpty() ||
                 txtEventZipCode.getText().isEmpty() || txtEventCity.getText().isEmpty() || txtEventDescription.getText().isEmpty()) {
             showAlert("Missing Information", "Please fill in all required fields.");
-            return; // Stop execution if any required field is empty
+            return;
         }
 
-        // Parse input values
         String eventName = txtEventTitle.getText();
         LocalDate eventDate = dpEventStartDate.getValue();
-        int eventStatus = 1; // Set default status or retrieve from UI
-        int eventParticipants = 0; // Initialize participants count
+        int eventStatus = 1;
+        int eventParticipants = 0;
         String eventAddress = txtEventAddress.getText();
         String eventCity = txtEventCity.getText();
-        String eventDescription = txtEventDescription.getText(); // Retrieve description from UI
+        String eventDescription = txtEventDescription.getText();
 
         int eventZipCode;
         try {
             eventZipCode = Integer.parseInt(txtEventZipCode.getText());
         } catch (NumberFormatException e) {
-            // Show popup for invalid zip code
             showAlert("Invalid Zip Code", "Please enter a valid number for the zip code.");
-            return; // Stop execution if the zip code is invalid
+            return;
         }
 
-        // Calculate remaining days until the event date
         long remainingDays = ChronoUnit.DAYS.between(LocalDate.now(), eventDate);
         int eventRemainingDays = (int) remainingDays;
 
-        // Create new event
-        Events newEvent = new Events(eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZipCode, eventCity, eventDescription);
+        int currentUserId = UserContext.getInstance().getCurrentUserId();
 
+        Events newEvent = new Events(eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZipCode, eventCity, eventDescription, currentUserId);
         try {
-            // Create the event
             eventsModel.createEvent(newEvent);
-
-            // Show success message
             showSuccessAlert("Event Created", "The event has been successfully created.");
-
-            // Clear input fields
             clearInputFields();
-
-            // Optionally, you can go back to the previous page or perform other actions here
-
         } catch (ApplicationWideException e) {
             e.printStackTrace();
         }
@@ -131,5 +109,4 @@ public class CoordinatorCreateEventsController implements IController {
     public void setModel(UsersModel usersModel) {
 
     }
-
 }
