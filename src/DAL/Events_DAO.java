@@ -28,7 +28,7 @@ public class Events_DAO implements IEventsDataAccess {
                 Events event = new Events(
                         rs.getInt("eventID"),
                         rs.getString("eventName"),
-                        rs.getString("eventDate"),
+                        rs.getDate("eventDate").toLocalDate(),
                         rs.getInt("eventStatus"),
                         rs.getInt("eventRemainingDays"),
                         rs.getInt("eventParticipants"),
@@ -45,6 +45,7 @@ public class Events_DAO implements IEventsDataAccess {
         return allEvents;
     }
 
+
     public Events addEvent(Events event) throws ApplicationWideException {
         String sql = "INSERT INTO Events (eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZIP, eventCity, eventDescription) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -52,7 +53,7 @@ public class Events_DAO implements IEventsDataAccess {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, event.getEventName());
-            pstmt.setString(2, event.getEventDate());
+            pstmt.setString(2, event.getEventDate().toString()); // Convert LocalDate to String
             pstmt.setInt(3, event.getEventStatus());
             pstmt.setInt(4, event.getEventRemainingDays());
             pstmt.setInt(5, event.getEventParticipants());
@@ -67,6 +68,7 @@ public class Events_DAO implements IEventsDataAccess {
         }
         return event;
     }
+
 
 
     @Override
@@ -114,7 +116,7 @@ public class Events_DAO implements IEventsDataAccess {
                 Events event = new Events(
                         rs.getInt("eventID"),
                         rs.getString("eventName"),
-                        rs.getString("eventDate"),
+                        rs.getDate("eventDate").toLocalDate(),
                         rs.getInt("eventStatus"),
                         rs.getInt("eventRemainingDays"),
                         rs.getInt("eventParticipants"),

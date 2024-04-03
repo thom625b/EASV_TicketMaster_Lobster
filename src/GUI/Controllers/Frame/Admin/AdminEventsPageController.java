@@ -15,6 +15,9 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -133,9 +136,16 @@ public class AdminEventsPageController implements Initializable, IController {
             colEventAdmin.setCellValueFactory(cellData ->
                     new SimpleStringProperty(cellData.getValue().getEventName()));
             colAdminStartDate.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().getEventDate()));
-            colAdminDaysLeft.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(String.valueOf(cellData.getValue().getEventRemainingDays())));
+                    new SimpleStringProperty(cellData.getValue().getEventDate().toString()));
+
+            // Calculate and update days left
+            colAdminDaysLeft.setCellValueFactory(cellData -> {
+                LocalDate currentDate = LocalDate.now();
+                LocalDate eventDate = cellData.getValue().getEventDate();
+                long daysLeft = ChronoUnit.DAYS.between(currentDate, eventDate);
+                return new SimpleStringProperty(String.valueOf(daysLeft));
+            });
+
             colAdminEventRegistered.setCellValueFactory(cellData ->
                     new SimpleStringProperty(String.valueOf(cellData.getValue().getEventParticipants())));
 
@@ -143,6 +153,7 @@ public class AdminEventsPageController implements Initializable, IController {
             tblViewAdminEvents.refresh();
         }
     }
+
 
 
     @Override

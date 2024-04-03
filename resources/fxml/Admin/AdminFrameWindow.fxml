@@ -29,7 +29,7 @@
                      </VBox.margin>
                   </Button>
                   <Button fx:id="btnadminEvents" mnemonicParsing="false" onAction="#goToAdminEvents" prefHeight="40.0" prefWidth="202.0" text="Events" />
-                  <Button fx:id="btnadminCoordinator" mnemonicParsing="false" onAction="#goToAdminCoordinators" prefHeight="40.0" prefWidth="182.0" text="Coordinators" />
+                  <Button fx:id="btnadminUsers" mnemonicParsing="false" onAction="#goToAdminUsers" prefHeight="40.0" prefWidth="182.0" text="Users" />
                   <Button fx:id="btnadminManageEvents" layoutX="10.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToAdminManageEvents" prefHeight="40.0" prefWidth="174.0" text="Manage Events" />
                </children>
                <VBox.margin>

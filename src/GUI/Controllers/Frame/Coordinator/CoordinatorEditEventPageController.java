@@ -46,7 +46,7 @@ public class CoordinatorEditEventPageController implements IController {
         try {
             // Extract data from the selected event
             String eventName = selectedEvent.getEventName();
-            String startDate = selectedEvent.getEventDate(); // Assuming getStartDate returns a String
+            String startDate = String.valueOf(selectedEvent.getEventDate()); // Assuming getStartDate returns a String
             String city = selectedEvent.getEventCity();
             String zipCode = String.valueOf(selectedEvent.getEventZipCode());
             String address = selectedEvent.getEventAddress();

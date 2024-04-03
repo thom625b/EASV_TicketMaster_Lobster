@@ -1,15 +1,16 @@
 package BE;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Events {
 
-
-    private String eventAddress, eventName, eventDate, eventCity, eventDescription;
+    private String eventAddress, eventName, eventCity, eventDescription;
     private int eventID, eventStatus, eventRemainingDays, eventParticipants, eventZipCode;
     private List<Users> users;
+    private LocalDate eventDate;
 
-    public Events(String eventName, String eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
+    public Events(String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventStatus = eventStatus;
@@ -21,7 +22,7 @@ public class Events {
         this.eventDescription = eventDescription;
     }
 
-    public Events(int eventID, String eventName, String eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
+    public Events(int eventID, String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.eventDate = eventDate;
@@ -38,79 +39,40 @@ public class Events {
         return eventName;
     }
 
-    private void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
-
-    public String getEventDate() {
+    public LocalDate getEventDate() {
         return eventDate;
-    }
-
-    private void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
     }
 
     public int getEventID() {
         return eventID;
     }
 
-    private void setEventID(int eventID) {
-        this.eventID = eventID;
-    }
-
     public int getEventStatus() {
         return eventStatus;
-    }
-
-    private void setEventStatus(int eventStatus) {
-        this.eventStatus = eventStatus;
     }
 
     public int getEventRemainingDays() {
         return eventRemainingDays;
     }
 
-    private void setEventRemainingDays(int eventRemainingDays) {
-        this.eventRemainingDays = eventRemainingDays;
-    }
-
     public int getEventParticipants() {
         return eventParticipants;
     }
 
-    private void setEventParticipants(int eventParticipants) {
-        this.eventParticipants = eventParticipants;
-    }
     public String getEventAddress() {
         return eventAddress;
-    }
-
-    private void setEventAddress(String eventAddress) {
-        this.eventAddress = eventAddress;
     }
 
     public int getEventZipCode() {
         return eventZipCode;
     }
 
-    private void setEventZipCode(int eventZipCode) {
-        this.eventZipCode = eventZipCode;
-    }
-
     public String getEventCity() {
         return eventCity;
     }
 
-    public void setEventCity(String eventCity) {
-        this.eventCity = eventCity;
-    }
-
     public String getEventDescription() {
         return eventDescription;
-    }
-
-    public void setEventDescription(String eventDescription) {
-        this.eventDescription = eventDescription;
     }
 
     private List<Users> getUsers() {
@@ -125,7 +87,7 @@ public class Events {
     public String toString() {
         return "Events{" +
                 "eventName='" + eventName + '\'' +
-                ", eventDate='" + eventDate + '\'' +
+                ", eventDate=" + eventDate +
                 ", eventID=" + eventID +
                 ", eventStatus=" + eventStatus +
                 ", eventRemainingDays=" + eventRemainingDays +

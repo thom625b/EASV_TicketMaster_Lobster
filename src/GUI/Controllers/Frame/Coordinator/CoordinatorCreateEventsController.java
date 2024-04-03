@@ -83,7 +83,7 @@ public class CoordinatorCreateEventsController implements IController {
         int eventRemainingDays = (int) remainingDays;
 
         // Create new event
-        Events newEvent = new Events(eventName, eventDate.toString(), eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZipCode, eventCity, eventDescription);
+        Events newEvent = new Events(eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZipCode, eventCity, eventDescription);
 
         try {
             // Create the event

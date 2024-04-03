@@ -18,6 +18,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class CoordinatorEventPageController implements IController {
@@ -96,9 +97,17 @@ public class CoordinatorEventPageController implements IController {
 
             tblEventTableCode.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEventID())));
             tblEventTableEventName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventName()));
-            tblEventTableStartDate.setCellValueFactory(cellData -> new SimpleObjectProperty<>(LocalDate.parse(cellData.getValue().getEventDate())));
+            tblEventTableStartDate.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getEventDate()));
             tblEventTableStatus.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEventStatus())));
-            tblEventTableDaysLeft.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEventRemainingDays()).asObject());
+
+            // Calculate days left
+            tblEventTableDaysLeft.setCellValueFactory(cellData -> {
+                LocalDate currentDate = LocalDate.now();
+                LocalDate eventDate = cellData.getValue().getEventDate();
+                long daysLeft = ChronoUnit.DAYS.between(currentDate, eventDate);
+                return new SimpleIntegerProperty((int) daysLeft).asObject();
+            });
+
             tblEventTableRegisteredParticipants.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEventParticipants()).asObject());
 
             tblEventTable.setItems(eventList);
@@ -107,6 +116,8 @@ public class CoordinatorEventPageController implements IController {
             e.printStackTrace();
         }
     }
+
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

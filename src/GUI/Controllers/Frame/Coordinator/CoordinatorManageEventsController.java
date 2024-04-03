@@ -87,24 +87,25 @@ public class CoordinatorManageEventsController implements IController {
         int currentCoordinator = UserContext.getInstance().getCurrentUserId();
         ObservableList<Events> allEvents = eventsModel.getEventsByCoordinator(currentCoordinator);
         btnEventsDropDown.setItems(allEvents);
-        DateTimeFormatter oldFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         btnEventsDropDown.setConverter(new StringConverter<Events>() {
+
+
             @Override
             public String toString(Events event) {
                 try {
                     if (event != null && event.getEventDate() != null) {
-                        LocalDate date = LocalDate.parse(event.getEventDate(), oldFormat);
-                        return event.getEventName() + " - " + date.format(newFormat);
+                        LocalDate date = event.getEventDate();
+                        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                        return event.getEventName() + " - " + formattedDate;
                     }
                 } catch (DateTimeParseException e) {
-                    // håndtere hvis datoen ikke kan læses eller den står i et andet format
+                    // handle if the date cannot be parsed or is in a different format
                     System.out.println("Error parsing date: " + e.getMessage());
-
                     return event != null ? event.getEventName() + " - Invalid date" : "";
                 }
                 return "";
             }
+
             @Override
             public Events fromString(String string) {
                 return null;

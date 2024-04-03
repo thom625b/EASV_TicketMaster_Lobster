@@ -1,30 +1,24 @@
 package GUI.Controllers.Frame.Admin;
 
 import BE.Users;
-import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
-import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminCoordinatorPageController implements Initializable, IController {
+public class AdminUsersPageController implements Initializable, IController {
 
     private UsersModel usersModel;
     @FXML

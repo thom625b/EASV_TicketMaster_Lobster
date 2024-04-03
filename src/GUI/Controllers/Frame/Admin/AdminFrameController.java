@@ -52,7 +52,7 @@ public class AdminFrameController implements Initializable, IController {
     private EventsModel eventsModel;
     private Users currentUser;
     @FXML
-    private Button btnadminCoordinator, btnadminLogout, btnadminEvents, btnadminHome;
+    private Button btnadminUsers, btnadminLogout, btnadminEvents, btnadminHome;
     @FXML
     private Button btnadminManageEvents, btnLoadPicture;
 
@@ -172,9 +172,9 @@ public class AdminFrameController implements Initializable, IController {
     }
 
     @FXML
-    private void goToAdminCoordinators(ActionEvent actionEvent) {
+    private void goToAdminUsers(ActionEvent actionEvent) {
         try {
-            loadpage("/fxml/Admin/AdminCoordinatorPage");
+            loadpage("/fxml/Admin/AdminUsersPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -381,4 +381,6 @@ public class AdminFrameController implements Initializable, IController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 }
