@@ -7,6 +7,10 @@ import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 
+import GUI.Utility.UserContext;
+import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,19 +19,28 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
-public class AdminFrameController implements Initializable {
+public class AdminFrameController implements Initializable, IController {
 
     @FXML
     private StackPane adminStackPane;
@@ -41,18 +54,26 @@ public class AdminFrameController implements Initializable {
     @FXML
     private Button btnadminCoordinator, btnadminLogout, btnadminEvents, btnadminHome;
     @FXML
-    private Button btnadminManageEvents;
+    private Button btnadminManageEvents, btnLoadPicture;
 
     private final String UPDATE_COORDINATOR_WINDOW_FXML = "/fxml/Admin/AdminUpdateCoordinator.fxml";
+
+    private static ObjectProperty <Image> imageObjectProperty = new SimpleObjectProperty<>();
+    private static ObjectProperty <Image> newimageObjectProperty = new SimpleObjectProperty<>();
+
     @FXML
-    private ImageView imgProfilePictureAdmin;
+    private ImageView imgProfilePictureAdmin = new ImageView();
     @FXML
-    private ImageView imgNewUserPictureAdmin;
+    private ImageView imgNewUserPictureAdmin = new ImageView();
+
+    private String newUserPicturePath;
+
 
     @FXML
     private void homeScreenWindow() throws IOException {
         loadpage("/fxml/Admin/AdminFrontPage");
     }
+
 
     public static AdminFrameController getInstance() {
         return instance;
@@ -76,8 +97,6 @@ public class AdminFrameController implements Initializable {
             }
 
         }
-
-
 
 
         if (!adminStackPane.getChildren().isEmpty()) {
@@ -107,14 +126,19 @@ public class AdminFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
-
-
     }
 
 
-    public void setModel(UsersModel usersModel) {
+    public void setModel(UsersModel usersModel)  {
+
         this.usersModel = usersModel;
 
+        setUserPictureFromStart();
+        imgProfilePictureAdmin.imageProperty().bind(imageObjectProperty);
+        imgNewUserPictureAdmin.imageProperty().bind(newimageObjectProperty);
+        double radius = Math.min(imgProfilePictureAdmin.getFitWidth(), imgProfilePictureAdmin.getFitHeight()) / 2;
+        Circle clip = new Circle(radius, radius, radius);
+        imgProfilePictureAdmin.setClip(clip);
     }
 
 
@@ -139,7 +163,7 @@ public class AdminFrameController implements Initializable {
 
 
     @FXML
-    private void goToAdminEvents(ActionEvent actionEvent)  {
+    private void goToAdminEvents(ActionEvent actionEvent) {
         try {
             loadpage("/fxml/Admin/AdminEventsPage");
         } catch (IOException e) {
@@ -169,6 +193,7 @@ public class AdminFrameController implements Initializable {
                 AdminUpdateCoordinatorController controller = loader.getController();
                 controller.setUser(user);
                 controller.setModel(usersModel);
+
             }
 
             transitionToNewScene(root);
@@ -185,7 +210,6 @@ public class AdminFrameController implements Initializable {
     }
 
 
-
     @FXML
     private void logoutToLogin(ActionEvent actionEvent) {
         try {
@@ -195,7 +219,7 @@ public class AdminFrameController implements Initializable {
             }
             Parent loginRoot = FXMLLoader.load(loginPageURL);
             Scene loginScene = new Scene(loginRoot);
-             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             currentStage.setScene(loginScene);
             currentStage.show();
         } catch (Exception e) {
@@ -206,26 +230,155 @@ public class AdminFrameController implements Initializable {
     }
 
 
-
-
     @FXML
-    private void openChangeProfilePicture(MouseEvent mouseEvent ) {
+    private void openChangeProfilePicture(MouseEvent mouseEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin/AdminCreatePicturePage.fxml"));
-            Parent root = loader.load();
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin/AdminCreatePicturePageAdmin.fxml"));
+            Parent root = loader.load();
+            IController controller = loader.getController();
+            controller.setModel(usersModel);
             transitionToNewScene(root);
         } catch (IOException e) {
             throw new RuntimeException("Failed to open the profile picture change window", e);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void copyImageToDir(String imagePath, String destDir, String imageName) throws IOException {
+        if (imagePath.startsWith("file:/")) {
+            imagePath = imagePath.substring(6);
+        }
+
+        Path sourcePath = Path.of(imagePath);
+        System.out.println("sourceFile: " + sourcePath.getFileName());
+
+        if (!Files.exists(sourcePath)) throw new FileNotFoundException("Source file not found: " + imagePath);
+
+        Path dirPath = Path.of(destDir);
+        if (!Files.exists(dirPath)) Files.createDirectories(dirPath);
+
+        Path outputPath = dirPath.resolve(imageName);
+
+        Files.copy(sourcePath, outputPath, StandardCopyOption.REPLACE_EXISTING);
+        System.out.println("Image copied to: " + outputPath);
+    }
+
+    @FXML
+    private void loadNewUserPicture(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose profile picture");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("pictures", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            try {
+                String userId = String.valueOf(UserContext.getInstance().getCurrentUserId());
+                String userDirectoryPath = System.getProperty("user.dir") + "/resources/Data/profile_images/user" + userId;
+                File userDirectory = new File(userDirectoryPath);
+
+                if (!userDirectory.exists()) {
+                    boolean isDirectoryCreated = userDirectory.mkdirs();
+                    if (!isDirectoryCreated) {
+                        throw new IOException("Could not create directory: " + userDirectoryPath);
+                    }
+                }
+                String fileName = selectedFile.getName();
+
+                if (!Files.exists(selectedFile.toPath())) {
+                    File destinationFile = new File(userDirectoryPath, newUserPicturePath);
+                    Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
+
+                newimageObjectProperty.set(new Image(selectedFile.toURI().toString()));
+                newUserPicturePath = fileName;  // Storing only the file name for database reference
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();//TODO
+                // Handle any IO errors here
+            }
+        }
+    }
+
+    private File selectedFile;
+
+    @FXML
+    private void insertNewUserPicture(ActionEvent actionEvent) {
+        if (newUserPicturePath != null && !newUserPicturePath.isEmpty() && usersModel != null) {
+            try {
+                int userId = UserContext.getInstance().getCurrentUserId();
+                usersModel.updateUserImage(userId, newUserPicturePath);
+                setUserPictureFromStart();
+
+                //copyImageToDir(selectedFile.toURI().toString(),userDirectoryPath, newUserPicturePath);
+                showAlert(Alert.AlertType.INFORMATION, "Update Successful", null, "Profile picture updated successfully.");
+            } catch (Exception e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Error", "Update Failed", "Failed to update the profile picture.");
+            }
+        } else {
+            if (newUserPicturePath == null || newUserPicturePath.isEmpty()) {
+                showAlert(Alert.AlertType.WARNING, "No File Selected", null, "Please select a file to update.");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Error", null, "UsersModel is not initialized.");
+            }
         }
     }
 
 
-    @FXML
-    private void loadNewUserPicture(ActionEvent actionEvent) {
+
+
+    private void setUserPictureFromStart() {
+
+
+        try {
+            // if (imgProfilePictureAdmin != null) {
+
+
+            String imageName = usersModel.getCurrentUserImageName();
+
+            if (imageName != null && !imageName.isEmpty()) { // Check if user has a profile picture
+                String imagePath = "/resources/Data/profile_images/user" + UserContext.getInstance().getCurrentUserId() + "/" + imageName;
+                File imageFile = new File(System.getProperty("user.dir") + imagePath);
+
+                if (imageFile.exists()) {
+                    Image image = new Image(new FileInputStream(imageFile));
+
+
+                    // Ensure that ImageView is fully loaded
+                    Platform.runLater(() -> {
+                        imageObjectProperty.set(image);
+                    });
+                } else {
+                    System.out.println("User image file not found: " + imagePath);
+                }
+            } else {
+                System.out.println("User does not have a profile picture.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle any exceptions silently (without showing an error message)
+        }
+    /*
     }
 
-    @FXML
-    private void insertNewUserPicture(ActionEvent actionEvent) {
+
+        else {
+            System.out.println("imgProfilePictureAdmin is not initialized.");
+        }
+        */
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String header, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

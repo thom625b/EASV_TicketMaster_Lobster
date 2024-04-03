@@ -47,7 +47,7 @@ public class AdminManageEventsController implements IController, Initializable {
         comboAdminManageEvent.setConverter(new StringConverter<Events>() {
             @Override
             public String toString(Events event) {
-                return event == null ? "" : event.getEventName();
+                return event == null ? "" : event.getEventName()+ " " +  event.getEventDate();
             }
 
             @Override

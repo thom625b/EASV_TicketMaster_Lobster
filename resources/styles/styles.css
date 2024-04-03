@@ -351,4 +351,31 @@
     -fx-background-color: #108CDC ;
 }
 
+/*  Admin InsertPicture
+---------------------------------------------------------------------------------------------------------------*/
 
+#BPLoadPicture {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#hboxInsertPictcureAdmin {
+    -fx-background-color: White;
+}
+
+#hBoxChangePictureAdmin{
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#btnLoadPicture {
+    -fx-background-color: #FBBB2C;
+}
+
+#btnInsertPicture {
+    -fx-background-color: #108CDC ;
+}
+
+#lblChangePictureAdminHeader {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}

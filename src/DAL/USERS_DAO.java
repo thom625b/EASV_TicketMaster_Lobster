@@ -35,7 +35,8 @@ public class USERS_DAO implements IUserDataAccess {
                 String email = rs.getString("userEmail");
                 String hashedPassword = rs.getString("hashedPassword");
                 String role = rs.getString("userRole");
-                Users usersAll = new Users(userId, firstName, lastName, email, Users.Role.valueOf(role), hashedPassword);
+                String userPicture =rs.getString("userPicture");
+                Users usersAll = new Users(userId, firstName, lastName, email, hashedPassword ,Users.Role.valueOf(role),userPicture);
                 allUsers.add(usersAll);
             }
         } catch (SQLServerException e) {
@@ -145,6 +146,26 @@ public class USERS_DAO implements IUserDataAccess {
 
         } catch (SQLException e) {
             throw new ApplicationWideException("Failed to update user image", e);
+        }
+    }
+
+
+    public String getUserImageName(int userId) throws ApplicationWideException {
+        String sql = "SELECT userPicture FROM Users WHERE userID = ?;";
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, userId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("userPicture");
+                } else {
+                    throw new ApplicationWideException("No user found with ID: " + userId);
+                }
+            }
+        } catch (SQLException | ApplicationWideException e) {
+            throw new ApplicationWideException("Failed to fetch user image name", e);
         }
     }
 }

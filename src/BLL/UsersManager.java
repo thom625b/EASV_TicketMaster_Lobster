@@ -40,7 +40,6 @@ public class UsersManager {
 
     public List<Users> getCoordinators() throws ApplicationWideException {
         List<Users> allUsers = usersDao.getAllUsers();
-        // filterer users efter deres rolle, så det kun er @COORDINATOR der bliver sendt videre.
         List<Users> coordinators = allUsers.stream()
                 .filter(user -> user.getRole() == Users.Role.COORDINATOR)
                 .collect(Collectors.toList());
@@ -121,4 +120,12 @@ public class UsersManager {
         }
     }
 
+    public String getUserImageName(int userId) throws ApplicationWideException {
+        try {
+            return usersDao.getUserImageName(userId);
+        } catch (ApplicationWideException e) {
+            // Here you can handle or re-throw the exception based on your error handling strategy
+            throw new ApplicationWideException("Error fetching image name for user with ID " + userId, e);
+        }
+    }
 }

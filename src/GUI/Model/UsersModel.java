@@ -4,8 +4,7 @@ import BE.Users;
 import BLL.UsersManager;
 import CostumException.ApplicationWideException;
 import CostumException.ValidationException;
-import DAL.IUserDataAccess;
-import GUI.Utility.PasswordUtils;
+import GUI.Utility.UserContext;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,6 +59,11 @@ public class UsersModel {
         usersObservableList.remove(user);
     }
 
+    public String getCurrentUserImageName() throws ApplicationWideException {
+        int userId = UserContext.getInstance().getCurrentUserId();
+        return getUserImageName(userId);
+    }
+
     public void updateEmail (Users user){
             try {
                 usersManager.updateEmail(user);
@@ -97,4 +101,13 @@ public class UsersModel {
         List<Users> coordinators = usersManager.getCoordinators();
         return FXCollections.observableArrayList(coordinators);
     }
+
+    public String getUserImageName(int userId) throws ApplicationWideException {
+        try {
+            return usersManager.getUserImageName(userId);
+        } catch (Exception e) {
+            throw new ApplicationWideException("Error retrieving image name for user " + userId, e);
+        }
+    }
+
 }
