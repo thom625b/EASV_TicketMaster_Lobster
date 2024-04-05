@@ -143,6 +143,10 @@
 
 }
 
+#invisbleTableColumnAdminUsersPage {
+    -fx-padding: 20px;
+}
+
 #tblViewCoorAdmin {
     -fx-table-cell-border-color: transparent;
 }
@@ -155,7 +159,8 @@
 }
 
 #btnRefreshCoor {
-    -fx-background-color: #108CDC ;
+    -fx-background-color: #363062;
+    -fx-text-fill: white;
 }
 
 /*  Admin: create Coordinator/Admin
@@ -278,14 +283,14 @@
 
 #lblManageCoorHeader {
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 20px;
 }
 
 #btnAdminAddToEvent {
     -fx-background-color: #108CDC;
 }
 
-#btnAdminCloseManage {
+#btnAdminDeleteCoordinator {
     -fx-background-color: #FBBB2C;
 }
 
@@ -336,6 +341,10 @@
 
 }
 
+#invisbleTableColumnAdmin {
+    -fx-padding: 20px;
+}
+
 #tblViewAdminEvents {
     -fx-table-cell-border-color: transparent;
 }
@@ -348,7 +357,8 @@
 }
 
 #btnRefreshAdminEvents {
-    -fx-background-color: #108CDC ;
+    -fx-background-color: #363062;
+    -fx-text-fill: white;
 }
 
 /*  Admin InsertPicture
@@ -482,3 +492,55 @@
 #tblEventTable:odd {
     -fx-background-color: #f2f2f2;
 }
+
+/* --------------------- CoordinatorManageEvents */
+#BPCoordinatorManageEvents {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#vBoxCenterAdminMangageEvents {
+    -fx-background-color:white;
+}
+
+#lblCoorManageHeader {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+#btnCoordinatorsDropDown, #btnEventsDropDown {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#btnCoordinatorAddToEvent {
+    -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+}
+
+#btnCoordinatorCloseManage {
+    -fx-background-color: #FBBB2C;
+}
+
+#hBoxCoorManageEvent {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#labelManageEventCoorAdmin {
+    -fx-text-fill: #363062;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#labelManageEventCoorCoordinator {
+    -fx-text-fill: #363062;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#imgProfilePictureAdmin {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
+}
+

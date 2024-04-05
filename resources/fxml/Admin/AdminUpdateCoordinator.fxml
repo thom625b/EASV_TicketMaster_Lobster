@@ -112,12 +112,15 @@
             <children>
                 <HBox fx:id="hBoxAdminProfileUpdate" alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="231.0">
                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="26.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../pictures/Customer.png" />
                             </image>
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
                         </ImageView>
-                        <Label fx:id="lblEventCoordinatorAdminUpdate" prefHeight="48.0" prefWidth="231.0" text="Update Event Coordinator">
+                        <Label fx:id="lblEventCoordinatorAdminUpdate" prefHeight="44.0" prefWidth="188.0" text="Update Event Coordinator">
                             <HBox.margin>
                                 <Insets left="8.0" />
                             </HBox.margin>

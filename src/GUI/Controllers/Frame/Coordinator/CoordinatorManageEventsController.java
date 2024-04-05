@@ -3,6 +3,7 @@ package GUI.Controllers.Frame.Coordinator;
 import BE.Events;
 import BE.Users;
 import CostumException.ApplicationWideException;
+import GUI.Controllers.Frame.Admin.AdminFrameController;
 import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
@@ -123,6 +124,17 @@ public class CoordinatorManageEventsController implements IController {
 
     @Override
     public void setModel(UsersModel usersModel) throws ApplicationWideException {
+    }
+
+    @FXML
+    private void closeCoordinatorManageEventPage(ActionEvent actionEvent) {
+        try {
+
+            AdminFrameController.getInstance().loadpage("/fxml/Coordinator/CoordinatorHomePage");
+        } catch (IOException e) {
+            // Handle IOException show an error dialog)
+            e.printStackTrace(); //TODO
+        }
     }
 }
 

@@ -33,8 +33,18 @@
                            <children>
                               <HBox fx:id="hBoxeventsAdminSec" alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="231.0">
                                  <children>
-                                    <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label fx:id="lblEventsAdmin" prefHeight="24.0" prefWidth="106.0" text="Events" />
+                                    <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../pictures/EventSymbol.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="lblEventsAdmin" prefHeight="24.0" prefWidth="106.0" text="Events">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin></Label>
                                  </children>
                                  <HBox.margin>
                                     <Insets bottom="8.0" left="8.0" top="8.0" />
@@ -66,6 +76,11 @@
             <TableColumn fx:id="coladminEventsButtons" prefWidth="113.5999755859375">
                <graphic>
                   <Button fx:id="btnRefreshAdminEvents" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Refresh 🔄" />
+               </graphic>
+            </TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="0.53997802734375" text="Column X">
+               <graphic>
+                  <Button fx:id="invisbleTableColumnAdmin" mnemonicParsing="false" text="Button" />
                </graphic>
             </TableColumn>
          </columns>

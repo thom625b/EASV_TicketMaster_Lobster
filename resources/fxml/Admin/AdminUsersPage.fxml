@@ -33,12 +33,18 @@
                            <children>
                               <HBox fx:id="hBoxCoorAdminSec" alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="231.0">
                                  <children>
-                                    <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="24.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../pictures/Customer.png" />
                                        </image>
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
                                     </ImageView>
-                                    <Label fx:id="lblCoorAdmin" prefHeight="24.0" prefWidth="106.0" text="Users" />
+                                    <Label fx:id="lblCoorAdmin" prefHeight="24.0" prefWidth="106.0" text="Users">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin></Label>
                                  </children>
                                  <HBox.margin>
                                     <Insets bottom="8.0" left="8.0" top="8.0" />
@@ -71,6 +77,11 @@
                   <Button fx:id="btnRefreshCoor" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Refresh 🔄" />
                </graphic>
             </TableColumn>
+           <TableColumn minWidth="0.0" prefWidth="0.53997802734375" text="Column X">
+              <graphic>
+                 <Button fx:id="invisbleTableColumnAdminUsersPage" mnemonicParsing="false" text="Button" />
+              </graphic>
+           </TableColumn>
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

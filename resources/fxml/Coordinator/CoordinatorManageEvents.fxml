@@ -9,53 +9,96 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorManageEventsController">
-   <right>
-      <ImageView fitHeight="170.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../../pictures/Customer.png" />
-         </image>
-         <BorderPane.margin>
-            <Insets right="8.0" />
-         </BorderPane.margin>
-      </ImageView>
-   </right>
-   <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#linkCoordinatorAndEvent" prefHeight="74.0" prefWidth="189.0" text="Add To Event" />
-         </children>
-      </HBox>
-   </bottom>
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="24.0" BorderPane.alignment="CENTER">
-         <children>
-            <ComboBox fx:id="btnCoordinatorsDropDown" prefHeight="21.0" prefWidth="90.0" promptText="Name*">
-               <VBox.margin>
-                  <Insets left="8.0" top="8.0" />
-               </VBox.margin>
-            </ComboBox>
-            <ComboBox fx:id="btnEventsDropDown"  prefHeight="25.0" prefWidth="90.0" promptText="Events*">
-               <VBox.margin>
-                  <Insets left="8.0" />
-               </VBox.margin>
-            </ComboBox>
-         </children>
-         <BorderPane.margin>
-            <Insets left="8.0" top="24.0" />
-         </BorderPane.margin>
-      </VBox>
-   </center>
-   <top>
-      <Label prefHeight="27.0" prefWidth="277.0" text="Manage Event Coordinators" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="22.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets left="24.0" top="8.0" />
-         </BorderPane.margin>
-      </Label>
-   </top>
+<BorderPane fx:id="BPCoordinatorManageEvents" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorManageEventsController">
+<bottom>
+   <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+</bottom>
+<center>
+   <VBox fx:id="vBoxCenterAdminMangageEvents" alignment="CENTER" prefHeight="390.0" prefWidth="698.0" BorderPane.alignment="CENTER">
+      <BorderPane.margin>
+         <Insets left="8.0" />
+      </BorderPane.margin>
+      <children>
+         <Label fx:id="lblCoorManageHeader" alignment="CENTER" prefHeight="27.0" prefWidth="277.0" text="Manage Event Coordinators">
+            <VBox.margin>
+               <Insets bottom="32.0" />
+            </VBox.margin>
+         </Label>
+         <VBox alignment="CENTER">
+            <children>
+               <HBox>
+                  <children>
+                     <VBox prefHeight="200.0" prefWidth="338.0" spacing="24.0">
+                        <children>
+                           <ComboBox fx:id="btnCoordinatorsDropDown" prefHeight="26.0" prefWidth="210.0" promptText="Name*">
+                              <VBox.margin>
+                                 <Insets left="8.0" top="8.0" />
+                              </VBox.margin>
+                           </ComboBox>
+                           <ComboBox fx:id="btnEventsDropDown" prefHeight="26.0" prefWidth="210.0" promptText="Event*">
+                              <VBox.margin>
+                                 <Insets left="8.0" />
+                              </VBox.margin>
+                           </ComboBox>
+                        </children>
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
+                        <padding>
+                           <Insets left="24.0" />
+                        </padding>
+                     </VBox>
+                     <ImageView fitHeight="170.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../pictures/Customer.png" />
+                        </image>
+                     </ImageView>
+                  </children>
+               </HBox>
+               <HBox alignment="CENTER_RIGHT">
+                  <children>
+                     <Button fx:id="btnCoordinatorCloseManage" mnemonicParsing="false" onAction="#closeCoordinatorManageEventPage" prefHeight="74.0" prefWidth="189.0" text="Close" />
+                     <Button fx:id="btnCoordinatorAddToEvent" mnemonicParsing="false" onAction="#linkCoordinatorAndEvent" prefHeight="74.0" prefWidth="189.0" text="Add To Event" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+      </children>
+   </VBox>
+</center>
+<right>
+   <VBox prefHeight="352.0" prefWidth="70.0" BorderPane.alignment="CENTER" />
+</right>
+<top>
+   <HBox prefHeight="106.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+      <children>
+         <HBox fx:id="hBoxCoorManageEvent" alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="315.0">
+            <children>
+               <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../pictures/Customer.png" />
+                  </image>
+               </ImageView>
+               <Label fx:id="labelManageEventCoorCoordinator" alignment="CENTER" prefHeight="17.0" prefWidth="236.0" text="Manage Event Coordinators" />
+            </children>
+            <HBox.margin>
+               <Insets bottom="20.0" left="10.0" right="10.0" top="30.0" />
+            </HBox.margin>
+         </HBox>
+         <HBox alignment="CENTER_RIGHT" prefHeight="99.0" prefWidth="574.0">
+            <children>
+               <ImageView fitHeight="72.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../pictures/EASYDVEST.png" />
+                  </image>
+                     <HBox.margin>
+                        <Insets right="68.0" />
+                     </HBox.margin>
+               </ImageView>
+            </children>
+         </HBox>
+      </children>
+   </HBox>
+</top>
 </BorderPane>

@@ -98,17 +98,6 @@ public class AdminManageEventsController implements IController, Initializable {
     }
 
     @FXML
-    private void closeManageEventPage(ActionEvent actionEvent) {
-        try {
-
-            AdminFrameController.getInstance().loadpage("/fxml/Admin/AdminHomePage");
-        } catch (IOException e) {
-            // Handle IOException show an error dialog)
-            e.printStackTrace(); //TODO
-        }
-    }
-
-    @FXML
     private void addCoordinatorToEvents(ActionEvent actionEvent) {
         Users selectedCoordinator = comboAdminManageName.getSelectionModel().getSelectedItem();
         Events selectedEvent = comboAdminManageEvent.getSelectionModel().getSelectedItem();
@@ -142,5 +131,10 @@ public class AdminManageEventsController implements IController, Initializable {
         alert.getDialogPane().getButtonTypes().setAll(okButton);
 
         alert.showAndWait();
+    }
+
+    @FXML
+    private void deleteCoordinator(ActionEvent actionEvent) {
+
     }
 }

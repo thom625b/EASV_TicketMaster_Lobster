@@ -47,9 +47,21 @@
                </VBox.margin>
             </VBox>
          </children>
+         <BorderPane.margin>
+            <Insets left="16.0" />
+         </BorderPane.margin>
       </VBox>
    </left>
    <center>
       <StackPane fx:id="adminStackPane" maxHeight="602.0" maxWidth="776.0" prefHeight="602.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
+
+
+
+
+
+
+
+
+

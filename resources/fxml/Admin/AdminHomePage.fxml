@@ -141,6 +141,9 @@
                      <image>
                         <Image url="@../../pictures/EASYDVEST.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets right="68.0" />
+                     </HBox.margin>
                   </ImageView>
                </children>
             </HBox>
