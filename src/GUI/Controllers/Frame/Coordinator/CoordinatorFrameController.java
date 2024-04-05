@@ -15,18 +15,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
@@ -48,9 +52,14 @@ public class CoordinatorFrameController implements Initializable, IController {
     private final String EDIT_EVENT_WINDOW_FXML = "fxml/Coordinator/EventControllers/CoordinatorEditEventWindow.fxml";
 
 
-
-
-
+    private static ObjectProperty <Image> imageObjectProperty = new SimpleObjectProperty<>();
+    private static ObjectProperty <Image> newimageObjectProperty = new SimpleObjectProperty<>();
+    @FXML
+    private ImageView imgNewUserPictureCoordinator = new ImageView();
+    @FXML
+    private ImageView imgCoordinatorFrame = new ImageView();
+    private File selectedFile;
+    private String newUserPicturePath;
 
     @FXML
     private void homeScreenWindow() throws IOException {
@@ -94,11 +103,6 @@ public class CoordinatorFrameController implements Initializable, IController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
-        try {
-            loadpage("/fxml/Coordinator/CoordinatorHomePage");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
 
     }
@@ -106,6 +110,13 @@ public class CoordinatorFrameController implements Initializable, IController {
 
     public void setModel(UsersModel usersModel) {
         this.usersModel = usersModel;
+
+        setUserPictureFromStart();
+        imgCoordinatorFrame.imageProperty().bind(imageObjectProperty);
+        imgNewUserPictureCoordinator.imageProperty().bind(newimageObjectProperty);
+        double radius = Math.min(imgCoordinatorFrame.getFitWidth(), imgCoordinatorFrame.getFitHeight()) / 2;
+        Circle clip = new Circle(radius, radius, radius);
+        imgCoordinatorFrame.setClip(clip);
     }
 
 
@@ -197,4 +208,154 @@ public class CoordinatorFrameController implements Initializable, IController {
     }
 
 
+
+
+    @FXML
+    private void loadNewUserPicture(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose profile picture");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("pictures", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            try {
+                String userId = String.valueOf(UserContext.getInstance().getCurrentUserId());
+                String userDirectoryPath = System.getProperty("user.dir") + "/resources/Data/profile_images/user" + userId;
+                File userDirectory = new File(userDirectoryPath);
+
+                if (!userDirectory.exists() && !userDirectory.mkdirs()) {
+                    throw new IOException("Could not create directory: " + userDirectoryPath);
+                }
+
+                File destinationFile = new File(userDirectory, selectedFile.getName());
+                copyFileWithChannel(selectedFile, destinationFile); // Using the method to copy file
+
+                newimageObjectProperty.set(new Image(destinationFile.toURI().toString()));
+                newUserPicturePath = selectedFile.getName(); // Storing only the file name for database reference
+
+            } catch (IOException ex) {
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to update the profile picture", ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+
+    }
+    private void copyFileWithChannel(File source, File destination) throws IOException {
+        try (FileChannel sourceChannel = new FileInputStream(source).getChannel();
+             FileChannel destChannel = new FileOutputStream(destination, true).getChannel()) {
+            destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+        } catch (IOException e) {
+            throw new IOException("Error copying file: " + source + " to " + destination, e);
+        }
+    }
+
+
+    @FXML
+    private void insertNewUserPicture(ActionEvent actionEvent) {
+        if (newUserPicturePath != null && !newUserPicturePath.isEmpty() && usersModel != null) {
+            try {
+                int userId = UserContext.getInstance().getCurrentUserId();
+                usersModel.updateUserImage(userId, newUserPicturePath);
+                setUserPictureFromStart();
+
+                //copyImageToDir(selectedFile.toURI().toString(),userDirectoryPath, newUserPicturePath);
+                showAlert(Alert.AlertType.INFORMATION, "Update Successful", null, "Profile picture updated successfully.");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Error", "Update Failed", "Failed to update the profile picture.");
+            }
+        } else {
+            if (newUserPicturePath == null || newUserPicturePath.isEmpty()) {
+                showAlert(Alert.AlertType.WARNING, "No File Selected", null, "Please select a file to update.");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Error", null, "UsersModel is not initialized.");
+            }
+        }
+    }
+
+    private void setUserPictureFromStart() {
+
+
+        try {
+            // if (imgProfilePictureAdmin != null) {
+
+            String imageName = usersModel.getCurrentUserImageName();
+
+            if (imageName != null && !imageName.isEmpty()) { // Check if user has a profile picture
+                String imagePath = "/resources/Data/profile_images/user" + UserContext.getInstance().getCurrentUserId() + "/" + imageName;
+                File imageFile = new File(System.getProperty("user.dir") + imagePath);
+
+                if (imageFile.exists()) {
+                    Image image = new Image(new FileInputStream(imageFile));
+
+
+                    // Ensure that ImageView is fully loaded
+                    Platform.runLater(() -> {
+                        imageObjectProperty.set(image);
+                    });
+                } else {
+                    System.out.println("User image file not found: " + imagePath);
+                }
+            } else {
+                System.out.println("User does not have a profile picture.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle any exceptions silently (without showing an error message)
+        }
+
+    }
+    private void transitionToNewScene(Parent root) {
+        if (!coorStackPane.getChildren().isEmpty()) {
+            pageHistory.push(coorStackPane.getChildren().get(0));
+        }
+        setCenterNode(root);
+    }
+    @FXML
+    private void openCoordinatorPictureChange(MouseEvent mouseEvent) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Coordinator/CreatePicturePageCoordinator.fxml"));
+            Parent root = loader.load();
+            IController controller = loader.getController();
+            controller.setModel(usersModel);
+            transitionToNewScene(root);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open the profile picture change window", e);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private void showAlert(Alert.AlertType alertType, String title, String header, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void logoutToLogin(ActionEvent actionEvent) {
+        try {
+            URL loginPageURL = getClass().getResource("/fxml/Login.fxml");
+            if (loginPageURL == null) {
+                throw new IllegalArgumentException("Cannot find resource Login.fxml");
+            }
+            Parent loginRoot = FXMLLoader.load(loginPageURL);
+            Scene loginScene = new Scene(loginRoot);
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(loginScene);
+            currentStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO
+        }
+    }
 }

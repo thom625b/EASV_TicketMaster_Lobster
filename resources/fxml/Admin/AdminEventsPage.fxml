@@ -60,9 +60,9 @@
             <TableColumn fx:id="colAdminEventId" prefWidth="75.0" text="ID" visible="false" />
             <TableColumn fx:id="colEventAdmin" prefWidth="156.0001220703125" text="Event" />
             <TableColumn fx:id="colAdminStartDate" prefWidth="155.199951171875" text="Start Date" />
-            <TableColumn fx:id="colAdminStatus" prefWidth="185.5999755859375" text="Status" />
-            <TableColumn fx:id="colAdminDaysLeft" prefWidth="109.5999755859375" text="Days Left " />
-            <TableColumn fx:id="colAdminEventRegistered" prefWidth="109.5999755859375" text="Registered" />
+            <TableColumn fx:id="colAdminStatus" prefWidth="144.7999267578125" text="Status" />
+            <TableColumn fx:id="colAdminDaysLeft" prefWidth="101.5999755859375" text="Days Left " />
+            <TableColumn fx:id="colAdminEventRegistered" prefWidth="120.0" text="Registered" />
             <TableColumn fx:id="coladminEventsButtons" prefWidth="113.5999755859375">
                <graphic>
                   <Button fx:id="btnRefreshAdminEvents" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Refresh 🔄" />

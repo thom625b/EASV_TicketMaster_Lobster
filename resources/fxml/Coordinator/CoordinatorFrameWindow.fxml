@@ -38,12 +38,12 @@
                 </VBox>
                 <VBox fx:id="vBoxCoorLogout" alignment="BOTTOM_CENTER" prefHeight="254.0" prefWidth="132.0">
                     <children>
-                  <Label text="Change profile Picture">
+                  <Label onMouseClicked="#openCoordinatorPictureChange" text="Change profile Picture">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </Label>
-                        <Button fx:id="btncoorLogout" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Logout" />
+                        <Button fx:id="btncoorLogout" mnemonicParsing="false" onAction="#logoutToLogin" prefHeight="26.0" prefWidth="78.0" text="Logout" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="16.0" />

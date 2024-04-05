@@ -5,12 +5,11 @@ import GUI.Controllers.IController;
 import GUI.Model.UsersModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ListChangeListener;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
@@ -31,7 +30,8 @@ public class AdminUsersPageController implements Initializable, IController {
     private TableColumn<Users, String> colUserId;
     @FXML
     private TableColumn<Users, String> colRole;
-
+    @FXML
+    private TextField txtSearchCoorAdmin;
 
     public void showAllUsersInTable() {
         if (usersModel != null) {
@@ -58,17 +58,19 @@ public class AdminUsersPageController implements Initializable, IController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
         initializeButtonColumn();
-
+        if (usersModel != null) {
+            setupSearchFunctionality();
+        }
     }
 
     @Override
     public void setModel(UsersModel usersModel) {
         this.usersModel = usersModel;
-        showAllUsersInTable();
-
+        if (usersModel != null) {
+            showAllUsersInTable();
+            setupSearchFunctionality();
+        }
     }
 
 
@@ -114,7 +116,29 @@ public class AdminUsersPageController implements Initializable, IController {
     }
 
 
+    private void setupSearchFunctionality() {
+        FilteredList<Users> filteredUsers = new FilteredList<>(usersModel.getObservableUsers(), p -> true);
+        txtSearchCoorAdmin.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredUsers.setPredicate(user -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
 
+                if (user.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (user.getLastName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (user.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else return user.getRole().toString().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<Users> sortedUsers = new SortedList<>(filteredUsers);
+        sortedUsers.comparatorProperty().bind(tblViewCoorAdmin.comparatorProperty());
+        tblViewCoorAdmin.setItems(sortedUsers);
+    }
 
 
 }

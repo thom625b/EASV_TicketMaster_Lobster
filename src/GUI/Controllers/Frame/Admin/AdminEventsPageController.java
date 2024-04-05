@@ -6,6 +6,8 @@ import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -46,6 +48,12 @@ public class AdminEventsPageController implements Initializable, IController {
     private TableView<Events> tblViewAdminEvents;
     @FXML
     private ComboBox comboAdminManageName;
+    @FXML
+    private TextField txtSearchAdminEvents;
+
+    private FilteredList<Events> filteredEvents;
+
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 
     @Override
@@ -60,6 +68,7 @@ public class AdminEventsPageController implements Initializable, IController {
 
         showAllEventsInTable();
         initializeDeleteButtonColumn();
+        setupSearchFunctionality();
     }
 
 
@@ -135,8 +144,11 @@ public class AdminEventsPageController implements Initializable, IController {
                     new SimpleStringProperty(String.valueOf(cellData.getValue().getEventID())));
             colEventAdmin.setCellValueFactory(cellData ->
                     new SimpleStringProperty(cellData.getValue().getEventName()));
-            colAdminStartDate.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().getEventDate().toString()));
+            colAdminStartDate.setCellValueFactory(cellData -> {
+                LocalDate eventDate = cellData.getValue().getEventDate();
+                String formattedDate = eventDate.format(DATE_FORMATTER);
+                return new SimpleStringProperty(formattedDate);
+            });
 
             // Calculate and update days left
             colAdminDaysLeft.setCellValueFactory(cellData -> {
@@ -154,6 +166,29 @@ public class AdminEventsPageController implements Initializable, IController {
         }
     }
 
+    private void setupSearchFunctionality() {
+        filteredEvents = new FilteredList<>(eventsModel.getEventList(), p -> true); // Initially show all events
+
+        txtSearchAdminEvents.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredEvents.setPredicate(event -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    boolean nameMatches = event.getEventName().toLowerCase().contains(lowerCaseFilter);
+
+                    String dateString = event.getEventDate().format(DATE_FORMATTER);
+                    boolean dateMatches = dateString.contains(lowerCaseFilter);
+
+                    return nameMatches || dateMatches;
+                })
+        );
+
+        SortedList<Events> sortedEvents = new SortedList<>(filteredEvents);
+        sortedEvents.comparatorProperty().bind(tblViewAdminEvents.comparatorProperty());
+        tblViewAdminEvents.setItems(sortedEvents);
+    }
 
 
     @Override

@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 
-
-<Pane prefHeight="538.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="panePdfTicket" prefHeight="634.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Utility.PdfHandler">
    <children>
-       <ImageView fx:id="eventImage" fitHeight="280.0" fitWidth="510.0" pickOnBounds="true" preserveRatio="true" />
-       <ImageView fx:id="qrCode" fitHeight="228.0" fitWidth="236.0" layoutX="255.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox fx:id="ticketLayout" alignment="CENTER" layoutX="14.0" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="236.0">
-          <Label fx:id="eventName" contentDisplay="CENTER" text="Event Name" />
-          <Label fx:id="customerName" text="Customer Name" />
-      </VBox>
+       <ImageView fx:id="eventImage" fitHeight="293.0" fitWidth="347.0" layoutX="82.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="qrCode" fitHeight="228.0" fitWidth="241.0" layoutX="259.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane fx:id="paneLabel" layoutX="10.0" layoutY="401.0" prefHeight="203.0" prefWidth="229.0">
+         <padding>
+            <Insets left="16.0" />
+         </padding></Pane>
+      <Label fx:id="lblHeadName" layoutX="15.0" layoutY="415.0" prefHeight="17.0" prefWidth="130.0" text="Event Name:">
+         <padding>
+            <Insets left="16.0" />
+         </padding></Label>
+      <Label fx:id="lblHeadAddress" layoutX="15.0" layoutY="465.0" prefHeight="17.0" prefWidth="130.0" text="Address:">
+         <padding>
+            <Insets left="16.0" />
+         </padding></Label>
+       <Label fx:id="lblEventName" contentDisplay="CENTER" layoutX="15.0" layoutY="436.0" prefHeight="18.0" prefWidth="222.0">
+         <padding>
+            <Insets left="16.0" />
+         </padding></Label>
+      <Label fx:id="lblEventZip" layoutX="15.0" layoutY="506.0" prefHeight="18.0" prefWidth="58.0">
+         <padding>
+            <Insets left="16.0" />
+         </padding></Label>
+       <Label fx:id="addressEvent" layoutX="15.0" layoutY="487.0" prefHeight="18.0" prefWidth="222.0">
+         <padding>
+            <Insets left="16.0" />
+         </padding></Label>
+      <Label fx:id="lblHeadDate" layoutX="15.0" layoutY="530.0" prefHeight="17.0" prefWidth="130.0" text="Date:">
+         <padding>
+            <Insets left="16.0" />
+         </padding></Label>
+      <Label fx:id="lblEventCity" layoutX="74.0" layoutY="506.0" prefHeight="18.0" prefWidth="155.0" />
+      <Label fx:id="lblDatePdf" layoutX="15.0" layoutY="550.0" prefHeight="18.0" prefWidth="222.0">
+         <padding>
+            <Insets left="16.0" />
+         </padding></Label>
+      <Label fx:id="lblTicketHeader" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="26.0" prefHeight="17.0" prefWidth="503.0" text="EASV Ticket System" />
    </children>
 </Pane>
