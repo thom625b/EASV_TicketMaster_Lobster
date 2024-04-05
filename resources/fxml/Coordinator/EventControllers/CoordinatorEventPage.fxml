@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="BPCoorEventPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorEventPageController">
+<BorderPane fx:id="BPCoorEventPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorEventPageController">
     <center>
         <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
             <children>
@@ -20,23 +20,25 @@
                       <columns>
                           <TableColumn fx:id="tblEventTableCode" prefWidth="75.0" text="Code" />
                           <TableColumn fx:id="tblEventTableEventName" prefWidth="109.2105484008789" text="Event name" />
-                          <TableColumn fx:id="tblEventTableStartDate" prefWidth="102.78944396972656" text="Start Date" />
-                          <TableColumn fx:id="tblEventTableStatus" prefWidth="101.90296936035156" text="Status" />
-                          <TableColumn fx:id="tblEventTableDaysLeft" prefWidth="103.55941772460938" text="Days Left" />
+                          <TableColumn fx:id="tblEventTableStartDate" prefWidth="86.40000915527344" text="Start Date" />
+                          <TableColumn fx:id="tblEventStartTime" prefWidth="71.99993896484375" text="Start Time" />
+                          <TableColumn fx:id="tblEventEndTime" prefWidth="83.2000732421875" text="End Time" />
+                          <TableColumn fx:id="tblEventTableStatus" prefWidth="68.7999267578125" text="Status" />
+                          <TableColumn fx:id="tblEventTableDaysLeft" prefWidth="75.2000732421875" text="Days Left" />
                           <TableColumn fx:id="tblEventTableRegisteredParticipants" prefWidth="86.21600341796875" text="Registered" />
-                          <TableColumn fx:id="editButton" prefWidth="106.19241333007812">
+                          <TableColumn fx:id="editButton" minWidth="0.0" prefWidth="112.00006103515625">
                      <graphic>
                         <Button fx:id="btnRefreshCoorEvent" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Refresh  🔄" />
                      </graphic></TableColumn>
-                  <TableColumn minWidth="0.0" prefWidth="0.53997802734375" text="Column X">
+                  <TableColumn minWidth="0.0" prefWidth="0.0" text="Column X">
                      <graphic>
                         <Button fx:id="invisbleTableColumn" mnemonicParsing="false" text="Button" />
                      </graphic>
                   </TableColumn>
                       </columns>
-                      <columnResizePolicy>
-                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                      </columnResizePolicy>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
                   </TableView>
             </children>
          <BorderPane.margin>

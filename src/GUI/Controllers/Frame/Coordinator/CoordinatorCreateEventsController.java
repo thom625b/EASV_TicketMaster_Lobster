@@ -36,6 +36,10 @@ public class CoordinatorCreateEventsController implements IController {
     public TextArea txtEventDescription;
 
     private final EventsModel eventsModel;
+    @FXML
+    private TextField txtEventStartTime;
+    @FXML
+    private TextField txtEventEndTime;
 
     public CoordinatorCreateEventsController() throws IOException, ApplicationWideException {
         eventsModel = new EventsModel();
@@ -44,7 +48,8 @@ public class CoordinatorCreateEventsController implements IController {
     @FXML
     public void AddNewEvent(ActionEvent actionEvent) {
         if (txtEventTitle.getText().isEmpty() || dpEventStartDate.getValue() == null || txtEventAddress.getText().isEmpty() ||
-                txtEventZipCode.getText().isEmpty() || txtEventCity.getText().isEmpty() || txtEventDescription.getText().isEmpty()) {
+                txtEventZipCode.getText().isEmpty() || txtEventCity.getText().isEmpty() || txtEventDescription.getText().isEmpty() || txtEventStartTime.getText().isEmpty()
+                || txtEventEndTime.getText().isEmpty()) {
             showAlert("Missing Information", "Please fill in all required fields.");
             return;
         }
@@ -56,12 +61,19 @@ public class CoordinatorCreateEventsController implements IController {
         String eventAddress = txtEventAddress.getText();
         String eventCity = txtEventCity.getText();
         String eventDescription = txtEventDescription.getText();
-
+        String eventStatTime = txtEventStartTime.getText();
+        String eventEndTime = txtEventEndTime.getText();
         int eventZipCode;
+
         try {
             eventZipCode = Integer.parseInt(txtEventZipCode.getText());
         } catch (NumberFormatException e) {
             showAlert("Invalid Zip Code", "Please enter a valid number for the zip code.");
+            return;
+        }
+
+        if (!isValidTimeFormat(eventStatTime) || !isValidTimeFormat(eventEndTime)) {
+            showAlert("Invalid Time Format", "Please enter the event start time and end time in the format HH:mm.");
             return;
         }
 
@@ -70,7 +82,7 @@ public class CoordinatorCreateEventsController implements IController {
 
         int currentUserId = UserContext.getInstance().getCurrentUserId();
 
-        Events newEvent = new Events(eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZipCode, eventCity, eventDescription, currentUserId);
+        Events newEvent = new Events(eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZipCode, eventCity, eventDescription, currentUserId, eventStatTime, eventEndTime);
         try {
             eventsModel.createEvent(newEvent);
             showSuccessAlert("Event Created", "The event has been successfully created.");
@@ -103,6 +115,14 @@ public class CoordinatorCreateEventsController implements IController {
         txtEventZipCode.clear();
         txtEventCity.clear();
         txtEventDescription.clear();
+        txtEventStartTime.clear();
+        txtEventEndTime.clear();
+    }
+
+    private boolean isValidTimeFormat(String time) {
+        // Regular expression to match HH:mm format
+        String regex = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
+        return time.matches(regex);
     }
 
     @Override

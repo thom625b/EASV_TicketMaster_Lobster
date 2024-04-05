@@ -35,7 +35,9 @@ public class Events_DAO implements IEventsDataAccess {
                         rs.getString("eventAddress"),
                         rs.getInt("eventZIP"),
                         rs.getString("eventCity"),
-                        rs.getString("eventDescription")
+                        rs.getString("eventDescription"),
+                        rs.getString("eventStartTime"),
+                        rs.getString("eventEndTime")
                 );
                 allEvents.add(event);
             }
@@ -48,7 +50,7 @@ public class Events_DAO implements IEventsDataAccess {
 
     @Override
     public Events addEvent(Events event, int currentUserId) throws ApplicationWideException {
-        String insertEventSQL = "INSERT INTO Events (eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZIP, eventCity, eventDescription) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String insertEventSQL = "INSERT INTO Events (eventName, eventDate, eventStatus, eventRemainingDays, eventParticipants, eventAddress, eventZIP, eventCity, eventDescription, eventStartTime, eventEndTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         String insertEventUserSQL = "INSERT INTO EventUsers (eventID, userID) VALUES (?, ?);";
 
         try (Connection conn = dbConnector.getConnection();
@@ -64,6 +66,8 @@ public class Events_DAO implements IEventsDataAccess {
             pstmtEvent.setInt(7, event.getEventZipCode());
             pstmtEvent.setString(8, event.getEventCity());
             pstmtEvent.setString(9, event.getEventDescription());
+            pstmtEvent.setString(10, event.getEventStartTime());
+            pstmtEvent.setString(11, event.getEventEndTime());
 
             int affectedRows = pstmtEvent.executeUpdate();
 
@@ -144,7 +148,9 @@ public class Events_DAO implements IEventsDataAccess {
                         rs.getString("eventAddress"),
                         rs.getInt("eventZIP"),
                         rs.getString("eventCity"),
-                        rs.getString("eventDescription")
+                        rs.getString("eventDescription"),
+                        rs.getString("eventStartTime"),
+                        rs.getString("eventEndTime")
                 );
                 eventsByCoordinator.add(event);
             }

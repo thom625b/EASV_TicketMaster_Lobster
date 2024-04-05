@@ -39,8 +39,12 @@ public class CoordinatorEventPageController implements IController {
     private TableColumn<Events, Integer> tblEventTableRegisteredParticipants;
     @FXML
     private TableColumn<Events, Void> editButton;
-
+    @FXML
+    private TableColumn<Events, String> tblEventStartTime;
+    @FXML
+    private TableColumn<Events, String> tblEventEndTime;
     private final EventsModel eventsModel;
+
 
     public CoordinatorEventPageController() throws IOException, ApplicationWideException {
         eventsModel = new EventsModel();
@@ -110,7 +114,8 @@ public class CoordinatorEventPageController implements IController {
             });
 
             tblEventTableRegisteredParticipants.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEventParticipants()).asObject());
-
+            tblEventStartTime.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventStartTime()));
+            tblEventEndTime.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventEndTime()));
             tblEventTable.setItems(eventList);
         } catch (ApplicationWideException e) {
             showAlert("Error", "Failed to retrieve events by coordinator from the database.");

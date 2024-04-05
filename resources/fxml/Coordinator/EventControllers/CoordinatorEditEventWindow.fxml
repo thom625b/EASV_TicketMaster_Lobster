@@ -45,6 +45,8 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
                                         <Label text="Event Design">
@@ -67,7 +69,7 @@
                                                 <Insets left="10.0" />
                                             </padding>
                                         </Label>
-                                        <TextField fx:id="txtEditEventPicture" prefHeight="17.0" prefWidth="111.0" promptText="PNG" GridPane.columnIndex="1">
+                                        <TextField fx:id="txtEditEventPicture" promptText="PNG" GridPane.columnIndex="1">
                                             <padding>
                                                 <Insets left="10.0" />
                                             </padding>
@@ -90,7 +92,7 @@
                                                 <Insets />
                                             </opaqueInsets>
                                             <GridPane.margin>
-                                                <Insets bottom="10.0" />
+                                                <Insets />
                                             </GridPane.margin>
                                         </DatePicker>
                                         <Label text="Postal code" GridPane.rowIndex="3">
@@ -108,19 +110,31 @@
                                                 <Insets left="10.0" />
                                             </padding>
                                             <GridPane.margin>
-                                                <Insets bottom="10.0" />
+                                                <Insets />
                                             </GridPane.margin>
                                         </Label>
-                                        <TextField fx:id="txtEditEventAddress" prefHeight="17.0" prefWidth="111.0" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                        <TextField fx:id="txtEditEventAddress" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                             <padding>
                                                 <Insets left="10.0" />
                                             </padding>
                                         </TextField>
+                              <Label text="Start time " GridPane.rowIndex="6">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="End Time" GridPane.rowIndex="7">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="txtEditEventStartTime" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtEditEventEndTime" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                     </children>
                                 </GridPane>
                             </children>
                         </VBox>
-                        <VBox prefHeight="300.0" prefWidth="279.0">
+                        <VBox prefHeight="300.0" prefWidth="359.0">
                             <children>
                                 <HBox>
                                     <children>
@@ -134,26 +148,26 @@
                                         </Label>
                                     </children>
                                 </HBox>
-                                <TextArea fx:id="txtEditEventDescription" prefHeight="229.0" prefWidth="249.0" promptText="Write a description for your event here ">
+                                <TextArea fx:id="txtEditEventDescription" prefHeight="258.0" prefWidth="329.0" promptText="Write a description for your event here ">
                                     <VBox.margin>
-                                        <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                                        <Insets left="20.0" right="10.0" top="10.0" />
                                     </VBox.margin>
                                 </TextArea>
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="279.0">
                                     <children>
                                           <Button fx:id="btnEditUploadImageToEvent" mnemonicParsing="false" onAction="#EditUploadImageToEvent" text="Upload Image">
                                  <HBox.margin>
-                                    <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                                    <Insets left="20.0" right="10.0" top="5.0" />
                                  </HBox.margin>
                                           </Button>
                               <Button fx:id="btnEditSaveEvent" mnemonicParsing="false" onAction="#editSaveEvent" prefWidth="86.0" text="Save Edit">
                                  <HBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
                               <Button fx:id="btnEditDeleteEvent" mnemonicParsing="false" onAction="#editDeleteEvent" text="Delete Event">
                                  <HBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
                                     </children></HBox>

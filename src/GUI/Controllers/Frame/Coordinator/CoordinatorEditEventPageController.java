@@ -38,10 +38,14 @@ public class CoordinatorEditEventPageController implements IController {
     public Button btnEditSaveEvent;
     @FXML
     public Button btnEditDeleteEvent;
-
+    @FXML
+    private TextField txtEditEventStartTime;
+    @FXML
+    private TextField txtEditEventEndTime;
     private EventsModel eventsModel;
     private Events selectedEvent;
     private CoordinatorEventPageController eventPageController;
+
 
 
     public CoordinatorEditEventPageController() throws ApplicationWideException {
@@ -65,6 +69,8 @@ public class CoordinatorEditEventPageController implements IController {
             String zipCode = String.valueOf(selectedEvent.getEventZipCode());
             String address = selectedEvent.getEventAddress();
             String description = selectedEvent.getEventDescription();
+            String eventStartTime = selectedEvent.getEventStartTime();
+            String eventEndTime = selectedEvent.getEventEndTime();
 
             // Populate the text fields with the extracted data
             txtEditEventTitle.setText(eventName);
@@ -73,6 +79,8 @@ public class CoordinatorEditEventPageController implements IController {
             txtEditEventZipCode.setText(zipCode);
             txtEditEventAddress.setText(address);
             txtEditEventDescription.setText(description);
+            txtEditEventStartTime.setText(eventStartTime);
+            txtEditEventEndTime.setText(eventEndTime);
         } catch (DateTimeParseException e) {
             System.err.println("Error parsing start date: " + e.getMessage());
             // Handle the error appropriately, e.g., show an error message to the user

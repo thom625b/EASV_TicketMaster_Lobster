@@ -6,12 +6,12 @@ import java.util.List;
 public class Events {
 
     private int coordinatorId;
-    private String eventAddress, eventName, eventCity, eventDescription;
+    private String eventAddress, eventName, eventCity, eventDescription, eventStartTime, eventEndTime;
     private int eventID, eventStatus, eventRemainingDays, eventParticipants, eventZipCode;
     private List<Users> users;
     private LocalDate eventDate;
 
-    public Events(String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription, int coordinatorId) {
+    public Events(String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription, int coordinatorId, String eventStartTime, String eventEndTime) {
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventStatus = eventStatus;
@@ -22,9 +22,11 @@ public class Events {
         this.eventCity = eventCity;
         this.eventDescription = eventDescription;
         this.coordinatorId = coordinatorId;
+        this.eventStartTime = eventStartTime;
+        this.eventEndTime = eventEndTime;
     }
 
-    public Events(int eventID, String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription) {
+    public Events(int eventID, String eventName, LocalDate eventDate, int eventStatus, int eventRemainingDays, int eventParticipants, String eventAddress, int eventZipCode, String eventCity, String eventDescription, String eventStartTime, String eventEndTime) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.eventDate = eventDate;
@@ -35,6 +37,8 @@ public class Events {
         this.eventZipCode = eventZipCode;
         this.eventCity = eventCity;
         this.eventDescription = eventDescription;
+        this.eventStartTime = eventStartTime;
+        this.eventEndTime = eventEndTime;
     }
 
     public String getEventName() {
@@ -91,6 +95,23 @@ public class Events {
     public void setEventID(int eventID) {
         this.eventID = eventID;
     }
+
+    public String getEventStartTime() {
+        return eventStartTime;
+    }
+
+    private void setEventStartTime(String eventStartTime) {
+        this.eventStartTime = eventStartTime;
+    }
+
+    public String getEventEndTime() {
+        return eventEndTime;
+    }
+
+    private void setEventEndTime(String eventEndTime) {
+        this.eventEndTime = eventEndTime;
+    }
+
     @Override
     public String toString() {
         return "Events{" +
@@ -106,7 +127,5 @@ public class Events {
                 ", eventDescription='" + eventDescription + '\'' +
                 '}';
     }
-
-
 
 }
