@@ -8,17 +8,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane  prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
+<BorderPane fx:id="borderPicturePageCoor" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
    <center>
-      <HBox  alignment="CENTER" prefHeight="316.0" prefWidth="598.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="hboxCenter" alignment="CENTER" prefHeight="316.0" prefWidth="598.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="402.0" prefWidth="542.0">
                <children>
                   <ImageView fx:id="imgNewUserPictureCoordinator" fitHeight="215.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="103.0" prefWidth="531.0">
                      <children>
-                        <Button  mnemonicParsing="false" onAction="#loadNewUserPicture" prefHeight="60.0" prefWidth="140.0" text="Load picture" />
-                        <Button  mnemonicParsing="false" onAction="#insertNewUserPicture" prefHeight="60.0" prefWidth="140.0" text="Insert picture" />
+                        <Button fx:id="btnCenterLeft" mnemonicParsing="false" onAction="#loadNewUserPicture" prefHeight="60.0" prefWidth="140.0" text="Load picture" />
+                        <Button fx:id="btnCenterRight" mnemonicParsing="false" onAction="#insertNewUserPicture" prefHeight="60.0" prefWidth="140.0" text="Insert picture" />
                      </children>
                      <padding>
                         <Insets bottom="8.0" right="8.0" />
@@ -32,7 +32,7 @@
    <top>
       <HBox prefHeight="80.0" prefWidth="616.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="200.0">
+            <HBox fx:id="hboxHeader" alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="200.0">
                <HBox.margin>
                   <Insets bottom="16.0" left="16.0" top="16.0" />
                </HBox.margin>
@@ -42,7 +42,7 @@
                         <Insets right="8.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label alignment="CENTER" text="Change Picture" />
+                  <Label fx:id="lblHeader" alignment="CENTER" text="Change Picture" />
                </children>
             </HBox>
          </children></HBox>
