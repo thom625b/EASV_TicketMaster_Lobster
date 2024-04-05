@@ -106,11 +106,28 @@ public class CoordinatorEditEventPageController implements IController {
                 String eventStartTime = txtEditEventStartTime.getText();
                 String eventEndTime = txtEditEventEndTime.getText();
 
+                // Validate zip code format
+                int zipCode;
+                try {
+                    zipCode = Integer.parseInt(eventZipCode);
+                } catch (NumberFormatException e) {
+                    // Show error message for invalid zip code format
+                    showAlert("Error", "Invalid zip code format. Please enter a valid number.");
+                    return;
+                }
+
+                // Validate start and end time format
+                if (!isValidTime(eventStartTime) || !isValidTime(eventEndTime)) {
+                    // Show error message for invalid time format
+                    showAlert("Error", "Invalid time format. Please enter a time in HH:MM format.");
+                    return;
+                }
+
                 // Set the updated values to the selected event
                 selectedEvent.setEventName(eventName);
                 selectedEvent.setEventDate(eventDate);
                 selectedEvent.setEventCity(eventCity);
-                selectedEvent.setEventZipCode(Integer.parseInt(eventZipCode));
+                selectedEvent.setEventZipCode(zipCode);
                 selectedEvent.setEventAddress(eventAddress);
                 selectedEvent.setEventDescription(eventDescription);
                 selectedEvent.setEventStartTime(eventStartTime);
@@ -128,31 +145,28 @@ public class CoordinatorEditEventPageController implements IController {
 
             } else {
                 // If the selected event is null, show an error message
-                Alert error = new Alert(Alert.AlertType.ERROR);
-                error.setTitle("Error");
-                error.setHeaderText(null);
-                error.setContentText("Selected event is null. Cannot save changes.");
-                error.showAndWait();
+                showAlert("Error", "Selected event is null. Cannot save changes.");
             }
-        } catch (NumberFormatException e) {
-            // If there is an error parsing zip code, show an error message
-            Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Error");
-            error.setHeaderText(null);
-            error.setContentText("Invalid zip code. Please enter a valid number.");
-            error.showAndWait();
         } catch (ApplicationWideException e) {
             // If there is an application-wide exception, show an error message
-            Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Error");
-            error.setHeaderText(null);
-            error.setContentText("An error occurred while updating the event: " + e.getMessage());
-            error.showAndWait();
+            showAlert("Error", "An error occurred while updating the event: " + e.getMessage());
         }
     }
 
+    // Method to validate time format
+    private boolean isValidTime(String time) {
+        // Validate time format (HH:MM)
+        return time.matches("^([01]\\d|2[0-3]):([0-5]\\d)$");
+    }
 
-
+    // Method to show an alert dialog
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
     public void editDeleteEvent(ActionEvent actionEvent) throws ApplicationWideException {
 
