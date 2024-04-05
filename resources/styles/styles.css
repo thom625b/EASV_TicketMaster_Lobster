@@ -380,5 +380,105 @@
     -fx-font-size: 14px;
 }
 
-/*
+
+/* Coordinator - CreatePicturePageCoordinator
 ---------------------------------------------------------------------------------------------------------------*/
+
+#borderPicturePageCoor {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#hboxCenter {
+    -fx-background-color: white;
+}
+
+#hboxHeader {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#lblHeader {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#btnCenterLeft {
+    -fx-background-color: #FBBB2C;
+}
+
+#btnCenterRight {
+    -fx-background-color: #108CDC ;
+}
+
+
+/* Coordinator - CoordinatorEventPage
+---------------------------------------------------------------------------------------------------------------*/
+
+#BPCoorEventPage {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#hboxTopCoorEventPage {
+    -fx-background-color: white;
+}
+
+#txtTopCoorEventPage {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-background-insets: 0;
+}
+
+#btnCreateNewEvent {
+    -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+}
+
+#hboxHeaderCreate {
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+    -fx-background-color: white;
+
+}
+
+#txtHeaderCoorEventPage {
+    -fx-text-fill: #363062;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#tblEventTable .column-header-background .filler,
+#tblEventTable .column-header-background .column-header {
+    -fx-background-color: transparent;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
+    -fx-border-width: 0 0 1 0;
+
+}
+
+#tblEventTable .column-header .label {
+    -fx-text-fill: #108CDC;
+}
+
+#tblEventTable .column-header {
+    -fx-min-height: 50px;
+}
+
+
+#btnRefreshCoorEvent {
+    -fx-background-color: #363062;
+    -fx-text-fill: white;
+
+}
+
+#invisbleTableColumn {
+    -fx-padding: 20px;
+}
+
+#tblEventTable {
+    -fx-table-cell-border-color: transparent;
+}
+#tblEventTable:even {
+    -fx-background-color: #ffffff;
+}
+
+#tblEventTable:odd {
+    -fx-background-color: #f2f2f2;
+}
