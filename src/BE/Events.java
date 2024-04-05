@@ -45,6 +45,10 @@ public class Events {
         return eventName;
     }
 
+    public void setEventName(String eventName){
+        this.eventName = eventName;
+    }
+
     public LocalDate getEventDate() {
         return eventDate;
     }
@@ -100,7 +104,7 @@ public class Events {
         return eventStartTime;
     }
 
-    private void setEventStartTime(String eventStartTime) {
+    public void setEventStartTime(String eventStartTime) {
         this.eventStartTime = eventStartTime;
     }
 
@@ -108,7 +112,7 @@ public class Events {
         return eventEndTime;
     }
 
-    private void setEventEndTime(String eventEndTime) {
+    public void setEventEndTime(String eventEndTime) {
         this.eventEndTime = eventEndTime;
     }
 
@@ -128,4 +132,23 @@ public class Events {
                 '}';
     }
 
+    public void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public void setEventCity(String eventCity) {
+        this.eventCity = eventCity;
+    }
+
+    public void setEventZipCode(int eventZipCode) {
+        this.eventZipCode = eventZipCode;
+    }
+
+    public void setEventAddress(String eventAddress) {
+        this.eventAddress = eventAddress;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
+    }
 }

@@ -29,7 +29,8 @@ public class EventsManager {
         return eventsDao.getEventsByCoordinator(coordinatorID);
     }
 
-    public void updateEvent(Events event) {
+    public void updateEvent(Events event) throws ApplicationWideException {
+        eventsDao.updateEvent(event);
     }
 
     public void deleteEvent(Events event) throws ApplicationWideException {

@@ -123,7 +123,32 @@ public class Events_DAO implements IEventsDataAccess {
 
     @Override
     public void updateEvent(Events event) throws ApplicationWideException {
-        // Implement updating an existing event in the database
+        String updateEventSQL = "UPDATE Events SET eventName=?, eventDate=?, eventStatus=?, eventRemainingDays=?, eventParticipants=?, eventAddress=?, eventZIP=?, eventCity=?, eventDescription=?, eventStartTime=?, eventEndTime=? WHERE eventID=?";
+
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(updateEventSQL)) {
+
+            pstmt.setString(1, event.getEventName());
+            pstmt.setString(2, event.getEventDate().toString());
+            pstmt.setInt(3, event.getEventStatus());
+            pstmt.setInt(4, event.getEventRemainingDays());
+            pstmt.setInt(5, event.getEventParticipants());
+            pstmt.setString(6, event.getEventAddress());
+            pstmt.setInt(7, event.getEventZipCode());
+            pstmt.setString(8, event.getEventCity());
+            pstmt.setString(9, event.getEventDescription());
+            pstmt.setString(10, event.getEventStartTime());
+            pstmt.setString(11, event.getEventEndTime());
+            pstmt.setInt(12, event.getEventID());
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Updating event failed, no rows affected.");
+            }
+        } catch (SQLException e) {
+            throw new ApplicationWideException("Error occurred while updating event", e);
+        }
     }
 
     @Override
