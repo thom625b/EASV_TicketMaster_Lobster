@@ -7,175 +7,291 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorEditEventPageController">
+<BorderPane fx:id="BPEditEvents" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/Styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorEditEventPageController">
     <top>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <HBox fx:id="HboxBorderTopEditEvent" alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="776.0" BorderPane.alignment="CENTER_LEFT">
             <children>
-                <Label text="Edit Event ">
+                <Label fx:id="lblEventHeadlineEdit" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="191.0" text="Edit Event ">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
                 </Label>
             </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </BorderPane.margin>
         </HBox>
     </top>
     <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+        <VBox fx:id="VboxBorderCenterEditEvent" prefHeight="396.0" prefWidth="696.0" BorderPane.alignment="CENTER">
             <children>
-                <HBox alignment="CENTER">
+                <HBox alignment="CENTER" prefHeight="475.0" prefWidth="696.0">
                     <children>
-                        <VBox prefHeight="300.0" prefWidth="298.0">
+                        <VBox alignment="CENTER" prefHeight="352.0" prefWidth="298.0">
                             <children>
-                                <GridPane prefHeight="325.0" prefWidth="298.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <Label text="Event Design">
+                        <HBox alignment="CENTER">
+                           <children>
+                                        <Label fx:id="lblEventTitleEdit" prefHeight="18.0" prefWidth="90.0" text="Event Title">
                                             <padding>
                                                 <Insets left="10.0" />
                                             </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
                                         </Label>
-                                        <Label text="Address" GridPane.rowIndex="1">
-                                            <padding>
-                                                <Insets left="10.0" />
-                                            </padding>
-                                        </Label>
-                                        <Label text="City" GridPane.rowIndex="2">
-                                            <padding>
-                                                <Insets left="10.0" />
-                                            </padding>
-                                        </Label>
-                                        <Label text="Event Title" GridPane.rowIndex="4">
-                                            <padding>
-                                                <Insets left="10.0" />
-                                            </padding>
-                                        </Label>
-                                        <TextField fx:id="txtEditEventPicture" promptText="PNG" GridPane.columnIndex="1">
-                                            <padding>
-                                                <Insets left="10.0" />
-                                            </padding>
+                                        <TextField fx:id="txtEditEventTitle" prefHeight="26.0" prefWidth="160.0" promptText="Name of event">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
                                         </TextField>
-                                        <TextField fx:id="txtEditEventCity" promptText="City Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           </children>
+                           <VBox.margin>
+                              <Insets top="35.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                                        <Label fx:id="lblEventDesignEdit" prefHeight="18.0" prefWidth="90.0" text="Event Design">
                                             <padding>
                                                 <Insets left="10.0" />
                                             </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                        </Label>
+                                        <TextField fx:id="txtEditEventPicture" prefHeight="26.0" prefWidth="160.0" promptText="PNG">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
                                         </TextField>
-                                        <TextField fx:id="txtEditEventTitle" promptText="Name of event" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                                        <Label fx:id="lblEventAddressEdit" prefHeight="18.0" prefWidth="90.0" text="Address">
                                             <padding>
                                                 <Insets left="10.0" />
                                             </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                        </Label>
+                                        <TextField fx:id="txtEditEventAddress" prefHeight="26.0" prefWidth="160.0" promptText="Address">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
                                         </TextField>
-                                        <DatePicker fx:id="dpEditEventStartDate" onAction="#EditEventStartDate" promptText="Start Date" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="26.0" prefWidth="160.0">
+                           <children>
+                                        <Label fx:id="lblEventCityEdit" prefHeight="18.0" prefWidth="90.0" text="City">
                                             <padding>
                                                 <Insets left="10.0" />
                                             </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                        </Label>
+                                        <TextField fx:id="txtEditEventCity" prefHeight="60.0" prefWidth="160.0" promptText="City Name">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
+                                        </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                                        <Label fx:id="lblEventPostalCodeEdit" prefHeight="18.0" prefWidth="90.0" text="Postal code">
+                                            <padding>
+                                                <Insets left="10.0" />
+                                            </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                        </Label>
+                                        <TextField fx:id="txtEditEventZipCode" prefHeight="26.0" prefWidth="160.0" promptText=" ZIP Code">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
+                                        </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label fx:id="lblEventStartTimeEdit" prefHeight="18.0" prefWidth="90.0" text="Start time ">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtEditEventStartTime" prefHeight="26.0" prefWidth="160.0" promptText="00:00">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label fx:id="lblEventEndTimeEdit" prefHeight="18.0" prefWidth="90.0" text="End Time">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtEditEventEndTime" prefHeight="26.0" prefWidth="160.0" promptText="00:00">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                                        <Label fx:id="lblEventStartDateEdit" prefHeight="18.0" prefWidth="90.0" text="Start date">
+                                            <padding>
+                                                <Insets left="10.0" />
+                                            </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                        </Label>
+                                        <DatePicker fx:id="dpEditEventStartDate" onAction="#EditEventStartDate" prefWidth="160.0" promptText="Start Date">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
-                                            <GridPane.margin>
-                                                <Insets />
-                                            </GridPane.margin>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
                                         </DatePicker>
-                                        <Label text="Postal code" GridPane.rowIndex="3">
-                                            <padding>
-                                                <Insets left="10.0" />
-                                            </padding>
-                                        </Label>
-                                        <TextField fx:id="txtEditEventZipCode" promptText=" ZIP Code" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                            <padding>
-                                                <Insets left="10.0" />
-                                            </padding>
-                                        </TextField>
-                                        <Label text="Start date" GridPane.rowIndex="5">
-                                            <padding>
-                                                <Insets left="10.0" />
-                                            </padding>
-                                            <GridPane.margin>
-                                                <Insets />
-                                            </GridPane.margin>
-                                        </Label>
-                                        <TextField fx:id="txtEditEventAddress" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                            <padding>
-                                                <Insets left="10.0" />
-                                            </padding>
-                                        </TextField>
-                              <Label text="Start time " GridPane.rowIndex="6">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label text="End Time" GridPane.rowIndex="7">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <TextField fx:id="txtEditEventStartTime" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <TextField fx:id="txtEditEventEndTime" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    </children>
-                                </GridPane>
+                           </children>
+                        </HBox>
                             </children>
+                     <HBox.margin>
+                        <Insets bottom="20.0" top="10.0" />
+                     </HBox.margin>
                         </VBox>
                         <VBox prefHeight="300.0" prefWidth="389.0">
                             <children>
-                                <HBox>
+                                <HBox alignment="CENTER_LEFT">
                                     <children>
-                                        <Label text="Description">
+                                        <Label fx:id="lblEventDescriptionEdit" prefHeight="27.0" prefWidth="470.0" text="Description">
                                             <font>
                                                 <Font name="System Bold" size="18.0" />
                                             </font>
-                                            <padding>
-                                                <Insets left="20.0" right="10.0" top="15.0" />
-                                            </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
                                         </Label>
                                     </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                                 </HBox>
-                                <TextArea fx:id="txtEditEventDescription" prefHeight="258.0" prefWidth="329.0" promptText="Write a description for your event here ">
+                                <TextArea fx:id="txtEditEventDescription" prefHeight="368.0" prefWidth="369.0" promptText="Write a description for your event here ">
                                     <VBox.margin>
-                                        <Insets left="20.0" right="10.0" top="10.0" />
+                                        <Insets left="10.0" right="10.0" />
                                     </VBox.margin>
                                 </TextArea>
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="279.0">
-                                    <children>
-                                          <Button fx:id="btnEditUploadImageToEvent" mnemonicParsing="false" onAction="#EditUploadImageToEvent" prefHeight="26.0" prefWidth="120.0" text="Upload Image">
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="10.0" top="5.0" />
-                                 </HBox.margin>
-                                          </Button>
-                              <Button fx:id="btnEditSaveEvent" mnemonicParsing="false" onAction="#editSaveEvent" prefHeight="26.0" prefWidth="100.0" text="Save Edit">
-                                 <HBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="btnEditDeleteEvent" mnemonicParsing="false" onAction="#editDeleteEvent" prefHeight="26.0" prefWidth="120.0" text="Delete Event">
-                                 <HBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
-                                 </HBox.margin>
-                              </Button>
-                                    </children></HBox>
                             </children>
+                     <HBox.margin>
+                        <Insets bottom="30.0" top="10.0" />
+                     </HBox.margin>
                         </VBox>
                     </children>
                 </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="388.0">
+               <children>
+                              <Button fx:id="btnEditUploadImageToEvent" mnemonicParsing="false" onAction="#EditUploadImageToEvent" prefHeight="26.0" prefWidth="120.0" text="Upload Image">
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="15.0" />
+                     </HBox.margin>
+                              </Button>
+                  <Button fx:id="btnEditDeleteEvent" mnemonicParsing="false" onAction="#editDeleteEvent" prefHeight="26.0" prefWidth="120.0" text="Delete Event">
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnEditSaveEvent" mnemonicParsing="false" onAction="#editSaveEvent" prefHeight="26.0" prefWidth="100.0" text="Save Edit">
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
             </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" />
+         </BorderPane.margin>
         </VBox>
     </center>
+   <bottom>
+      <HBox fx:id="HboxBorderBottomEditEvent" prefHeight="70.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <VBox fx:id="HboxBorderRightEditEvent" prefHeight="446.0" prefWidth="70.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>

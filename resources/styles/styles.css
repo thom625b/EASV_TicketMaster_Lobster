@@ -593,3 +593,102 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
 }
 
+/*  CoordinatorFrame
+---------------------------------------------------------------------------------------------------------------*/
+
+#frameCoorBorder {
+    -fx-background-color: #FFFFFF; /* change background color */
+}
+
+#coorStackPane {
+    -fx-background-color: #FFFFFF; /* change background color */
+}
+
+#vBoxCoordBack {
+    -fx-background-color: #FFFFFF; /* change background color */
+    -fx-padding: 16px; /* adjust padding */
+}
+
+#imgCoordinatorFrame {
+    -fx-padding: 8px; /* adjust padding */
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#btnCoorHome, #btnCoorEvents, #btnCoorTickets, #btnCoorManageEvents {
+    -fx-pref-height: 40px; /* adjust button height */
+    -fx-pref-width: 190px; /* adjust button width */
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+#btnCoorHome:hover, #btnCoorEvents:hover, #btnCoorTickets:hover, #btnCoorManageEvents:hover {
+    -fx-background-color: #CCCCCC; /* change hover background color */
+}
+
+#btncoorLogout {
+    -fx-pref-height: 26px; /* adjust button height */
+    -fx-pref-width: 78px; /* adjust button width */
+    -fx-background-color: transparent;
+    -fx-border-color: #363062;
+    -fx-text-fill: #363062;
+    -fx-border-radius: 15px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#btncoorLogout:hover {
+    -fx-background-color: #CCCCCC; /* change hover background color */
+}
+
+#lblChangeProfilePicture {
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+#lblChangePassword {
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* CoordinatorEditEventPage
+---------------------------------------------------------------------------------------------------------------*/
+#BPEditEvents {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#VboxBorderCenterEditEvent {
+    -fx-background-color: #FFFFFF;
+}
+
+#HboxBorderTopEditEvent, #HboxEditEventLogo, #HboxBorderBottomEditEvent, #HboxBorderRightEditEvent {
+    -fx-background-color: Transparent;
+}
+
+#HboxEditEventLabel {
+    -fx-background-color: Transparent;
+}
+
+#lblEventTitleEdit, #lblEventDesignEdit, #lblEventAddressEdit, #lblEventCityEdit, #lblEventPostalCodeEdit, #lblEventStartTimeEdit, #lblEventEndTimeEdit, #lblEventStartDateEdit, #lblEventDescriptionEdit, #lblEventHeadlineEdit {
+    -fx-text-fill: #363062;
+}
+
+#btnEditUploadImageToEvent, #btnEditDeleteEvent {
+    -fx-text-fill: #F99417;
+    -fx-border-color: #F99417;
+}
+
+#btnEditSaveEvent {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #108CDC;
+}
+
+
+
