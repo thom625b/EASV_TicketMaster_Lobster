@@ -84,6 +84,7 @@ public class CoordinatorEventPageController implements IController {
                     @Override
                     protected void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
+                        refreshEventData();
                         if (empty) {
                             setGraphic(null);
                         } else {
