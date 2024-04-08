@@ -593,6 +593,153 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
 }
 
+/*  Coordinator: Create Event
+---------------------------------------------------------------------------------------------------------------*/
+
+#borderBackCreateCoordinator {
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+#vBoxCoordinatorCenterCreate {
+    -fx-background-color: white;
+}
+
+#lblCoordinatorCreateNewEvent {
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+    -fx-text-fill: #363062;
+}
+
+#lblCreateNewEvent, #lblDescription {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #363062;
+}
+
+#hBoxAdminProfileCreate {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#btnAddNewEvent {
+    -fx-border-color: #108CDC;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #108CDC;
+}
+
+#btnUploadImageToEvent {
+    -fx-border-color: #FBBB2C;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #FBBB2C;
+}
+
+#lblEventDesign, #lblEventAddress, #lblEventCity, #lblEventZip, #lblEventTitle, #lblEventDate, #lblEventStartTime, #lblEventEndTime {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #363062;
+}
+
+
+.date-picker .day-cell:filled {
+    -fx-border-color: #FBBB2C;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+.date-picker .date-cell {
+    -fx-border-color: #108CDC;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+.date-picker .day-name-cell {
+    -fx-border-radius: 15px;
+    -fx-text-fill: #363062;
+    -fx-font-weight: bold;
+}
+
+.date-picker .calendar-pane,
+.date-picker .month-year-pane{
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+}
+
+.date-picker .day-cell:hover{
+    -fx-border-color: #363062;
+    -fx-border-radius: 15px;
+}
+
+
+
+/*  CoordinatorFrame
+---------------------------------------------------------------------------------------------------------------*/
+
+#frameCoorBorder {
+    -fx-background-color: #FFFFFF; /* change background color */
+}
+
+#coorStackPane {
+    -fx-background-color: #FFFFFF; /* change background color */
+}
+
+#vBoxCoordBack {
+    -fx-background-color: #FFFFFF; /* change background color */
+    -fx-padding: 16px; /* adjust padding */
+}
+
+#imgCoordinatorFrame {
+    -fx-padding: 8px; /* adjust padding */
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#btnCoorHome, #btnCoorEvents, #btnCoorTickets, #btnCoorManageEvents {
+    -fx-pref-height: 40px; /* adjust button height */
+    -fx-pref-width: 190px; /* adjust button width */
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+#btnCoorHome:hover, #btnCoorEvents:hover, #btnCoorTickets:hover, #btnCoorManageEvents:hover {
+    -fx-background-color: #CCCCCC; /* change hover background color */
+}
+
+#btncoorLogout {
+    -fx-pref-height: 26px; /* adjust button height */
+    -fx-pref-width: 78px; /* adjust button width */
+    -fx-background-color: transparent;
+    -fx-border-color: #363062;
+    -fx-text-fill: #363062;
+    -fx-border-radius: 15px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#btncoorLogout:hover {
+    -fx-background-color: #CCCCCC; /* change hover background color */
+}
+
+#lblChangeProfilePicture {
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+#lblChangePassword {
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+
 /*  CoordinatorFrame
 ---------------------------------------------------------------------------------------------------------------*/
 

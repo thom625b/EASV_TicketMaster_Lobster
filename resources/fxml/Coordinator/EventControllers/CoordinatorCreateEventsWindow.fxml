@@ -14,90 +14,53 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorCreateEventsController">
-   <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Create Event ">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-   </top>
+<BorderPane fx:id="borderBackCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorCreateEventsController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="vBoxCoordinatorCenterCreate" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="339.0" prefWidth="776.0">
+            <Label fx:id="lblCreateNewEvent" alignment="CENTER" prefHeight="18.0" prefWidth="676.0" text="Create New Event">
+               <VBox.margin>
+                  <Insets top="24.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="251.0" prefWidth="404.0">
                <children>
-                  <VBox prefHeight="300.0" prefWidth="298.0">
+                  <VBox alignment="CENTER" prefHeight="251.0" prefWidth="404.0" spacing="10.0">
                      <children>
-                        <GridPane prefHeight="325.0" prefWidth="298.0">
-                           <columnConstraints>
-                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label text="Event Design">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label text="Address" GridPane.rowIndex="1">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label text="City" GridPane.rowIndex="2">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label text="Event Title" GridPane.rowIndex="4">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <TextField fx:id="txtEventPicture" prefHeight="17.0" prefWidth="111.0" promptText="PNG" GridPane.columnIndex="1">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </TextField>
-                              <TextField fx:id="txtEventAddress" prefHeight="17.0" prefWidth="111.0" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </TextField>
-                              <TextField fx:id="txtEventCity" promptText="City Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </TextField>
-                              <TextField fx:id="txtEventZipCode" promptText=" ZIP Code" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </TextField>
-                              <TextField fx:id="txtEventTitle" promptText="Name of event" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </TextField>
-                              <DatePicker fx:id="dpEventStartDate" promptText="Start Date" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
+                              <Label fx:id="lblEventDesign" prefHeight="17.0" prefWidth="90.0" text="Event Design:" />
+                              <TextField fx:id="txtEventPicture" prefHeight="26.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblEventAddress" prefWidth="90.0" text="Address:" />
+                              <TextField fx:id="txtEventAddress" prefHeight="26.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblEventCity" prefWidth="90.0" text="City:" />
+                              <TextField fx:id="txtEventCity" prefHeight="26.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblEventZip" prefWidth="90.0" text="Postal code:" />
+                              <TextField fx:id="txtEventZipCode" prefHeight="26.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblEventTitle" prefWidth="90.0" text="Event Title:" />
+                              <TextField fx:id="txtEventTitle" prefHeight="26.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblEventDate" prefWidth="90.0" text="Start date:" />
+                              <DatePicker fx:id="dpEventStartDate" prefHeight="26.0" prefWidth="160.0">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -105,40 +68,30 @@
                                     <Insets bottom="10.0" top="10.0" />
                                  </GridPane.margin>
                               </DatePicker>
-                              <TextField fx:id="txtEventStartTime" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <TextField fx:id="txtEventEndTime" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                              <Label text="Postal code" GridPane.rowIndex="3">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label text="Start date" GridPane.rowIndex="5">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="End Time" GridPane.rowIndex="7">
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Start time" GridPane.rowIndex="6">
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </Label>
                            </children>
-                        </GridPane>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblEventStartTime" prefWidth="90.0" text="Start time:" />
+                              <TextField fx:id="txtEventStartTime" prefHeight="26.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblEventEndTime" prefWidth="90.0" text="End Time:" />
+                              <TextField fx:id="txtEventEndTime" prefHeight="26.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
                   </VBox>
                   <VBox prefHeight="339.0" prefWidth="339.0">
                      <children>
                         <HBox>
                            <children>
-                              <Label prefHeight="2.0" prefWidth="128.0" text="Description">
+                              <Label fx:id="lblDescription" prefHeight="2.0" prefWidth="128.0" text="Description:">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -148,7 +101,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <TextArea fx:id="txtEventDescription" prefHeight="257.0" prefWidth="249.0" promptText="Write a description for your event here ">
+                        <TextArea fx:id="txtEventDescription" prefHeight="257.0" prefWidth="249.0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                            </VBox.margin>
@@ -181,4 +134,45 @@
          </children>
       </VBox>
    </center>
+   <top>
+      <HBox fx:id="hboxTopCreateCoor" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="hBoxCreateEvent" alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="231.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../pictures/Customer.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblCoordinatorCreateNewEvent" text="Coordinator">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="8.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="30.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="94.0" prefWidth="556.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../pictures/EASYDVEST.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="70.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <VBox fx:id="vBoxRightCreateCoor" alignment="CENTER" prefHeight="446.0" prefWidth="70.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>
