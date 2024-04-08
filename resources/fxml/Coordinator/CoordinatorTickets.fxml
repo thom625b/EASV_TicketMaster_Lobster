@@ -5,11 +5,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
@@ -17,12 +14,12 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox  alignment="CENTER" prefHeight="390.0" prefWidth="698.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="390.0" prefWidth="698.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="48.0" />
          </BorderPane.margin>
          <children>
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="451.0" text="Manage Event Coordinators">
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="451.0" text="Ticket sale">
                <VBox.margin>
                   <Insets bottom="16.0" />
                </VBox.margin>
@@ -33,16 +30,25 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="192.0" prefWidth="472.0" spacing="24.0">
                            <children>
-                              <ComboBox  prefHeight="50.0" prefWidth="360.0" promptText="Name*">
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="453.0" spacing="8.0">
                                  <VBox.margin>
                                     <Insets left="8.0" top="8.0" />
                                  </VBox.margin>
-                              </ComboBox>
-                              <ComboBox  prefHeight="50.0" prefWidth="364.0" promptText="Event*">
+                                 <children>
+                                    <ComboBox prefHeight="50.0" prefWidth="360.0" promptText="Eventname*" />
+                                    <ComboBox prefHeight="50.0" prefWidth="98.0" promptText="Amount" />
+                                 </children>
+                              </HBox>
+                              <TextField prefHeight="26.0" prefWidth="438.0" promptText="Name..">
                                  <VBox.margin>
                                     <Insets left="8.0" />
                                  </VBox.margin>
-                              </ComboBox>
+                              </TextField>
+                              <TextField promptText="Email..">
+                                 <VBox.margin>
+                                    <Insets left="8.0" />
+                                 </VBox.margin>
+                              </TextField>
                            </children>
                            <HBox.margin>
                               <Insets />
@@ -51,18 +57,6 @@
                               <Insets left="24.0" />
                            </padding>
                         </VBox>
-                        <StackPane >
-                           <children>
-                              <ImageView  fitHeight="137.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../pictures/Customer.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="16.0" top="16.0" />
-                           </HBox.margin>
-                        </StackPane>
                      </children>
                      <VBox.margin>
                         <Insets bottom="32.0" />
@@ -70,8 +64,8 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="646.0" spacing="24.0">
                      <children>
-                        <Button  mnemonicParsing="false" prefHeight="45.0" prefWidth="144.0" text="Close" />
-                        <Button  mnemonicParsing="false" prefHeight="45.0" prefWidth="206.0" text="Add To Event">
+                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="144.0" text="Close" />
+                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="206.0" text="Buy Ticket">
                            <HBox.margin>
                               <Insets right="32.0" />
                            </HBox.margin></Button>
@@ -88,19 +82,19 @@
    <top>
       <HBox alignment="CENTER" prefHeight="69.0" prefWidth="776.0" spacing="48.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <HBox  alignment="CENTER" maxHeight="45.0" maxWidth="314.0" prefHeight="45.0" prefWidth="314.0">
+            <HBox alignment="CENTER" maxHeight="45.0" maxWidth="314.0" prefHeight="45.0" prefWidth="314.0">
                <children>
-                  <TextField  prefHeight="31.0" prefWidth="274.0" promptText="Search" text="🔍 Search..." />
+                  <TextField prefHeight="31.0" prefWidth="274.0" promptText="Search" text="🔍 Search..." />
                </children>
             </HBox>
-            <HBox  alignment="CENTER" maxHeight="45.0" maxWidth="313.0" prefHeight="45.0" prefWidth="313.0">
+            <HBox alignment="CENTER" maxHeight="45.0" maxWidth="313.0" prefHeight="45.0" prefWidth="313.0">
                <children>
-                  <Label  prefHeight="18.0" prefWidth="174.0" text="Event Coordinator">
+                  <Label prefHeight="18.0" prefWidth="174.0" text="Event ">
                      <padding>
                         <Insets left="8.0" />
                      </padding>
                   </Label>
-                  <Button  mnemonicParsing="false" prefHeight="27.0" prefWidth="115.0" text="Create new">
+                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="115.0" text="Create new">
                      <HBox.margin>
                         <Insets right="16.0" />
                      </HBox.margin>
