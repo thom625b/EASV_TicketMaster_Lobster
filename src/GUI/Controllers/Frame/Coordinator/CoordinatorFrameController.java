@@ -142,7 +142,7 @@ public class CoordinatorFrameController implements Initializable, IController {
     }
 
     @FXML
-    private void goToCostumers(ActionEvent actionEvent) {
+    private void goToCustomers(ActionEvent actionEvent) {
         try {
             loadpage("/fxml/Coordinator/CostumerTablePage");
         } catch (IOException e) {

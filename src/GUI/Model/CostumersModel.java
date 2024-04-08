@@ -1,7 +1,6 @@
 package GUI.Model;
 
 import BE.Costumers;
-import BE.Events;
 import BLL.CostumersManager;
 import CostumException.ApplicationWideException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;

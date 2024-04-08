@@ -132,4 +132,6 @@ public class CoordinatorCreateEventsController implements IController {
     public void setModel(UsersModel usersModel) {
 
     }
+
+
 }

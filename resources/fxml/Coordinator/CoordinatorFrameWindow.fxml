@@ -29,7 +29,7 @@
                             </VBox.margin>
                         </Button>
                         <Button fx:id="btnCoorEvents" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#btnGoToEventsPage" prefHeight="40.0" prefWidth="202.0" text="Events" />
-                        <Button fx:id="btnCoorCostumers" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToCostumers" prefHeight="40.0" prefWidth="182.0" text="Costumers" />
+                        <Button fx:id="btnCoorCostumers" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToCustomers" prefHeight="40.0" prefWidth="182.0" text="Customers" />
                   <Button fx:id="btnCoorManageEvents" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="126.0" mnemonicParsing="false" onAction="#goToUserManageEvents" prefHeight="40.0" prefWidth="182.0" text="Manage Events" />
                     </children>
                     <VBox.margin>
