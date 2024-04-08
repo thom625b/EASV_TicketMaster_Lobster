@@ -222,7 +222,7 @@ public class LoginController implements Initializable {
     }
 
 
-    //skifter label mellem Coordinator og Admin
+    //Change label between Coordinator and Admin
     @FXML
     void openAdminTab(Event event) {
         TranslateTransition toLeftTransition = new TranslateTransition(new Duration(500), lblstatus);
@@ -234,7 +234,7 @@ public class LoginController implements Initializable {
         tabPaneLogin.getSelectionModel().select(tabAdmin);
     }
 
-    //skifter label mellem Admin og Coordinator
+    //Change label between Admin and Coordinator
     @FXML
     void openUserTab(Event event) {
         TranslateTransition toRightAnimation = new TranslateTransition(new Duration(500) ,lblstatus);

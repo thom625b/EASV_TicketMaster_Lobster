@@ -2,27 +2,61 @@ package BE;
 
 public class Tickets {
 
-    private String pdf;
     private String qrHashCode;
     private String ticketType;
+    private int ticketPrice;
+    private boolean isValid;
     private int ticketID;
 
 
-    public Tickets(String pdf, int ticketID) {
-        this.pdf = pdf;
+    // With ID
+    public Tickets(String qrHashCode, String ticketType, int ticketPrice, boolean isValid, int ticketID) {
+        this.qrHashCode = qrHashCode;
+        this.ticketType = ticketType;
+        this.ticketPrice = ticketPrice;
+        this.isValid = isValid;
         this.ticketID = ticketID;
     }
 
-    public Tickets(String pdf) {
-        this.pdf = pdf;
+
+    // Without ID
+    public Tickets(String qrHashCode, String ticketType, int ticketPrice, boolean isValid) {
+        this.qrHashCode = qrHashCode;
+        this.ticketType = ticketType;
+        this.ticketPrice = ticketPrice;
+        this.isValid = isValid;
     }
 
-    private String getPdf() {
-        return pdf;
+    public String getQrHashCode() {
+        return qrHashCode;
     }
 
-    public void setPdf(String pdf) {
-        this.pdf = pdf;
+    public void setQrHashCode(String qrHashCode) {
+        this.qrHashCode = qrHashCode;
+    }
+
+    public String getTicketType() {
+        return ticketType;
+    }
+
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
+    }
+
+    public int getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(int ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
     }
 
     public int getTicketID() {
