@@ -36,6 +36,7 @@ public class CoordinatorCreateEventsController implements IController {
     public TextArea txtEventDescription;
 
     private final EventsModel eventsModel;
+    private final CoordinatorFrameController coordinatorFrameController;
     @FXML
     private TextField txtEventStartTime;
     @FXML
@@ -43,6 +44,7 @@ public class CoordinatorCreateEventsController implements IController {
 
     public CoordinatorCreateEventsController() throws IOException, ApplicationWideException {
         eventsModel = new EventsModel();
+        coordinatorFrameController = new CoordinatorFrameController();
     }
 
     @FXML
@@ -87,6 +89,7 @@ public class CoordinatorCreateEventsController implements IController {
             eventsModel.createEvent(newEvent);
             showSuccessAlert("Event Created", "The event has been successfully created.");
             clearInputFields();
+            coordinatorFrameController.getInstance().goBack();
         } catch (ApplicationWideException e) {
             e.printStackTrace();
         }

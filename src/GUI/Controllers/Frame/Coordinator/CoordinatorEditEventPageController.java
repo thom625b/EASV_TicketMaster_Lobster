@@ -1,6 +1,6 @@
 package GUI.Controllers.Frame.Coordinator;
 
-import BE.Events; // Assuming the Event class is named Event
+import BE.Events;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
@@ -142,6 +142,7 @@ public class CoordinatorEditEventPageController implements IController {
                 success.setHeaderText(null);
                 success.setContentText("Event updated successfully.");
                 success.showAndWait();
+                CoordinatorFrameController.getInstance().goBack();
 
             } else {
                 // If the selected event is null, show an error message

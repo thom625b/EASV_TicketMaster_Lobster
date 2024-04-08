@@ -97,8 +97,7 @@ public class CoordinatorEventPageController implements IController {
 
     private void initializeColumns(int coordinatorID) {
         try {
-            List<Events> events = eventsModel.getEventsByCoordinator(coordinatorID);
-            ObservableList<Events> eventList = FXCollections.observableArrayList(events);
+            ObservableList<Events> eventList = FXCollections.observableArrayList(eventsModel.getEventsByCoordinator(coordinatorID));
 
             tblEventTableCode.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEventID())));
             tblEventTableEventName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventName()));
@@ -116,6 +115,7 @@ public class CoordinatorEventPageController implements IController {
             tblEventTableRegisteredParticipants.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEventParticipants()).asObject());
             tblEventStartTime.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventStartTime()));
             tblEventEndTime.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventEndTime()));
+
             tblEventTable.setItems(eventList);
         } catch (ApplicationWideException e) {
             showAlert("Error", "Failed to retrieve events by coordinator from the database.");
