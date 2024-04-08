@@ -3,6 +3,8 @@ package BE;
 public class Tickets {
 
     private String pdf;
+    private String qrHashCode;
+    private String ticketType;
     private int ticketID;
 
 

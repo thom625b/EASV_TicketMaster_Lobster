@@ -16,8 +16,8 @@
     <orderEntry type="library" name="slf4j.log4j12" level="project" />
     <orderEntry type="library" name="slf4j.api" level="project" />
     <orderEntry type="library" name="itextpdf.kernel" level="project" />
-    <orderEntry type="library" name="resend.java" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="javax.mail.api" level="project" />
+    <orderEntry type="library" name="resend.java" level="project" />
   </component>
 </module>
