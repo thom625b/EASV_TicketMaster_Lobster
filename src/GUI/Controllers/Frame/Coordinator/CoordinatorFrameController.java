@@ -95,6 +95,7 @@ public class CoordinatorFrameController implements Initializable, IController {
             System.out.println("Going back...");
             Node previousNode = pageHistory.pop();
             coorStackPane.getChildren().setAll(previousNode);
+
         } else {
             System.out.println("No history to go back to.");
         }

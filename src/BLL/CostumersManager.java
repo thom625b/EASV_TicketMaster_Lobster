@@ -1,0 +1,21 @@
+package BLL;
+
+import BE.Costumers;
+import CostumException.ApplicationWideException;
+import DAL.Costumers_DAO;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
+import java.io.IOException;
+import java.util.List;
+
+public class CostumersManager {
+    private final Costumers_DAO costumersDao;
+
+    public CostumersManager() throws IOException {
+        costumersDao = new Costumers_DAO();
+    }
+
+    public List<Costumers> getAllCostumers() throws ApplicationWideException, SQLServerException {
+        return costumersDao.getAllCostumers();
+    }
+}

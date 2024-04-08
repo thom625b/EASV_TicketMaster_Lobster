@@ -66,4 +66,15 @@ public class Tickets {
     public void setTicketID(int ticketID) {
         this.ticketID = ticketID;
     }
+
+    @Override
+    public String toString() {
+        return "Tickets{" +
+                "qrHashCode='" + qrHashCode + '\'' +
+                ", ticketType='" + ticketType + '\'' +
+                ", ticketPrice=" + ticketPrice +
+                ", isValid=" + isValid +
+                ", ticketID=" + ticketID +
+                '}';
+    }
 }
