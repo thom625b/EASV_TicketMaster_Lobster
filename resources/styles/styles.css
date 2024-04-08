@@ -85,9 +85,10 @@
 
 
 #btnadminLogout {
-    -fx-background-color: C00000;
-    -fx-text-fill: FFFFFF ;
-    -fx-background-radius: 5px;
+    -fx-background-color: transparent;
+    -fx-border-color: #363062;
+    -fx-text-fill: #363062 ;
+    -fx-border-radius: 15px;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
@@ -146,6 +147,11 @@
 #invisbleTableColumnAdminUsersPage {
     -fx-padding: 20px;
 }
+
+#tblViewCoorAdmin .column-header .label {
+    -fx-text-fill: #108CDC;
+}
+
 
 #tblViewCoorAdmin {
     -fx-table-cell-border-color: transparent;
@@ -269,11 +275,29 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #BPAdminManageCoor {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+   -fx-background-color: #F5F5F5;
+
 }
 
 #vBoxCenterMangageCoorEvent {
-   -fx-background-color:white;
+    -fx-background-color:white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#txtSearchAdminManage {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #4D4C7D;
+    -fx-prompt-text-fill: #4D4C7D;
+    -fx-font-size: 14px;
+
+}
+
+#btnCreateCoordinatorHeader {
+    -fx-background-color: transparent;
+    -fx-border-color: #4D4C7D;
+    -fx-border-radius: 15px;
 }
 
 #hBoxManageCoorEvent {
@@ -281,24 +305,44 @@
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
+#hBoxEventHead , #hBoxSearchHeaderAdmin {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+    -fx-background-radius: 15px;
+}
+
 #lblManageCoorHeader {
+    -fx-text-fill: #4D4C7D;
     -fx-font-weight: bold;
-    -fx-font-size: 20px;
+    -fx-font-size: 24px;
 }
 
 #btnAdminAddToEvent {
     -fx-background-color: #108CDC;
+    -fx-background-radius: 15px;
+    -fx-text-fill: white;
 }
 
-#btnAdminDeleteCoordinator {
-    -fx-background-color: #FBBB2C;
+#btnAdminCloseManage {
+    -fx-border-color: #FBBB2C;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #FBBB2C;
 }
 
 #comboAdminManageEvent, #comboAdminManageName {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-background-color: transparent;
+    -fx-background-color: #F9F9F9;
     -fx-border-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#stackPictureAdminManage {
+    -fx-border-color: #F9F9F9 ;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
 /*  Admin Coordinators
@@ -343,6 +387,11 @@
 
 #invisbleTableColumnAdmin {
     -fx-padding: 20px;
+}
+
+
+#tblViewAdminEvents .column-header .label {
+    -fx-text-fill: #108CDC;
 }
 
 #tblViewAdminEvents {

@@ -6,6 +6,7 @@ Libraries:
 - org.mindrot:jbcrypt:0.4
 - com.itextpdf:kernel:8.0.2
 - com.itextpdf:layout:8.0.2
+- com.resend:resend-java:2.2.1
 
 Users:
 - ADMIN: jes@nie.dk password: 123 

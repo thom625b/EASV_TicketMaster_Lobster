@@ -4,39 +4,41 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="BPAdminManageCoor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminManageEventsController">
    <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
       <VBox fx:id="vBoxCenterMangageCoorEvent" alignment="CENTER" prefHeight="390.0" prefWidth="698.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="8.0" />
+            <Insets left="48.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="lblManageCoorHeader" alignment="CENTER" prefHeight="27.0" prefWidth="277.0" text="Manage Event Coordinators">
+            <Label fx:id="lblManageCoorHeader" alignment="CENTER" prefHeight="34.0" prefWidth="451.0" text="Manage Event Coordinators">
                <VBox.margin>
-                  <Insets bottom="32.0" />
+                  <Insets bottom="16.0" />
                </VBox.margin>
             </Label>
             <VBox alignment="CENTER">
                <children>
-                  <HBox>
+                  <HBox alignment="CENTER" prefHeight="192.0" prefWidth="698.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="338.0" spacing="24.0">
+                        <VBox alignment="CENTER" prefHeight="192.0" prefWidth="472.0" spacing="24.0">
                            <children>
-                              <ComboBox fx:id="comboAdminManageName" prefHeight="26.0" prefWidth="210.0" promptText="Name*">
+                              <ComboBox fx:id="comboAdminManageName" prefHeight="50.0" prefWidth="360.0" promptText="Name*">
                                  <VBox.margin>
                                     <Insets left="8.0" top="8.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboAdminManageEvent" prefHeight="26.0" prefWidth="210.0" promptText="Event*">
+                              <ComboBox fx:id="comboAdminManageEvent" prefHeight="50.0" prefWidth="364.0" promptText="Event*">
                                  <VBox.margin>
                                     <Insets left="8.0" />
                                  </VBox.margin>
@@ -49,17 +51,30 @@
                               <Insets left="24.0" />
                            </padding>
                         </VBox>
-                        <ImageView fitHeight="170.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../pictures/Customer.png" />
-                           </image>
-                        </ImageView>
+                        <StackPane fx:id="stackPictureAdminManage">
+                           <children>
+                              <ImageView fx:id="imgFromCombBox" fitHeight="137.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../pictures/Customer.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="16.0" top="16.0" />
+                           </HBox.margin>
+                        </StackPane>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="32.0" />
+                     </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="646.0" spacing="24.0">
                      <children>
-                        <Button fx:id="btnAdminDeleteCoordinator" mnemonicParsing="false" onAction="#deleteCoordinator" prefHeight="74.0" prefWidth="189.0" text="Delete" />
-                        <Button fx:id="btnAdminAddToEvent" mnemonicParsing="false" onAction="#addCoordinatorToEvents" prefHeight="74.0" prefWidth="189.0" text="Add To Event" />
+                        <Button fx:id="btnAdminCloseManage" mnemonicParsing="false" prefHeight="45.0" prefWidth="144.0" text="Close" />
+                        <Button fx:id="btnAdminAddToEvent" mnemonicParsing="false" prefHeight="45.0" prefWidth="206.0" text="Add To Event">
+                           <HBox.margin>
+                              <Insets right="32.0" />
+                           </HBox.margin></Button>
                      </children>
                   </HBox>
                </children>
@@ -68,40 +83,37 @@
       </VBox>
    </center>
    <right>
-      <VBox prefHeight="352.0" prefWidth="70.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="423.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <HBox prefHeight="106.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="776.0" spacing="48.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <HBox fx:id="hBoxManageCoorEvent" alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="265.0">
+            <HBox fx:id="hBoxSearchHeaderAdmin" alignment="CENTER" maxHeight="45.0" maxWidth="314.0" prefHeight="45.0" prefWidth="314.0">
                <children>
-                  <ImageView fitHeight="27.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../pictures/Customer.png" />
-                     </image>
-                     <HBox.margin>
+                  <TextField fx:id="txtSearchAdminManage" prefHeight="31.0" prefWidth="274.0" promptText="Search" text="🔍 Search..." />
+               </children>
+            </HBox>
+            <HBox fx:id="hBoxEventHead" alignment="CENTER" maxHeight="45.0" maxWidth="313.0" prefHeight="45.0" prefWidth="313.0">
+               <children>
+                  <Label fx:id="labelManageEventCoorAdmin" prefHeight="18.0" prefWidth="174.0" text="Event Coordinator">
+                     <padding>
                         <Insets left="8.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="btnCreateCoordinatorHeader" mnemonicParsing="false" prefHeight="27.0" prefWidth="115.0" text="Create new">
+                     <HBox.margin>
+                        <Insets right="16.0" />
                      </HBox.margin>
-                  </ImageView>
-                  <Label fx:id="labelManageEventCoorAdmin" prefHeight="17.0" prefWidth="236.0" text="Manage Event Coordinators" />
+                  </Button>
                </children>
                <HBox.margin>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="30.0" />
+                  <Insets />
                </HBox.margin>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="99.0" prefWidth="574.0">
-               <children>
-                  <ImageView fitHeight="72.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../pictures/EASYDVEST.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets right="68.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="16.0" />
+         </BorderPane.margin>
       </HBox>
    </top>
 </BorderPane>

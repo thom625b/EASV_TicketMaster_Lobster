@@ -9,16 +9,24 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="frameAdminBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController">
+<BorderPane fx:id="frameAdminBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="993.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController">
    <left>
       <VBox fx:id="vBoxadminBack" prefHeight="496.0" prefWidth="159.0" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="89.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pictures/EASYDVEST.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="24.0" />
+               </VBox.margin>
+            </ImageView>
             <ImageView fx:id="imgProfilePictureAdmin" fitHeight="125.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../pictures/Customer.png" />
                </image>
                <VBox.margin>
-                  <Insets left="8.0" right="8.0" top="8.0" />
+                  <Insets left="20.0" right="8.0" top="8.0" />
                </VBox.margin>
             </ImageView>
             <VBox fx:id="vBoxAdminButtons" prefHeight="258.0" prefWidth="174.0" spacing="16.0">
@@ -28,19 +36,22 @@
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnadminEvents" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToAdminEvents" prefHeight="40.0" prefWidth="202.0" text="Events" />
-                  <Button fx:id="btnadminUsers" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToAdminUsers" prefHeight="40.0" prefWidth="182.0" text="Users" />
-                  <Button fx:id="btnadminManageEvents" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToAdminManageEvents" prefHeight="40.0" prefWidth="174.0" text="Manage Events" />
+                  <Button fx:id="btnadminEvents" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToAdminEvents" prefHeight="26.0" prefWidth="189.0" text="Events" />
+                  <Button fx:id="btnadminUsers" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToAdminUsers" prefHeight="26.0" prefWidth="189.0" text="Users" />
+                  <Button fx:id="btnadminManageEvents" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToAdminManageEvents" prefHeight="26.0" prefWidth="188.0" text="Manage Events" />
                </children>
                <VBox.margin>
                   <Insets bottom="24.0" />
                </VBox.margin>
             </VBox>
-            <VBox fx:id="vBoxAdminLogout" alignment="BOTTOM_CENTER" prefHeight="254.0" prefWidth="132.0" spacing="10.0">
+            <VBox fx:id="vBoxAdminLogout" alignment="BOTTOM_LEFT" prefHeight="254.0" prefWidth="132.0" spacing="10.0">
                <children>
                   <Label fx:id="lblChangePassword" prefHeight="18.0" prefWidth="170.0" text="🔐 Change password" />
                   <Label fx:id="lblChangeProfilePicture" onMouseClicked="#openChangeProfilePicture" prefHeight="18.0" prefWidth="173.0" text="👤 Change profile picture" />
-                  <Button fx:id="btnadminLogout" mnemonicParsing="false" onAction="#logoutToLogin" prefHeight="26.0" prefWidth="78.0" text="Logout" />
+                  <Button fx:id="btnadminLogout" mnemonicParsing="false" onAction="#logoutToLogin" prefHeight="26.0" prefWidth="201.0" text="Logout">
+                     <VBox.margin>
+                        <Insets left="16.0" right="16.0" />
+                     </VBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets bottom="16.0" />
@@ -53,15 +64,6 @@
       </VBox>
    </left>
    <center>
-      <StackPane fx:id="adminStackPane" maxHeight="602.0" maxWidth="776.0" prefHeight="602.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
+      <StackPane fx:id="adminStackPane" maxHeight="602.0" maxWidth="776.0" prefHeight="600.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
-
-
-
-
-
-
-
-
-

@@ -50,15 +50,22 @@
                                     <Insets bottom="8.0" left="8.0" top="8.0" />
                                  </HBox.margin>
                               </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="538.0">
+                                 <children>
+                                    <ImageView fitHeight="62.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../pictures/EASYDVEST.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="70.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <ImageView fitHeight="94.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../pictures/EASYDVEST.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
          </children>
