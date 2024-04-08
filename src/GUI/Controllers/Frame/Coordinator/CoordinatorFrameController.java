@@ -142,9 +142,9 @@ public class CoordinatorFrameController implements Initializable, IController {
     }
 
     @FXML
-    private void goToCateringTickets(ActionEvent actionEvent) {
+    private void goToCostumers(ActionEvent actionEvent) {
         try {
-            loadpage("/fxml/Coordinator/CoordinatorTickets");
+            loadpage("/fxml/Coordinator/CostumerTablePage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

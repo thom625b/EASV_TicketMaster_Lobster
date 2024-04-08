@@ -40,11 +40,15 @@
                                     <ComboBox fx:id="comboAmount" layoutX="365.0" layoutY="10.0" prefHeight="50.0" prefWidth="86.0" promptText="Amount" />
                                  </children>
                               </HBox>
-                              <TextField fx:id="lblNameTicket" prefHeight="26.0" prefWidth="546.0" promptText="Name..">
+                              <HBox spacing="8.0">
                                  <VBox.margin>
                                     <Insets left="35.0" right="28.0" />
                                  </VBox.margin>
-                              </TextField>
+                                 <children>
+                                    <TextField fx:id="lblFirstnameTicket" prefHeight="26.0" prefWidth="546.0" promptText="Name.." text="Firstname.." />
+                                    <TextField fx:id="lblLarstnameTicket1" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="546.0" promptText="Name.." text="Larstname.." />
+                                 </children>
+                              </HBox>
                               <TextField fx:id="lblEmailTicket" promptText="Email..">
                                  <VBox.margin>
                                     <Insets left="35.0" right="28.0" />
