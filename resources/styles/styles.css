@@ -22,7 +22,7 @@
 
 #lblstatus {
     -fx-background-color: #FBBB2C;
-    -fx-text-fill: white 20714310;
+    -fx-text-fill: #4D4C7D;
     -fx-alignment: Center;
     -fx-font-size: 16px;
     -fx-background-radius: 8px;
@@ -31,7 +31,7 @@
 
 #lblAdmin {
 
-    -fx-text-fill: black;
+    -fx-text-fill: #4D4C7D;
     -fx-alignment: Center;
     -fx-font-size: 16px;
     -fx-font-weight: 700;
@@ -39,13 +39,12 @@
 }
 
 #lblUser {
-
-    -fx-text-fill: black;
+    -fx-text-fill: #4D4C7D;
     -fx-alignment: Center;
     -fx-font-size: 16px;
     -fx-font-weight: 700;
-
 }
+
 
 .tab-pane {
     -fx-tab-max-height: 0px;

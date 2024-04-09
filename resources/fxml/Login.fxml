@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="backBorder" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.LoginController">
+<BorderPane fx:id="backBorder" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.LoginController">
     <center>
         <BorderPane fx:id="borderInside" BorderPane.alignment="CENTER">
             <left>
@@ -26,7 +26,7 @@
                     <children>
                         <VBox alignment="CENTER" prefHeight="48.0" prefWidth="538.0">
                             <children>
-                                <Label alignment="CENTER" prefHeight="42.0" prefWidth="263.0" text="Welcome Back" VBox.vgrow="ALWAYS">
+                                <Label fx:id="lblWelcome" alignment="CENTER" prefHeight="42.0" prefWidth="263.0" text="Welcome Back" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font name="Arial Bold" size="36.0" />
                                     </font>
@@ -34,7 +34,7 @@
                                         <Insets top="8.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="211.0" text="Login With EASV mail" VBox.vgrow="ALWAYS">
+                                <Label fx:id="lblLoginMail" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="211.0" text="Login With EASV mail" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font name="System Bold" size="20.0" />
                                     </font>
@@ -85,7 +85,7 @@
                                     <content>
                                         <VBox prefHeight="291.0" prefWidth="488.0">
                                             <children>
-                                                <Label text="Admin Email">
+                                                <Label fx:id="lblAdminMail" text="Email:">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
@@ -93,12 +93,12 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField fx:id="adminMail" maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0" promptText="example@orchida-soft.com" VBox.vgrow="ALWAYS">
+                                                <TextField fx:id="adminMail" maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                                                     <VBox.margin>
                                                         <Insets left="50.0" />
                                                     </VBox.margin>
                                                 </TextField>
-                                                <Label text="Admin Password">
+                                                <Label fx:id="lblAdminPass" text="Password:">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
@@ -106,7 +106,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <PasswordField fx:id="adminPassword" maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0" promptText="\\@B123">
+                                                <PasswordField fx:id="adminPassword" maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0">
                                                     <VBox.margin>
                                                         <Insets left="50.0" />
                                                     </VBox.margin>
@@ -116,7 +116,7 @@
                                                         <Insets bottom="16.0" left="50.0" top="16.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                    <Button fx:id="btnSubmitAdmin" mnemonicParsing="false" onAction="#submitLoginPageAdmin" prefHeight="35.0" prefWidth="400.0" text="Submit">
+                                    <Button fx:id="btnSubmitAdmin" mnemonicParsing="false" onAction="#submitLoginPageAdmin" prefHeight="35.0" prefWidth="400.0" text="Login">
                                        <VBox.margin>
                                           <Insets left="50.0" />
                                        </VBox.margin>
@@ -133,7 +133,7 @@
                                     <content>
                                         <VBox prefHeight="291.0" prefWidth="488.0">
                                             <children>
-                                                <Label text="Email">
+                                                <Label fx:id="lblCoorMail" text="Email:">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
@@ -141,12 +141,12 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField fx:id="userMail" maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0" promptText="example@orchida-soft.com" VBox.vgrow="ALWAYS">
+                                                <TextField fx:id="userMail" maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                                                     <VBox.margin>
                                                         <Insets left="50.0" />
                                                     </VBox.margin>
                                                 </TextField>
-                                                <Label text="Password">
+                                                <Label fx:id="lblCoorPass" text="Password:">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
@@ -154,7 +154,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <PasswordField fx:id="userPassword" maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0" promptText="\\@B123">
+                                                <PasswordField fx:id="userPassword" maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0">
                                                     <VBox.margin>
                                                         <Insets left="50.0" />
                                                     </VBox.margin>
@@ -164,7 +164,7 @@
                                                         <Insets bottom="16.0" left="50.0" top="16.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                    <Button fx:id="btnSubmitEvent" mnemonicParsing="false" onAction="#submitLoginPageCoordinator" prefHeight="35.0" prefWidth="400.0" text="Submit">
+                                    <Button fx:id="btnSubmitEvent" mnemonicParsing="false" onAction="#submitLoginPageCoordinator" prefHeight="35.0" prefWidth="400.0" text="Login">
                                        <VBox.margin>
                                           <Insets left="50.0" />
                                        </VBox.margin>
