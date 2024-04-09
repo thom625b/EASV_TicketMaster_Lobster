@@ -11,11 +11,12 @@ import java.io.IOException;
 
 public class CustomersModel {
     private final CostumersManager costumersManager;
-    private final ObservableList<Costumers> costumersObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Costumers> costumersObservableList;
 
 
-    public CustomersModel() throws IOException, ApplicationWideException {
+    public CustomersModel() throws IOException, ApplicationWideException, SQLServerException {
         costumersManager = new CostumersManager();
+        costumersObservableList = FXCollections.observableArrayList(costumersManager.getAllCostumers());
     }
 
 
@@ -28,6 +29,8 @@ public class CustomersModel {
     }
 
 
-    public void updateCustomer(Costumers selectedCustomer) {
+    public void updateCustomer(Costumers customer) throws ApplicationWideException {
+        costumersManager.updateCustomer(customer);
+
     }
 }

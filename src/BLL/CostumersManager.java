@@ -18,4 +18,8 @@ public class CostumersManager {
     public List<Costumers> getAllCostumers() throws ApplicationWideException, SQLServerException {
         return costumersDao.getAllCostumers();
     }
+
+    public void updateCustomer(Costumers customer) throws ApplicationWideException {
+        costumersDao.updateCostumer(customer);
+    }
 }

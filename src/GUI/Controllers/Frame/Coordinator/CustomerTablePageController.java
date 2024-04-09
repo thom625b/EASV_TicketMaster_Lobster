@@ -3,11 +3,11 @@ package GUI.Controllers.Frame.Coordinator;
 import BE.Costumers;
 import BE.Users;
 import CostumException.ApplicationWideException;
-import GUI.Controllers.Frame.Admin.AdminFrameController;
 import GUI.Model.CustomersModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class CustomerPageController implements Initializable {
+public class CustomerTablePageController implements Initializable {
 
     @FXML
     private TableColumn<Costumers, String> colCostumerEmail;
@@ -41,15 +41,10 @@ public class CustomerPageController implements Initializable {
     private TableView<Costumers> tblCostumerView;
 
     private CustomersModel customerModel;
-    @FXML
-    private TextField txtCustomerFirstname;
-    @FXML
-    private TextField txtCustomerLastname;
-    @FXML
-    private TextField txtCustomerEmail;
+
     private Costumers currentCustomer;
 
-    public CustomerPageController() {
+    public CustomerTablePageController() {
 
     }
 
@@ -61,7 +56,7 @@ public class CustomerPageController implements Initializable {
             customerModel = new CustomersModel();
             initializeColumns();
             initializeButtonColumn();
-            System.out.println("Initializing: txtCustomerFirstname = " + txtCustomerFirstname);
+            System.out.println(customerModel);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ApplicationWideException e) {
@@ -75,13 +70,18 @@ public class CustomerPageController implements Initializable {
 
     private void initializeColumns() throws ApplicationWideException, SQLServerException {
 
-
         tblCostumerView.setItems(customerModel.getAllCostumers());
         colCostumerId.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCostumerID())));
         colCostumerFirstname.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCostumerFName()));
         colCostumerLastname.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCostumerLName()));
         colCostumerEmail.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCostumerEmail())));
 
+
+        customerModel.getCostumersObservableList().addListener((ListChangeListener<Costumers>) change -> {
+            while (change.next()) {
+                tblCostumerView.refresh();
+            }
+        });
 
     }
 
@@ -91,14 +91,15 @@ public class CustomerPageController implements Initializable {
 
             {
                 btn.setOnAction(event -> {
-                    Costumers selectedCustomer = getTableView().getItems().get(getIndex());
-                    System.out.println("Selected customer: " + selectedCustomer);
+                    Costumers customer = getTableView().getItems().get(getIndex());
 
-                    if (selectedCustomer != null) {
-                        openNewFxmlFile(selectedCustomer);
+                    if (customer != null) {
+                        openNewFxmlFile(customer);
+
                     } else {
                         showAlert("Selection Error", "No customer selected.");
                     }
+
                 });
             }
 
@@ -122,13 +123,13 @@ public class CustomerPageController implements Initializable {
             button.setStyle("-fx-background-color: transparent;");
         } catch (NullPointerException | IllegalArgumentException e) {
             System.err.println("Error loading image: " + imagePath + " - " + e.getMessage());
-            // Optionally set a default icon or handle the error appropriately
+
         }
         return button;
     }
 
-    private void openNewFxmlFile(Costumers Customer) {
-        CoordinatorFrameController.getInstance().loadAdminUpdateCustomer(Customer);
+    private void openNewFxmlFile(Costumers customer) {
+        CoordinatorFrameController.getInstance().loadAdminUpdateCustomer(customer);
     }
 
     private void showAlert(String title, String message) {
@@ -139,29 +140,10 @@ public class CustomerPageController implements Initializable {
             alert.showAndWait();
     }
 
-    public void setCurrentCustomer(Costumers customer) {
-        this.currentCustomer = customer;
-        updateTextFields(customer);
-    }
 
 
-    private void updateTextFields(Costumers customer) {
-        txtCustomerFirstname.setText(customer.getCostumerFName());
-        txtCustomerLastname.setText(customer.getCostumerLName());
-        txtCustomerEmail.setText(customer.getCostumerEmail());
-    }
 
-    @FXML
-    private void updateCostumerToDatabase(ActionEvent actionEvent) throws ApplicationWideException, SQLServerException {
-        if (currentCustomer != null) {
-            currentCustomer.setCostumerFName(txtCustomerFirstname.getText());
-            currentCustomer.setCostumerLName(txtCustomerLastname.getText());
-            currentCustomer.setCostumerEmail(txtCustomerEmail.getText());
 
-            customerModel.updateCustomer(currentCustomer);
-            showAlert("Success", "Customer updated successfully.");
-        }
-    }
 
 
 }

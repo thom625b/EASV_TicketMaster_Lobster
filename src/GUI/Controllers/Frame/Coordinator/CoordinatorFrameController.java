@@ -50,7 +50,7 @@ public class CoordinatorFrameController implements Initializable, IController {
     // Define the FXML file path here
     private final String CREATE_EVENTS_WINDOW_FXML = "/fxml/Coordinator/EventControllers/CoordinatorCreateEventsWindow.fxml";
     private final String EDIT_EVENT_WINDOW_FXML = "fxml/Coordinator/EventControllers/CoordinatorEditEventWindow.fxml";
-    private final String UPDATE_CUSTOMER_WINDOW_FXML = "/fxml/Coordinator/CustomerPageView.fxml";
+    private final String UPDATE_CUSTOMER_WINDOW_FXML = "/fxml/Coordinator/CustomerUpdateView.fxml";
 
     private static ObjectProperty <Image> imageObjectProperty = new SimpleObjectProperty<>();
     private static ObjectProperty <Image> newimageObjectProperty = new SimpleObjectProperty<>();
@@ -212,7 +212,7 @@ public class CoordinatorFrameController implements Initializable, IController {
 
 
 
-    public void loadAdminUpdateCustomer(Costumers customer) {
+    public void loadAdminUpdateCustomer(Costumers costumer) {
         try {
             URL url = getClass().getResource(UPDATE_CUSTOMER_WINDOW_FXML);
             if (url == null) {
@@ -221,9 +221,8 @@ public class CoordinatorFrameController implements Initializable, IController {
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
 
-
-            CustomerPageController controller = loader.getController();
-            controller.setCurrentCustomer(customer);
+            CustomerUpdateController controller = loader.getController();
+            controller.setCurrentCustomer(costumer);
 
             transitionToNewScene(root);
         } catch (IOException e) {
