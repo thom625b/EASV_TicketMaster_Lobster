@@ -38,12 +38,12 @@
                                           <Insets />
                                        </HBox.margin>
                                        <children>
-                                          <ComboBox fx:id="comboTickets" prefHeight="50.0" prefWidth="420.0" promptText="Ticketname*" />
+                                          <ComboBox fx:id="comboTickets" prefHeight="50.0" prefWidth="420.0" promptText="Event name" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="270.0" spacing="16.0">
                                        <children>
-                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="120.0" promptText="Tickettype">
+                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="120.0" promptText="Ticket type">
                                              <HBox.margin>
                                                 <Insets left="16.0" />
                                              </HBox.margin>

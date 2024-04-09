@@ -982,7 +982,7 @@
     -fx-text-fill: white;
 }
 
-#btnCoordinatorAddToEvent {
+#btnCoordinatorAddToEvent:hover {
     -fx-background-radius: 15px;
     -fx-text-fill: #363062;
 }
