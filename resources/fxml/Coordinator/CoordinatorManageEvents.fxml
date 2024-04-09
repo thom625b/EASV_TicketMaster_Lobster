@@ -90,9 +90,9 @@
       <children>
          <HBox fx:id="hBoxCoordinatorManageEvent" alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="313.0">
             <children>
-               <Label fx:id="lblManageEventCoordinator" alignment="CENTER" prefHeight="19.0" prefWidth="203.0" text="Assign Coordinator to event">
+               <Label fx:id="lblManageEventCoordinator" alignment="CENTER" prefHeight="19.0" prefWidth="97.0" text="Assign event">
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="8.0" />
                      </HBox.margin></Label>
             </children>
             <HBox.margin>

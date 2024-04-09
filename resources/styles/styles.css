@@ -2,9 +2,8 @@
 /* CSS til login side */
 
 #borderInside {
-    -fx-background-color: #F5F5F5;
+    -fx-background-color: #F0F0F6;
     -fx-background-radius: 8px;
-
 }
 
 #backBorder {
@@ -945,7 +944,7 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #BPCoordinatorManageEvents {
-    -fx-background-color: #F5F5F5;
+    -fx-background-color: #F0F0F6;
 }
 
 #vBoxCenterAdminMangageEvents{
