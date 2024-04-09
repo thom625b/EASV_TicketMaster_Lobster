@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="600.0" maxWidth="776.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="600.0" maxWidth="776.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CustomerPageController">
    <center>
       <HBox prefHeight="357.0" prefWidth="581.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,14 +20,14 @@
                         <Insets bottom="32.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox prefHeight="50.0" prefWidth="369.0" promptText="Costumername" />
-                  <TextField maxWidth="369.0" prefHeight="26.0" prefWidth="369.0" promptText="FirstName..." />
-                  <TextField maxWidth="369.0" promptText="Lastname.." />
-                  <TextField maxWidth="369.0" promptText="Email..." />
+                  <ComboBox prefHeight="50.0" prefWidth="369.0" promptText="Customername" />
+                  <TextField fx:id="txtCustomerFirstname" maxWidth="369.0" prefHeight="26.0" prefWidth="369.0" promptText="FirstName..." />
+                  <TextField fx:id="txtCustomerLastname" maxWidth="369.0" promptText="Lastname.." />
+                  <TextField fx:id="txtCustomerEmail" maxWidth="369.0" promptText="Email..." />
                   <HBox alignment="CENTER_RIGHT" maxWidth="369.0" prefHeight="49.0" prefWidth="600.0" spacing="24.0">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="Back" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="150.0" text="Update costummer" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateCostumerToDatabase" prefHeight="45.0" prefWidth="150.0" text="Update costummer" />
                      </children>
                      <VBox.margin>
                         <Insets />

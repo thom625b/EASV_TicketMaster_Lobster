@@ -15,7 +15,7 @@ public class javaApi {
     public void sendPasswordResetEmail(String toEmail, String resetLink) {
         String host = "smtp.gmail.com";
         final String user = "thereallobstergroup@gmail.com";
-        final String password = "Lobster@12345";
+        final String password = "gxsv kman knkp ruzu";
 
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);

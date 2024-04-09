@@ -190,8 +190,5 @@ public class AdminManageEventsController implements IController, Initializable {
         alert.showAndWait();
     }
 
-    @FXML
-    private void deleteCoordinator(ActionEvent actionEvent) {
 
-    }
 }

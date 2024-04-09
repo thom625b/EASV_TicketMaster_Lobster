@@ -1,8 +1,10 @@
 package GUI.Controllers.Frame.Coordinator;
 
+import BE.Costumers;
 import BE.Events;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
+import GUI.Model.CustomersModel;
 import GUI.Model.UsersModel;
 import GUI.Utility.UserContext;
 import javafx.application.Platform;
@@ -11,6 +13,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -31,9 +34,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.FileChannel;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
@@ -50,7 +50,7 @@ public class CoordinatorFrameController implements Initializable, IController {
     // Define the FXML file path here
     private final String CREATE_EVENTS_WINDOW_FXML = "/fxml/Coordinator/EventControllers/CoordinatorCreateEventsWindow.fxml";
     private final String EDIT_EVENT_WINDOW_FXML = "fxml/Coordinator/EventControllers/CoordinatorEditEventWindow.fxml";
-
+    private final String UPDATE_CUSTOMER_WINDOW_FXML = "/fxml/Coordinator/CustomerPageView.fxml";
 
     private static ObjectProperty <Image> imageObjectProperty = new SimpleObjectProperty<>();
     private static ObjectProperty <Image> newimageObjectProperty = new SimpleObjectProperty<>();
@@ -60,6 +60,8 @@ public class CoordinatorFrameController implements Initializable, IController {
     private ImageView imgCoordinatorFrame = new ImageView();
     private File selectedFile;
     private String newUserPicturePath;
+
+    private CustomersModel customerModel;
 
     @FXML
     private void homeScreenWindow() throws IOException {
@@ -75,6 +77,7 @@ public class CoordinatorFrameController implements Initializable, IController {
         if (url == null) {
             throw new IOException("FXML file not found: " + page);
         }
+
         Parent root = FXMLLoader.load(url);
 
         if (!coorStackPane.getChildren().isEmpty()) {
@@ -111,7 +114,6 @@ public class CoordinatorFrameController implements Initializable, IController {
 
     public void setModel(UsersModel usersModel) {
         this.usersModel = usersModel;
-
         setUserPictureFromStart();
         imgCoordinatorFrame.imageProperty().bind(imageObjectProperty);
         imgNewUserPictureCoordinator.imageProperty().bind(newimageObjectProperty);
@@ -144,7 +146,7 @@ public class CoordinatorFrameController implements Initializable, IController {
     @FXML
     private void goToCustomers(ActionEvent actionEvent) {
         try {
-            loadpage("/fxml/Coordinator/CostumerTablePage");
+            loadpage("/fxml/Coordinator/CustomerTablePage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -208,6 +210,26 @@ public class CoordinatorFrameController implements Initializable, IController {
         stage.close();
     }
 
+
+
+    public void loadAdminUpdateCustomer(Costumers customer) {
+        try {
+            URL url = getClass().getResource(UPDATE_CUSTOMER_WINDOW_FXML);
+            if (url == null) {
+                throw new IOException("FXML file not found: " + UPDATE_CUSTOMER_WINDOW_FXML);
+            }
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+
+            CustomerPageController controller = loader.getController();
+            controller.setCurrentCustomer(customer);
+
+            transitionToNewScene(root);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load the Admin Update Coordinator page", e);
+        }
+    }
 
 
 

@@ -71,7 +71,7 @@
                   <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="646.0" spacing="24.0">
                      <children>
                         <Button fx:id="btnAdminCloseManage" mnemonicParsing="false" prefHeight="45.0" prefWidth="144.0" text="Close" />
-                        <Button fx:id="btnAdminAddToEvent" mnemonicParsing="false" prefHeight="45.0" prefWidth="206.0" text="Add To Event">
+                        <Button fx:id="btnAdminAddToEvent" mnemonicParsing="false" onAction="#addCoordinatorToEvents" prefHeight="45.0" prefWidth="206.0" text="Add To Event">
                            <HBox.margin>
                               <Insets right="32.0" />
                            </HBox.margin></Button>

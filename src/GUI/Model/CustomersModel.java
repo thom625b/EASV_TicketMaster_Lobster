@@ -9,12 +9,12 @@ import javafx.collections.ObservableList;
 
 import java.io.IOException;
 
-public class CostumersModel {
+public class CustomersModel {
     private final CostumersManager costumersManager;
     private final ObservableList<Costumers> costumersObservableList = FXCollections.observableArrayList();
 
 
-    public CostumersModel() throws IOException, ApplicationWideException {
+    public CustomersModel() throws IOException, ApplicationWideException {
         costumersManager = new CostumersManager();
     }
 
@@ -28,5 +28,6 @@ public class CostumersModel {
     }
 
 
-
+    public void updateCustomer(Costumers selectedCustomer) {
+    }
 }
