@@ -172,7 +172,6 @@ public class CoordinatorFrameController implements Initializable, IController {
             if (!coorStackPane.getChildren().isEmpty()) {
                 pageHistory.push(coorStackPane.getChildren().get(0));
             }
-
             setCenterNode(root);
         } catch (IOException e) {
             throw new RuntimeException(e);

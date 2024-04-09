@@ -474,16 +474,17 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #BPCoorEventPage {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F0F0F6;
 }
 
 #hboxTopCoorEventPage {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
 }
 
 #txtTopCoorEventPage {
-    -fx-background-color: rgba(255, 255, 255, 0.5);
-    -fx-background-insets: 0;
+   -fx-background-radius: 15px;
+   -fx-text-fill: #363062;
+   -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
 #btnCreateNewEvent {
@@ -494,8 +495,10 @@
 #hboxHeaderCreate {
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
     -fx-background-color: white;
+    -fx-background-radius: 15px;
 
 }
+
 
 #txtHeaderCoorEventPage {
     -fx-text-fill: #363062;
@@ -533,7 +536,13 @@
 
 #tblEventTable {
     -fx-table-cell-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
+
+#tblEventTable .table-cell {
+    -fx-text-fill: #363062; /* Change the text color in table cells */
+}
+
 #tblEventTable:even {
     -fx-background-color: #ffffff;
 }
@@ -808,34 +817,52 @@
 /* CoordinatorEditEventPage
 ---------------------------------------------------------------------------------------------------------------*/
 #BPEditEvents {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F0F0F6;
 }
 
 #VboxBorderCenterEditEvent {
     -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+    -fx-background-radius: 15px;
+}
+
+#lblEventHeadlineEdit {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+    -fx-background-radius: 15px;
 }
 
 #HboxBorderTopEditEvent, #HboxEditEventLogo, #HboxBorderBottomEditEvent, #HboxBorderRightEditEvent {
     -fx-background-color: Transparent;
 }
 
-#HboxEditEventLabel {
-    -fx-background-color: Transparent;
+#txtEditEventDescription {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
 }
 
 #lblEventTitleEdit, #lblEventDesignEdit, #lblEventAddressEdit, #lblEventCityEdit, #lblEventPostalCodeEdit, #lblEventStartTimeEdit, #lblEventEndTimeEdit, #lblEventStartDateEdit, #lblEventDescriptionEdit, #lblEventHeadlineEdit {
     -fx-text-fill: #363062;
 }
 
+
+#txtEditEventTitle, #txtEditEventPicture, #txtEditEventAddress, #txtEditEventCity, #txtEditEventZipCode, #txtEditEventStartTime, #txtEditEventEndTime, #dpEditEventStartDate {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+}
+
+
+
 #btnEditUploadImageToEvent, #btnEditDeleteEvent {
     -fx-text-fill: #F99417;
     -fx-border-color: #F99417;
+    -fx-border-radius: 15px;
 }
+
+
 
 #btnEditSaveEvent {
     -fx-text-fill: #FFFFFF;
     -fx-background-color: #108CDC;
+    -fx-background-radius: 15px;
 }
-
 
 

@@ -60,7 +60,6 @@ public class CoordinatorEventPageController implements IController {
         int coordinatorID = UserContext.getInstance().getCurrentUserId();
         initializeColumns(coordinatorID);
         initializeEditButtonColumn();
-        refreshEventData();
     }
 
     private void initializeEditButtonColumn() {

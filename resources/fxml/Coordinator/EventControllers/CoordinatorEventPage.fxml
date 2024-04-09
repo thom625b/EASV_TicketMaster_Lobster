@@ -14,7 +14,7 @@
 
 <BorderPane fx:id="BPCoorEventPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorEventPageController">
     <center>
-        <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
+        <HBox fx:id="HboxCoordinatorEvenPageCenter" alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
             <children>
                   <TableView fx:id="tblEventTable" prefHeight="500.0" prefWidth="808.0">
                       <columns>
@@ -42,7 +42,7 @@
                   </TableView>
             </children>
          <BorderPane.margin>
-            <Insets left="8.0" />
+            <Insets left="16.0" />
          </BorderPane.margin>
         </HBox>
     </center>
@@ -50,21 +50,27 @@
       <VBox BorderPane.alignment="CENTER">
          <children>
             <HBox fx:id="hboxTopCoorEventPage" prefHeight="20.0" prefWidth="776.0">
-               <children>
-                  <TextField fx:id="txtTopCoorEventPage" prefHeight="26.0" prefWidth="258.0" text="🔍 Search...">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin></TextField>
-               </children>
                <VBox.margin>
-                  <Insets left="8.0" />
+                  <Insets />
                </VBox.margin>
             </HBox>
               <HBox prefHeight="0.0" prefWidth="776.0">
                   <children>
-                      <HBox fx:id="hboxHeaderCreate" alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="427.0">
+                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
+                     <children>
+                        <TextField fx:id="txtTopCoorEventPage" prefHeight="26.0" prefWidth="327.0" promptText="🔍 Search...">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="16.0" />
+                     </HBox.margin>
+                  </HBox>
+                      <HBox fx:id="hboxHeaderCreate" alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="450.0">
                           <children>
-                        <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../pictures/EventSymbol.png" />
                            </image>
@@ -72,33 +78,21 @@
                               <Insets left="8.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label fx:id="txtHeaderCoorEventPage" prefHeight="17.0" prefWidth="76.0" text="Events">
+                        <Label fx:id="txtHeaderCoorEventPage" prefHeight="26.0" prefWidth="76.0" text="Events">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="8.0" />
                            </HBox.margin>
                         </Label>
-                              <Button fx:id="btnCreateNewEvent" mnemonicParsing="false" onAction="#goToCreateNewEvent" prefHeight="26.0" prefWidth="104.0" text="Create new">
+                              <Button fx:id="btnCreateNewEvent" mnemonicParsing="false" onAction="#goToCreateNewEvent" prefHeight="26.0" prefWidth="92.0" text="Create new">
                            <HBox.margin>
-                              <Insets bottom="8.0" left="92.0" right="8.0" top="8.0" />
+                              <Insets bottom="8.0" left="32.0" right="24.0" top="8.0" />
                            </HBox.margin>
                               </Button>
                           </children>
                      <HBox.margin>
-                        <Insets bottom="16.0" left="8.0" top="16.0" />
+                        <Insets bottom="16.0" left="16.0" right="70.0" top="16.0" />
                      </HBox.margin>
                       </HBox>
-                      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="594.0">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../pictures/EASYDVEST.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="68.0" />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                  </HBox>
                   </children>
               </HBox>
          </children>
