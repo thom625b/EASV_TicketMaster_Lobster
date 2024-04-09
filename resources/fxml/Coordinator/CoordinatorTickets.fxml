@@ -5,76 +5,110 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
+<BorderPane fx:id="BPCoordinatorEventTickets" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
    <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="70.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox alignment="CENTER" prefHeight="390.0" prefWidth="698.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="VboxCenterCoordinatorTickets" alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="808.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="48.0" />
+            <Insets left="16.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="lblHeaderTicket" alignment="CENTER" prefHeight="34.0" prefWidth="451.0" text="Ticket sale">
-               <VBox.margin>
-                  <Insets bottom="16.0" />
-               </VBox.margin>
-            </Label>
+            <HBox alignment="CENTER_LEFT" maxHeight="45.0" maxWidth="314.0" prefHeight="45.0" prefWidth="314.0">
+               <children>
+                  <Label fx:id="lblHeaderTicket" prefHeight="34.0" prefWidth="451.0" text="Ticket sale">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="16.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
             <VBox alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="192.0" prefWidth="698.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="192.0" prefWidth="699.0" spacing="24.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="192.0" prefWidth="699.0" spacing="24.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="453.0" spacing="8.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="700.0">
                                  <VBox.margin>
-                                    <Insets left="8.0" top="8.0" />
+                                    <Insets top="8.0" />
                                  </VBox.margin>
                                  <children>
-                                    <ComboBox fx:id="comboTickets" prefHeight="50.0" prefWidth="363.0" promptText="Ticketname*" />
-                                    <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="98.0" promptText="Tickettype" />
-                                    <ComboBox fx:id="comboAmount" layoutX="365.0" layoutY="10.0" prefHeight="50.0" prefWidth="86.0" promptText="Amount" />
+                                    <HBox prefHeight="50.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <children>
+                                          <ComboBox fx:id="comboTickets" prefHeight="50.0" prefWidth="455.0" promptText="Ticketname*" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="270.0" spacing="16.0">
+                                       <children>
+                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="100.0" promptText="Tickettype">
+                                             <HBox.margin>
+                                                <Insets left="16.0" />
+                                             </HBox.margin>
+                                          </ComboBox>
+                                          <ComboBox fx:id="comboAmount" prefHeight="50.0" prefWidth="100.0" promptText="Amount" />
+                                       </children>
+                                    </HBox>
                                  </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                               </HBox>
-                              <HBox spacing="8.0">
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
                                  <VBox.margin>
-                                    <Insets left="35.0" right="28.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <TextField fx:id="lblFirstnameTicket" prefHeight="26.0" prefWidth="546.0" promptText="Name.." text="Firstname.." />
-                                    <TextField fx:id="lblLarstnameTicket1" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="546.0" promptText="Name.." text="Larstname.." />
+                                    <TextField fx:id="lblFirstnameTicket" prefHeight="26.0" prefWidth="546.0" promptText="Firstname.." />
+                                    <TextField fx:id="lblLarstnameTicket" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="546.0" promptText="Larstname.." />
                                  </children>
                               </HBox>
-                              <TextField fx:id="lblEmailTicket" promptText="Email..">
+                              <HBox>
                                  <VBox.margin>
-                                    <Insets left="35.0" right="28.0" />
+                                    <Insets />
                                  </VBox.margin>
-                              </TextField>
+                                 <children>
+                                    <TextField fx:id="lblEmailTicket" prefHeight="25.0" prefWidth="720.0" promptText="Email.." />
+                                 </children>
+                              </HBox>
                            </children>
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="16.0" right="24.0" />
                            </HBox.margin>
-                           <padding>
-                              <Insets left="24.0" />
-                           </padding>
                         </VBox>
                      </children>
                      <VBox.margin>
                         <Insets bottom="32.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="646.0" spacing="24.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="646.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#CloseTicketPage" prefHeight="45.0" prefWidth="144.0" text="Close" />
-                        <Button mnemonicParsing="false" onAction="#BuyTicketToEvent" prefHeight="45.0" prefWidth="206.0" text="Buy Ticket">
+                        <Button fx:id="btnCloseCoordinatorTicket" mnemonicParsing="false" onAction="#CloseTicketPage" prefHeight="50.0" prefWidth="100.0" text="Close">
                            <HBox.margin>
-                              <Insets right="32.0" />
+                              <Insets />
+                           </HBox.margin></Button>
+                        <Button fx:id="btnBuyTicketCoordinatorTicket" mnemonicParsing="false" onAction="#BuyTicketToEvent" prefHeight="50.0" prefWidth="220.0" text="Buy Ticket">
+                           <HBox.margin>
+                              <Insets left="16.0" />
                            </HBox.margin></Button>
                      </children>
+                     <VBox.margin>
+                        <Insets right="24.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
@@ -82,37 +116,59 @@
       </VBox>
    </center>
    <right>
-      <VBox prefHeight="468.0" prefWidth="74.0" BorderPane.alignment="CENTER" />
+      <VBox prefWidth="70.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="776.0" spacing="48.0" BorderPane.alignment="TOP_CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" maxHeight="45.0" maxWidth="314.0" prefHeight="45.0" prefWidth="314.0">
+            <HBox prefHeight="20.0" />
+            <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="776.0">
                <children>
-                  <TextField prefHeight="31.0" prefWidth="274.0" promptText="Search" text="🔍 Search..." />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" maxHeight="45.0" maxWidth="313.0" prefHeight="45.0" prefWidth="313.0">
-               <children>
-                  <Label prefHeight="18.0" prefWidth="174.0" text="Event ">
-                     <padding>
-                        <Insets left="8.0" />
-                     </padding>
-                  </Label>
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="115.0" text="Create new">
+                  <HBox fx:id="HboxSearchBarCoordinatorTickets" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
+                     <children>
+                        <TextField fx:id="SearBarCoordinatorTickets" prefHeight="26.0" prefWidth="327.0" promptText="🔍 Search..." />
+                     </children>
                      <HBox.margin>
-                        <Insets right="16.0" />
+                        <Insets left="16.0" />
                      </HBox.margin>
-                  </Button>
+                  </HBox>
+                  <HBox fx:id="HboxTopCoordinatorTickets" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="450.0">
+                     <children>
+                        <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../pictures/EventSymbol.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="lblEventsCoordinatorTickets" prefHeight="26.0" prefWidth="76.0" text="Events">
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnCreateNewCoordinatorTicket" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Create new">
+                           <HBox.margin>
+                              <Insets bottom="8.0" left="32.0" right="24.0" top="8.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets right="16.0" />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="16.0" right="70.0" top="16.0" />
+                     </HBox.margin>
+                  </HBox>
                </children>
-               <HBox.margin>
+               <VBox.margin>
                   <Insets />
-               </HBox.margin>
+               </VBox.margin>
             </HBox>
          </children>
-         <BorderPane.margin>
-            <Insets bottom="16.0" />
-         </BorderPane.margin>
-      </HBox>
+      </VBox>
    </top>
 </BorderPane>

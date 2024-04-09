@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="BPCoorEventPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorEventPageController">
     <center>
@@ -82,6 +83,9 @@
                            <HBox.margin>
                               <Insets left="8.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
                         </Label>
                               <Button fx:id="btnCreateNewEvent" mnemonicParsing="false" onAction="#goToCreateNewEvent" prefHeight="26.0" prefWidth="92.0" text="Create new">
                            <HBox.margin>
