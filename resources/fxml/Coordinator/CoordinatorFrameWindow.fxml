@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -33,18 +34,80 @@
                       </ImageView>
                       <VBox fx:id="vBoxCoorButtons" alignment="CENTER_LEFT" prefHeight="196.0" prefWidth="223.0" spacing="16.0">
                           <children>
-                              <Button fx:id="btnCoorHome" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToUserHome" prefHeight="40.0" text="Ticket Sale">
-                                  <VBox.margin>
-                                      <Insets top="32.0" />
-                                  </VBox.margin>
+                        <HBox>
+                           <VBox.margin>
+                              <Insets top="32.0" />
+                           </VBox.margin>
+                           <children>
+                              <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../../pictures/Combi%20Ticket.png" />
+                                 </image>
+                              </ImageView>
+                                    <Button fx:id="btnCoorHome" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToUserHome" prefHeight="40.0" text="Ticket Sale">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
+                                    </Button>
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../../pictures/EventSymbol.png" />
+                                 </image>
+                              </ImageView>
+                                    <Button fx:id="btnCoorEvents" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#btnGoToEventsPage" prefHeight="40.0" text="Events">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
                               </Button>
-                              <Button fx:id="btnCoorEvents" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#btnGoToEventsPage" prefHeight="40.0" text="Events" />
-                              <Button fx:id="btnCoorCostumers" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToCustomers" prefHeight="40.0" text="Customers" />
-                        <Button fx:id="btnCoorManageEvents" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="126.0" mnemonicParsing="false" onAction="#goToUserManageEvents" prefHeight="25.0" text="Assign Event">
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../../pictures/Budget.png" />
+                                 </image>
+                              </ImageView>
+                                    <Button fx:id="btnCoorCostumers" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToCustomers" prefHeight="40.0" text="Customers">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox>
                            <VBox.margin>
                               <Insets bottom="16.0" />
                            </VBox.margin>
-                        </Button>
+                           <children>
+                              <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../../pictures/Link.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="btnCoorManageEvents" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToUserManageEvents" prefHeight="25.0" text="Assign Event">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                           </children>
                      <VBox.margin>
                         <Insets top="16.0" />

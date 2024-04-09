@@ -3,6 +3,7 @@
 
 .button:hover{
     -fx-background-color: #CCCCCC;
+    -fx-background-radius: 15px;
 }
 
 .button {
@@ -10,6 +11,10 @@
     -fx-text-fill: #363062 ;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
+}
+
+.combo-box .list-cell:hover{
+    -fx-background-color: #CCCCCC;
 }
 
 .label{
@@ -43,7 +48,17 @@
     -fx-background-color: #108CDC;
     -fx-text-fill: white;
     -fx-font-size: 16px;
+    -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
+}
+
+#btnSubmitAdmin:hover, #btnSubmitEvent:hover {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+#adminPassword,#adminMail, #userPassword, #userMail {
+    -fx-background-radius: 15px;
 }
 
 #lblstatus {
@@ -107,6 +122,8 @@
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
+
+
  #lblChangeProfilePicture, #lblChangePassword {
      -fx-text-fill: black ;
      -fx-font-size: 12px;
@@ -181,7 +198,12 @@
 
 #btnRefreshCoor {
     -fx-background-color: #363062;
+    -fx-background-radius: 15px;
     -fx-text-fill: white;
+}
+
+#btnRefreshCoor:hover{
+    -fx-text-fill: #CCCCCC;
 }
 
 /*  Admin: create Coordinator/Admin
@@ -338,6 +360,11 @@
     -fx-text-fill: white;
 }
 
+#btnAdminAddToEvent:hover {
+    -fx-background-radius: 15px;
+    -fx-background-color: #363062;
+}
+
 #btnAdminCloseManage {
     -fx-border-color: #FBBB2C;
     -fx-background-color: transparent;
@@ -423,6 +450,11 @@
 #btnRefreshAdminEvents {
     -fx-background-color: #363062;
     -fx-text-fill: white;
+    -fx-background-radius: 15px;
+}
+
+#btnRefreshAdminEvents{
+    -fx-text-fill: #CCCCCC;
 }
 
 /*  Admin InsertPicture
@@ -508,6 +540,11 @@
     -fx-background-radius: 15px;
 }
 
+#btnCreateNewEvent:hover {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
 #hboxHeaderCreate {
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
     -fx-background-color: white;
@@ -539,7 +576,11 @@
 #btnRefreshCoorEvent {
     -fx-background-color: #363062;
     -fx-text-fill: white;
+    -fx-background-radius: 15px;
+}
 
+#btnRefreshCoorEvent:hover{
+    -fx-text-fill: #CCCCCC;
 }
 
 #invisbleTableColumn {
@@ -586,7 +627,13 @@
 
 #btnCoordinatorAddToEvent {
     -fx-background-color: #108CDC;
+    -fx-background-radius: 15px;
     -fx-text-fill: white;
+}
+
+#btnCoordinatorAddToEvent {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
 }
 
 #btnCoordinatorCloseManage {
@@ -655,6 +702,12 @@
     -fx-background-radius: 15px;
     -fx-text-fill: white;
 }
+
+#btnAddNewEvent:hover {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
 
 #btnUploadImageToEvent {
     -fx-border-color: #FBBB2C;
@@ -804,6 +857,11 @@
     -fx-background-radius: 15px;
 }
 
+#btnEditSaveEvent:hover {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
 /* CoordinatorTicketPage
 ---------------------------------------------------------------------------------------------------------------*/
 #BPCoordinatorEventTickets {
@@ -835,6 +893,11 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
 }
 
+#btnCreateNewCoordinatorTicket:hover, #btnBuyTicketCoordinatorTicket:hover {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
 #btnCloseCoordinatorTicket{
     -fx-text-fill: #F99417;
     -fx-border-color: #F99417;
@@ -859,12 +922,6 @@
     -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
-
-
-
-
-
-
 
 
 /*  Coordinator: Assign to Event
@@ -926,6 +983,11 @@
     -fx-text-fill: white;
 }
 
+#btnCoordinatorAddToEvent {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
 #btnClose {
     -fx-border-color: #FBBB2C;
     -fx-background-color: transparent;
@@ -947,9 +1009,6 @@
     -fx-font-size: 12px;
 }
 
-.combo-box .list-cell:hover{
-    -fx-background-color: #0A0A0A3D;
-}
 
 #stpnImage {
     -fx-border-color: #F9F9F9 ;

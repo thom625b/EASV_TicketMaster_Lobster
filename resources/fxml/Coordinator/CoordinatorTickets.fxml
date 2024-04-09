@@ -61,8 +61,32 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <TextField fx:id="lblFirstnameTicket" prefHeight="26.0" prefWidth="546.0" promptText="Firstname.." />
-                                    <TextField fx:id="lblLarstnameTicket" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="546.0" promptText="Larstname.." />
+                                    <VBox>
+                                       <children>
+                                          <Label text="First Name:">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" left="8.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="lblFirstnameTicket" prefHeight="26.0" prefWidth="546.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label text="Last Name:">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" left="8.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="lblLarstnameTicket" prefHeight="26.0" prefWidth="546.0" />
+                                       </children>
+                                    </VBox>
                                  </children>
                               </HBox>
                               <HBox>
@@ -70,7 +94,19 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <TextField fx:id="lblEmailTicket" prefHeight="25.0" prefWidth="720.0" promptText="Email.." />
+                                    <VBox>
+                                       <children>
+                                          <Label text="Email:">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" left="8.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="lblEmailTicket" prefHeight="25.0" prefWidth="720.0" />
+                                       </children>
+                                    </VBox>
                                  </children>
                               </HBox>
                            </children>
