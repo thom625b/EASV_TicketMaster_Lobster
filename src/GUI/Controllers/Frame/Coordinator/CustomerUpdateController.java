@@ -59,17 +59,17 @@ public class CustomerUpdateController implements Initializable {
             currentCustomer.setCostumerEmail(txtCustomerEmail.getText());
             customerModel.updateCustomer(currentCustomer);
 
-            showAlert("Success", "Customer updated successfully.");
 
+            Alert success = new Alert(Alert.AlertType.INFORMATION);
+            success.setTitle("Success");
+            success.setHeaderText(null);
+            success.setContentText("Customer updated successfully.");
+            success.showAndWait();
+
+            CoordinatorFrameController.getInstance().goBack();
+        } else {
+            // Handle case where currentCustomer is null
+            System.err.println("Current customer is null.");
         }
-
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

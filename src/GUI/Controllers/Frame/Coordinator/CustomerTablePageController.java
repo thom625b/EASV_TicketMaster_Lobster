@@ -4,6 +4,8 @@ import BE.Costumers;
 import BE.Users;
 import CostumException.ApplicationWideException;
 import GUI.Model.CustomersModel;
+import GUI.Utility.CustomerContext;
+import GUI.Utility.UserContext;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -53,10 +55,11 @@ public class CustomerTablePageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
+            int customerID = CustomerContext.getInstance().getCurrentCustomerId();
             customerModel = new CustomersModel();
-            initializeColumns();
+            initializeColumns(customerID);
             initializeButtonColumn();
-            System.out.println(customerModel);
+            refreshEventData();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ApplicationWideException e) {
@@ -68,7 +71,7 @@ public class CustomerTablePageController implements Initializable {
 
     }
 
-    private void initializeColumns() throws ApplicationWideException, SQLServerException {
+    private void initializeColumns(int customerID) throws ApplicationWideException, SQLServerException {
 
         tblCostumerView.setItems(customerModel.getAllCostumers());
         colCostumerId.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCostumerID())));
@@ -106,6 +109,13 @@ public class CustomerTablePageController implements Initializable {
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
+                try {
+                    refreshEventData();
+                } catch (ApplicationWideException e) {
+                    throw new RuntimeException(e);
+                } catch (SQLServerException e) {
+                    throw new RuntimeException(e);
+                }
                 if (empty) {
                     setGraphic(null);
                 } else {
@@ -141,7 +151,10 @@ public class CustomerTablePageController implements Initializable {
     }
 
 
-
+    public void refreshEventData() throws ApplicationWideException, SQLServerException {
+        int customerID = CustomerContext.getInstance().getCurrentCustomerId();
+        initializeColumns(customerID);
+    }
 
 
 
