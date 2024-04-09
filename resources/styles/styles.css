@@ -1,5 +1,31 @@
+/*  general CSS
+---------------------------------------------------------------------------------------------------------------*/
 
-/* CSS til login side */
+.button:hover{
+    -fx-background-color: #CCCCCC;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #363062 ;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.label{
+    -fx-text-fill: #363062 ;
+}
+
+.text-field{
+    -fx-text-fill: #363062;
+}
+
+.text-area{
+    -fx-text-fill: #363062;
+}
+
+/* CSS til login side
+---------------------------------------------------------------------------------------------------------------*/
 
 #borderInside {
     -fx-background-color: #F0F0F6;
@@ -71,15 +97,6 @@
 
 #frameAdminBorder {
     -fx-background-color: FFFFFF;
-}
-
-
-
-.button {
-    -fx-background-color: transparent;
-    -fx-text-fill: black ;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
 }
 
 
@@ -514,9 +531,6 @@
 
 }
 
-#tblEventTable .column-header .label {
-    -fx-text-fill: #108CDC;
-}
 
 #tblEventTable .column-header {
     -fx-min-height: 50px;
@@ -713,90 +727,6 @@
     -fx-padding: 8px; /* adjust padding */
 }
 
-.button {
-    -fx-background-color: transparent;
-    -fx-text-fill: black;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-#btnCoorHome, #btnCoorEvents, #btnCoorTickets, #btnCoorManageEvents {
-    -fx-pref-height: 40px; /* adjust button height */
-    -fx-pref-width: 190px; /* adjust button width */
-    -fx-background-color: transparent;
-    -fx-text-fill: black;
-}
-
-#btnCoorHome:hover, #btnCoorEvents:hover, #btnCoorTickets:hover, #btnCoorManageEvents:hover {
-    -fx-background-color: #CCCCCC; /* change hover background color */
-}
-
-#btncoorLogout {
-    -fx-pref-height: 26px; /* adjust button height */
-    -fx-pref-width: 78px; /* adjust button width */
-    -fx-background-color: transparent;
-    -fx-border-color: #363062;
-    -fx-text-fill: #363062;
-    -fx-border-radius: 15px;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-#btncoorLogout:hover {
-    -fx-background-color: #CCCCCC; /* change hover background color */
-}
-
-#lblChangeProfilePicture {
-    -fx-text-fill: black;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-}
-
-#lblChangePassword {
-    -fx-text-fill: black;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-}
-
-
-/*  CoordinatorFrame
----------------------------------------------------------------------------------------------------------------*/
-
-#frameCoorBorder {
-    -fx-background-color: #FFFFFF; /* change background color */
-}
-
-#coorStackPane {
-    -fx-background-color: #FFFFFF; /* change background color */
-}
-
-#vBoxCoordBack {
-    -fx-background-color: #FFFFFF; /* change background color */
-    -fx-padding: 16px; /* adjust padding */
-}
-
-#imgCoordinatorFrame {
-    -fx-padding: 8px; /* adjust padding */
-}
-
-.button {
-    -fx-background-color: transparent;
-    -fx-text-fill: black;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-#btnCoorHome, #btnCoorEvents, #btnCoorTickets, #btnCoorManageEvents {
-    -fx-pref-height: 40px; /* adjust button height */
-    -fx-pref-width: 190px; /* adjust button width */
-    -fx-background-color: transparent;
-    -fx-text-fill: black;
-}
-
-#btnCoorHome:hover, #btnCoorEvents:hover, #btnCoorTickets:hover, #btnCoorManageEvents:hover {
-    -fx-background-color: #CCCCCC; /* change hover background color */
-}
-
 #btncoorLogout {
     -fx-pref-height: 26px; /* adjust button height */
     -fx-pref-width: 78px; /* adjust button width */
@@ -875,7 +805,7 @@
     -fx-background-radius: 15px;
 }
 
-/* CoordinatorEventPage
+/* CoordinatorTicketPage
 ---------------------------------------------------------------------------------------------------------------*/
 #BPCoordinatorEventTickets {
     -fx-background-color: #F0F0F6;
@@ -893,7 +823,8 @@
     -fx-background-radius: 15px;
 }
 
-#SearBarCoordinatorTickets {
+#lblHeaderTicket {
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
 }
@@ -922,17 +853,14 @@
 }
 
 #comboTickets, #comboType, #comboAmount {
-    -fx-background-color: transparent;
-    -fx-border-color: #108CDC;
-    -fx-border-radius: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+    fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #F9F9F9;
+    -fx-border-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
-#comboTickets .list-cell,
-#comboType .list-cell,
-#comboAmount .list-cell {
-    -fx-text-fill: #363062;
-}
 
 
 
