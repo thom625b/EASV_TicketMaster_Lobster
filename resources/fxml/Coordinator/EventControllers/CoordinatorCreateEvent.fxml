@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderBackCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorCreateEventsController">
    <top>
@@ -19,7 +20,13 @@
                   <Insets bottom="20.0" top="30.0" />
                </HBox.margin>
                <children>
-                  <Label fx:id="lblCreateNewEvent" prefHeight="19.0" prefWidth="133.0" text="Create new Event" />
+                  <Label fx:id="lblCreateNewEvent" prefHeight="23.0" prefWidth="171.0" text="Create new Event">
+                     <padding>
+                        <Insets left="8.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
          </children>
@@ -130,7 +137,7 @@
                               <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="279.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="279.0" spacing="10">
                            <children>
                               <Button fx:id="btnUploadImageToEvent" mnemonicParsing="false" text="Upload Image">
                                  <VBox.margin>
