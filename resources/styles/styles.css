@@ -860,13 +860,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
-
-
-
-
-
-
-
 /*  Coordinator: Assign to Event
 ---------------------------------------------------------------------------------------------------------------*/
 
@@ -958,3 +951,55 @@
 }
 
 
+/* Coordinator -- Costumer ---------------------------------------------- */
+
+#bpCostumer {
+    -fx-background-color: #F0F0F6;
+}
+
+#txtCoordSearch {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#hboxHeaderCostumer {
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+}
+
+#btnCreateCostumer{
+-fx-background-color: #108CDC;
+-fx-text-fill: white;
+-fx-background-radius: 15px;
+}
+
+#tblCostumerView .column-header-background .filler,
+#tblCostumerView .column-header-background .column-header {
+    -fx-background-color: transparent;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+#tblCostumerView {
+    -fx-table-cell-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#tblCostumerView .table-cell {
+    -fx-text-fill: #363062; /* Change the text color in table cells */
+}
+
+#tblCostumerView .column-header {
+    -fx-min-height: 50px;
+}
+
+#tblCostumerView:even {
+    -fx-background-color: #ffffff;
+}
+
+#tblCostumerView:odd {
+    -fx-background-color: #f2f2f2;
+}

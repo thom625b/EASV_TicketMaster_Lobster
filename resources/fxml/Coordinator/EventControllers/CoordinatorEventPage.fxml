@@ -19,7 +19,7 @@
             <children>
                   <TableView fx:id="tblEventTable" prefHeight="500.0" prefWidth="808.0">
                       <columns>
-                          <TableColumn fx:id="tblEventTableCode" prefWidth="75.0" text="Code" />
+                          <TableColumn fx:id="tblEventTableCode" prefWidth="75.0" text="Code" visible="false" />
                           <TableColumn fx:id="tblEventTableEventName" prefWidth="109.2105484008789" text="Event name" />
                           <TableColumn fx:id="tblEventTableStartDate" prefWidth="86.40000915527344" text="Start Date" />
                           <TableColumn fx:id="tblEventStartTime" prefWidth="71.99993896484375" text="Start Time" />
