@@ -9,53 +9,76 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="frameCoorBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
+<BorderPane fx:id="frameCoorBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="993.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
     <left>
-        <VBox fx:id="vBoxCoordBack" prefHeight="496.0" prefWidth="159.0" BorderPane.alignment="CENTER">
+        <VBox fx:id="vBoxCoordBack" prefHeight="600.0" prefWidth="185.0" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fx:id="imgCoordinatorFrame" fitHeight="125.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../pictures/Customer.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets left="8.0" right="8.0" top="8.0" />
-                    </VBox.margin>
-                </ImageView>
-                <VBox fx:id="vBoxCoorButtons" prefHeight="182.0" prefWidth="132.0" spacing="16.0">
-                    <children>
-                        <Button fx:id="btnCoorHome" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToUserHome" prefHeight="40.0" prefWidth="190.0" text="Home">
-                            <VBox.margin>
-                                <Insets top="32.0" />
-                            </VBox.margin>
-                        </Button>
-                        <Button fx:id="btnCoorEvents" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#btnGoToEventsPage" prefHeight="40.0" prefWidth="202.0" text="Events" />
-                        <Button fx:id="btnCoorCostumers" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToCustomers" prefHeight="40.0" prefWidth="182.0" text="Customers" />
-                  <Button fx:id="btnCoorManageEvents" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="126.0" mnemonicParsing="false" onAction="#goToUserManageEvents" prefHeight="40.0" prefWidth="182.0" text="Manage Events" />
-                    </children>
-                    <VBox.margin>
-                        <Insets bottom="24.0" />
-                    </VBox.margin>
-                </VBox>
-                <VBox fx:id="vBoxCoorLogout" alignment="BOTTOM_CENTER" prefHeight="254.0" prefWidth="132.0">
-                    <children>
-                  <Label onMouseClicked="#openCoordinatorPictureChange" text="Change profile Picture">
+            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="204.0">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pictures/EASYDVEST.png" />
+                     </image>
                      <VBox.margin>
-                        <Insets bottom="16.0" />
+                        <Insets top="8.0" />
                      </VBox.margin>
-                  </Label>
-                        <Button fx:id="btncoorLogout" mnemonicParsing="false" onAction="#logoutToLogin" prefHeight="26.0" prefWidth="78.0" text="Logout" />
-                    </children>
-                    <VBox.margin>
-                        <Insets bottom="16.0" />
-                    </VBox.margin>
-                </VBox>
+                  </ImageView>
+                      <ImageView fx:id="imgCoordinatorFrame" fitHeight="115.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../../pictures/Customer.png" />
+                          </image>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                      </ImageView>
+                      <VBox fx:id="vBoxCoorButtons" alignment="CENTER_LEFT" prefHeight="196.0" prefWidth="223.0" spacing="16.0">
+                          <children>
+                              <Button fx:id="btnCoorHome" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToUserHome" prefHeight="40.0" text="Ticket Sale">
+                                  <VBox.margin>
+                                      <Insets top="32.0" />
+                                  </VBox.margin>
+                              </Button>
+                              <Button fx:id="btnCoorEvents" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#btnGoToEventsPage" prefHeight="40.0" text="Events" />
+                              <Button fx:id="btnCoorCostumers" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goToCustomers" prefHeight="40.0" text="Customers" />
+                        <Button fx:id="btnCoorManageEvents" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="126.0" mnemonicParsing="false" onAction="#goToUserManageEvents" prefHeight="25.0" text="Assign Event">
+                           <VBox.margin>
+                              <Insets bottom="16.0" />
+                           </VBox.margin>
+                        </Button>
+                          </children>
+                     <VBox.margin>
+                        <Insets top="16.0" />
+                     </VBox.margin>
+                      </VBox>
+                      <VBox fx:id="vBoxCoorLogout" alignment="BOTTOM_CENTER" prefHeight="248.0" prefWidth="170.0">
+                          <children>
+                        <Label onMouseClicked="#openCoordinatorPictureChange" prefHeight="18.0" prefWidth="173.0" text="👤 Change profile picture">
+                           <VBox.margin>
+                              <Insets bottom="16.0" left="8.0" right="8.0" />
+                           </VBox.margin>
+                        </Label>
+                              <Button fx:id="btncoorLogout" mnemonicParsing="false" onAction="#logoutToLogin" prefHeight="26.0" prefWidth="182.0" text="Logout">
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" />
+                           </VBox.margin>
+                        </Button>
+                          </children>
+                     <VBox.margin>
+                        <Insets bottom="8.0" />
+                     </VBox.margin>
+                      </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
             </children>
-         <padding>
-            <Insets left="16.0" />
-         </padding>
+         <BorderPane.margin>
+            <Insets left="8.0" />
+         </BorderPane.margin>
         </VBox>
     </left>
     <center>
-        <StackPane fx:id="coorStackPane" prefHeight="496.0" prefWidth="678.0" BorderPane.alignment="CENTER" />
+        <StackPane fx:id="coorStackPane" maxHeight="602.0" maxWidth="776.0" prefHeight="600.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
     </center>
 </BorderPane>

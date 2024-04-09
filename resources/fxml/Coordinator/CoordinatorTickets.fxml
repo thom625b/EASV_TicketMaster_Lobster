@@ -22,23 +22,11 @@
             <Insets left="16.0" />
          </BorderPane.margin>
          <children>
-            <HBox alignment="CENTER_LEFT" maxHeight="45.0" maxWidth="314.0" prefHeight="45.0" prefWidth="314.0">
-               <children>
-                  <Label fx:id="lblHeaderTicket" prefHeight="34.0" prefWidth="451.0" text="Ticket sale">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="16.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
             <VBox alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="192.0" prefWidth="698.0">
+                  <HBox alignment="CENTER" prefHeight="258.0" prefWidth="690.0">
                      <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="192.0" prefWidth="699.0" spacing="24.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="215.0" prefWidth="650.0" spacing="40.0">
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="700.0">
                                  <VBox.margin>
@@ -50,17 +38,17 @@
                                           <Insets />
                                        </HBox.margin>
                                        <children>
-                                          <ComboBox fx:id="comboTickets" prefHeight="50.0" prefWidth="455.0" promptText="Ticketname*" />
+                                          <ComboBox fx:id="comboTickets" prefHeight="50.0" prefWidth="420.0" promptText="Ticketname*" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="270.0" spacing="16.0">
                                        <children>
-                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="100.0" promptText="Tickettype">
+                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="120.0" promptText="Tickettype">
                                              <HBox.margin>
                                                 <Insets left="16.0" />
                                              </HBox.margin>
                                           </ComboBox>
-                                          <ComboBox fx:id="comboAmount" prefHeight="50.0" prefWidth="100.0" promptText="Amount" />
+                                          <ComboBox fx:id="comboAmount" prefHeight="50.0" prefWidth="120.0" promptText="Amount" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -122,15 +110,22 @@
       <VBox BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="20.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="776.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="776.0">
                <children>
                   <HBox fx:id="HboxSearchBarCoordinatorTickets" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
-                     <children>
-                        <TextField fx:id="SearBarCoordinatorTickets" prefHeight="26.0" prefWidth="327.0" promptText="🔍 Search..." />
-                     </children>
                      <HBox.margin>
                         <Insets left="16.0" />
                      </HBox.margin>
+                     <children>
+                        <Label fx:id="lblHeaderTicket" prefHeight="41.0" prefWidth="310.0" text="Ticket Sale">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="32.0" />
+                           </padding>
+                        </Label>
+                     </children>
                   </HBox>
                   <HBox fx:id="HboxTopCoordinatorTickets" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="450.0">
                      <children>
