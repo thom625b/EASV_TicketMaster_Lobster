@@ -68,7 +68,7 @@ public class PdfHandler implements Initializable {
         panePdfTicket.setStyle("-fx-background-color: #108CDC;");
         paneLabel.setStyle("-fx-background-color: #FBBB2C;");
         applyLabelStyles();
-        System.out.println("PdfHandler initialized with FXML file.");
+
     }
 
     public void applyLabelStyles() {

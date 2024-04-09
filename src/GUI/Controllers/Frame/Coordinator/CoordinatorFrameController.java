@@ -84,6 +84,8 @@ public class CoordinatorFrameController implements Initializable, IController {
             pageHistory.push(coorStackPane.getChildren().get(0));
         }
 
+
+
         setCenterNode(root);
     }
 

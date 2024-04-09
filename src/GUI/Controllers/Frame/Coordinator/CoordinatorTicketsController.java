@@ -7,6 +7,7 @@ import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import GUI.Utility.PdfHandler;
 import com.google.zxing.WriterException;
+import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -77,12 +78,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PdfTicket.fxml"));
             Parent root = loader.load();
 
-
-
             PdfHandler pdfHandler = loader.getController();
-
-
-
 
             String eventName = selectedEvent.getEventName();
             String eventDate = String.valueOf(selectedEvent.getEventDate());
@@ -99,9 +95,8 @@ public class CoordinatorTicketsController implements IController, Initializable 
             File file = new File(destinationPath);
             file.getParentFile().mkdirs();
             pdfHandler.generatePDF(destinationPath);
+            new Scene(root);
 
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,7 +148,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
         try {
             eventsModel =new EventsModel();
             setupEventComboBox();
-            this.primaryStage = primaryStage;
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ApplicationWideException e) {
