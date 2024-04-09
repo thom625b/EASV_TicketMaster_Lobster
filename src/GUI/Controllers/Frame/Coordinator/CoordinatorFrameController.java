@@ -48,7 +48,7 @@ public class CoordinatorFrameController implements Initializable, IController {
     private StackPane coorStackPane;
 
     // Define the FXML file path here
-    private final String CREATE_EVENTS_WINDOW_FXML = "/fxml/Coordinator/EventControllers/CoordinatorCreateEventsWindow.fxml";
+    private final String CREATE_EVENTS_WINDOW_FXML = "/fxml/Coordinator/EventControllers/CoordinatorCreateEvent.fxml";
     private final String EDIT_EVENT_WINDOW_FXML = "fxml/Coordinator/EventControllers/CoordinatorEditEventWindow.fxml";
     private final String UPDATE_CUSTOMER_WINDOW_FXML = "/fxml/Coordinator/CustomerUpdateView.fxml";
 

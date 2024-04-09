@@ -478,7 +478,7 @@
 }
 
 #hboxTopCoorEventPage {
-    -fx-background-color: transparent;
+    -fx-background-color: white;
 }
 
 #txtTopCoorEventPage {
@@ -500,9 +500,10 @@
 
 }
 
-
 #txtHeaderCoorEventPage {
     -fx-text-fill: #363062;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
 }
 
 #tblEventTable .column-header-background .filler,
@@ -604,12 +605,20 @@
 /*  Coordinator: Create Event
 ---------------------------------------------------------------------------------------------------------------*/
 
-#borderBackCreateCoordinator {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+#borderBackCreate {
+    -fx-background-color: #F5F5F5;
+}
+
+#hboxCreateEvent {
+    -fx-background-color:white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
 #vBoxCoordinatorCenterCreate {
-    -fx-background-color: white;
+    -fx-background-color:white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
 #lblCoordinatorCreateNewEvent {
@@ -630,10 +639,9 @@
 }
 
 #btnAddNewEvent {
-    -fx-border-color: #108CDC;
-    -fx-background-color: transparent;
-    -fx-border-radius: 15px;
-    -fx-text-fill: #108CDC;
+    -fx-background-color: #108CDC;
+    -fx-background-radius: 15px;
+    -fx-text-fill: white;
 }
 
 #btnUploadImageToEvent {
@@ -646,6 +654,10 @@
 #lblEventDesign, #lblEventAddress, #lblEventCity, #lblEventZip, #lblEventTitle, #lblEventDate, #lblEventStartTime, #lblEventEndTime {
     -fx-font-weight: bold;
     -fx-font-size: 14px;
+    -fx-text-fill: #363062;
+}
+
+#txtEventTitle, #txtEventPicture, #txtEventAddress, #txtEventCity, #txtEventZipCode, #txtEventStartTime, #txtEventEndTime {
     -fx-text-fill: #363062;
 }
 
@@ -672,7 +684,7 @@
 
 .date-picker .calendar-pane,
 .date-picker .month-year-pane{
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F0F0F6;
 }
 
 .date-picker .day-cell:hover{
@@ -816,7 +828,7 @@
 /* CoordinatorEditEventPage
 ---------------------------------------------------------------------------------------------------------------*/
 #BPEditEvents {
-    -fx-background-color: #F0F0F6;
+    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
 }
 
 #VboxBorderCenterEditEvent {
@@ -929,5 +941,94 @@
 
 
 
+/*  Coordinator: Assign to Event
+---------------------------------------------------------------------------------------------------------------*/
+
+#BPCoordinatorManageEvents {
+    -fx-background-color: #F5F5F5;
+}
+
+#vBoxCenterAdminMangageEvents{
+    -fx-background-color:white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+
+}
+
+#hBoxCoordinatorManageEvent {
+    -fx-background-color:white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#btnCoordinatorsDropDown{
+    -fx-background-color: F9F9F9;
+    -fx-background-radius: 15px;
+}
+
+#btnEventsDropDown {
+    -fx-background-color: F9F9F9;
+    -fx-background-radius: 15px;
+}
+
+#btnCreateCoordinatorHeader {
+    -fx-background-color: transparent;
+    -fx-border-color: #4D4C7D;
+    -fx-border-radius: 15px;
+}
+
+#hBoxManageCoorEvent {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#hBoxEventHead , #hBoxSearchHeaderAdmin {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+    -fx-background-radius: 15px;
+}
+
+#lblManageEventCoordinator {
+    -fx-text-fill: #4D4C7D;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#btnCoordinatorAddToEvent {
+    -fx-background-color: #108CDC;
+    -fx-background-radius: 15px;
+    -fx-text-fill: white;
+}
+
+#btnClose {
+    -fx-border-color: #FBBB2C;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #FBBB2C;
+}
+
+#btnEventsDropDown, #btnCoordinatorsDropDown {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #F9F9F9;
+    -fx-border-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+.combo-box .cell {
+    -fx-text-fill: #4D4C7D;
+    -fx-font-size: 12px;
+}
+
+.combo-box .list-cell:hover{
+    -fx-background-color: #0A0A0A3D;
+}
+
+#stpnImage {
+    -fx-border-color: #F9F9F9 ;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
 
 
