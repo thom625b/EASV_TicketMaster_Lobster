@@ -5,18 +5,29 @@ import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
+import GUI.Utility.PdfHandler;
+import com.google.zxing.WriterException;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class CoordinatorTicketsController implements IController, Initializable {
 
@@ -40,18 +51,64 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
     private EventsModel eventsModel;
 
+    @FXML
+    private TextField lblFirstnameTicket;
+    @FXML
+    private TextField lblLastnameTicket1;
+    private Stage primaryStage;
 
     @Override
     public void setModel(UsersModel usersModel) {
 
     }
 
-
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
 
     @FXML
-    void BuyTicketToEvent(ActionEvent event) {
+    void BuyTicketToEvent(ActionEvent event) throws WriterException {
+        Events selectedEvent = comboTickets.getSelectionModel().getSelectedItem();
+        if (selectedEvent == null) {
+            return;
+        }
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PdfTicket.fxml"));
+            Parent root = loader.load();
+
+
+
+            PdfHandler pdfHandler = loader.getController();
+
+
+
+
+            String eventName = selectedEvent.getEventName();
+            String eventDate = String.valueOf(selectedEvent.getEventDate());
+            String eventAddress = selectedEvent.getEventAddress();
+            String eventZIP = String.valueOf(selectedEvent.getEventZipCode());
+            String eventCity = selectedEvent.getEventCity();
+            BufferedImage eventImage = null;
+            String uuid = UUID.randomUUID().toString();
+            BufferedImage qrCodeImage = pdfHandler.generateQRCodeImage(uuid, 200, 200);
+
+            pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventImage, qrCodeImage);
+
+            String destinationPath = "resources/Data/Pdf/mockTicket.pdf";
+            File file = new File(destinationPath);
+            file.getParentFile().mkdirs();
+            pdfHandler.generatePDF(destinationPath);
+
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
+
 
     @FXML
     void CloseTicketPage(ActionEvent event) {
@@ -96,6 +153,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
         try {
             eventsModel =new EventsModel();
             setupEventComboBox();
+            this.primaryStage = primaryStage;
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ApplicationWideException e) {

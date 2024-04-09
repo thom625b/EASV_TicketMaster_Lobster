@@ -284,6 +284,7 @@ public class CoordinatorFrameController implements Initializable, IController {
                 setUserPictureFromStart();
 
                 //copyImageToDir(selectedFile.toURI().toString(),userDirectoryPath, newUserPicturePath);
+
                 showAlert(Alert.AlertType.INFORMATION, "Update Successful", null, "Profile picture updated successfully.");
 
             } catch (Exception e) {

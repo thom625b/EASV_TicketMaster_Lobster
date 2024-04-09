@@ -57,6 +57,10 @@ public class PdfHandler implements Initializable {
     private Label lblHeadName, lblHeadAddress, lblHeadDate;
     @FXML
     private Label lblTicketHeader;
+    @FXML
+    private Label lblTicketType;
+    @FXML
+    private Label lblHeadTicketType;
 
 
     @Override
@@ -80,6 +84,7 @@ public class PdfHandler implements Initializable {
             lblHeadName.setFont(Font.font("System", FontWeight.BOLD ,16));
             lblHeadAddress.setFont(Font.font("System", FontWeight.BOLD ,16));
             lblHeadDate.setFont(Font.font("System", FontWeight.BOLD ,16));
+
         });
     }
 
@@ -90,8 +95,18 @@ public class PdfHandler implements Initializable {
         addressEvent.setText(eventAddress);
         lblEventZip.setText(eventZIP);
         lblEventCity.setText(eventCity);
-        this.eventImage.setImage(SwingFXUtils.toFXImage(eventImage, null));
-        this.qrCode.setImage(SwingFXUtils.toFXImage(qrCodeImage, null));
+
+        if (eventImage != null) {
+            this.eventImage.setImage(SwingFXUtils.toFXImage(eventImage, null));
+        } else {
+            this.eventImage.setImage(null); // Set to null or a default image
+        }
+
+        if (qrCodeImage != null) {
+            this.qrCode.setImage(SwingFXUtils.toFXImage(qrCodeImage, null));
+        } else {
+            this.qrCode.setImage(null); // Set to null or a default image
+        }
     }
 
     public BufferedImage generateQRCodeImage(String data, int width, int height) throws WriterException {
@@ -155,4 +170,3 @@ public class PdfHandler implements Initializable {
 
 
 }
-
