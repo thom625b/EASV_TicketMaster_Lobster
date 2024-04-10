@@ -122,8 +122,6 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
 
-
-
     @FXML
     void CloseTicketPage(ActionEvent event) {
 
