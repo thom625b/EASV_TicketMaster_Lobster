@@ -858,7 +858,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
 }
 
-#lblFirstnameTicket, #lblLarstnameTicket, #lblEmailTicket {
+#lblFirstnameTicket, #lblLastnameTicket, #lblEmailTicket {
     -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
 }
