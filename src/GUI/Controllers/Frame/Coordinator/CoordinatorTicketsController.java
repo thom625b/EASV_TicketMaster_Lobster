@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -55,7 +56,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
     @FXML
     private TextField lblFirstnameTicket;
     @FXML
-    private TextField lblLastnameTicket1;
+    private TextField lblLastnameTicket;
     private Stage primaryStage;
 
     @Override
@@ -74,6 +75,9 @@ public class CoordinatorTicketsController implements IController, Initializable 
             return;
         }
 
+        String firstName = lblFirstnameTicket.getText();
+        String lastName = lblLastnameTicket.getText();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PdfTicket.fxml"));
             Parent root = loader.load();
@@ -85,21 +89,36 @@ public class CoordinatorTicketsController implements IController, Initializable 
             String eventAddress = selectedEvent.getEventAddress();
             String eventZIP = String.valueOf(selectedEvent.getEventZipCode());
             String eventCity = selectedEvent.getEventCity();
+            String eventType = comboType.getSelectionModel().getSelectedItem();
             BufferedImage eventImage = null;
             String uuid = UUID.randomUUID().toString();
             BufferedImage qrCodeImage = pdfHandler.generateQRCodeImage(uuid, 200, 200);
 
-            pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventImage, qrCodeImage);
+            pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventType, eventImage, qrCodeImage);
 
-            String destinationPath = "resources/Data/Pdf/mockTicket.pdf";
-            File file = new File(destinationPath);
-            file.getParentFile().mkdirs();
+
+            String directoryPath = "resources/Data/Pdf/" + selectedEvent.getEventName();
+
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+            String fileName = firstName + "_" + lastName + ".pdf";
+            String destinationPath = directoryPath + "/" + fileName;
             pdfHandler.generatePDF(destinationPath);
             new Scene(root);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Ticket Purchase", "Ticket successfully purchased and saved to: " + destinationPath, Alert.AlertType.INFORMATION);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 

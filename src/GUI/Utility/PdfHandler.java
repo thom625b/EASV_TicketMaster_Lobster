@@ -80,21 +80,24 @@ public class PdfHandler implements Initializable {
             addressEvent.setFont(Font.font("System", FontWeight.BOLD, 12));
             lblEventZip.setFont(Font.font("System", FontWeight.BOLD, 12));
             lblEventCity.setFont(Font.font("System", FontWeight.BOLD, 12));
+            lblTicketType.setFont(Font.font("System", FontWeight.BOLD, 12));
 
             lblHeadName.setFont(Font.font("System", FontWeight.BOLD ,16));
             lblHeadAddress.setFont(Font.font("System", FontWeight.BOLD ,16));
             lblHeadDate.setFont(Font.font("System", FontWeight.BOLD ,16));
+            lblHeadTicketType.setFont(Font.font("System", FontWeight.BOLD ,16));
 
         });
     }
 
     // Method to set the data on the ticket layout
-    public void setTicketData(String eventName, String eventDate, String eventAddress, String eventZIP, String eventCity,  BufferedImage eventImage, BufferedImage qrCodeImage) {
+    public void setTicketData(String eventName, String eventDate, String eventAddress, String eventZIP, String eventCity, String eventType, BufferedImage eventImage, BufferedImage qrCodeImage) {
         lblEventName.setText(eventName);
         lblDatePdf.setText(eventDate);
         addressEvent.setText(eventAddress);
         lblEventZip.setText(eventZIP);
         lblEventCity.setText(eventCity);
+        lblTicketType.setText(eventType);
 
         if (eventImage != null) {
             this.eventImage.setImage(SwingFXUtils.toFXImage(eventImage, null));

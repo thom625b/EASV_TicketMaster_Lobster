@@ -35,12 +35,13 @@ public class PdfGeneratorMock extends Application {
             String eventAddress = "123 Mock Street";
             String eventZIP = "12345";
             String eventCity = "MockCity";
+            String eventType = "VIP";
             BufferedImage eventImage = generateMockImage();
             String uuid = UUID.randomUUID().toString();
             BufferedImage qrCodeImage = pdfHandler.generateQRCodeImage(uuid, 200, 200);
 
             // Set mock data
-            pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventImage, qrCodeImage);
+            pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventType, eventImage, qrCodeImage);
 
             // Generate PDF
             String destinationPath = "resources/Data/Pdf/mockTicket.pdf";
