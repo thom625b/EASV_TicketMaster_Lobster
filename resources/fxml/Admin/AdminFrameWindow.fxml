@@ -12,9 +12,9 @@
 
 <BorderPane fx:id="frameAdminBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="993.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminFrameController">
    <left>
-      <VBox fx:id="vBoxadminBack" prefHeight="496.0" prefWidth="159.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="vBoxadminBack" prefHeight="600.0" prefWidth="185.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox>
+            <VBox prefHeight="600.0" prefWidth="204.0">
                <children>
                   <ImageView fitHeight="61.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +29,7 @@
                         <Image url="@../../pictures/Customer.png" />
                      </image>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets left="10.0" top="40.0" />
                      </VBox.margin>
                   </ImageView>
                   <VBox fx:id="vBoxAdminButtons" alignment="CENTER_LEFT" prefHeight="196.0" prefWidth="223.0" spacing="16.0">
@@ -54,7 +54,7 @@
                                     <Image url="@../../pictures/EventImage.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btnadminEvents" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToAdminEvents" prefHeight="26.0" prefWidth="189.0" text="Events" />
+                              <Button fx:id="btnadminEvents" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToAdminEvents" prefHeight="26.0" prefWidth="190.0" text="Events" />
                            </children>
                            <VBox.margin>
                               <Insets left="8.0" />
@@ -67,7 +67,7 @@
                                     <Image url="@../../pictures/Customer.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btnadminUsers" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToAdminUsers" prefHeight="26.0" prefWidth="189.0" text="Users" />
+                              <Button fx:id="btnadminUsers" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToAdminUsers" prefHeight="26.0" prefWidth="190.0" text="Users" />
                            </children>
                            <VBox.margin>
                               <Insets left="8.0" />
@@ -97,7 +97,7 @@
                            <VBox.margin>
                               <Insets bottom="16.0" left="8.0" right="8.0" />
                            </VBox.margin></Label>
-                        <Label fx:id="lblChangeProfilePicture" onMouseClicked="#openChangeProfilePicture" prefHeight="18.0" prefWidth="173.0" text="👤 Change profile picture">
+                        <Label fx:id="lblChangeProfilePicture" onMouseClicked="#openChangeProfilePicture" prefHeight="18.0" prefWidth="170.0" text="👤 Change profile picture">
                            <VBox.margin>
                               <Insets bottom="16.0" left="8.0" right="8.0" />
                            </VBox.margin></Label>

@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,14 +18,9 @@
    <center>
       <VBox fx:id="vBoxCenterMangageCoorEvent" alignment="CENTER" prefHeight="390.0" prefWidth="698.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="48.0" />
+            <Insets left="50.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="lblManageCoorHeader" alignment="CENTER" prefHeight="34.0" prefWidth="451.0" text="Manage Event Coordinators">
-               <VBox.margin>
-                  <Insets bottom="16.0" />
-               </VBox.margin>
-            </Label>
             <VBox alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="192.0" prefWidth="698.0">
@@ -86,33 +80,30 @@
       <VBox prefHeight="423.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="776.0" spacing="48.0" BorderPane.alignment="TOP_CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="106.0" prefWidth="776.0" spacing="48.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <HBox fx:id="hBoxSearchHeaderAdmin" alignment="CENTER" maxHeight="45.0" maxWidth="314.0" prefHeight="45.0" prefWidth="314.0">
+            <HBox fx:id="hBoxSearchHeaderAdmin" alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="313.0">
                <children>
-                  <TextField fx:id="txtSearchAdminManage" prefHeight="31.0" prefWidth="274.0" promptText="Search" text="🔍 Search..." />
-               </children>
-            </HBox>
-            <HBox fx:id="hBoxEventHead" alignment="CENTER" maxHeight="45.0" maxWidth="313.0" prefHeight="45.0" prefWidth="313.0">
-               <children>
-                  <Label fx:id="labelManageEventCoorAdmin" prefHeight="18.0" prefWidth="174.0" text="Event Coordinator">
-                     <padding>
-                        <Insets left="8.0" />
-                     </padding>
-                  </Label>
-                  <Button fx:id="btnCreateCoordinatorHeader" mnemonicParsing="false" prefHeight="27.0" prefWidth="115.0" text="Create new">
+                  <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
-                        <Insets right="16.0" />
+                        <Insets left="8.0" />
                      </HBox.margin>
-                  </Button>
+                     <image>
+                        <Image url="@../../pictures/Link.png" />
+                     </image></ImageView>
+                  <Label fx:id="labelManageEventCoorAdmin" alignment="CENTER" prefHeight="19.0" prefWidth="97.0" text="Assign event">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
                <HBox.margin>
-                  <Insets />
+                  <Insets bottom="20.0" top="30.0" />
                </HBox.margin>
             </HBox>
          </children>
          <BorderPane.margin>
-            <Insets bottom="16.0" />
+            <Insets bottom="16.0" left="50.0" />
          </BorderPane.margin>
       </HBox>
    </top>

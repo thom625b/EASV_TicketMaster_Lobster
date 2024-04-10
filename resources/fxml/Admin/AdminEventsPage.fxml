@@ -12,67 +12,56 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderEventsAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" styleClass="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminEventsPageController">
+<BorderPane fx:id="borderEventsAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" styleClass="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminEventsPageController">
    <top>
       <VBox prefHeight="93.0" prefWidth="779.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox>
+            <HBox prefHeight="50.0" prefWidth="776.0">
                <children>
-                  <VBox>
+                  <HBox fx:id="hBoxCoorAdminTop" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
                      <children>
-                        <HBox fx:id="hBoxCoorAdminTop" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="779.0">
-                           <children>
-                              <TextField fx:id="txtSearchAdminEvents" prefHeight="27.0" prefWidth="318.0" promptText="🔍 Search...">
-                                 <HBox.margin>
-                                    <Insets left="8.0" />
-                                 </HBox.margin>
-                              </TextField>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="hBoxCoorAdminColor" prefHeight="58.0" prefWidth="779.0">
-                           <children>
-                              <HBox fx:id="hBoxeventsAdminSec" alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="231.0">
-                                 <children>
-                                    <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../pictures/EventSymbol.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="8.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label fx:id="lblEventsAdmin" prefHeight="24.0" prefWidth="106.0" text="Events">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin></Label>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets bottom="8.0" left="8.0" top="8.0" />
-                                 </HBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="538.0">
-                                 <children>
-                                    <ImageView fitHeight="62.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../pictures/EASYDVEST.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets right="70.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
+                        <TextField fx:id="txtSearchAdminEvents" prefHeight="45.0" prefWidth="327.0" promptText="🔍 Search...">
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
-                  </VBox>
+                  </HBox>
+                  <HBox fx:id="hBoxeventsAdminSec" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="450.0">
+                     <children>
+                        <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../pictures/EventSymbol.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="lblEventsAdmin" prefHeight="26.0" prefWidth="76.0" text="Events">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Button fx:id="btnCreateNewEvent" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Create new">
+                           <HBox.margin>
+                              <Insets left="50.0" right="8.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="16.0" right="70.0" />
+                     </HBox.margin>
+                  </HBox>
                </children>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="16.0" left="50.0" top="16.0" />
+         </BorderPane.margin>
       </VBox>
    </top>
    <center>
-      <TableView fx:id="tblViewAdminEvents" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tblViewAdminEvents" BorderPane.alignment="CENTER" prefHeight="500.0" prefWidth="808.0">
          <columns>
             <TableColumn fx:id="colAdminEventId" prefWidth="75.0" text="ID" visible="false" />
             <TableColumn fx:id="colEventAdmin" prefWidth="156.0001220703125" text="Event" />
@@ -95,11 +84,18 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
          <BorderPane.margin>
-            <Insets bottom="8.0" left="8.0" right="8.0" />
+            <Insets left="50.0" />
          </BorderPane.margin>
       </TableView>
    </center>
    <bottom>
-      <HBox fx:id="hboxCoorBottom" prefHeight="70.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
+      <HBox fx:id="hboxCoorBottom" prefHeight="70.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </bottom>
+   <right>
+      <VBox prefHeight="367.0" prefWidth="70.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </right>
 </BorderPane>

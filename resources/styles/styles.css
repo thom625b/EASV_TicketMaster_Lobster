@@ -154,13 +154,11 @@
 }
 
 #hBoxCoorAdminColor, #hboxCoorBottom {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F5F5F5;
 }
 
-
-
 #bordercoorAdmin {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F5F5F5;
 }
 
 #tblViewCoorAdmin .column-header-background .filler,
@@ -169,7 +167,6 @@
     -fx-background-color: white;
     -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
     -fx-border-width: 0 0 1 0;
-
 }
 
 #invisbleTableColumnAdminUsersPage {
@@ -180,10 +177,10 @@
     -fx-text-fill: #108CDC;
 }
 
-
 #tblViewCoorAdmin {
     -fx-table-cell-border-color: transparent;
 }
+
 #tblViewCoorAdmin:even {
     -fx-background-color: #ffffff;
 }
@@ -202,45 +199,119 @@
     -fx-text-fill: #CCCCCC;
 }
 
+/* Admin: event page
+---------------------------------------------------------------------------------------------------------------*/
+
+#borderEventsAdmin {
+    -fx-background-color: #F0F0F6;
+}
+
+
+#txtTopCoorEventPage {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#btnCreateNewEvent {
+    -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+    -fx-background-radius: 15px;
+}
+
+#btnCreateNewEvent:hover {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+#hBoxeventsAdminSec {
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+}
+
+#txtSearchAdminEvents {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#tblEventTable .column-header-background .filler,
+#tblEventTable .column-header-background .column-header {
+    -fx-background-color: transparent;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+#tblEventTable .column-header {
+    -fx-min-height: 50px;
+}
+
+#btnRefreshCoorEvent {
+    -fx-background-color: #363062;
+    -fx-text-fill: white;
+    -fx-background-radius: 15px;
+}
+
+#btnRefreshCoorEvent:hover{
+    -fx-text-fill: #CCCCCC;
+}
+
+#invisbleTableColumn {
+    -fx-padding: 20px;
+}
+
+#tblEventTable {
+    -fx-table-cell-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#tblEventTable .table-cell {
+    -fx-text-fill: #363062; /* Change the text color in table cells */
+}
+
+#tblEventTable:even {
+    -fx-background-color: #ffffff;
+}
+
+#tblEventTable:odd {
+    -fx-background-color: #f2f2f2;
+}
+
+
+
 /*  Admin: create Coordinator/Admin
 ---------------------------------------------------------------------------------------------------------------*/
 
 #borderBackCreate {
-    -fx-background-color: #F0F0F6;
+    -fx-background-color: #F5F5F5;
 }
 
-#vBoxCenterCreate, #hBoxAdminProfileCreate {
-    -fx-background-color:white;
+#vBoxCenterCreate {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
     -fx-background-radius: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
-#lblEvenCoordinatorAdmin {
-    -fx-text-fill: #363062;
+#lblEventCoordinatorAdminUpdate {
     -fx-font-weight: bold;
     -fx-font-size: 14px;
 }
 
 #hBoxAdminProfileCreate {
-    -fx-background-color: white;
+    -fx-background-color:white;
+    -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
-#btnCreateCoordinator {
-    -fx-background-color: #108CDC;
-    -fx-text-fill: white;
-    -fx-font-size: 16px;
-    -fx-background-radius: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
-}
-
-#lblFirstNameCreate, #lblEmailCreate, #lblLarstnameCreate, #lblPasswordCreate, #lblRoleCreate {
+#lblFirstNameCreate, #lblEmailCreate, #lblLastnameCreate, #lblPasswordCreate, #lblRoleCreate {
     -fx-font-weight: bold;
     -fx-font-size: 14px;
     -fx-text-fill: #363062;
 }
 
-#lblAdminCreateNewCoordinator {
+#lblAdminUpdateNewCoordinator {
     -fx-font-weight: bold;
     -fx-font-size: 25px;
 }
@@ -249,76 +320,16 @@
     -fx-text-fill: #363062;
 }
 
-#spImageAdmin {
-    -fx-border-color: #F9F9F9 ;
-    -fx-border-radius: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
-}
-
 #CreatecomboRole {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
     -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-text-fill: #363062;
+    -fx-border-color: #4D4C7D;
+    -fx-border-radius: 15px;
 }
 
-#CreatecomboRole:hover {
-    -fx-background-color: #CCCCCC;
-    -fx-background-radius: 15px;
-}
-
-/*  Admin: create Coordinator/Admin
----------------------------------------------------------------------------------------------------------------*/
-
-#borderBackUpdate {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
-}
-
-#vBoxCenterUpdate {
-    -fx-background-color: white;
-}
-
-#lblEventCoordinatorAdminUpdate {
-
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-}
-
-#hBoxAdminProfileUpdate {
-    -fx-background-color: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
-}
-
-#btnUpdateCoordinator {
+#btnCreateCoordinator {
     -fx-background-color: #108CDC;
-}
-
-#btnDeleteUser {
-    -fx-background-color: #F99417;
-}
-
-#lblFirstNameUpdate, #lblEmailUpdate, #lblLarstnameUpdate, #lblPasswordUpdate, #lblRoleUpdate {
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-}
-
-#lblAdminUpdateNewCoordinator {
-    -fx-font-weight: bold;
-    -fx-font-size: 25px;
-}
-
-#UpdateFirstName, #txtUpdateLastName, #txtUpdateEmail, #txtUpdatePassword {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-text-fill: black;
-}
-
-#UpdatecomboRole {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-text-fill: white;
 }
 
 /*  Admin: Manage Coordinator Events
@@ -335,14 +346,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
-#txtSearchAdminManage {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-text-fill: #4D4C7D;
-    -fx-prompt-text-fill: #4D4C7D;
-    -fx-font-size: 14px;
-
-}
 
 #btnCreateCoordinatorHeader {
     -fx-background-color: transparent;
@@ -400,75 +403,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
-/*  Admin Coordinators
----------------------------------------------------------------------------------------------------------------*/
 
-.table-cell {
-    -fx-alignment: CENTER;
-}
-
-#hBoxCoorAdminTop {
-    -fx-background-color: white;
-}
-
-#txtSearchAdminEvents {
-    -fx-background-color: rgba(255, 255, 255, 0.5);
-    -fx-background-insets: 0;
-}
-
-#hBoxeventsAdminSec {
-    -fx-background-color: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
-}
-
-#lblEventsAdmin {
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-}
-
-
-#borderEventsAdmin {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
-}
-
-#tblViewAdminEvents .column-header-background .filler,
-#tblViewAdminEvents .column-header-background .column-header {
-    -fx-background-color: transparent;
-    -fx-background-color: white;
-    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
-    -fx-border-width: 0 0 1 0;
-
-}
-
-#invisbleTableColumnAdmin {
-    -fx-padding: 20px;
-}
-
-
-#tblViewAdminEvents .column-header .label {
-    -fx-text-fill: #108CDC;
-}
-
-#tblViewAdminEvents {
-    -fx-table-cell-border-color: transparent;
-}
-#tblViewAdminEvents:even {
-    -fx-background-color: #ffffff;
-}
-
-#tblViewAdminEvents:odd {
-    -fx-background-color: #f2f2f2;
-}
-
-#btnRefreshAdminEvents {
-    -fx-background-color: #363062;
-    -fx-text-fill: white;
-    -fx-background-radius: 15px;
-}
-
-#btnRefreshAdminEvents{
-    -fx-text-fill: #CCCCCC;
-}
 
 /*  Admin InsertPicture
 ---------------------------------------------------------------------------------------------------------------*/
@@ -542,7 +477,7 @@
 }
 
 
-/* Coordinator - CoordinatorEventPage
+/* Coordinator - EventPage
 ---------------------------------------------------------------------------------------------------------------*/
 
 #BPCoorEventPage {
@@ -589,14 +524,11 @@
     -fx-background-color: white;
     -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
     -fx-border-width: 0 0 1 0;
-
 }
-
 
 #tblEventTable .column-header {
     -fx-min-height: 50px;
 }
-
 
 #btnRefreshCoorEvent {
     -fx-background-color: #363062;
@@ -818,8 +750,6 @@
     -fx-border-color: #F99417;
     -fx-border-radius: 15px;
 }
-
-
 
 #btnEditSaveEvent {
     -fx-text-fill: #FFFFFF;

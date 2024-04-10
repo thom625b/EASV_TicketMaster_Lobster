@@ -38,7 +38,7 @@
                         </HBox>
                         <HBox spacing="10.0">
                            <children>
-                              <Label fx:id="lblLarstnameCreate" prefHeight="18.0" prefWidth="90.0" text="Last Name:" />
+                              <Label fx:id="lblLastnameCreate" prefHeight="18.0" prefWidth="90.0" text="Last Name:" />
                               <TextField fx:id="txtCreateLastName" prefWidth="160.0" />
                            </children>
                            <VBox.margin>
