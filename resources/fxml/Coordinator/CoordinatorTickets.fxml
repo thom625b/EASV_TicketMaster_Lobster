@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="BPCoordinatorEventTickets" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
+<BorderPane fx:id="BPCoordinatorEventTickets" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="70.0" BorderPane.alignment="CENTER" />
    </bottom>
@@ -181,7 +181,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnCreateNewCoordinatorTicket" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Create new">
+                        <Button fx:id="btnCreateNewCoordinatorTicket" mnemonicParsing="false" onAction="#createNewEvent" prefHeight="26.0" prefWidth="92.0" text="Create new">
                            <HBox.margin>
                               <Insets bottom="8.0" left="32.0" right="24.0" top="8.0" />
                            </HBox.margin>

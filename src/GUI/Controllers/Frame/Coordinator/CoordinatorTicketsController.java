@@ -159,5 +159,8 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
 
-
+    @FXML
+    public void createNewEvent(ActionEvent actionEvent) {
+        CoordinatorFrameController.getInstance().openPageCoordinatorCreateEventPage();
+    }
 }
