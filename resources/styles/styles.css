@@ -779,7 +779,7 @@
 /* CoordinatorEditEventPage
 ---------------------------------------------------------------------------------------------------------------*/
 #BPEditEvents {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F5F5F5;
 }
 
 #VboxBorderCenterEditEvent {

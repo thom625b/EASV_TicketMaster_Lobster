@@ -15,12 +15,7 @@
     <top>
       <VBox>
          <children>
-            <HBox prefHeight="20.0">
-               <VBox.margin>
-                  <Insets left="16.0" right="8.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="195.0">
                <children>
                       <Label fx:id="lblEventHeadlineEdit" prefHeight="48.0" prefWidth="310.0" text="Edit Event ">
                           <font>
@@ -30,15 +25,18 @@
                         <Insets />
                      </HBox.margin>
                      <padding>
-                        <Insets left="32.0" />
+                        <Insets left="8.0" />
                      </padding>
                       </Label>
                </children>
                <VBox.margin>
-                  <Insets bottom="16.0" left="16.0" right="8.0" top="16.0" />
+                  <Insets bottom="20.0" top="30.0" />
                </VBox.margin>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="16.0" left="50.0" />
+         </BorderPane.margin>
       </VBox>
     </top>
     <center>
@@ -50,12 +48,12 @@
                             <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="45.0">
                            <VBox.margin>
-                              <Insets bottom="8.0" top="8.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
-                        <VBox prefHeight="320.0">
+                        <VBox prefHeight="320.0" spacing="10.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="26.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
                                  <children>
                                               <Label fx:id="lblEventTitleEdit" prefHeight="18.0" prefWidth="120.0" text="Event Title:">
                                        <opaqueInsets>
@@ -64,9 +62,6 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
-                                       <padding>
-                                          <Insets left="8.0" />
-                                       </padding>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -81,10 +76,10 @@
                                               </TextField>
                                  </children>
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT">
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
                                               <Label fx:id="lblEventDesignEdit" prefHeight="18.0" prefWidth="120.0" text="Event Design:">
                                        <opaqueInsets>
@@ -93,9 +88,6 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
-                                       <padding>
-                                          <Insets left="8.0" />
-                                       </padding>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -110,10 +102,10 @@
                                               </TextField>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="16.0" />
+                                    <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT">
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
                                               <Label fx:id="lblEventAddressEdit" prefHeight="18.0" prefWidth="120.0" text="Address:">
                                        <opaqueInsets>
@@ -122,9 +114,6 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
-                                       <padding>
-                                          <Insets left="8.0" />
-                                       </padding>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -139,10 +128,10 @@
                                               </TextField>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="16.0" />
+                                    <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="160.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="160.0" spacing="10.0">
                                  <children>
                                               <Label fx:id="lblEventCityEdit" prefHeight="18.0" prefWidth="120.0" text="City:">
                                        <opaqueInsets>
@@ -151,9 +140,6 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
-                                       <padding>
-                                          <Insets left="8.0" />
-                                       </padding>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -168,10 +154,10 @@
                                               </TextField>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="16.0" />
+                                    <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT">
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
                                               <Label fx:id="lblEventPostalCodeEdit" prefHeight="18.0" prefWidth="120.0" text="Postal code:">
                                        <opaqueInsets>
@@ -180,9 +166,6 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
-                                       <padding>
-                                          <Insets left="8.0" />
-                                       </padding>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -197,10 +180,10 @@
                                               </TextField>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="16.0" />
+                                    <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT">
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
                                     <Label fx:id="lblEventStartTimeEdit" prefHeight="18.0" prefWidth="120.0" text="Start time: ">
                                        <opaqueInsets>
@@ -209,9 +192,6 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
-                                       <padding>
-                                          <Insets left="8.0" />
-                                       </padding>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -226,10 +206,10 @@
                                     </TextField>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="16.0" />
+                                    <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT">
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
                                     <Label fx:id="lblEventEndTimeEdit" prefHeight="18.0" prefWidth="120.0" text="End Time:">
                                        <opaqueInsets>
@@ -238,9 +218,6 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
-                                       <padding>
-                                          <Insets left="8.0" />
-                                       </padding>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -255,10 +232,10 @@
                                     </TextField>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="16.0" />
+                                    <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="250.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="250.0" spacing="10.0">
                                  <children>
                                               <Label fx:id="lblEventStartDateEdit" prefHeight="18.0" prefWidth="120.0" text="Start date:">
                                        <opaqueInsets>
@@ -267,9 +244,6 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
-                                       <padding>
-                                          <Insets left="8.0" />
-                                       </padding>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -284,7 +258,7 @@
                                               </DatePicker>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="16.0" />
+                                    <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
                            </children>
@@ -296,7 +270,7 @@
                         </HBox>
                             </children>
                      <HBox.margin>
-                        <Insets left="24.0" />
+                        <Insets />
                      </HBox.margin>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefWidth="348.0">
@@ -364,7 +338,7 @@
                 </HBox>
             </children>
          <BorderPane.margin>
-            <Insets left="16.0" />
+            <Insets left="50.0" />
          </BorderPane.margin>
         </VBox>
     </center>
