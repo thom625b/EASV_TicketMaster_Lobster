@@ -43,30 +43,25 @@
                   </TableView>
             </children>
          <BorderPane.margin>
-            <Insets left="16.0" />
+            <Insets left="50.0" />
          </BorderPane.margin>
         </HBox>
     </center>
     <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="hboxTopCoorEventPage" prefHeight="20.0" prefWidth="776.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
               <HBox prefHeight="0.0" prefWidth="776.0">
                   <children>
                       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
                      <children>
-                        <TextField fx:id="txtTopCoorEventPage" prefHeight="26.0" prefWidth="327.0" promptText="🔍 Search...">
+                        <TextField fx:id="txtTopCoorEventPage" prefHeight="45.0" prefWidth="327.0" promptText="🔍 Search...">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </TextField>
                      </children>
                      <HBox.margin>
-                        <Insets left="16.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                   </HBox>
                       <HBox fx:id="hboxHeaderCreate" alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="450.0">
@@ -94,7 +89,7 @@
                               </Button>
                           </children>
                      <HBox.margin>
-                        <Insets bottom="16.0" left="16.0" right="70.0" top="16.0" />
+                        <Insets bottom="16.0" left="8.0" right="70.0" top="16.0" />
                      </HBox.margin>
                       </HBox>
                   </children>

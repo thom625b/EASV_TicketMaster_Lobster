@@ -7,22 +7,28 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPicturePageCoor" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
+<BorderPane fx:id="borderPicturePageCoor" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorFrameController">
    <center>
       <HBox fx:id="hboxCenter" alignment="CENTER" prefHeight="316.0" prefWidth="598.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="402.0" prefWidth="542.0">
                <children>
-                  <ImageView fx:id="imgNewUserPictureCoordinator" fitHeight="215.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../pictures/Customer.png" />
-                     </image></ImageView>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="103.0" prefWidth="531.0">
+                  <StackPane fx:id="spImage">
                      <children>
-                        <Button fx:id="btnCenterLeft" mnemonicParsing="false" onAction="#loadNewUserPicture" prefHeight="60.0" prefWidth="140.0" text="Load picture" />
-                        <Button fx:id="btnCenterRight" mnemonicParsing="false" onAction="#insertNewUserPicture" prefHeight="60.0" prefWidth="140.0" text="Insert picture" />
+                        <ImageView fx:id="imgNewUserPictureCoordinator" fitHeight="215.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../pictures/Customer.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="103.0" prefWidth="531.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#loadNewUserPicture" prefHeight="45.0" prefWidth="144.0" text="Load picture" />
+                        <Button fx:id="btnInsert" mnemonicParsing="false" onAction="#insertNewUserPicture" prefHeight="45.0" prefWidth="206.0" text="Insert picture" />
                      </children>
                      <padding>
                         <Insets bottom="8.0" right="8.0" />
@@ -31,6 +37,9 @@
                </children>
             </VBox>
          </children>
+         <BorderPane.margin>
+            <Insets left="50.0" />
+         </BorderPane.margin>
       </HBox>
    </center>
    <top>
@@ -38,30 +47,27 @@
          <children>
             <HBox fx:id="hboxHeader" alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="200.0">
                <HBox.margin>
-                  <Insets bottom="16.0" left="16.0" top="16.0" />
+                  <Insets bottom="16.0" top="16.0" />
                </HBox.margin>
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="8.0" />
                      </HBox.margin>
-                  </ImageView>
-                  <Label fx:id="lblHeader" alignment="CENTER" text="Change Picture" />
-               </children>
-            </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="150.0" prefWidth="568.0">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../pictures/EASYDVEST.png" />
+                        <Image url="@../../pictures/Customer.png" />
                      </image>
-                     <HBox.margin>
-                        <Insets right="68.0" />
-                     </HBox.margin>
                   </ImageView>
+                  <Label fx:id="lblHeader" alignment="CENTER" text="Change Picture">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin></Label>
                </children>
             </HBox>
-         </children></HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="50.0" />
+         </BorderPane.margin></HBox>
    </top>
    <right>
       <VBox prefHeight="294.0" prefWidth="80.0" BorderPane.alignment="CENTER" />
