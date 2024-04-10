@@ -12,18 +12,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderBackCreate" maxHeight="600.0" maxWidth="776.0" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminHomePageController">
+<BorderPane fx:id="borderBackCreate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminHomePageController">
    <center>
       <VBox fx:id="vBoxCenterCreate" prefHeight="449.0" prefWidth="676.0">
          <children>
-            <Label fx:id="lblAdminCreateNewCoordinator" alignment="CENTER" prefHeight="18.0" prefWidth="676.0" text="Create new Coordinator">
-               <VBox.margin>
-                  <Insets bottom="8.0" top="24.0" />
-               </VBox.margin>
-            </Label>
-            <HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="251.0" prefWidth="404.0" spacing="10.0">
                      <children>
@@ -37,7 +33,7 @@
                               <TextField fx:id="txtCreateFirstName" prefWidth="160.0" />
                            </children>
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets left="10.0" />
                            </VBox.margin>
                         </HBox>
                         <HBox spacing="10.0">
@@ -46,7 +42,7 @@
                               <TextField fx:id="txtCreateLastName" prefWidth="160.0" />
                            </children>
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets left="10.0" />
                            </VBox.margin>
                         </HBox>
                         <HBox spacing="10.0">
@@ -55,7 +51,7 @@
                               <TextField fx:id="txtCreateEmail" prefHeight="26.0" prefWidth="161.0" />
                            </children>
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets left="10.0" />
                            </VBox.margin>
                         </HBox>
                         <HBox spacing="10.0">
@@ -64,7 +60,7 @@
                               <PasswordField fx:id="txtCreatePassword" prefHeight="26.0" prefWidth="160.0" />
                            </children>
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets left="10.0" />
                            </VBox.margin>
                         </HBox>
                         <HBox spacing="10.0">
@@ -80,7 +76,7 @@
                               </ComboBox>
                            </children>
                            <VBox.margin>
-                              <Insets />
+                              <Insets left="10.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
@@ -88,32 +84,42 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <ImageView fitHeight="229.0" fitWidth="336.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../pictures/Customer.png" />
-                     </image>
+                  <StackPane fx:id="spImageAdmin">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
-                  </ImageView>
+                     <children>
+                        <ImageView fitHeight="229.0" fitWidth="336.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../pictures/Customer.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
                </children>
                <VBox.margin>
                   <Insets top="24.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="72.0" prefWidth="676.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="72.0" prefWidth="676.0">
                <children>
-                  <Button fx:id="btnCreateCoordinator" onAction="#handleAddUser" prefHeight="74.0" prefWidth="146.0" text="Add User">
+                  <Button fx:id="btnCreateCoordinator" onAction="#handleAddUser" prefHeight="45.0" prefWidth="144.0" text="Add User">
                      <HBox.margin>
-                        <Insets bottom="8.0" right="8.0" />
+                        <Insets bottom="8.0" />
                      </HBox.margin></Button>
                </children>
+               <VBox.margin>
+                  <Insets right="16.0" />
+               </VBox.margin>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets left="50.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
    <top>
-      <HBox fx:id="hboxTopCreateCoor" prefHeight="94.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="hboxTopCreateCoor" alignment="CENTER_LEFT" prefHeight="106.0" prefWidth="776.0" spacing="48.0" BorderPane.alignment="CENTER">
          <children>
             <HBox fx:id="hBoxAdminProfileCreate" alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="231.0">
                <children>
@@ -122,7 +128,7 @@
                         <Image url="@../../pictures/Customer.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblEvenCoordinatorAdmin" prefHeight="48.0" prefWidth="231.0" text="Event Coordinator">
+                  <Label fx:id="lblEvenCoordinatorAdmin" prefHeight="48.0" prefWidth="231.0" text="Create User">
                      <HBox.margin>
                         <Insets left="8.0" />
                      </HBox.margin>
@@ -132,28 +138,22 @@
                   </Label>
                </children>
                <HBox.margin>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="30.0" />
+                  <Insets bottom="20.0" top="30.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="94.0" prefWidth="556.0">
-               <children>
-                  <ImageView fitHeight="72.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../pictures/EASYDVEST.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets right="68.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="16.0" left="50.0" />
+         </BorderPane.margin>
       </HBox>
    </top>
    <right>
-      <VBox fx:id="vBoxRightCreateCoor" prefHeight="446.0" prefWidth="70.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="423.0" prefWidth="50.0" visible="false" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></VBox>
    </right>
    <bottom>
-      <HBox prefHeight="70.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="46.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

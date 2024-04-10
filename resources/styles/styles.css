@@ -206,15 +206,17 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #borderBackCreate {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F0F0F6;
 }
 
-#vBoxCenterCreate {
-    -fx-background-color: white;
+#vBoxCenterCreate, #hBoxAdminProfileCreate {
+    -fx-background-color:white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
 #lblEvenCoordinatorAdmin {
-
+    -fx-text-fill: #363062;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
 }
@@ -226,11 +228,16 @@
 
 #btnCreateCoordinator {
     -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
 }
 
 #lblFirstNameCreate, #lblEmailCreate, #lblLarstnameCreate, #lblPasswordCreate, #lblRoleCreate {
     -fx-font-weight: bold;
     -fx-font-size: 14px;
+    -fx-text-fill: #363062;
 }
 
 #lblAdminCreateNewCoordinator {
@@ -239,9 +246,13 @@
 }
 
 #txtCreateFirstName, #txtCreateLastName, #txtCreateEmail, #txtCreatePassword {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-text-fill: black;
+    -fx-text-fill: #363062;
+}
+
+#spImageAdmin {
+    -fx-border-color: #F9F9F9 ;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
 #CreatecomboRole {
@@ -249,6 +260,12 @@
     -fx-font-weight: bold;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-text-fill: #363062;
+}
+
+#CreatecomboRole:hover {
+    -fx-background-color: #CCCCCC;
+    -fx-background-radius: 15px;
 }
 
 /*  Admin: create Coordinator/Admin

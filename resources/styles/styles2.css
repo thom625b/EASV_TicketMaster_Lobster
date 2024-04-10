@@ -1,0 +1,387 @@
+/*  general CSS
+---------------------------------------------------------------------------------------------------------------*/
+
+.button:hover{
+    -fx-background-color: #CCCCCC;
+    -fx-background-radius: 15px;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #363062 ;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.combo-box .cell {
+    -fx-text-fill: #363062;
+    -fx-font-size: 12px;
+}
+
+.combo-box .list-cell:hover{
+    -fx-background-color: #CCCCCC;
+}
+
+.text-field{
+    -fx-text-fill: #363062;
+    -fx-background-radius: 15px;
+}
+
+.text-area{
+    -fx-text-fill: #363062;
+
+
+}
+/*  Tables
+---------------------------------------------------------------------------------------------------------------*/
+.table-cell{
+    -fx-text-fill: #363062;
+}
+
+.column-header{
+    -fx-min-height: 50px;
+}
+
+.table-view{
+    -fx-table-cell-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+
+.column-header-background .filler,
+.column-header-background .column-header {
+    -fx-background-color: transparent;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.06) transparent;
+    -fx-border-width: 0 0 1 0;
+
+}
+
+#tblEventTable:even {
+    -fx-background-color: #ffffff;
+}
+
+#tblEventTable:odd {
+    -fx-background-color: #f2f2f2;
+}
+
+
+/*  DatePicker
+---------------------------------------------------------------------------------------------------------------*/
+
+.date-picker .day-cell:filled {
+    -fx-border-color: #FBBB2C;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+.date-picker .date-cell {
+    -fx-border-color: #108CDC;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+.date-picker .day-name-cell {
+    -fx-border-radius: 15px;
+    -fx-text-fill: #363062;
+    -fx-font-weight: bold;
+}
+
+.date-picker .calendar-pane,
+.date-picker .month-year-pane{
+    -fx-background-color: #F0F0F6;
+}
+
+.date-picker .day-cell:hover{
+    -fx-border-color: #363062;
+    -fx-border-radius: 15px;
+}
+
+
+/*  Buttons
+---------------------------------------------------------------------------------------------------------------*/
+.button:hover{
+    -fx-background-color: #CCCCCC;
+    -fx-background-radius: 15px;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #363062 ;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#btnSubmitAdmin,
+#btnSubmitEvent,
+#btnAdminAddToEvent,
+#btnCreateNewEvent,
+#btnCoordinatorAddToEvent,
+#btnAddNewEvent,
+#btnEditSaveEvent,
+#btnCreateNewCoordinatorTicket,
+#btnBuyTicketCoordinatorTicket,
+#btnCoordinatorAddToEvent,
+#btnCreateCostumer,
+#btnInsertPicture,
+#btnCenterRight,
+#btnCreateCoordinator{
+    -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+}
+
+#btnCreateNewEvent:hover,
+#btnSubmitAdmin:hover,
+#btnSubmitEvent:hover,
+#btnAdminAddToEvent:hover,
+#btnCoordinatorAddToEvent:hover,
+#btnAddNewEvent:hover,
+#btnEditSaveEvent:hover,
+#btnCreateNewCoordinatorTicket:hover,
+#btnBuyTicketCoordinatorTicket:hover,
+#btnCoordinatorAddToEvent:hover,
+#btnCreateCostumer:hover,
+#btnInsertPicture:hover,
+#btnCenterRight:hover,
+#btnCreateCoordinator:hover{
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+#btnDeleteUser,
+#btnAdminCloseManage,
+#btnLoadPicture,
+#btnCenterLeft,
+#btnCoordinatorCloseManage,
+#btnUploadImageToEvent,
+#btnEditUploadImageToEvent,
+#btnEditDeleteEvent,
+#btnCloseCoordinatorTicket,
+#btnClose
+{
+    -fx-border-color: #FBBB2C;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #FBBB2C;
+}
+
+#btnDeleteUser:hover,
+#btnAdminCloseManage:hover,
+#btnLoadPicture:hover,
+#btnCenterLeft:hover,
+#btnCoordinatorCloseManage:hover,
+#btnUploadImageToEvent:hover,
+#btnEditUploadImageToEvent:hover,
+#btnEditDeleteEvent:hover,
+#btnCloseCoordinatorTicket:hover,
+#btnClose:hover{
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+#btnRefreshCoor,
+#btnRefreshAdminEvents,
+#btnRefreshCoorEvent {
+    -fx-background-color: #363062;
+    -fx-background-radius: 15px;
+    -fx-text-fill: white;
+}
+
+#btnRefreshCoor:hover,
+#btnRefreshAdminEvents:hover,
+#btnRefreshCoorEvent:hover {
+    -fx-text-fill: #8d87b7;
+}
+
+
+/*  Labels
+---------------------------------------------------------------------------------------------------------------*/
+.label{
+    -fx-text-fill: #363062;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+#lblHeaderTicket{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+}
+
+/*  borderpanes
+---------------------------------------------------------------------------------------------------------------*/
+#BPEditEvents,
+#BPCoordinatorEventTickets,
+#BPCoordinatorManageEvents,
+#bpCostumer,
+#BPCoordinatorManageEvents,
+#BPEditEvents,
+#BPCoordinatorEventTickets,
+#BPCoordinatorManageEvents,
+#BPCoordinatorManageEvents,
+#bpCostumer,
+#BPLoadPicture,
+#BPCoorEventPage,
+#frameCoorBorder,
+#frameAdminBorder,
+#borderBackCreate,
+#borderPicturePageCoor,
+#borderBackUpdate,
+#borderEventsAdmin,
+#bordercoorAdmin,
+#BPAdminManageCoor{
+    -fx-background-color: #F0F0F6;
+}
+
+/*  Hboxes
+---------------------------------------------------------------------------------------------------------------*/
+.hbox {
+    -fx-background-color: #FFFFFF;
+}
+
+/* skal laves i FXML Filen, CreatePicturePageCoordinator. det er de Hboxe der liiger i kanterne*/
+#HboxCreatePictureCoordinatorBottom,
+#HboxCreatePictureCoordinatorRight,
+#HboxCreatePictureCoordinatorTop,
+#hBoxCoorAdminTop,
+#hBoxSearchHeaderAdmin{
+    -fx-background-color: Transparent;
+}
+
+
+#hBoxManageCoorEvent,
+#hBoxEventHead,
+#hBoxeventsAdminSec,
+#hboxInsertPictcureAdmin,
+#hBoxChangePictureAdmin,
+#hboxCenter,
+#hboxHeader,
+#hboxTopCoorEventPage,
+#hboxHeaderCreate,
+#hBoxCoorManageEven,
+#hboxCreateEvent,
+#hBoxAdminProfileCreate,
+#HboxBorderTopEditEvent, #HboxEditEventLogo,
+#HboxTopCoordinatorTickets,
+#hBoxCoordinatorManageEvent,
+#hBoxManageCoorEvent,
+#hBoxEventHead,
+#hboxHeaderCostumer,
+#hBoxCoorAdminSec{
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+    -fx-background-radius: 15px;
+}
+
+/*  Vboxes
+---------------------------------------------------------------------------------------------------------------*/
+.vbox {
+    -fx-background-color: #FFFFFF;
+}
+
+
+#vBoxCenterUpdate,
+#vBoxCenterMangageCoorEvent,
+#vBoxCenterAdminMangageEvents,
+#vBoxCoordinatorCenterCreate,
+#VboxBorderCenterEditEvent,
+#VboxCenterCoordinatorTickets,
+#vBoxCenterAdminMangageEvents,
+#vBoxLeft,
+#vBoxRight,
+#vBoxCenterCreate{
+    -fx-background-color:white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+}
+
+#vBoxCoordBack, vBoxadminBack {
+    -fx-background-color:white;
+}
+
+/*  stackpanes
+---------------------------------------------------------------------------------------------------------------*/
+#adminStackPane,
+#coorStackPane,
+#adminStackPane{
+    -fx-background-color: #FFFFFF;
+}
+
+/* CSS til login side
+---------------------------------------------------------------------------------------------------------------*/
+
+#borderInside {
+    -fx-background-color: #F0F0F6;
+    -fx-background-radius: 8px;
+}
+
+#backBorder {
+    -fx-background-color: #DAE4EA;
+}
+
+#hBoxTop, #vBoxLeft, #hBoxBottom, #vBoxRight {
+    -fx-background-color: #DAE4EA;
+}
+#btnSubmitAdmin, #btnSubmitEvent {
+    -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
+}
+
+#btnSubmitAdmin:hover, #btnSubmitEvent:hover {
+    -fx-background-radius: 15px;
+    -fx-text-fill: #363062;
+}
+
+#adminPassword,#adminMail, #userPassword, #userMail {
+    -fx-background-radius: 15px;
+}
+
+#lblstatus {
+    -fx-background-color: #FBBB2C;
+    -fx-text-fill: #4D4C7D;
+    -fx-alignment: Center;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
+}
+
+#lblAdmin {
+
+    -fx-text-fill: #4D4C7D;
+    -fx-alignment: Center;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+
+}
+
+#lblUser {
+    -fx-text-fill: #4D4C7D;
+    -fx-alignment: Center;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+}
+
+
+.tab-pane {
+    -fx-tab-max-height: 0px;
+
+}
+
+.tab-pane .tab-header-area {
+    max-height: 0;
+    visibility: collapse;
+}
+
+#stackImg {
+    -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
+
+}
+
