@@ -131,7 +131,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
             throw new RuntimeException(e);
         }
     }
-
+    // AlertBox
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
