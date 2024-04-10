@@ -33,16 +33,16 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #borderInside {
-    -fx-background-color: #F0F0F6;
+    -fx-background-color: white;
     -fx-background-radius: 8px;
 }
 
 #backBorder {
-    -fx-background-color: #DAE4EA;
+    -fx-background-color: #F0F0F6;
 }
 
 #hBoxTop, #vBoxLeft, #hBoxBottom, #vBoxRight {
-    -fx-background-color: #DAE4EA;
+    -fx-background-color: #F0F0F6;
 }
 #btnSubmitAdmin, #btnSubmitEvent {
     -fx-background-color: #108CDC;
@@ -62,7 +62,7 @@
 }
 
 #lblstatus {
-    -fx-background-color: #FBBB2C;
+    -fx-background-color: #F99417;
     -fx-text-fill: #4D4C7D;
     -fx-alignment: Center;
     -fx-font-size: 16px;
@@ -71,12 +71,10 @@
 }
 
 #lblAdmin {
-
     -fx-text-fill: #4D4C7D;
     -fx-alignment: Center;
     -fx-font-size: 16px;
     -fx-font-weight: 700;
-
 }
 
 #lblUser {
@@ -89,7 +87,6 @@
 
 .tab-pane {
     -fx-tab-max-height: 0px;
-
 }
 
 .tab-pane .tab-header-area {
@@ -99,7 +96,6 @@
 
 #stackImg {
     -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
-
 }
 
 /*  AdminFrame
@@ -282,7 +278,7 @@
 }
 
 #btnDeleteUser {
-    -fx-background-color: #FBBB2C;
+    -fx-background-color: #F99417;
 }
 
 #lblFirstNameUpdate, #lblEmailUpdate, #lblLarstnameUpdate, #lblPasswordUpdate, #lblRoleUpdate {
@@ -366,10 +362,10 @@
 }
 
 #btnAdminCloseManage {
-    -fx-border-color: #FBBB2C;
+    -fx-border-color: #F99417;
     -fx-background-color: transparent;
     -fx-border-radius: 15px;
-    -fx-text-fill: #FBBB2C;
+    -fx-text-fill: #F99417;
 }
 
 #comboAdminManageEvent, #comboAdminManageName {
@@ -474,7 +470,7 @@
 }
 
 #btnLoadPicture {
-    -fx-background-color: #FBBB2C;
+    -fx-background-color: #F99417;
 }
 
 #btnInsertPicture {
@@ -491,16 +487,19 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #borderPicturePageCoor {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F0F0F6;
 }
 
 #hboxCenter {
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
     -fx-background-color: white;
+    -fx-background-radius: 15px;
 }
 
 #hboxHeader {
     -fx-background-color: white;
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+    -fx-background-radius: 15px;
 }
 
 #lblHeader {
@@ -508,12 +507,21 @@
     -fx-font-size: 14px;
 }
 
-#btnCenterLeft {
-    -fx-background-color: #FBBB2C;
+#btnLoad {
+    -fx-border-color: #F99417;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #F99417;
 }
 
-#btnCenterRight {
-    -fx-background-color: #108CDC ;
+#btnInsert {
+    -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+    -fx-background-radius: 15px;
+}
+
+#spImage {
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
 
@@ -604,62 +612,7 @@
     -fx-background-color: #f2f2f2;
 }
 
-/* --------------------- CoordinatorManageEvents */
-#BPCoordinatorManageEvents {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
-}
 
-#vBoxCenterAdminMangageEvents {
-    -fx-background-color:white;
-}
-
-#lblCoorManageHeader {
-    -fx-font-weight: bold;
-    -fx-font-size: 20px;
-}
-
-#btnCoordinatorsDropDown, #btnEventsDropDown {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-
-#btnCoordinatorAddToEvent {
-    -fx-background-color: #108CDC;
-    -fx-background-radius: 15px;
-    -fx-text-fill: white;
-}
-
-#btnCoordinatorAddToEvent {
-    -fx-background-radius: 15px;
-    -fx-text-fill: #363062;
-}
-
-#btnCoordinatorCloseManage {
-    -fx-background-color: #FBBB2C;
-}
-
-#hBoxCoorManageEvent {
-    -fx-background-color: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
-}
-
-#labelManageEventCoorAdmin {
-    -fx-text-fill: #363062;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-#labelManageEventCoorCoordinator {
-    -fx-text-fill: #363062;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-#imgProfilePictureAdmin {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
-}
 
 /*  Coordinator: Create Event
 ---------------------------------------------------------------------------------------------------------------*/
@@ -710,10 +663,10 @@
 
 
 #btnUploadImageToEvent {
-    -fx-border-color: #FBBB2C;
+    -fx-border-color: #F99417;
     -fx-background-color: transparent;
     -fx-border-radius: 15px;
-    -fx-text-fill: #FBBB2C;
+    -fx-text-fill: #F99417;
 }
 
 #lblEventDesign, #lblEventAddress, #lblEventCity, #lblEventZip, #lblEventTitle, #lblEventDate, #lblEventStartTime, #lblEventEndTime {
@@ -728,7 +681,7 @@
 
 
 .date-picker .day-cell:filled {
-    -fx-border-color: #FBBB2C;
+    -fx-border-color: #F99417;
     -fx-background-color: transparent;
     -fx-border-radius: 15px;
     -fx-text-fill: #363062;
@@ -763,25 +716,25 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #frameCoorBorder {
-    -fx-background-color: #FFFFFF; /* change background color */
+    -fx-background-color: #FFFFFF;
 }
 
 #coorStackPane {
-    -fx-background-color: #FFFFFF; /* change background color */
+    -fx-background-color: #FFFFFF;
 }
 
 #vBoxCoordBack {
-    -fx-background-color: #FFFFFF; /* change background color */
-    -fx-padding: 16px; /* adjust padding */
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 16px;
 }
 
 #imgCoordinatorFrame {
-    -fx-padding: 8px; /* adjust padding */
+    -fx-padding: 8px;
 }
 
 #btncoorLogout {
-    -fx-pref-height: 26px; /* adjust button height */
-    -fx-pref-width: 78px; /* adjust button width */
+    -fx-pref-height: 26px;
+    -fx-pref-width: 78px;
     -fx-background-color: transparent;
     -fx-border-color: #363062;
     -fx-text-fill: #363062;
@@ -791,7 +744,7 @@
 }
 
 #btncoorLogout:hover {
-    -fx-background-color: #CCCCCC; /* change hover background color */
+    -fx-background-color: #CCCCCC;
 }
 
 #lblChangeProfilePicture {
@@ -880,7 +833,7 @@
     -fx-background-radius: 15px;
 }
 
-#lblHeaderTicket {
+#HboxSearchBarCoordinatorTickets {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
@@ -988,10 +941,10 @@
 }
 
 #btnClose {
-    -fx-border-color: #FBBB2C;
+    -fx-border-color: #F99417;
     -fx-background-color: transparent;
     -fx-border-radius: 15px;
-    -fx-text-fill: #FBBB2C;
+    -fx-text-fill: #F99417;
 }
 
 #btnEventsDropDown, #btnCoordinatorsDropDown {

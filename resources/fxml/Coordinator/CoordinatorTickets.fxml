@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="BPCoordinatorEventTickets" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
+<BorderPane fx:id="BPCoordinatorEventTickets" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="70.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
       <VBox fx:id="VboxCenterCoordinatorTickets" alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="808.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="16.0" />
+            <Insets left="50.0" />
          </BorderPane.margin>
          <children>
             <VBox alignment="CENTER">
@@ -145,20 +145,30 @@
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="20.0" />
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="776.0">
                <children>
-                  <HBox fx:id="HboxSearchBarCoordinatorTickets" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
+                  <HBox fx:id="HboxSearchBarCoordinatorTickets" alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="409.0">
                      <HBox.margin>
-                        <Insets left="16.0" />
+                        <Insets bottom="16.0" left="50.0" top="16.0" />
                      </HBox.margin>
                      <children>
+                        <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../pictures/Combi%20Ticket.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                        </ImageView>
                         <Label fx:id="lblHeaderTicket" prefHeight="41.0" prefWidth="310.0" text="Ticket Sale">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                            <padding>
-                              <Insets left="32.0" />
+                              <Insets left="8.0" />
                            </padding>
                         </Label>
                      </children>

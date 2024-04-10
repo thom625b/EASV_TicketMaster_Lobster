@@ -30,7 +30,7 @@
             </TableView>
          </children>
          <BorderPane.margin>
-            <Insets left="16.0" />
+            <Insets left="50.0" />
          </BorderPane.margin>
       </VBox>
    </center>
@@ -40,12 +40,12 @@
             <HBox prefHeight="20.0" prefWidth="776.0" />
             <HBox prefHeight="0.0" prefWidth="776.0">
                <children>
-                  <HBox fx:id="hboxCostumer" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
+                  <HBox fx:id="hboxCostumer" alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="594.0">
                      <HBox.margin>
-                        <Insets left="16.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                      <children>
-                        <TextField fx:id="txtCoordSearch" prefHeight="26.0" prefWidth="367.0" promptText="🔍 Search...">
+                        <TextField fx:id="txtCoordSearch" prefHeight="45.0" prefWidth="367.0" promptText="🔍 Search...">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -59,7 +59,7 @@
                               <Insets left="8.0" />
                            </HBox.margin>
                            <image>
-                              <Image url="@../../pictures/Customer.png" />
+                              <Image url="@../../pictures/Budget.png" />
                            </image>
                         </ImageView>
                         <Label prefHeight="26.0" prefWidth="76.0" text="Costumer">
@@ -74,7 +74,7 @@
                         </Button>
                      </children>
                      <HBox.margin>
-                        <Insets bottom="16.0" left="16.0" right="70.0" top="16.0" />
+                        <Insets bottom="16.0" left="8.0" right="70.0" top="16.0" />
                      </HBox.margin>
                   </HBox>
                </children>

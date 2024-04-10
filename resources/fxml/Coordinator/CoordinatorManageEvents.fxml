@@ -90,6 +90,14 @@
       <children>
          <HBox fx:id="hBoxCoordinatorManageEvent" alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="313.0">
             <children>
+                  <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pictures/Link.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </ImageView>
                <Label fx:id="lblManageEventCoordinator" alignment="CENTER" prefHeight="19.0" prefWidth="97.0" text="Assign event">
                      <HBox.margin>
                         <Insets left="8.0" />
