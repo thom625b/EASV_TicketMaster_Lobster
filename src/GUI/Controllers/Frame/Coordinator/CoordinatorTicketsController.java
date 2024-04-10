@@ -1,12 +1,16 @@
 package GUI.Controllers.Frame.Coordinator;
 
+import BE.Costumers;
 import BE.Events;
+import BE.Users;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
+import GUI.Model.CustomersModel;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import GUI.Utility.PdfHandler;
 import com.google.zxing.WriterException;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -52,6 +56,9 @@ public class CoordinatorTicketsController implements IController, Initializable 
     private TextField lblNameTicket;
 
     private EventsModel eventsModel;
+    private CustomersModel customersModel;
+
+
 
     @FXML
     private TextField lblFirstnameTicket;
@@ -66,6 +73,14 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+
+    private void saveCustomer() throws SQLServerException, ApplicationWideException {
+        String customerEmail = lblEmailTicket.getText();
+        String customerFName = lblFirstnameTicket.getText();
+        String customerLName = lblLastnameTicket.getText();
+        Costumers customers = new Costumers(customerEmail, customerFName, customerLName);
+        customersModel.saveCustomer(customers);
     }
 
     @FXML
@@ -96,7 +111,6 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
             pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventType, eventImage, qrCodeImage);
 
-
             String directoryPath = "resources/Data/Pdf/" + selectedEvent.getEventName();
 
             File directory = new File(directoryPath);
@@ -107,8 +121,13 @@ public class CoordinatorTicketsController implements IController, Initializable 
             String destinationPath = directoryPath + "/" + fileName;
             pdfHandler.generatePDF(destinationPath);
             new Scene(root);
+            saveCustomer();
             showAlert("Ticket Purchase", "Ticket successfully purchased and saved to: " + destinationPath, Alert.AlertType.INFORMATION);
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLServerException e) {
+            throw new RuntimeException(e);
+        } catch (ApplicationWideException e) {
             throw new RuntimeException(e);
         }
     }
@@ -165,10 +184,12 @@ public class CoordinatorTicketsController implements IController, Initializable 
         try {
             eventsModel =new EventsModel();
             setupEventComboBox();
-
+            customersModel = new CustomersModel();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        } catch (SQLServerException e) {
             throw new RuntimeException(e);
         }
         initializeTicketTypes();

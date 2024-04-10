@@ -22,4 +22,8 @@ public class CostumersManager {
     public void updateCustomer(Costumers customer) throws ApplicationWideException {
         costumersDao.updateCostumer(customer);
     }
+
+    public Costumers saveCustomer(Costumers customers) throws SQLServerException, ApplicationWideException {
+       return costumersDao.saveCustomer(customers);
+    }
 }

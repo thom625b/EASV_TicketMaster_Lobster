@@ -33,4 +33,8 @@ public class CustomersModel {
         costumersManager.updateCustomer(customer);
 
     }
+
+    public Costumers saveCustomer(Costumers customers) throws SQLServerException, ApplicationWideException {
+        return costumersManager.saveCustomer(customers);
+    }
 }

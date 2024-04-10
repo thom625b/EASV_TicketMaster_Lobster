@@ -72,4 +72,42 @@ public class Costumers_DAO implements ICostumersDataAccess{
             throw new ApplicationWideException("Error updating customer", e);
         }
     }
+
+    public Costumers saveCustomer(Costumers customers) throws ApplicationWideException {
+        String sql = "INSERT INTO Costumer (costumerEmail, costumerFName, costumerLName) VALUES (?, ?, ?)";
+
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Set the parameters for the update based on the Costumers object
+            pstmt.setString(1, customers.getCostumerEmail());
+            pstmt.setString(2, customers.getCostumerFName());
+            pstmt.setString(3, customers.getCostumerLName());
+
+            // Execute the update
+            int affectedRows = pstmt.executeUpdate();
+
+            // Check if any rows were affected
+            if (affectedRows == 0) {
+                throw new ApplicationWideException("Inserting customer failed, no rows affected.");
+            }
+
+            // Retrieve the generated keys
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    // Get the generated ID from the ResultSet
+                    int id = rs.getInt(1);
+                    // Create a new Costumers object with the generated ID
+                    return new Costumers(customers.getCostumerEmail(), customers.getCostumerFName(), customers.getCostumerLName(), id);
+                } else {
+                    // If no generated keys were returned, throw an exception
+                    throw new ApplicationWideException("Inserting customer failed, no generated keys obtained.");
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new ApplicationWideException("Error inserting customer", e);
+        }
+    }
 }
+
