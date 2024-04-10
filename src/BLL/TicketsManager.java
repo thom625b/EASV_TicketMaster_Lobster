@@ -1,5 +1,6 @@
 package BLL;
 
+import BE.Costumers;
 import BE.Events;
 import CostumException.ApplicationWideException;
 import DAL.Tickets_DAO;
@@ -16,7 +17,7 @@ public class TicketsManager {
     }
 
 
-    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType) throws ApplicationWideException {
-        ticketsDao.saveTicketInformation(uuid, isValid, selectedEvent, ticketType);
+    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType, Costumers customer) throws ApplicationWideException {
+        ticketsDao.saveTicketInformation(uuid, isValid, selectedEvent, ticketType, customer);
     }
 }

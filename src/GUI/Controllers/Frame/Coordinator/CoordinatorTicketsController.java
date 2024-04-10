@@ -2,8 +2,6 @@ package GUI.Controllers.Frame.Coordinator;
 
 import BE.Costumers;
 import BE.Events;
-import BE.Tickets;
-import BE.Users;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
 import GUI.Model.CustomersModel;
@@ -13,9 +11,7 @@ import GUI.Model.UsersModel;
 import GUI.Utility.PdfHandler;
 import com.google.zxing.WriterException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,11 +24,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -79,18 +73,19 @@ public class CoordinatorTicketsController implements IController, Initializable 
         this.primaryStage = primaryStage;
     }
 
-    private void saveCustomer() throws SQLServerException, ApplicationWideException {
+    private Costumers saveCustomer(Costumers customer) throws SQLServerException, ApplicationWideException {
         String customerEmail = lblEmailTicket.getText();
         String customerFName = lblFirstnameTicket.getText();
         String customerLName = lblLastnameTicket.getText();
         Costumers customers = new Costumers(customerEmail, customerFName, customerLName);
-        customersModel.saveCustomer(customers);
+        return customersModel.saveCustomer(customers);
     }
 
-    private void saveTicketType(String uuid, boolean isValid, Events selectedEvent) throws SQLServerException, ApplicationWideException {
+    private void saveTicketType(String uuid, boolean isValid, Events selectedEvent, Costumers customer) throws SQLServerException, ApplicationWideException {
         String ticketType = comboType.getSelectionModel().getSelectedItem();
-        ticketsModel.saveTicketInformation(uuid, isValid, selectedEvent,ticketType);
+        ticketsModel.saveTicketInformation(uuid, isValid, selectedEvent, ticketType, customer);
     }
+
 
     @FXML
     void BuyTicketToEvent(ActionEvent event) throws WriterException {
@@ -99,8 +94,10 @@ public class CoordinatorTicketsController implements IController, Initializable 
             return;
         }
 
-        String firstName = lblFirstnameTicket.getText();
-        String lastName = lblLastnameTicket.getText();
+        // Get customer information from input fields
+        String customerEmail = lblEmailTicket.getText();
+        String customerFName = lblFirstnameTicket.getText();
+        String customerLName = lblLastnameTicket.getText();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PdfTicket.fxml"));
@@ -126,12 +123,19 @@ public class CoordinatorTicketsController implements IController, Initializable 
             if (!directory.exists()) {
                 directory.mkdirs();
             }
-            String fileName = firstName + "_" + lastName + ".pdf";
+            String fileName = customerFName + "_" + customerLName + ".pdf";
             String destinationPath = directoryPath + "/" + fileName;
             pdfHandler.generatePDF(destinationPath);
-            saveCustomer();
+
+            // Create customer object
+            Costumers customer = new Costumers(customerEmail, customerFName, customerLName);
+
+            // Save customer and ticket information
+            Costumers createdCustomer = customersModel.saveCustomer(customer);
+
             boolean isValid = true;
-            saveTicketType(uuid, isValid, selectedEvent);
+            saveTicketType(uuid, isValid, selectedEvent, createdCustomer);
+
             new Scene(root);
             showAlert("Ticket Purchase", "Ticket successfully purchased and saved to: " + destinationPath, Alert.AlertType.INFORMATION);
         } catch (IOException e) {
@@ -142,6 +146,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
             throw new RuntimeException(e);
         }
     }
+
     // AlertBox
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);

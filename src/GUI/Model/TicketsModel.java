@@ -1,4 +1,5 @@
 package GUI.Model;
+import BE.Costumers;
 import BE.Events;
 import BLL.TicketsManager;
 import CostumException.ApplicationWideException;
@@ -14,7 +15,7 @@ public class TicketsModel {
         ticketsManager = new TicketsManager();
     }
 
-    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType) throws ApplicationWideException {
-        ticketsManager.saveTicketInformation(uuid, isValid, selectedEvent, ticketType);
+    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType, Costumers customer) throws ApplicationWideException {
+        ticketsManager.saveTicketInformation(uuid, isValid, selectedEvent, ticketType, customer);
     }
 }

@@ -10,7 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class javaApi {
+public class JavaApi {
 
     public void sendPasswordResetEmail(String toEmail, String resetLink) {
         String host = "smtp.gmail.com";
