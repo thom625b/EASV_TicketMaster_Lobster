@@ -50,21 +50,21 @@
     <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
-              <HBox prefHeight="50.0" prefWidth="776.0">
+              <HBox prefHeight="73.0" prefWidth="769.0">
                   <children>
-                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
+                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="300.0">
                      <children>
-                        <TextField fx:id="txtTopCoorEventPage" prefHeight="45.0" prefWidth="327.0" promptText="🔍 Search...">
+                        <TextField fx:id="txtTopCoorEventPage" prefHeight="45.0" prefWidth="300.0" promptText="🔍 Search...">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </TextField>
                      </children>
                      <HBox.margin>
-                        <Insets />
+                        <Insets bottom="16.0" left="50.0" right="80.0" top="16.0" />
                      </HBox.margin>
                   </HBox>
-                      <HBox fx:id="hboxHeaderCreate" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="450.0">
+                      <HBox fx:id="hboxHeaderCreate" alignment="CENTER_LEFT" prefHeight="41.0">
                           <children>
                         <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -76,27 +76,27 @@
                         </ImageView>
                         <Label fx:id="txtHeaderCoorEventPage" prefHeight="26.0" prefWidth="76.0" text="Events">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="8.0" />
                            </HBox.margin>
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                               <Button fx:id="btnCreateNewEvent" mnemonicParsing="false" onAction="#goToCreateNewEvent" prefHeight="26.0" prefWidth="92.0" text="Create new">
                            <HBox.margin>
-                              <Insets left="50.0" />
+                              <Insets bottom="8.0" left="24.0" right="24.0" top="8.0" />
                            </HBox.margin>
                               </Button>
                           </children>
                      <HBox.margin>
-                        <Insets left="16.0" right="70.0" />
+                        <Insets bottom="16.0" left="16.0" right="70.0" top="16.0" />
                      </HBox.margin>
                       </HBox>
                   </children>
               </HBox>
          </children>
          <BorderPane.margin>
-            <Insets bottom="16.0" left="50.0" top="16.0" />
+            <Insets bottom="16.0" top="16.0" />
          </BorderPane.margin>
       </VBox>
     </top>

@@ -145,11 +145,11 @@
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="776.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="80.0" prefWidth="776.0">
                <children>
-                  <HBox fx:id="HboxSearchBarCoordinatorTickets" alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="409.0">
+                  <HBox fx:id="HboxSearchBarCoordinatorTickets" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="300.0">
                      <HBox.margin>
-                        <Insets bottom="16.0" left="50.0" top="16.0" />
+                        <Insets bottom="16.0" left="50.0" right="80.0" top="16.0" />
                      </HBox.margin>
                      <children>
                         <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
@@ -160,7 +160,7 @@
                               <Insets left="8.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label fx:id="lblHeaderTicket" prefHeight="41.0" prefWidth="310.0" text="Ticket Sale">
+                        <Label fx:id="lblHeaderTicket" prefHeight="45.0" prefWidth="191.0" text="Ticket Sale">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -173,7 +173,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="HboxTopCoordinatorTickets" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="450.0">
+                  <HBox fx:id="HboxTopCoordinatorTickets" alignment="CENTER_RIGHT" prefHeight="41.0">
                      <children>
                         <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -188,12 +188,12 @@
                               <Insets left="8.0" />
                            </HBox.margin>
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                         <Button fx:id="btnCreateNewCoordinatorTicket" mnemonicParsing="false" onAction="#createNewEvent" prefHeight="26.0" prefWidth="92.0" text="Create new">
                            <HBox.margin>
-                              <Insets bottom="8.0" left="32.0" right="24.0" top="8.0" />
+                              <Insets bottom="8.0" left="24.0" right="24.0" top="8.0" />
                            </HBox.margin>
                         </Button>
                      </children>
@@ -206,7 +206,7 @@
                   </HBox>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="16.0" top="16.0" />
                </VBox.margin>
             </HBox>
          </children>

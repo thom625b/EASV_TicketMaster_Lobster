@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="bpCostumer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CustomerTablePageController">
    <center>
@@ -27,6 +28,9 @@
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </TableView>
          </children>
          <BorderPane.margin>
@@ -37,21 +41,21 @@
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="0.0" prefWidth="776.0">
+            <HBox prefHeight="50.0" prefWidth="776.0">
                <children>
-                  <HBox fx:id="hboxCostumer" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
+                  <HBox fx:id="hboxCostumer" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="300.0">
                      <HBox.margin>
-                        <Insets />
+                        <Insets bottom="16.0" left="50.0" right="80.0" top="16.0" />
                      </HBox.margin>
                      <children>
-                        <TextField fx:id="txtCoordSearch" prefHeight="45.0" prefWidth="327.0" promptText="🔍 Search...">
+                        <TextField fx:id="txtCoordSearch" prefHeight="45.0" prefWidth="300.0" promptText="🔍 Search...">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox fx:id="hboxHeaderCostumer" alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="450.0">
+                  <HBox fx:id="hboxHeaderCostumer" alignment="CENTER_RIGHT" prefHeight="41.0">
                      <children>
                         <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
@@ -63,24 +67,27 @@
                         </ImageView>
                         <Label prefHeight="26.0" prefWidth="76.0" text="Costumer">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="8.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
                         </Label>
                         <Button fx:id="btnCreateCostumer" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Create new">
                            <HBox.margin>
-                              <Insets left="50.0" />
+                              <Insets bottom="8.0" left="24.0" right="24.0" top="8.0" />
                            </HBox.margin>
                         </Button>
                      </children>
                      <HBox.margin>
-                        <Insets left="16.0" right="70.0" />
+                        <Insets bottom="16.0" left="16.0" right="70.0" top="16.0" />
                      </HBox.margin>
                   </HBox>
                </children>
             </HBox>
          </children>
          <BorderPane.margin>
-            <Insets bottom="16.0" left="50.0" top="16.0" />
+            <Insets bottom="16.0" top="16.0" />
          </BorderPane.margin>
       </VBox>
    </top>

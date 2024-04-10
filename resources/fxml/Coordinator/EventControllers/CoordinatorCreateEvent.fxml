@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,148 +15,221 @@
 
 <BorderPane fx:id="borderBackCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorCreateEventsController">
    <top>
-      <HBox fx:id="hboxTopCreateCoor" prefHeight="106.0" prefWidth="776.0" spacing="48.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="hboxTopCreateCoor" maxHeight="80.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="hboxCreateEvent" alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="195.0">
+            <HBox fx:id="hboxCreateEvent" alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="300.0">
                <HBox.margin>
-                  <Insets bottom="20.0" top="30.0" />
+                  <Insets bottom="16.0" left="50.0" right="80.0" top="16.0" />
                </HBox.margin>
                <children>
-                  <Label fx:id="lblCreateNewEvent" prefHeight="23.0" prefWidth="171.0" text="Create new Event">
+                  <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../../../pictures/EventSymbol.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblCreateNewEvent" prefHeight="45.0" text="Create new Event">
                      <padding>
                         <Insets left="8.0" />
                      </padding>
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Label>
                </children>
             </HBox>
          </children>
          <BorderPane.margin>
-            <Insets bottom="16.0" left="50.0" />
+            <Insets top="16.0" />
          </BorderPane.margin>
       </HBox>
    </top>
    <bottom>
-      <HBox prefHeight="70.0" prefWidth="776.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="70.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox fx:id="vBoxCoordinatorCenterCreate" prefHeight="449.0" prefWidth="676.0">
+      <VBox fx:id="vBoxCoordinatorCenterCreate" prefHeight="431.0" prefWidth="656.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="475.0" prefWidth="656.0">
                <children>
-                  <VBox prefHeight="251.0" prefWidth="404.0" spacing="10.0">
+                  <VBox prefHeight="310.0" prefWidth="310.0">
                      <children>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                               <Label fx:id="lblEventTitle" prefWidth="90.0" text="Event Title:" />
-                               <TextField fx:id="txtEventTitle" prefHeight="26.0" prefWidth="160.0" />
-                           </children>
+                        <HBox prefHeight="27.0" prefWidth="309.0">
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets bottom="8.0" top="8.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <VBox prefHeight="308.0" prefWidth="305.0" spacing="10.0">
                            <children>
-                              <Label fx:id="lblEventDesign" prefHeight="17.0" prefWidth="90.0" text="Event Design:" />
-                              <TextField fx:id="txtEventPicture" prefHeight="26.0" prefWidth="160.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                               <Label fx:id="lblEventAddress" prefWidth="90.0" text="Address:" />
-                               <TextField fx:id="txtEventAddress" prefHeight="26.0" prefWidth="160.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                               <Label fx:id="lblEventCity" prefWidth="90.0" text="City:" />
-                               <TextField fx:id="txtEventCity" prefHeight="26.0" prefWidth="160.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                               <Label fx:id="lblEventZip" prefWidth="90.0" text="Postal code:" />
-                               <TextField fx:id="txtEventZipCode" prefHeight="26.0" prefWidth="160.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                               <Label fx:id="lblEventStartTime" prefWidth="90.0" text="Start time:" />
-                               <TextField fx:id="txtEventStartTime" prefHeight="26.0" prefWidth="160.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                               <Label fx:id="lblEventEndTime" prefWidth="90.0" text="End Time:" />
-                               <TextField fx:id="txtEventEndTime" prefHeight="26.0" prefWidth="160.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                               <Label fx:id="lblEventDate" prefWidth="90.0" text="Start date:" />
-                               <DatePicker fx:id="dpEventStartDate" prefHeight="26.0" prefWidth="160.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                  </VBox>
-                  <VBox prefHeight="339.0" prefWidth="339.0">
-                     <children>
-                        <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="lblDescription" prefHeight="2.0" prefWidth="128.0" text="Description:">
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="10.0" top="15.0" />
-                                 </HBox.margin></Label>
-                           </children>
-                        </HBox>
-                        <TextArea fx:id="txtEventDescription" prefHeight="257.0" prefWidth="249.0">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="279.0" spacing="10">
-                           <children>
-                              <Button fx:id="btnUploadImageToEvent" mnemonicParsing="false" text="Upload Image">
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
+                                 <children>
+                                     <Label fx:id="lblEventTitle" prefHeight="18.0" prefWidth="120.0" text="Event Title:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="8.0" />
+                                       </padding>
+                                    </Label>
+                                     <TextField fx:id="txtEventTitle" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="lblEventDesign" prefHeight="18.0" prefWidth="120.0" text="Event Design:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="txtEventPicture" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
+                                 <children>
+                                     <Label fx:id="lblEventAddress" prefHeight="18.0" prefWidth="120.0" text="Address:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="8.0" />
+                                       </padding>
+                                    </Label>
+                                     <TextField fx:id="txtEventAddress" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
+                                 <children>
+                                     <Label fx:id="lblEventCity" prefHeight="18.0" prefWidth="120.0" text="City:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="8.0" />
+                                       </padding>
+                                    </Label>
+                                     <TextField fx:id="txtEventCity" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
+                                 <children>
+                                     <Label fx:id="lblEventZip" prefHeight="18.0" prefWidth="120.0" text="Postal code:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="8.0" />
+                                       </padding>
+                                    </Label>
+                                     <TextField fx:id="txtEventZipCode" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
+                                 <children>
+                                     <Label fx:id="lblEventStartTime" prefHeight="18.0" prefWidth="120.0" text="Start time:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="8.0" />
+                                       </padding>
+                                    </Label>
+                                     <TextField fx:id="txtEventStartTime" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
+                                 <children>
+                                     <Label fx:id="lblEventEndTime" prefHeight="18.0" prefWidth="120.0" text="End Time:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="8.0" />
+                                       </padding>
+                                    </Label>
+                                     <TextField fx:id="txtEventEndTime" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
                                  <VBox.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </VBox.margin>
-                              </Button>
-                              <Button fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#AddNewEvent" text="Add New Event">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="250.0" spacing="10.0">
+                                 <children>
+                                     <Label fx:id="lblEventDate" prefHeight="18.0" prefWidth="120.0" text="Start date:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="8.0" />
+                                       </padding>
+                                    </Label>
+                                     <DatePicker fx:id="dpEventStartDate" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
                                  <VBox.margin>
-                                    <Insets right="10.0" />
+                                    <Insets />
                                  </VBox.margin>
-                              </Button>
+                              </HBox>
                            </children>
+                        </VBox>
+                        <HBox prefHeight="45.0">
                            <VBox.margin>
+                              <Insets top="8.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
                      <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefWidth="348.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="45.0">
+                           <children>
+                              <Label fx:id="lblDescription" prefHeight="2.0" prefWidth="128.0" text="Description:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="8.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="8.0" top="8.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <VBox>
+                           <children>
+                              <TextArea fx:id="txtEventDescription" prefHeight="361.0" prefWidth="329.0">
+                                 <VBox.margin>
+                                    <Insets left="8.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="45.0">
+                           <children>
+                              <Button fx:id="btnUploadImageToEvent" mnemonicParsing="false" text="Upload Image">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" right="8.0" top="8.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#AddNewEvent" text="Add New Event">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" right="8.0" top="8.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="8.0" />
                      </HBox.margin>
                   </VBox>
                </children>
@@ -164,11 +239,11 @@
             </HBox>
          </children>
          <BorderPane.margin>
-            <Insets left="50.0" />
+            <Insets left="50.0" top="16.0" />
          </BorderPane.margin>
       </VBox>
    </center>
    <right>
-      <VBox fx:id="vBoxRightCreateCoor" prefHeight="200.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="vBoxRightCreateCoor" prefWidth="70.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

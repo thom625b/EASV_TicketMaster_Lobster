@@ -454,11 +454,6 @@
     -fx-background-radius: 15px;
 }
 
-#lblHeader {
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-}
-
 #btnLoad {
     -fx-border-color: #F99417;
     -fx-background-color: transparent;
@@ -515,7 +510,6 @@
 #txtHeaderCoorEventPage {
     -fx-text-fill: #363062;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
 }
 
 #tblEventTable .column-header-background .filler,
@@ -720,7 +714,7 @@
     -fx-background-radius: 15px;
 }
 
-#lblEventHeadlineEdit {
+#HboxEditEventHeaderText {
     -fx-background-color: #FFFFFF;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
     -fx-background-radius: 15px;
@@ -871,9 +865,8 @@
 }
 
 #lblManageEventCoordinator {
-    -fx-text-fill: #4D4C7D;
+    -fx-text-fill: #363062;
     -fx-font-weight: bold;
-    -fx-font-size: 16px;
 }
 
 #btnCoordinatorAddToEvent {

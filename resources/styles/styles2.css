@@ -359,7 +359,6 @@
     -fx-alignment: Center;
     -fx-font-size: 16px;
     -fx-font-weight: 700;
-
 }
 
 #lblUser {
@@ -372,7 +371,6 @@
 
 .tab-pane {
     -fx-tab-max-height: 0px;
-
 }
 
 .tab-pane .tab-header-area {
@@ -382,6 +380,5 @@
 
 #stackImg {
     -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
-
 }
 
