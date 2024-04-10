@@ -27,6 +27,12 @@ public class Tickets {
         this.isValid = isValid;
     }
 
+    public Tickets(String ticketType, boolean isValid, String qrHashCode) {
+        this.ticketType = ticketType;
+        this.isValid = isValid;
+        this.qrHashCode = qrHashCode;
+    }
+
     public String getQrHashCode() {
         return qrHashCode;
     }

@@ -1,5 +1,7 @@
 package BLL;
 
+import BE.Events;
+import CostumException.ApplicationWideException;
 import DAL.Tickets_DAO;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
@@ -14,5 +16,7 @@ public class TicketsManager {
     }
 
 
-
+    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType) throws ApplicationWideException {
+        ticketsDao.saveTicketInformation(uuid, isValid, selectedEvent, ticketType);
+    }
 }

@@ -1,6 +1,7 @@
 package BLL;
 
 import BE.Costumers;
+import BE.Events;
 import CostumException.ApplicationWideException;
 import DAL.Costumers_DAO;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -26,4 +27,6 @@ public class CostumersManager {
     public Costumers saveCustomer(Costumers customers) throws SQLServerException, ApplicationWideException {
        return costumersDao.saveCustomer(customers);
     }
+
+
 }

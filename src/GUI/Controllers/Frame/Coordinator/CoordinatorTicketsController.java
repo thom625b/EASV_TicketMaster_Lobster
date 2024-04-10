@@ -2,11 +2,13 @@ package GUI.Controllers.Frame.Coordinator;
 
 import BE.Costumers;
 import BE.Events;
+import BE.Tickets;
 import BE.Users;
 import CostumException.ApplicationWideException;
 import GUI.Controllers.IController;
 import GUI.Model.CustomersModel;
 import GUI.Model.EventsModel;
+import GUI.Model.TicketsModel;
 import GUI.Model.UsersModel;
 import GUI.Utility.PdfHandler;
 import com.google.zxing.WriterException;
@@ -49,6 +51,9 @@ public class CoordinatorTicketsController implements IController, Initializable 
     @FXML
     private TextField lblEmailTicket;
 
+
+
+
     @FXML
     private Label lblHeaderTicket;
 
@@ -56,9 +61,8 @@ public class CoordinatorTicketsController implements IController, Initializable 
     private TextField lblNameTicket;
 
     private EventsModel eventsModel;
+    private TicketsModel ticketsModel;
     private CustomersModel customersModel;
-
-
 
     @FXML
     private TextField lblFirstnameTicket;
@@ -81,6 +85,11 @@ public class CoordinatorTicketsController implements IController, Initializable 
         String customerLName = lblLastnameTicket.getText();
         Costumers customers = new Costumers(customerEmail, customerFName, customerLName);
         customersModel.saveCustomer(customers);
+    }
+
+    private void saveTicketType(String uuid, boolean isValid, Events selectedEvent) throws SQLServerException, ApplicationWideException {
+        String ticketType = comboType.getSelectionModel().getSelectedItem();
+        ticketsModel.saveTicketInformation(uuid, isValid, selectedEvent,ticketType);
     }
 
     @FXML
@@ -111,7 +120,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
             pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventType, eventImage, qrCodeImage);
 
-            String directoryPath = "resources/Data/Pdf/" + selectedEvent.getEventName();
+            String directoryPath = "resources/Data/Pdf/" + "Event" + selectedEvent.getEventID();
 
             File directory = new File(directoryPath);
             if (!directory.exists()) {
@@ -120,8 +129,10 @@ public class CoordinatorTicketsController implements IController, Initializable 
             String fileName = firstName + "_" + lastName + ".pdf";
             String destinationPath = directoryPath + "/" + fileName;
             pdfHandler.generatePDF(destinationPath);
-            new Scene(root);
             saveCustomer();
+            boolean isValid = true;
+            saveTicketType(uuid, isValid, selectedEvent);
+            new Scene(root);
             showAlert("Ticket Purchase", "Ticket successfully purchased and saved to: " + destinationPath, Alert.AlertType.INFORMATION);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -182,9 +193,10 @@ public class CoordinatorTicketsController implements IController, Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            eventsModel =new EventsModel();
+            eventsModel = new EventsModel();
             setupEventComboBox();
             customersModel = new CustomersModel();
+            ticketsModel = new TicketsModel();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ApplicationWideException e) {
