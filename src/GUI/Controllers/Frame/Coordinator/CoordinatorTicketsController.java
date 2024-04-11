@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -204,22 +205,30 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
     private void setupEventComboBox() {
-
         populateComboTickets();
 
         comboTickets.setConverter(new StringConverter<Events>() {
             @Override
             public String toString(Events event) {
-                return event == null ? "" : event.getEventName() + " " + event.getEventDate();
+                if (event == null) return "";
+                String formattedDate = event.getEventDate().format(DateTimeFormatter.ofPattern("dd-MM-yy"));
+                return event.getEventName() + " " + formattedDate;
             }
 
             @Override
             public Events fromString(String string) {
-                return comboTickets.getItems().stream().filter(event ->
-                        (event.getEventName() + " " + event.getEventDate()).equals(string)).findFirst().orElse(null);
+                return comboTickets.getItems().stream()
+                        .filter(event -> {
+                            String formattedDate = event.getEventDate().format(DateTimeFormatter.ofPattern("dd-MM-yy"));
+                            return (event.getEventName() + " " + formattedDate).equals(string);
+                        })
+                        .findFirst()
+                        .orElse(null);
             }
         });
     }
+
+
 
     private void initializeTicketAmounts() {
         for (int i = 1; i <= 10; i++) {

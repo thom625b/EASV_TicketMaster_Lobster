@@ -34,7 +34,7 @@ public class CoordinatorEventPageController implements IController {
     @FXML
     private TableColumn<Events, String> tblEventTableEventName;
     @FXML
-    private TableColumn<Events, LocalDate> tblEventTableStartDate;
+    private TableColumn<Events, String> tblEventTableStartDate;
     @FXML
     private TableColumn<Events, String> tblEventTableStatus;
     @FXML
@@ -115,7 +115,14 @@ public class CoordinatorEventPageController implements IController {
 
             tblEventTableCode.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEventID())));
             tblEventTableEventName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventName()));
-            tblEventTableStartDate.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getEventDate()));
+
+            // Convert the date from yy/mm/dd to dd/mm/yy
+            tblEventTableStartDate.setCellValueFactory(cellData -> {
+                LocalDate eventDate = cellData.getValue().getEventDate();
+                String formattedDate = eventDate.format(DATE_FORMATTER);
+                return new SimpleStringProperty(formattedDate);
+            });
+
             tblEventTableStatus.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEventStatus())));
 
             // Calculate days left
