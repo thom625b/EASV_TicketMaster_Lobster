@@ -200,6 +200,32 @@
                                     <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="250.0" spacing="10.0">
+                                 <children>
+                                              <Label fx:id="lblEventStartDateEdit" prefHeight="18.0" prefWidth="120.0" text="Date">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                              </Label>
+                                              <DatePicker fx:id="dpEditEventStartDate" onAction="#EditEventStartDate" prefHeight="26.0" prefWidth="160.0">
+                                                  <opaqueInsets>
+                                                      <Insets />
+                                                  </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                              </DatePicker>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="8.0" />
+                                 </VBox.margin>
+                              </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
                                     <Label fx:id="lblEventStartTimeEdit" prefHeight="18.0" prefWidth="120.0" text="Start time">
@@ -247,32 +273,6 @@
                                           <Insets />
                                        </HBox.margin>
                                     </TextField>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="8.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="250.0" spacing="10.0">
-                                 <children>
-                                              <Label fx:id="lblEventStartDateEdit" prefHeight="18.0" prefWidth="120.0" text="Start date">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                              </Label>
-                                              <DatePicker fx:id="dpEditEventStartDate" onAction="#EditEventStartDate" prefHeight="26.0" prefWidth="160.0">
-                                                  <opaqueInsets>
-                                                      <Insets />
-                                                  </opaqueInsets>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                              </DatePicker>
                                  </children>
                                  <VBox.margin>
                                     <Insets left="8.0" />
