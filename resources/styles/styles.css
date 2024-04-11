@@ -561,7 +561,7 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #borderBackCreate {
-    -fx-background-color: #F5F5F5;
+    -fx-background-color: #F0F0F6;
 }
 
 #hboxCreateEvent {
@@ -705,7 +705,7 @@
 /* CoordinatorEditEventPage
 ---------------------------------------------------------------------------------------------------------------*/
 #BPEditEvents {
-    -fx-background-color: #F5F5F5;
+    -fx-background-color: #F0F0F6;
 }
 
 #VboxBorderCenterEditEvent {
