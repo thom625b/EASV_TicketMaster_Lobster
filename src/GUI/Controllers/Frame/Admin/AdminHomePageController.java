@@ -41,10 +41,8 @@ public class AdminHomePageController implements IController {
 
 
 
-
     @FXML
     void handleAddUser(ActionEvent event) {
-
         String firstName = txtCreateFirstName.getText();
         String lastName = txtCreateLastName.getText();
         String email = txtCreateEmail.getText();
@@ -52,15 +50,20 @@ public class AdminHomePageController implements IController {
         String selectedRole = CreatecomboRole.getValue();
         String userPicture = ""; // Replace with get picture
 
-
         if (selectedRole != null && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             if (isValidEmail(email)) {
-                Users.Role role = Users.Role.valueOf(selectedRole);
-                try {
-                    usersModel.createUser(firstName, lastName, email, password, role, userPicture);
-                    showAlert("Succes", "The User Was Created", Alert.AlertType.INFORMATION);
-                } catch (ValidationException e) {
-                    showAlert("Validation Error", e.getMessage(), Alert.AlertType.ERROR);
+                // Validate password using regex
+                String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+                if (password.matches(passwordRegex)) {
+                    Users.Role role = Users.Role.valueOf(selectedRole);
+                    try {
+                        usersModel.createUser(firstName, lastName, email, password, role, userPicture);
+                        showAlert("Success", "The User Was Created", Alert.AlertType.INFORMATION);
+                    } catch (ValidationException e) {
+                        showAlert("Validation Error", e.getMessage(), Alert.AlertType.ERROR);
+                    }
+                } else {
+                    showAlert("Input Error", "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character, no whitespace, and be between 8 and 20 characters long.", Alert.AlertType.WARNING);
                 }
             } else {
                 showAlert("Input Error", "Please enter a valid email address.", Alert.AlertType.WARNING);
