@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderBackUpdate" maxHeight="600.0" maxWidth="776.0" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminUpdateCoordinatorController">
+<BorderPane fx:id="borderBackUpdate" maxHeight="600.0" maxWidth="776.0" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminUpdateCoordinatorController">
     <center>
         <VBox fx:id="vBoxCenterUpdate" prefHeight="449.0" prefWidth="676.0">
             <children>
@@ -28,7 +28,7 @@
                             <children>
                                 <HBox spacing="10.0">
                                     <children>
-                                        <Label fx:id="lblFirstNameUpdate" prefHeight="18.0" prefWidth="90.0" text="First Name:">
+                                        <Label fx:id="lblFirstNameUpdate" prefHeight="18.0" prefWidth="90.0" text="First Name">
                                             <HBox.margin>
                                                 <Insets />
                                             </HBox.margin>
@@ -41,7 +41,7 @@
                                 </HBox>
                                 <HBox spacing="10.0">
                                     <children>
-                                        <Label fx:id="lblLarstnameUpdate" prefHeight="18.0" prefWidth="90.0" text="Last Name:" />
+                                        <Label fx:id="lblLarstnameUpdate" prefHeight="18.0" prefWidth="90.0" text="Last Name" />
                                         <TextField fx:id="txtUpdateLastName" prefWidth="160.0" />
                                     </children>
                                     <VBox.margin>
@@ -50,7 +50,7 @@
                                 </HBox>
                                 <HBox spacing="10.0">
                                     <children>
-                                        <Label fx:id="lblEmailUpdate" prefHeight="18.0" prefWidth="90.0" text="Email:" />
+                                        <Label fx:id="lblEmailUpdate" prefHeight="18.0" prefWidth="90.0" text="Email" />
                                         <TextField fx:id="txtUpdateEmail" prefHeight="26.0" prefWidth="161.0" />
                                     </children>
                                     <VBox.margin>

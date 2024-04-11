@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="panePdfTicket" prefHeight="634.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Utility.PdfHandler">
+<Pane fx:id="panePdfTicket" prefHeight="634.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Utility.PdfHandler">
    <children>
        <ImageView fx:id="eventImage" fitHeight="293.0" fitWidth="347.0" layoutX="82.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
        <ImageView fx:id="qrCode" fitHeight="219.0" fitWidth="241.0" layoutX="259.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true" />
@@ -14,7 +14,7 @@
             <Insets left="16.0" />
          </padding>
          <children>
-            <Label fx:id="lblHeadTicketType" layoutX="6.0" layoutY="173.0" prefHeight="17.0" prefWidth="130.0" text="Ticket Type:">
+            <Label fx:id="lblHeadTicketType" layoutX="6.0" layoutY="173.0" prefHeight="17.0" prefWidth="130.0" text="Ticket Type">
                <padding>
                   <Insets left="16.0" />
                </padding>
@@ -25,11 +25,11 @@
                </padding>
             </Label>
          </children></Pane>
-      <Label fx:id="lblHeadName" layoutX="15.0" layoutY="415.0" prefHeight="17.0" prefWidth="130.0" text="Event Name:">
+      <Label fx:id="lblHeadName" layoutX="15.0" layoutY="415.0" prefHeight="17.0" prefWidth="130.0" text="Event Name">
          <padding>
             <Insets left="16.0" />
          </padding></Label>
-      <Label fx:id="lblHeadAddress" layoutX="15.0" layoutY="465.0" prefHeight="17.0" prefWidth="130.0" text="Address:">
+      <Label fx:id="lblHeadAddress" layoutX="15.0" layoutY="465.0" prefHeight="17.0" prefWidth="130.0" text="Address">
          <padding>
             <Insets left="16.0" />
          </padding></Label>
@@ -45,7 +45,7 @@
          <padding>
             <Insets left="16.0" />
          </padding></Label>
-      <Label fx:id="lblHeadDate" layoutX="15.0" layoutY="530.0" prefHeight="17.0" prefWidth="130.0" text="Date:">
+      <Label fx:id="lblHeadDate" layoutX="15.0" layoutY="530.0" prefHeight="17.0" prefWidth="130.0" text="Date">
          <padding>
             <Insets left="16.0" />
          </padding></Label>

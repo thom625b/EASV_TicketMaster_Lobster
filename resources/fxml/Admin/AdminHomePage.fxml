@@ -25,7 +25,7 @@
                      <children>
                         <HBox spacing="10.0">
                            <children>
-                              <Label fx:id="lblFirstNameCreate" prefHeight="18.0" prefWidth="90.0" text="First Name:">
+                              <Label fx:id="lblFirstNameCreate" prefHeight="18.0" prefWidth="90.0" text="First Name">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -38,7 +38,7 @@
                         </HBox>
                         <HBox spacing="10.0">
                            <children>
-                              <Label fx:id="lblLastnameCreate" prefHeight="18.0" prefWidth="90.0" text="Last Name:" />
+                              <Label fx:id="lblLastnameCreate" prefHeight="18.0" prefWidth="90.0" text="Last Name" />
                               <TextField fx:id="txtCreateLastName" prefWidth="160.0" />
                            </children>
                            <VBox.margin>
@@ -47,7 +47,7 @@
                         </HBox>
                         <HBox spacing="10.0">
                            <children>
-                              <Label fx:id="lblEmailCreate" prefHeight="18.0" prefWidth="90.0" text="Email:" />
+                              <Label fx:id="lblEmailCreate" prefHeight="18.0" prefWidth="90.0" text="Email" />
                               <TextField fx:id="txtCreateEmail" prefHeight="26.0" prefWidth="161.0" />
                            </children>
                            <VBox.margin>
@@ -56,7 +56,7 @@
                         </HBox>
                         <HBox spacing="10.0">
                            <children>
-                              <Label fx:id="lblPasswordCreate" prefHeight="18.0" prefWidth="90.0" text="Password:" />
+                              <Label fx:id="lblPasswordCreate" prefHeight="18.0" prefWidth="90.0" text="Password" />
                               <PasswordField fx:id="txtCreatePassword" prefHeight="26.0" prefWidth="160.0" />
                            </children>
                            <VBox.margin>
