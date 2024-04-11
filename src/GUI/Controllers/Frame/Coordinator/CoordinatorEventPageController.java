@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -20,6 +21,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -49,7 +51,8 @@ public class CoordinatorEventPageController implements IController {
     @FXML
     private TextField txtTopCoorEventPage;
 
-    private FilteredList<Events> filteredData;
+    private FilteredList<Events> filteredEvents;
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     private final EventsModel eventsModel;
 
@@ -66,11 +69,12 @@ public class CoordinatorEventPageController implements IController {
 
     @FXML
     public void initialize() {
-        searchSetupTable();
+
         int coordinatorID = UserContext.getInstance().getCurrentUserId();
         initializeColumns(coordinatorID);
-        initializeEditButtonColumn();
 
+        initializeEditButtonColumn();
+        setupSearchFunctionality();
     }
 
     private void initializeEditButtonColumn() {
@@ -94,7 +98,7 @@ public class CoordinatorEventPageController implements IController {
                     @Override
                     protected void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
-                        refreshEventData();
+
                         if (empty) {
                             setGraphic(null);
                         } else {
@@ -108,7 +112,6 @@ public class CoordinatorEventPageController implements IController {
 
     private void initializeColumns(int coordinatorID) {
         try {
-            ObservableList<Events> eventList = FXCollections.observableArrayList(eventsModel.getEventsByCoordinator(coordinatorID));
 
             tblEventTableCode.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEventID())));
             tblEventTableEventName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventName()));
@@ -127,46 +130,37 @@ public class CoordinatorEventPageController implements IController {
             tblEventStartTime.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventStartTime()));
             tblEventEndTime.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEventEndTime()));
 
-            tblEventTable.setItems(eventList);
+            tblEventTable.setItems(eventsModel.getUserEvents());
         } catch (ApplicationWideException e) {
             showAlert("Error", "Failed to retrieve events by coordinator from the database.");
             e.printStackTrace();
         }
     }
 
-    private void searchSetupTable() {
+    private void setupSearchFunctionality() {
+        filteredEvents = new FilteredList<>(eventsModel.getEventList(), p -> true);
 
-        filteredData = new FilteredList<>(eventsModel.getEventList(), p -> true);
+        txtTopCoorEventPage.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredEvents.setPredicate(event -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        txtTopCoorEventPage.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(event -> {
+                    boolean nameMatches = event.getEventName().toLowerCase().contains(lowerCaseFilter);
 
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
+                    String dateString = event.getEventDate().format(DATE_FORMATTER);
+                    boolean dateMatches = dateString.contains(lowerCaseFilter);
 
+                    return nameMatches || dateMatches;
+                })
+        );
 
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (event.getEventName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (String.valueOf(event.getEventID()).contains(lowerCaseFilter)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-
-
-        SortedList<Events> sortedData = new SortedList<>(filteredData);
-
-
-        sortedData.comparatorProperty().bind(tblEventTable.comparatorProperty());
-
-
-        tblEventTable.setItems(sortedData);
+        SortedList<Events> sortedEvents = new SortedList<>(filteredEvents);
+        sortedEvents.comparatorProperty().bind(tblEventTable.comparatorProperty());
+        tblEventTable.setItems(sortedEvents);
     }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -179,6 +173,7 @@ public class CoordinatorEventPageController implements IController {
     public void refreshEventData() {
         int coordinatorID = UserContext.getInstance().getCurrentUserId();
         initializeColumns(coordinatorID);
+        System.out.println("gummiged");
     }
 
     @Override

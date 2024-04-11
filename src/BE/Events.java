@@ -7,6 +7,8 @@ public class Events {
 
     private int coordinatorId;
     private String eventAddress, eventName, eventCity, eventDescription, eventStartTime, eventEndTime;
+
+
     private int eventID, eventStatus, eventRemainingDays, eventParticipants, eventZipCode;
     private List<Users> users;
     private LocalDate eventDate;
@@ -130,6 +132,20 @@ public class Events {
                 ", eventCity='" + eventCity + '\'' +
                 ", eventDescription='" + eventDescription + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Events events = (Events) o;
+        return eventID == events.eventID;
+    }
+
+    @Override
+    public int hashCode() {
+        return eventID;
     }
 
     public void setEventDate(LocalDate eventDate) {

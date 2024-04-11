@@ -18,18 +18,16 @@ public class PdfGeneratorMock extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, WriterException {
         try {
-            // Load the FXML file which automatically creates and initializes the controller
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PdfTicket.fxml"));
             Parent root = loader.load();
 
-            // Retrieve the controller
+
             PdfHandler pdfHandler = loader.getController();
             if (pdfHandler == null) {
                 throw new IllegalStateException("Controller not initialized.");
             }
 
-            // Proceed to use the controller
-            // Generate mock data and perform operations
             String eventName = "Mock Event";
             String eventDate = "2024-01-01";
             String eventAddress = "123 Mock Street";
@@ -45,7 +43,7 @@ public class PdfGeneratorMock extends Application {
 
             // Generate PDF
             String destinationPath = "resources/Data/Pdf/mockTicket.pdf";
-            pdfHandler.generatePDF(destinationPath);
+            pdfHandler.generatePDFAsync(destinationPath);
 
             primaryStage.setScene(new Scene(root));
             primaryStage.show();

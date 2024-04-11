@@ -12,12 +12,12 @@ import java.io.IOException;
 
 public class CustomersModel {
     private final CostumersManager costumersManager;
-    private final ObservableList<Costumers> costumersObservableList;
+    private static final ObservableList<Costumers> costumersObservableList= FXCollections.observableArrayList();
 
 
     public CustomersModel() throws IOException, ApplicationWideException, SQLServerException {
         costumersManager = new CostumersManager();
-        costumersObservableList = FXCollections.observableArrayList(costumersManager.getAllCostumers());
+        costumersObservableList.setAll(costumersManager.getAllCostumers());
     }
 
 

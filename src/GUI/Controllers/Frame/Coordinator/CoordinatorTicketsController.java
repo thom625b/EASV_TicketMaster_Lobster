@@ -35,6 +35,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ResourceBundle;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public class CoordinatorTicketsController implements IController, Initializable {
 
@@ -96,6 +97,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
     void BuyTicketToEvent(ActionEvent event) throws WriterException {
         Events selectedEvent = comboTickets.getSelectionModel().getSelectedItem();
         if (selectedEvent == null) {
+            Platform.runLater(() -> showAlert("Error", "No event selected", Alert.AlertType.ERROR));
             return;
         }
 
@@ -130,7 +132,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
             }
             String fileName = customerFName + "_" + customerLName + ".pdf";
             String destinationPath = directoryPath + "/" + fileName;
-            pdfHandler.generatePDF(destinationPath);
+            pdfHandler.generatePDFAsync(destinationPath);
 
             // Create customer object
             Costumers customer = new Costumers(customerEmail, customerFName, customerLName);
@@ -143,40 +145,32 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
             new Scene(root);
 
-            try {
 
-                EmailSender emailSender = new EmailSender();
-                Path pdfPath = Path.of(destinationPath);
-                if (waitForFile(pdfPath, 90)) {
-                    emailSender.sendTicket(customerEmail, "Your Event Ticket", "Here is your ticket for the event.", pdfPath);
-                } else {
-                    System.out.println("File not available");
-                }
-            } catch (IOException | ResendException e) {
-                e.printStackTrace();
-            }
 
+            pdfHandler.generatePDFAsync(destinationPath)
+                    .thenCompose(path -> {
+                        CompletableFuture<Void> emailFuture = new CompletableFuture<>();
+                        try {
+
+                            EmailSender emailSender = new EmailSender();
+                            emailSender.sendTicket(customerEmail, "Your Event Ticket", "Here is your ticket for the event.", Path.of(path));
+                            Platform.runLater(() -> showAlert("Success", "Email sent successfully", Alert.AlertType.INFORMATION));
+                            emailFuture.complete(null);
+                        } catch (Exception e) {
+                            emailFuture.completeExceptionally(e);
+                        }
+                        return emailFuture;
+                    })
+                    .exceptionally(e -> {
+                        Platform.runLater(() -> showAlert("Email Error", "Failed to send email.", Alert.AlertType.ERROR));
+                        return null;
+                    });
         } catch (IOException | SQLServerException | ApplicationWideException  e) {
             throw new RuntimeException(e);
         }
     }
 
-    private boolean waitForFile(Path filePath, int timeoutSeconds) {
-        int waited = 0;
-        try {
-            while (Files.notExists(filePath)) {
-                Thread.sleep(1000);
-                waited++;
-                if (waited > timeoutSeconds) {
-                    return false;
-                }
-            }
-            return true; // File is available
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt(); // Handle thread interruption
-            return false;
-        }
-    }
+
 
     // AlertBox
     private void showAlert(String title, String message, Alert.AlertType alertType) {

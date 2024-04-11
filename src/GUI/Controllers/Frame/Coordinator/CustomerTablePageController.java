@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -47,13 +48,16 @@ public class CustomerTablePageController implements Initializable {
 
     private CustomersModel customerModel;
 
-    private Costumers currentCustomer;
+    private Costumers costumers;
 
     private FilteredList<Costumers> filteredCustomers;
     @FXML
     private TextField txtCoordSearch;
     @FXML
     private TextField txtCustomerSearch;
+
+
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public CustomerTablePageController() {
 
@@ -64,11 +68,13 @@ public class CustomerTablePageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
+
             int customerID = CustomerContext.getInstance().getCurrentCustomerId();
             customerModel = new CustomersModel();
             initializeColumns(customerID);
             initializeButtonColumn();
             refreshEventData();
+           setupSearchFunctionality();
         } catch (IOException | ApplicationWideException | SQLServerException e) {
 
             throw new RuntimeException("Initialization failed: " + e.getMessage(), e); //TODO
@@ -94,7 +100,36 @@ public class CustomerTablePageController implements Initializable {
 
     }
 
+    private void setupSearchFunctionality() {
+        try {
+            filteredCustomers = new FilteredList<>(customerModel.getAllCostumers(), p -> true);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        } catch (SQLServerException e) {
+            throw new RuntimeException(e);
+        }
 
+        txtCoordSearch.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredCustomers.setPredicate(costumers -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    boolean fNameMatches = costumers.getCostumerFName().toLowerCase().contains(lowerCaseFilter);
+                    boolean lNameMatches = costumers.getCostumerLName().toLowerCase().contains(lowerCaseFilter);
+                    boolean eMailMatches = costumers.getCostumerEmail().toLowerCase().contains(lowerCaseFilter);
+
+
+
+                    return fNameMatches || lNameMatches || eMailMatches;
+                })
+        );
+
+        SortedList<Costumers> sortedCoustomers = new SortedList<>(filteredCustomers);
+        sortedCoustomers.comparatorProperty().bind(tblCostumerView.comparatorProperty());
+        tblCostumerView.setItems(sortedCoustomers);
+    }
 
     private void initializeButtonColumn() {
         colCostumerUpdate.setCellFactory(param -> new TableCell<>() {
@@ -117,13 +152,7 @@ public class CustomerTablePageController implements Initializable {
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                try {
-                    refreshEventData();
-                } catch (ApplicationWideException e) {
-                    throw new RuntimeException(e);
-                } catch (SQLServerException e) {
-                    throw new RuntimeException(e);
-                }
+
                 if (empty) {
                     setGraphic(null);
                 } else {

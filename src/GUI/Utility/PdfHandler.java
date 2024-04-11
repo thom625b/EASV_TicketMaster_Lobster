@@ -11,6 +11,8 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +34,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -61,6 +65,7 @@ public class PdfHandler implements Initializable {
     private Label lblTicketType;
     @FXML
     private Label lblHeadTicketType;
+
 
 
     @Override
@@ -125,44 +130,42 @@ public class PdfHandler implements Initializable {
         return image;
     }
 
+    public CompletableFuture<String> generatePDFAsync(String destinationPath) {
+        CompletableFuture<WritableImage> futureImage = new CompletableFuture<>();
 
-    // Method to generate a PDF from the ticket layout
-    public void generatePDF(String destinationPath) throws WriterException, IOException {
         Platform.runLater(() -> {
             try {
-                // Sørg for, at alle styles og layouts er fuldt anvendt
-                panePdfTicket.applyCss();
-                panePdfTicket.layout();
-                paneLabel.applyCss();
-                paneLabel.layout();
-
-                // Tag snapshot af det pane, der indeholder alt indhold du ønsker i PDF
                 WritableImage writableImage = panePdfTicket.snapshot(new SnapshotParameters(), null);
+                futureImage.complete(writableImage); // Kompletter med snapshot result
+            } catch (Exception e) {
+                futureImage.completeExceptionally(e);
+            }
+        });
+
+        return futureImage.thenApplyAsync(writableImage -> {
+            try {
                 BufferedImage bufferedImage = SwingFXUtils.fromFXImage(writableImage, null);
-
-                // Gem snapshot til en fil (til debug)
-                //ImageIO.write(bufferedImage, "png", new File("snapshot.png"));
-
-                // Konverter snapshot til byte array til PDF
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(bufferedImage, "png", baos);
                 byte[] imageBytes = baos.toByteArray();
 
-                // Skriv byte array til PDF
-                PdfWriter writer = new PdfWriter(destinationPath);
-                PdfDocument pdfDocument = new PdfDocument(writer);
-                Document document = new Document(pdfDocument);
+                try (PdfWriter writer = new PdfWriter(destinationPath);
+                     PdfDocument pdfDocument = new PdfDocument(writer);
+                     Document document = new Document(pdfDocument)) {
+                    ImageData imageData = ImageDataFactory.create(imageBytes);
+                    Image pdfImage = new Image(imageData);
+                    document.add(pdfImage);
 
-                ImageData imageData = ImageDataFactory.create(imageBytes);
-                com.itextpdf.layout.element.Image pdfImage = new com.itextpdf.layout.element.Image(imageData);
-                document.add(pdfImage);
-
-                document.close();
+                    document.close();
+                }
+                return destinationPath;
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         });
     }
+
+
 
 
     public String generateUUID() {

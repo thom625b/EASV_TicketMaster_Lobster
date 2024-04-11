@@ -34,14 +34,9 @@
                                         <Insets top="8.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label fx:id="lblLoginMail" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="211.0" text="Login With EASV mail" VBox.vgrow="ALWAYS">
-                                    <font>
-                                        <Font name="System Bold" size="20.0" />
-                                    </font>
-                                </Label>
                             </children>
                             <VBox.margin>
-                                <Insets bottom="16.0" />
+                                <Insets bottom="40.0" />
                             </VBox.margin>
                         </VBox>
                         <Group>
@@ -85,7 +80,7 @@
                                     <content>
                                         <VBox prefHeight="291.0" prefWidth="488.0">
                                             <children>
-                                                <Label fx:id="lblAdminMail" text="Email">
+                                                <Label fx:id="lblAdminMail" text="Email:">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
