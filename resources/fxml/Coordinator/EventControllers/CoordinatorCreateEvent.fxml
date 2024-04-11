@@ -64,7 +64,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
                                  <children>
-                                     <Label fx:id="lblEventTitle" prefHeight="18.0" prefWidth="120.0" text="Event Title">
+                                     <Label fx:id="lblEventTitle" prefHeight="18.0" prefWidth="120.0" text="Event Title*">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -90,7 +90,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
                                  <children>
-                                     <Label fx:id="lblEventAddress" prefHeight="18.0" prefWidth="120.0" text="Address">
+                                     <Label fx:id="lblEventAddress" prefHeight="18.0" prefWidth="120.0" text="Address*">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -103,7 +103,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
                                  <children>
-                                     <Label fx:id="lblEventCity" prefHeight="18.0" prefWidth="120.0" text="City">
+                                     <Label fx:id="lblEventCity" prefHeight="18.0" prefWidth="120.0" text="City*">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -116,7 +116,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
                                  <children>
-                                     <Label fx:id="lblEventZip" prefHeight="18.0" prefWidth="120.0" text="Postal code">
+                                     <Label fx:id="lblEventZip" prefHeight="18.0" prefWidth="120.0" text="Postal code*">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -129,7 +129,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="250.0" spacing="10.0">
                                  <children>
-                                     <Label fx:id="lblEventDate" prefHeight="18.0" prefWidth="120.0" text="Date">
+                                     <Label fx:id="lblEventDate" prefHeight="18.0" prefWidth="120.0" text="Date*">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -145,7 +145,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
                                  <children>
-                                     <Label fx:id="lblEventStartTime" prefHeight="18.0" prefWidth="120.0" text="Start time">
+                                     <Label fx:id="lblEventStartTime" prefHeight="18.0" prefWidth="120.0" text="Start time*">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -158,7 +158,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
                                  <children>
-                                     <Label fx:id="lblEventEndTime" prefHeight="18.0" prefWidth="120.0" text="End Time">
+                                     <Label fx:id="lblEventEndTime" prefHeight="18.0" prefWidth="120.0" text="End Time*">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>

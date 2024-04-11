@@ -95,6 +95,12 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
     @FXML
     void BuyTicketToEvent(ActionEvent event) throws WriterException {
+      //if (lblEmailTicket.getText().isEmpty() || lblFirstnameTicket.getText() == null || lblLastnameTicket.getText().isEmpty() ||
+      //        comboTickets.getItems().isEmpty() || comboAmount.getItems().isEmpty() || comboType.getItems().isEmpty()) {
+      //    showAlert("Missing Information", "Please fill in all required fields", Alert.AlertType.ERROR);
+      //    return;
+      //}
+
         Events selectedEvent = comboTickets.getSelectionModel().getSelectedItem();
         if (selectedEvent == null) {
             Platform.runLater(() -> showAlert("Error", "No event selected", Alert.AlertType.ERROR));

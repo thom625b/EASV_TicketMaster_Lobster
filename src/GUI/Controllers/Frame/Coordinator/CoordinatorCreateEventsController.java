@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -50,9 +51,10 @@ public class CoordinatorCreateEventsController implements IController {
     @FXML
     public void AddNewEvent(ActionEvent actionEvent) {
         if (txtEventTitle.getText().isEmpty() || dpEventStartDate.getValue() == null || txtEventAddress.getText().isEmpty() ||
-                txtEventZipCode.getText().isEmpty() || txtEventCity.getText().isEmpty() || txtEventDescription.getText().isEmpty() || txtEventStartTime.getText().isEmpty()
+                txtEventZipCode.getText().isEmpty() || txtEventCity.getText().isEmpty() || txtEventStartTime.getText().isEmpty()
                 || txtEventEndTime.getText().isEmpty()) {
-            showAlert("Missing Information", "Please fill in all required fields.");
+            txtEventTitle.setStyle("-fx-border-color: red;");
+            dpEventStartDate.setStyle("-fx-border-color: red");
             return;
         }
 

@@ -72,7 +72,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" spacing="10.0">
                                  <children>
-                                              <Label fx:id="lblEventTitleEdit" prefHeight="18.0" prefWidth="120.0" text="Event Title">
+                                              <Label fx:id="lblEventTitleEdit" prefHeight="18.0" prefWidth="120.0" text="Event Title*">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -124,7 +124,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
-                                              <Label fx:id="lblEventAddressEdit" prefHeight="18.0" prefWidth="120.0" text="Address">
+                                              <Label fx:id="lblEventAddressEdit" prefHeight="18.0" prefWidth="120.0" text="Address*">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -150,7 +150,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="160.0" spacing="10.0">
                                  <children>
-                                              <Label fx:id="lblEventCityEdit" prefHeight="18.0" prefWidth="120.0" text="City">
+                                              <Label fx:id="lblEventCityEdit" prefHeight="18.0" prefWidth="120.0" text="City*">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -176,7 +176,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
-                                              <Label fx:id="lblEventPostalCodeEdit" prefHeight="18.0" prefWidth="120.0" text="Postal code">
+                                              <Label fx:id="lblEventPostalCodeEdit" prefHeight="18.0" prefWidth="120.0" text="Postal code*">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -202,7 +202,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="250.0" spacing="10.0">
                                  <children>
-                                              <Label fx:id="lblEventStartDateEdit" prefHeight="18.0" prefWidth="120.0" text="Date">
+                                              <Label fx:id="lblEventStartDateEdit" prefHeight="18.0" prefWidth="120.0" text="Date*">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -228,7 +228,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
-                                    <Label fx:id="lblEventStartTimeEdit" prefHeight="18.0" prefWidth="120.0" text="Start time">
+                                    <Label fx:id="lblEventStartTimeEdit" prefHeight="18.0" prefWidth="120.0" text="Start time*">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -254,7 +254,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
-                                    <Label fx:id="lblEventEndTimeEdit" prefHeight="18.0" prefWidth="120.0" text="End Time">
+                                    <Label fx:id="lblEventEndTimeEdit" prefHeight="18.0" prefWidth="120.0" text="End Time*">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>

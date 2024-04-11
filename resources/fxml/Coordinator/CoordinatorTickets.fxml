@@ -38,17 +38,17 @@
                                           <Insets />
                                        </HBox.margin>
                                        <children>
-                                          <ComboBox fx:id="comboTickets" prefHeight="50.0" prefWidth="420.0" promptText="Event name" />
+                                          <ComboBox fx:id="comboTickets" prefHeight="50.0" prefWidth="420.0" promptText="Event name*" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="270.0" spacing="16.0">
                                        <children>
-                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="120.0" promptText="Type">
+                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="120.0" promptText="Type*">
                                              <HBox.margin>
                                                 <Insets left="16.0" />
                                              </HBox.margin>
                                           </ComboBox>
-                                          <ComboBox fx:id="comboAmount" prefHeight="50.0" prefWidth="120.0" promptText="Amount" />
+                                          <ComboBox fx:id="comboAmount" prefHeight="50.0" prefWidth="120.0" promptText="Amount*" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -63,7 +63,7 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label text="First Name">
+                                          <Label text="First Name*">
                                              <VBox.margin>
                                                 <Insets bottom="4.0" left="8.0" />
                                              </VBox.margin>
@@ -76,7 +76,7 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <Label text="Last Name">
+                                          <Label text="Last Name*">
                                              <VBox.margin>
                                                 <Insets bottom="4.0" left="8.0" />
                                              </VBox.margin>
@@ -96,7 +96,7 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label text="Email">
+                                          <Label text="Email*">
                                              <VBox.margin>
                                                 <Insets bottom="4.0" left="8.0" />
                                              </VBox.margin>

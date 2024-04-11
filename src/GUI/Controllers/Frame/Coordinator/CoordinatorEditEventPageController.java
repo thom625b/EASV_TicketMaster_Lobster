@@ -94,6 +94,14 @@ public class CoordinatorEditEventPageController implements IController {
     }
 
     public void editSaveEvent(ActionEvent actionEvent) {
+
+        if (txtEditEventTitle.getText().isEmpty() || dpEditEventStartDate.getValue() == null || txtEditEventAddress.getText().isEmpty() ||
+                txtEditEventZipCode.getText().isEmpty() || txtEditEventCity.getText().isEmpty() || txtEditEventStartTime.getText().isEmpty()
+                || txtEditEventEndTime.getText().isEmpty()) {
+            showAlert("Missing Information", "Please fill in all required fields.");
+            return;
+        }
+
         try {
             if (selectedEvent != null) {
                 // Retrieve the updated values from the text fields

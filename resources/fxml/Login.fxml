@@ -80,7 +80,7 @@
                                     <content>
                                         <VBox prefHeight="291.0" prefWidth="488.0">
                                             <children>
-                                                <Label fx:id="lblAdminMail" text="Email:">
+                                                <Label fx:id="lblAdminMail" text="Email*">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
@@ -93,7 +93,7 @@
                                                         <Insets left="50.0" />
                                                     </VBox.margin>
                                                 </TextField>
-                                                <Label fx:id="lblAdminPass" text="Password">
+                                                <Label fx:id="lblAdminPass" text="Password*">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
@@ -128,7 +128,7 @@
                                     <content>
                                         <VBox prefHeight="291.0" prefWidth="488.0">
                                             <children>
-                                                <Label fx:id="lblCoorMail" text="Email">
+                                                <Label fx:id="lblCoorMail" text="Email*">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
@@ -141,7 +141,7 @@
                                                         <Insets left="50.0" />
                                                     </VBox.margin>
                                                 </TextField>
-                                                <Label fx:id="lblCoorPass" text="Password">
+                                                <Label fx:id="lblCoorPass" text="Password*">
                                                     <VBox.margin>
                                                         <Insets left="50.0" top="25.0" />
                                                     </VBox.margin>
