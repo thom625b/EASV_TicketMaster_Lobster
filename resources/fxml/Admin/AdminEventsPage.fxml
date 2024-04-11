@@ -12,22 +12,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderEventsAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" styleClass="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminEventsPageController">
+<BorderPane fx:id="borderEventsAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" styleClass="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Admin.AdminEventsPageController">
    <top>
-      <VBox prefHeight="93.0" prefWidth="779.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="93.0" prefWidth="779.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="50.0" prefWidth="776.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="776.0" spacing="40.0">
                <children>
-                  <HBox fx:id="hBoxCoorAdminTop" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="594.0">
+                  <HBox fx:id="hBoxCoorAdminTop" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="316.0">
                      <children>
-                        <TextField fx:id="txtSearchAdminEvents" prefHeight="45.0" prefWidth="327.0" promptText="🔍 Search...">
+                        <TextField fx:id="txtSearchAdminEvents" prefHeight="45.0" prefWidth="324.0" promptText="🔍 Search...">
                            <HBox.margin>
-                              <Insets left="8.0" />
+                              <Insets />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox fx:id="hBoxeventsAdminSec" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="450.0">
+                  <HBox fx:id="hBoxeventsAdminSec" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="280.0">
                      <children>
                         <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -42,7 +42,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="btnCreateNewEvent" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Create new">
+                        <Button fx:id="btnCreateNewEvent" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Create new">
                            <HBox.margin>
                               <Insets left="50.0" right="8.0" />
                            </HBox.margin>
@@ -61,7 +61,7 @@
       </VBox>
    </top>
    <center>
-      <TableView fx:id="tblViewAdminEvents" BorderPane.alignment="CENTER" prefHeight="500.0" prefWidth="808.0">
+      <TableView fx:id="tblViewAdminEvents" prefHeight="500.0" prefWidth="808.0" BorderPane.alignment="CENTER">
          <columns>
             <TableColumn fx:id="colAdminEventId" prefWidth="75.0" text="ID" visible="false" />
             <TableColumn fx:id="colEventAdmin" prefWidth="156.0001220703125" text="Event" />
@@ -69,14 +69,14 @@
             <TableColumn fx:id="colAdminStatus" prefWidth="144.7999267578125" text="Status" />
             <TableColumn fx:id="colAdminDaysLeft" prefWidth="101.5999755859375" text="Days Left " />
             <TableColumn fx:id="colAdminEventRegistered" prefWidth="120.0" text="Registered" />
-            <TableColumn fx:id="coladminEventsButtons" prefWidth="113.5999755859375">
+            <TableColumn fx:id="coladminEventsButtons" prefWidth="122.0">
                <graphic>
                   <Button fx:id="btnRefreshAdminEvents" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Refresh 🔄" />
                </graphic>
             </TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="0.53997802734375" text="Column X">
+            <TableColumn minWidth="0.0" prefWidth="0.0" text="Column X">
                <graphic>
-                  <Button fx:id="invisbleTableColumnAdmin" mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="55.0" text="Button" />
                </graphic>
             </TableColumn>
          </columns>

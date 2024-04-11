@@ -11,6 +11,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -43,11 +45,18 @@ public class CoordinatorEventPageController implements IController {
     private TableColumn<Events, String> tblEventStartTime;
     @FXML
     private TableColumn<Events, String> tblEventEndTime;
+
+    @FXML
+    private TextField txtTopCoorEventPage;
+
+    private FilteredList<Events> filteredData;
+
     private final EventsModel eventsModel;
 
 
     public CoordinatorEventPageController() throws IOException, ApplicationWideException {
         eventsModel = new EventsModel();
+
     }
 
     @FXML
@@ -57,9 +66,11 @@ public class CoordinatorEventPageController implements IController {
 
     @FXML
     public void initialize() {
+        searchSetupTable();
         int coordinatorID = UserContext.getInstance().getCurrentUserId();
         initializeColumns(coordinatorID);
         initializeEditButtonColumn();
+
     }
 
     private void initializeEditButtonColumn() {
@@ -123,7 +134,39 @@ public class CoordinatorEventPageController implements IController {
         }
     }
 
+    private void searchSetupTable() {
 
+        filteredData = new FilteredList<>(eventsModel.getEventList(), p -> true);
+
+        txtTopCoorEventPage.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(event -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (event.getEventName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(event.getEventID()).contains(lowerCaseFilter)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+
+        SortedList<Events> sortedData = new SortedList<>(filteredData);
+
+
+        sortedData.comparatorProperty().bind(tblEventTable.comparatorProperty());
+
+
+        tblEventTable.setItems(sortedData);
+    }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -231,7 +231,6 @@ public class AdminFrameController implements Initializable, IController {
     @FXML
     private void openChangeProfilePicture(MouseEvent mouseEvent) {
         try {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin/AdminCreatePicturePageAdmin.fxml"));
             Parent root = loader.load();
             IController controller = loader.getController();
@@ -253,6 +252,7 @@ public class AdminFrameController implements Initializable, IController {
             throw new IOException("Error copying file: " + source + " to " + destination, e);
         }
     }
+
     @FXML
     private void loadNewUserPicture(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();

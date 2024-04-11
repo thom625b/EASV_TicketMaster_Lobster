@@ -77,8 +77,12 @@ public class CoordinatorFrameController implements Initializable, IController {
         if (url == null) {
             throw new IOException("FXML file not found: " + page);
         }
+        FXMLLoader fxmlLoader = new FXMLLoader(url);
+        Parent root = fxmlLoader.load();
 
-        Parent root = FXMLLoader.load(url);
+
+
+
 
         if (!coorStackPane.getChildren().isEmpty()) {
             pageHistory.push(coorStackPane.getChildren().get(0));
@@ -164,6 +168,7 @@ public class CoordinatorFrameController implements Initializable, IController {
     }
 
     public void openPageCoordinatorCreateEventPage() {
+        Platform.runLater(() -> {
         try {
             URL url = getClass().getResource(CREATE_EVENTS_WINDOW_FXML);
             if (url == null) {
@@ -178,6 +183,7 @@ public class CoordinatorFrameController implements Initializable, IController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        });
     }
 
     void openEditEventPage(Events selectedEvent) {

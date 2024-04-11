@@ -1,6 +1,7 @@
 package GUI.Controllers.Frame.Coordinator;
 
 import BE.Costumers;
+import BE.Events;
 import BE.Users;
 import CostumException.ApplicationWideException;
 import GUI.Model.CustomersModel;
@@ -10,6 +11,8 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ListChangeListener;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +49,12 @@ public class CustomerTablePageController implements Initializable {
 
     private Costumers currentCustomer;
 
+    private FilteredList<Costumers> filteredCustomers;
+    @FXML
+    private TextField txtCoordSearch;
+    @FXML
+    private TextField txtCustomerSearch;
+
     public CustomerTablePageController() {
 
     }
@@ -60,12 +69,9 @@ public class CustomerTablePageController implements Initializable {
             initializeColumns(customerID);
             initializeButtonColumn();
             refreshEventData();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ApplicationWideException e) {
-            throw new RuntimeException(e);
-        } catch (SQLServerException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | ApplicationWideException | SQLServerException e) {
+
+            throw new RuntimeException("Initialization failed: " + e.getMessage(), e); //TODO
         }
 
 
@@ -87,6 +93,8 @@ public class CustomerTablePageController implements Initializable {
         });
 
     }
+
+
 
     private void initializeButtonColumn() {
         colCostumerUpdate.setCellFactory(param -> new TableCell<>() {

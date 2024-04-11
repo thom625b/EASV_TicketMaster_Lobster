@@ -8,9 +8,12 @@ import GUI.Model.CustomersModel;
 import GUI.Model.EventsModel;
 import GUI.Model.TicketsModel;
 import GUI.Model.UsersModel;
+import GUI.Utility.EmailSender;
 import GUI.Utility.PdfHandler;
 import com.google.zxing.WriterException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import com.resend.core.exception.ResendException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +31,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
@@ -137,13 +142,39 @@ public class CoordinatorTicketsController implements IController, Initializable 
             saveTicketType(uuid, isValid, selectedEvent, createdCustomer);
 
             new Scene(root);
-            showAlert("Ticket Purchase", "Ticket successfully purchased and saved to: " + destinationPath, Alert.AlertType.INFORMATION);
-        } catch (IOException e) {
+
+            try {
+
+                EmailSender emailSender = new EmailSender();
+                Path pdfPath = Path.of(destinationPath);
+                if (waitForFile(pdfPath, 90)) {
+                    emailSender.sendTicket(customerEmail, "Your Event Ticket", "Here is your ticket for the event.", pdfPath);
+                } else {
+                    System.out.println("File not available");
+                }
+            } catch (IOException | ResendException e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException | SQLServerException | ApplicationWideException  e) {
             throw new RuntimeException(e);
-        } catch (SQLServerException e) {
-            throw new RuntimeException(e);
-        } catch (ApplicationWideException e) {
-            throw new RuntimeException(e);
+        }
+    }
+
+    private boolean waitForFile(Path filePath, int timeoutSeconds) {
+        int waited = 0;
+        try {
+            while (Files.notExists(filePath)) {
+                Thread.sleep(1000);
+                waited++;
+                if (waited > timeoutSeconds) {
+                    return false;
+                }
+            }
+            return true; // File is available
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Handle thread interruption
+            return false;
         }
     }
 
@@ -217,5 +248,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
     @FXML
     public void createNewEvent(ActionEvent actionEvent) {
         CoordinatorFrameController.getInstance().openPageCoordinatorCreateEventPage();
+
+
     }
 }

@@ -8,8 +8,13 @@ import DAL.DBConnector.DBConnector;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.*;
 import java.util.List;
+
+import static java.sql.DriverManager.getConnection;
 
 public class Tickets_DAO implements ITicketsDataAccess{
 

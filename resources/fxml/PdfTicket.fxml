@@ -8,7 +8,7 @@
 <Pane fx:id="panePdfTicket" prefHeight="634.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Utility.PdfHandler">
    <children>
        <ImageView fx:id="eventImage" fitHeight="293.0" fitWidth="347.0" layoutX="82.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
-       <ImageView fx:id="qrCode" fitHeight="219.0" fitWidth="241.0" layoutX="259.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="qrCode" fitHeight="219.0" fitWidth="241.0" layoutX="259.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true" />
       <Pane fx:id="paneLabel" layoutX="10.0" layoutY="401.0" prefHeight="219.0" prefWidth="229.0">
          <padding>
             <Insets left="16.0" />

@@ -1,5 +1,5 @@
 import GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController;
-import GUI.Utility.EmailService;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

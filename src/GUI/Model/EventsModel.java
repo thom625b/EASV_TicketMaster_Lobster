@@ -39,10 +39,15 @@ public class EventsModel {
     public void createEvent(Events event) throws ApplicationWideException {
         int currentCoordinatorId = UserContext.getInstance().getCurrentUserId();
         eventsManager.createEvent(event, currentCoordinatorId);
+        eventList.add(event);
     }
 
     public void updateEvent(Events event) throws ApplicationWideException {
         eventsManager.updateEvent(event);
+        int index = eventList.indexOf(event);
+        if (index >= 0) {
+            eventList.set(index, event);
+        }
     }
 
     public void deleteEvent(Events event) throws ApplicationWideException {
