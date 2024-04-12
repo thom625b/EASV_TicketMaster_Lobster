@@ -37,6 +37,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.regex.Pattern;
 
 public class CoordinatorTicketsController implements IController, Initializable {
 
@@ -94,6 +95,14 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
 
+    private boolean isValidEmail(String email) {
+        String emailRegex = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}";
+        Pattern pattern = Pattern.compile(emailRegex);
+        return pattern.matcher(email).matches();
+    }
+
+
+
     @FXML
     void BuyTicketToEvent(ActionEvent event) throws WriterException {
       //if (lblEmailTicket.getText().isEmpty() || lblFirstnameTicket.getText() == null || lblLastnameTicket.getText().isEmpty() ||
@@ -112,6 +121,11 @@ public class CoordinatorTicketsController implements IController, Initializable 
         String customerEmail = lblEmailTicket.getText();
         String customerFName = lblFirstnameTicket.getText();
         String customerLName = lblLastnameTicket.getText();
+
+        if (!isValidEmail(customerEmail)) {
+            showAlert("Input Error", "Please enter a valid email address.", Alert.AlertType.WARNING);
+            return;
+        }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PdfTicket.fxml"));

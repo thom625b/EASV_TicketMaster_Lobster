@@ -24,7 +24,6 @@ public class EventsModel {
         eventsManager = new EventsManager();
         loadEvents();
         loadUserEvents();
-        System.out.println("hej");
         id = new Random().nextInt(1000);
     }
 
