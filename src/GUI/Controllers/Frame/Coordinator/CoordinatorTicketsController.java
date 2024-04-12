@@ -276,8 +276,6 @@ public class CoordinatorTicketsController implements IController, Initializable 
         if (ticketCount > 1) {
             ticketCount--;
             lblTicket.setText(Integer.toString(ticketCount));
-        } else {
-            System.out.println("Ticket count cannot be less than 1.");
         }
     }
 
@@ -286,4 +284,26 @@ public class CoordinatorTicketsController implements IController, Initializable 
         ticketCount++;
         lblTicket.setText(Integer.toString(ticketCount));
     }
+
+    /**
+     * For testing purposes only!
+     * Acces modifiers is set to package private
+     */
+
+    int getTicketCount(){
+        return ticketCount;
+    }
+
+    Label getLblTicket(){
+        return lblTicket;
+    }
+
+    void setTicketCount(int ticketCount){
+        this.ticketCount = ticketCount;
+    }
+
+    void setLabel(){
+        this.lblTicket = new Label();
+    }
+
 }
