@@ -77,7 +77,7 @@ public class Tickets_DAO implements ITicketsDataAccess{
         return null;
     }
 
-    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType, Costumers customer) throws ApplicationWideException {
+    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType, Costumers customer, int ticketAmount) throws ApplicationWideException {
         try (Connection conn = dbConnector.getConnection()) {
 
             //Start transaction

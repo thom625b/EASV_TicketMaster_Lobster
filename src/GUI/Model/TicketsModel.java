@@ -15,7 +15,9 @@ public class TicketsModel {
         ticketsManager = new TicketsManager();
     }
 
-    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType, Costumers customer) throws ApplicationWideException {
-        ticketsManager.saveTicketInformation(uuid, isValid, selectedEvent, ticketType, customer);
+    public void saveTicketInformation(String uuid, boolean isValid, Events selectedEvent, String ticketType, Costumers customer, int ticketAmount) throws ApplicationWideException {
+        ticketsManager.saveTicketInformation(uuid, isValid, selectedEvent, ticketType, customer, ticketAmount);
     }
+
+
 }

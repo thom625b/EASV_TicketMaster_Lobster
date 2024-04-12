@@ -20,10 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -47,8 +44,6 @@ public class CoordinatorTicketsController implements IController, Initializable 
     @FXML
     private ComboBox<Events> comboTickets;
 
-    @FXML
-    private ComboBox<Integer> comboAmount;
 
     @FXML
     private ComboBox<String> comboType;
@@ -74,6 +69,13 @@ public class CoordinatorTicketsController implements IController, Initializable 
     @FXML
     private TextField lblLastnameTicket;
     private Stage primaryStage;
+    @FXML
+    private Button btnSubtract, btnAdd;
+
+    @FXML
+    private Label lblTicket;
+
+    private int ticketCount = 1;
 
     @Override
     public void setModel(UsersModel usersModel) {
@@ -92,9 +94,9 @@ public class CoordinatorTicketsController implements IController, Initializable 
         return customersModel.saveCustomer(customers);
     }
 
-    private void saveTicketType(String uuid, boolean isValid, Events selectedEvent, Costumers customer) throws SQLServerException, ApplicationWideException {
+    private void saveTicketType(String uuid, boolean isValid, Events selectedEvent, Costumers customer, int ticketAmount) throws SQLServerException, ApplicationWideException {
         String ticketType = comboType.getSelectionModel().getSelectedItem();
-        ticketsModel.saveTicketInformation(uuid, isValid, selectedEvent, ticketType, customer);
+        ticketsModel.saveTicketInformation(uuid, isValid, selectedEvent, ticketType, customer, ticketAmount);
     }
 
 
@@ -106,14 +108,8 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
 
 
-    @FXML
-    void BuyTicketToEvent(ActionEvent event) throws WriterException {
-      //if (lblEmailTicket.getText().isEmpty() || lblFirstnameTicket.getText() == null || lblLastnameTicket.getText().isEmpty() ||
-      //        comboTickets.getItems().isEmpty() || comboAmount.getItems().isEmpty() || comboType.getItems().isEmpty()) {
-      //    showAlert("Missing Information", "Please fill in all required fields", Alert.AlertType.ERROR);
-      //    return;
-      //}
-
+   @FXML
+    void buyTicketToEvent(ActionEvent event) throws WriterException {
         Events selectedEvent = comboTickets.getSelectionModel().getSelectedItem();
         if (selectedEvent == null) {
             Platform.runLater(() -> showAlert("Error", "No event selected", Alert.AlertType.ERROR));
@@ -130,71 +126,69 @@ public class CoordinatorTicketsController implements IController, Initializable 
             return;
         }
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PdfTicket.fxml"));
-            Parent root = loader.load();
+        for (int i = 0; i < ticketCount; i++) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PdfTicket.fxml"));
+                Parent root = loader.load();
 
-            PdfHandler pdfHandler = loader.getController();
+                PdfHandler pdfHandler = loader.getController();
 
-            String eventName = selectedEvent.getEventName();
-            String eventDate = String.valueOf(selectedEvent.getEventDate());
-            String eventAddress = selectedEvent.getEventAddress();
-            String eventZIP = String.valueOf(selectedEvent.getEventZipCode());
-            String eventCity = selectedEvent.getEventCity();
-            String eventType = comboType.getSelectionModel().getSelectedItem();
-            BufferedImage eventImage = null;
-            String uuid = UUID.randomUUID().toString();
-            BufferedImage qrCodeImage = pdfHandler.generateQRCodeImage(uuid, 200, 200);
+                String eventName = selectedEvent.getEventName();
+                String eventDate = String.valueOf(selectedEvent.getEventDate());
+                String eventAddress = selectedEvent.getEventAddress();
+                String eventZIP = String.valueOf(selectedEvent.getEventZipCode());
+                String eventCity = selectedEvent.getEventCity();
+                String eventType = comboType.getSelectionModel().getSelectedItem();
+                BufferedImage eventImage = null;
+                String uuid = UUID.randomUUID().toString();
+                BufferedImage qrCodeImage = pdfHandler.generateQRCodeImage(uuid, 200, 200);
 
-            pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventType, eventImage, qrCodeImage);
+                pdfHandler.setTicketData(eventName, eventDate, eventAddress, eventZIP, eventCity, eventType, eventImage, qrCodeImage);
 
-            String directoryPath = "resources/Data/Pdf/" + "Event" + selectedEvent.getEventID();
+                String directoryPath = "resources/Data/Pdf/" + "Event" + selectedEvent.getEventID();
 
-            File directory = new File(directoryPath);
-            if (!directory.exists()) {
-                directory.mkdirs();
+                File directory = new File(directoryPath);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+                String fileName = customerFName + "_" + customerLName + ".pdf";
+                String destinationPath = directoryPath + "/" + fileName;
+                pdfHandler.generatePDFAsync(destinationPath);
+
+                // Create customer object
+                Costumers customer = new Costumers(customerEmail, customerFName, customerLName);
+
+                // Save customer and ticket information
+                Costumers createdCustomer = customersModel.saveCustomer(customer);
+
+                boolean isValid = true;
+                int ticketAmount = 1; // Each iteration creates one ticket
+                saveTicketType(uuid, isValid, selectedEvent, createdCustomer, ticketAmount);
+
+                new Scene(root);
+
+                pdfHandler.generatePDFAsync(destinationPath)
+                        .thenCompose(path -> {
+                            CompletableFuture<Void> emailFuture = new CompletableFuture<>();
+                            try {
+                                EmailSender emailSender = new EmailSender();
+                                emailSender.sendTicket(customerEmail, "Your Event Ticket", "Here is your ticket for the event.", Path.of(path));
+                                Platform.runLater(() -> showAlert("Success", "Email sent successfully", Alert.AlertType.INFORMATION));
+                                emailFuture.complete(null);
+                            } catch (Exception e) {
+                                emailFuture.completeExceptionally(e);
+                            }
+                            return emailFuture;
+                        })
+                        .exceptionally(e -> {
+                            Platform.runLater(() -> showAlert("Email Error", "Failed to send email.", Alert.AlertType.ERROR));
+                            return null;
+                        });
+            } catch (IOException | SQLServerException | ApplicationWideException e) {
+                throw new RuntimeException(e);
             }
-            String fileName = customerFName + "_" + customerLName + ".pdf";
-            String destinationPath = directoryPath + "/" + fileName;
-            pdfHandler.generatePDFAsync(destinationPath);
-
-            // Create customer object
-            Costumers customer = new Costumers(customerEmail, customerFName, customerLName);
-
-            // Save customer and ticket information
-            Costumers createdCustomer = customersModel.saveCustomer(customer);
-
-            boolean isValid = true;
-            saveTicketType(uuid, isValid, selectedEvent, createdCustomer);
-
-            new Scene(root);
-
-
-
-            pdfHandler.generatePDFAsync(destinationPath)
-                    .thenCompose(path -> {
-                        CompletableFuture<Void> emailFuture = new CompletableFuture<>();
-                        try {
-
-                            EmailSender emailSender = new EmailSender();
-                            emailSender.sendTicket(customerEmail, "Your Event Ticket", "Here is your ticket for the event.", Path.of(path));
-                            Platform.runLater(() -> showAlert("Success", "Email sent successfully", Alert.AlertType.INFORMATION));
-                            emailFuture.complete(null);
-                        } catch (Exception e) {
-                            emailFuture.completeExceptionally(e);
-                        }
-                        return emailFuture;
-                    })
-                    .exceptionally(e -> {
-                        Platform.runLater(() -> showAlert("Email Error", "Failed to send email.", Alert.AlertType.ERROR));
-                        return null;
-                    });
-        } catch (IOException | SQLServerException | ApplicationWideException  e) {
-            throw new RuntimeException(e);
         }
     }
-
-
 
     // AlertBox
     private void showAlert(String title, String message, Alert.AlertType alertType) {
@@ -250,11 +244,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
 
 
-    private void initializeTicketAmounts() {
-        for (int i = 1; i <= 10; i++) {
-            comboAmount.getItems().add(i);
-        }
-    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -269,8 +259,8 @@ public class CoordinatorTicketsController implements IController, Initializable 
         } catch (SQLServerException e) {
             throw new RuntimeException(e);
         }
+        lblTicket.setText(Integer.toString(ticketCount));
         initializeTicketTypes();
-        initializeTicketAmounts();
     }
 
 
@@ -279,5 +269,21 @@ public class CoordinatorTicketsController implements IController, Initializable 
         CoordinatorFrameController.getInstance().openPageCoordinatorCreateEventPage();
 
 
+    }
+
+    @FXML
+    public void btnSubtractTicket(ActionEvent actionEvent) {
+        if (ticketCount > 1) {
+            ticketCount--;
+            lblTicket.setText(Integer.toString(ticketCount));
+        } else {
+            System.out.println("Ticket count cannot be less than 1.");
+        }
+    }
+
+    @FXML
+    public void btnAddTicket(ActionEvent actionEvent) {
+        ticketCount++;
+        lblTicket.setText(Integer.toString(ticketCount));
     }
 }

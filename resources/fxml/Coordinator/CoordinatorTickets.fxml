@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="BPCoordinatorEventTickets" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
+<BorderPane fx:id="BPCoordinatorEventTickets" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorTicketsController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="70.0" BorderPane.alignment="CENTER" />
    </bottom>
@@ -43,12 +43,18 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="270.0" spacing="16.0">
                                        <children>
-                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="120.0" promptText="Type*">
+                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="168.0" promptText="Type*">
                                              <HBox.margin>
                                                 <Insets left="16.0" />
                                              </HBox.margin>
                                           </ComboBox>
-                                          <ComboBox fx:id="comboAmount" prefHeight="50.0" prefWidth="120.0" promptText="Amount*" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Button fx:id="btnSubtract" mnemonicParsing="false" onAction="#btnSubtractTicket" text="-" />
+                                                <Label fx:id="lblTicket" text="tal" />
+                                                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAddTicket" text="+" />
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </HBox>
                                  </children>
@@ -125,7 +131,7 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Button>
-                        <Button fx:id="btnBuyTicketCoordinatorTicket" mnemonicParsing="false" onAction="#BuyTicketToEvent" prefHeight="50.0" prefWidth="220.0" text="Buy Ticket">
+                        <Button fx:id="btnBuyTicketCoordinatorTicket" mnemonicParsing="false" onAction="#buyTicketToEvent" prefHeight="50.0" prefWidth="220.0" text="Buy Ticket">
                            <HBox.margin>
                               <Insets left="16.0" />
                            </HBox.margin></Button>
