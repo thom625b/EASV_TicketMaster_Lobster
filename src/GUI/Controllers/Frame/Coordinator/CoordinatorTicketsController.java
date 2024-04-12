@@ -34,10 +34,13 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CoordinatorTicketsController implements IController, Initializable {
 
@@ -213,10 +216,13 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
     private void populateComboTickets() {
-        eventsModel.getEventList().forEach(event ->
-                comboTickets.getItems().add(event)
-        );
+        List<Events> sortedEvents = eventsModel.getEventList().stream()
+                .sorted(Comparator.comparing(Events::getEventDate))
+                .collect(Collectors.toList());
+
+        comboTickets.getItems().addAll(sortedEvents);
     }
+
 
     private void setupEventComboBox() {
         populateComboTickets();
