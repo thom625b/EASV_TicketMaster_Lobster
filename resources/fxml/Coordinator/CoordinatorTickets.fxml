@@ -33,7 +33,7 @@
                                     <Insets top="8.0" />
                                  </VBox.margin>
                                  <children>
-                                    <HBox prefHeight="50.0">
+                                    <HBox prefHeight="50.0" prefWidth="370.0">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -43,16 +43,19 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="270.0" spacing="16.0">
                                        <children>
-                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="168.0" promptText="Type*">
+                                          <ComboBox fx:id="comboType" prefHeight="50.0" prefWidth="209.0" promptText="Type*">
                                              <HBox.margin>
                                                 <Insets left="16.0" />
                                              </HBox.margin>
                                           </ComboBox>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <Button fx:id="btnSubtract" mnemonicParsing="false" onAction="#btnSubtractTicket" text="-" />
-                                                <Label fx:id="lblTicket" text="tal" />
-                                                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAddTicket" text="+" />
+                                                <Button fx:id="btnSubtract" maxHeight="52.0" maxWidth="40.0" minHeight="50.0" minWidth="40.0" mnemonicParsing="false" onAction="#btnSubtractTicket" prefHeight="45.0" prefWidth="40.0" text="➖" />
+                                                <Label fx:id="lblTicket" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="35.0" text="tal">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font></Label>
+                                                <Button fx:id="btnAdd" maxHeight="50.0" maxWidth="40.0" minHeight="50.0" minWidth="40.0" mnemonicParsing="false" onAction="#btnAddTicket" prefHeight="50.0" prefWidth="40.0" text="➕" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -127,6 +130,11 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="646.0">
                      <children>
+                        <Label fx:id="lblErrorText" prefHeight="18.0" prefWidth="294.0">
+                           <HBox.margin>
+                              <Insets left="24.0" right="16.0" />
+                           </HBox.margin>
+                        </Label>
                         <Button fx:id="btnCloseCoordinatorTicket" mnemonicParsing="false" onAction="#CloseTicketPage" prefHeight="50.0" prefWidth="100.0" text="Close">
                            <HBox.margin>
                               <Insets />

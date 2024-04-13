@@ -961,3 +961,9 @@
 #tblCostumerView:odd {
     -fx-background-color: #f2f2f2;
 }
+
+.error-border {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+}

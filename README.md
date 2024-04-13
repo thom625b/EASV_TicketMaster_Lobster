@@ -8,6 +8,10 @@ Libraries:
 - com.itextpdf:layout:8.0.2
 - javax.mail:javax.mail-api:1.6.2
 - com.resend:resend-java:2.2.1
+- org.slf4j:slf4j-log4j12:1.7.16
+- org.slf4j:slf4j-api:2.0.6
+
+
 - junit.jupiter
 
 Users:

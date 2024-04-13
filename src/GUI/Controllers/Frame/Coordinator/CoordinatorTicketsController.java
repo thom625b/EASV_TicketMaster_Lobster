@@ -12,7 +12,9 @@ import GUI.Utility.EmailSender;
 import GUI.Utility.PdfHandler;
 import com.google.zxing.WriterException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.resend.core.exception.ResendException;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,13 +24,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -43,37 +45,18 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
     @FXML
     private ComboBox<Events> comboTickets;
-
-
     @FXML
     private ComboBox<String> comboType;
-
     @FXML
-    private TextField lblEmailTicket;
-
-
-
-
+    private TextField lblEmailTicket, lblFirstnameTicket, lblLastnameTicket, lblNameTicket;
     @FXML
-    private Label lblHeaderTicket;
-
+    private Label lblTicket, lblErrorText, lblHeaderTicket;
     @FXML
-    private TextField lblNameTicket;
+    private Button btnSubtract, btnAdd, btnCreateNewCoordinatorTicket;
 
     private EventsModel eventsModel;
     private TicketsModel ticketsModel;
     private CustomersModel customersModel;
-
-    @FXML
-    private TextField lblFirstnameTicket;
-    @FXML
-    private TextField lblLastnameTicket;
-    private Stage primaryStage;
-    @FXML
-    private Button btnSubtract, btnAdd;
-
-    @FXML
-    private Label lblTicket;
 
     private int ticketCount = 1;
 
@@ -82,16 +65,32 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
     }
 
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            eventsModel = new EventsModel();
+            setupEventComboBox();
+            customersModel = new CustomersModel();
+            ticketsModel = new TicketsModel();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        } catch (SQLServerException e) {
+            throw new RuntimeException(e);
+        }
+        lblTicket.setText(Integer.toString(ticketCount));
+        initializeTicketTypes();
+        setupBordersToBlink();
     }
 
-    private Costumers saveCustomer(Costumers customer) throws SQLServerException, ApplicationWideException {
-        String customerEmail = lblEmailTicket.getText();
-        String customerFName = lblFirstnameTicket.getText();
-        String customerLName = lblLastnameTicket.getText();
-        Costumers customers = new Costumers(customerEmail, customerFName, customerLName);
-        return customersModel.saveCustomer(customers);
+
+    private void setupBordersToBlink () {
+        setupBlinkingBorders(lblEmailTicket);
+        setupBlinkingBorders(lblFirstnameTicket);
+        setupBlinkingBorders(lblLastnameTicket);
+        setupBlinkingBorders(comboTickets);
+        setupBlinkingBorders(comboType);
     }
 
     private void saveTicketType(String uuid, boolean isValid, Events selectedEvent, Costumers customer, int ticketAmount) throws SQLServerException, ApplicationWideException {
@@ -107,24 +106,22 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
 
-
    @FXML
     void buyTicketToEvent(ActionEvent event) throws WriterException {
+
         Events selectedEvent = comboTickets.getSelectionModel().getSelectedItem();
-        if (selectedEvent == null) {
-            Platform.runLater(() -> showAlert("Error", "No event selected", Alert.AlertType.ERROR));
-            return;
-        }
+
+       if (!validateAllFields()) {
+           updateErrorDisplay("Please enter a valid email address.", lblEmailTicket);
+           return;
+       }
+
 
         // Get customer information from input fields
         String customerEmail = lblEmailTicket.getText();
         String customerFName = lblFirstnameTicket.getText();
         String customerLName = lblLastnameTicket.getText();
 
-        if (!isValidEmail(customerEmail)) {
-            showAlert("Input Error", "Please enter a valid email address.", Alert.AlertType.WARNING);
-            return;
-        }
 
         for (int i = 0; i < ticketCount; i++) {
             try {
@@ -173,7 +170,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
                             try {
                                 EmailSender emailSender = new EmailSender();
                                 emailSender.sendTicket(customerEmail, "Your Event Ticket", "Here is your ticket for the event.", Path.of(path));
-                                Platform.runLater(() -> showAlert("Success", "Email sent successfully", Alert.AlertType.INFORMATION));
+                                Platform.runLater(() -> updateMessageDisplay("Email sent successfully", false));
                                 emailFuture.complete(null);
                             } catch (Exception e) {
                                 emailFuture.completeExceptionally(e);
@@ -181,7 +178,7 @@ public class CoordinatorTicketsController implements IController, Initializable 
                             return emailFuture;
                         })
                         .exceptionally(e -> {
-                            Platform.runLater(() -> showAlert("Email Error", "Failed to send email.", Alert.AlertType.ERROR));
+                            Platform.runLater(() -> updateMessageDisplay("Failed to send email.", true));
                             return null;
                         });
             } catch (IOException | SQLServerException | ApplicationWideException e) {
@@ -190,19 +187,100 @@ public class CoordinatorTicketsController implements IController, Initializable 
         }
     }
 
-    // AlertBox
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+
+    private void updateErrorDisplay(String message, Control field) {
+        Platform.runLater(() -> {
+            lblErrorText.setText(message);
+            if (!message.isEmpty()) {
+                lblErrorText.setStyle("-fx-text-fill: red;");
+                startBlinkingEffect(field, 2);
+            } else {
+                lblErrorText.setStyle("");
+                field.setStyle("");
+            }
+
+            // Clear the message after 5 seconds
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(e -> {
+                lblErrorText.setText("");
+                lblErrorText.setStyle("");
+                field.setStyle("");
+            });
+            pause.play();
+        });
     }
 
+    private void updateMessageDisplay(String message, boolean isError) {
+        Platform.runLater(() -> {
+            lblErrorText.setText(message);
+            if (isError) {
+                lblErrorText.setStyle("-fx-text-fill: red;");
+            } else {
+                lblErrorText.setStyle("-fx-text-fill: green;");
+            }
+        });
+    }
+
+    private boolean validateAllFields() {
+        boolean hasErrors = false;
+
+        // Validate each required field and apply red border if empty
+        hasErrors |= !validateField(lblEmailTicket, isValidEmail(lblEmailTicket.getText()));
+        hasErrors |= !validateField(lblFirstnameTicket, !lblFirstnameTicket.getText().trim().isEmpty());
+        hasErrors |= !validateField(lblLastnameTicket, !lblLastnameTicket.getText().trim().isEmpty());
+        hasErrors |= !validateComboBox(comboTickets, comboTickets.getValue() != null);
+        hasErrors |= !validateComboBox(comboType, comboType.getValue() != null);
+
+        return !hasErrors;
+    }
+
+    private boolean validateField(TextField field, boolean isValid) {
+        if (!isValid) {
+            startBlinkingEffect(field, 2);
+            return false;
+        }
+        field.setStyle("");
+        return true;
+    }
+
+    private boolean validateComboBox(ComboBox<?> comboBox, boolean isValid) {
+        if (!isValid) {
+            startBlinkingEffect(comboBox, 2);
+            return false;
+        }
+        comboBox.setStyle("");
+        return true;
+    }
+
+    private void startBlinkingEffect(Control control, int blinkCount) {
+        Timeline blinkTimeline = new Timeline();
+        for (int i = 0; i < blinkCount * 2; i++) {
+            if (i % 2 == 0) {
+                blinkTimeline.getKeyFrames().add(new KeyFrame(Duration.seconds(i * 0.5), e ->
+                        control.setStyle("-fx-border-color: #fa4949; -fx-border-width: 1px; -fx-border-radius: 15px;")));
+
+            } else {
+                blinkTimeline.getKeyFrames().add(new KeyFrame(Duration.seconds(i * 0.5), e -> control.setStyle("")));
+            }
+        }
+        blinkTimeline.setCycleCount(1);  // Run the sequence only once
+        blinkTimeline.setOnFinished(e -> control.setStyle(""));  // Clear the style after blinking
+        blinkTimeline.play();
+    }
+
+    private void setupBlinkingBorders(ComboBox<?> comboBox) {
+        comboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue == null) {
+                comboBox.getStyleClass().add("blinking-border");
+            } else {
+                comboBox.getStyleClass().remove("blinking-border");
+            }
+        });
+    }
 
     @FXML
     void CloseTicketPage(ActionEvent event) {
-
+    CoordinatorFrameController.getInstance().goBack();
     }
 
     private void initializeTicketTypes() {
@@ -244,24 +322,16 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
 
 
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
-            eventsModel = new EventsModel();
-            setupEventComboBox();
-            customersModel = new CustomersModel();
-            ticketsModel = new TicketsModel();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ApplicationWideException e) {
-            throw new RuntimeException(e);
-        } catch (SQLServerException e) {
-            throw new RuntimeException(e);
-        }
-        lblTicket.setText(Integer.toString(ticketCount));
-        initializeTicketTypes();
+    private void setupBlinkingBorders(TextField textField) {
+        textField.textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.isEmpty()) {
+                textField.getStyleClass().add("blinking-border");
+            } else {
+                textField.getStyleClass().remove("blinking-border");
+            }
+        });
     }
+
 
 
     @FXML

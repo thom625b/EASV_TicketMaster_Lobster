@@ -180,7 +180,7 @@ public class CoordinatorEventPageController implements IController {
     public void refreshEventData() {
         int coordinatorID = UserContext.getInstance().getCurrentUserId();
         initializeColumns(coordinatorID);
-        System.out.println("gummiged");
+
     }
 
     @Override
