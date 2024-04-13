@@ -102,7 +102,7 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #adminStackPane {
-    -fx-background-color: FFFFFF;
+    -fx-background-color: #F0F0F6;
 }
 
 #frameAdminBorder {
@@ -663,7 +663,7 @@
 }
 
 #coorStackPane {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #F0F0F6;
 }
 
 #vBoxCoordBack {

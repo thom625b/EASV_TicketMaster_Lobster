@@ -12,9 +12,7 @@ import GUI.Utility.EmailSender;
 import GUI.Utility.PdfHandler;
 import com.google.zxing.WriterException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 
@@ -86,11 +83,11 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
 
     private void setupBordersToBlink () {
-        setupBlinkingBorders(lblEmailTicket);
-        setupBlinkingBorders(lblFirstnameTicket);
-        setupBlinkingBorders(lblLastnameTicket);
-        setupBlinkingBorders(comboTickets);
-        setupBlinkingBorders(comboType);
+        setupControlValidation(lblEmailTicket);
+        setupControlValidation(lblFirstnameTicket);
+        setupControlValidation(lblLastnameTicket);
+        setupControlValidation(comboTickets);
+        setupControlValidation(comboType);
     }
 
     private void saveTicketType(String uuid, boolean isValid, Events selectedEvent, Costumers customer, int ticketAmount) throws SQLServerException, ApplicationWideException {
@@ -188,26 +185,22 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
 
+
     private void updateErrorDisplay(String message, Control field) {
         Platform.runLater(() -> {
             lblErrorText.setText(message);
             if (!message.isEmpty()) {
                 lblErrorText.setStyle("-fx-text-fill: red;");
-                startBlinkingEffect(field, 2);
-            } else {
-                lblErrorText.setStyle("");
-                field.setStyle("");
             }
 
-            // Clear the message after 5 seconds
+            // clear the error message after 3 seconds
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
-            pause.setOnFinished(e -> {
-                lblErrorText.setText("");
-                lblErrorText.setStyle("");
-                field.setStyle("");
-            });
+            pause.setOnFinished(e -> lblErrorText.setText(""));  // Clear the error message text
             pause.play();
+
         });
+
+
     }
 
     private void updateMessageDisplay(String message, boolean isError) {
@@ -236,46 +229,39 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
     private boolean validateField(TextField field, boolean isValid) {
         if (!isValid) {
-            startBlinkingEffect(field, 2);
+            field.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 15px;");
             return false;
         }
         field.setStyle("");
         return true;
+
     }
 
     private boolean validateComboBox(ComboBox<?> comboBox, boolean isValid) {
         if (!isValid) {
-            startBlinkingEffect(comboBox, 2);
+            comboBox.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 15px;");
             return false;
         }
         comboBox.setStyle("");
         return true;
+
+
     }
 
-    private void startBlinkingEffect(Control control, int blinkCount) {
-        Timeline blinkTimeline = new Timeline();
-        for (int i = 0; i < blinkCount * 2; i++) {
-            if (i % 2 == 0) {
-                blinkTimeline.getKeyFrames().add(new KeyFrame(Duration.seconds(i * 0.5), e ->
-                        control.setStyle("-fx-border-color: #fa4949; -fx-border-width: 1px; -fx-border-radius: 15px;")));
 
-            } else {
-                blinkTimeline.getKeyFrames().add(new KeyFrame(Duration.seconds(i * 0.5), e -> control.setStyle("")));
-            }
+
+    private void setupControlValidation(Control control) {
+        if (control instanceof TextField) {
+            TextField textField = (TextField) control;
+            textField.textProperty().addListener((observable, oldValue, newValue) -> {
+                validateField(textField, !newValue.trim().isEmpty());
+            });
+        } else if (control instanceof ComboBox) {
+            ComboBox<?> comboBox = (ComboBox<?>) control;
+            comboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+                validateComboBox(comboBox, newValue != null);
+            });
         }
-        blinkTimeline.setCycleCount(1);  // Run the sequence only once
-        blinkTimeline.setOnFinished(e -> control.setStyle(""));  // Clear the style after blinking
-        blinkTimeline.play();
-    }
-
-    private void setupBlinkingBorders(ComboBox<?> comboBox) {
-        comboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue == null) {
-                comboBox.getStyleClass().add("blinking-border");
-            } else {
-                comboBox.getStyleClass().remove("blinking-border");
-            }
-        });
     }
 
     @FXML
@@ -283,9 +269,11 @@ public class CoordinatorTicketsController implements IController, Initializable 
     CoordinatorFrameController.getInstance().goBack();
     }
 
+
     private void initializeTicketTypes() {
         comboType.getItems().addAll("VIP", "Standard", "Food ticket");
     }
+
 
     private void populateComboTickets() {
         List<Events> sortedEvents = eventsModel.getEventList().stream()
@@ -321,23 +309,9 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
 
-
-    private void setupBlinkingBorders(TextField textField) {
-        textField.textProperty().addListener((obs, oldText, newText) -> {
-            if (newText.isEmpty()) {
-                textField.getStyleClass().add("blinking-border");
-            } else {
-                textField.getStyleClass().remove("blinking-border");
-            }
-        });
-    }
-
-
-
     @FXML
     public void createNewEvent(ActionEvent actionEvent) {
         CoordinatorFrameController.getInstance().openPageCoordinatorCreateEventPage();
-
 
     }
 

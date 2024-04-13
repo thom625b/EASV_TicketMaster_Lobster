@@ -6,16 +6,21 @@ import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import GUI.Utility.UserContext;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.util.Duration;
 
-import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ResourceBundle;
 
-public class CoordinatorCreateEventsController implements IController {
+public class CoordinatorCreateEventsController implements IController, Initializable {
 
     @FXML
     public TextField txtEventPicture;
@@ -42,21 +47,27 @@ public class CoordinatorCreateEventsController implements IController {
     private TextField txtEventStartTime;
     @FXML
     private TextField txtEventEndTime;
+    @FXML
+    private Label lblErrorText;
 
-    public CoordinatorCreateEventsController() throws IOException, ApplicationWideException {
+    public CoordinatorCreateEventsController()  throws IOException, ApplicationWideException {
         eventsModel = new EventsModel();
         coordinatorFrameController = new CoordinatorFrameController();
     }
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setupValidationControl();
+    }
+
     @FXML
     public void AddNewEvent(ActionEvent actionEvent) {
-        if (txtEventTitle.getText().isEmpty() || dpEventStartDate.getValue() == null || txtEventAddress.getText().isEmpty() ||
-                txtEventZipCode.getText().isEmpty() || txtEventCity.getText().isEmpty() || txtEventStartTime.getText().isEmpty()
-                || txtEventEndTime.getText().isEmpty()) {
-            txtEventTitle.setStyle("-fx-border-color: red;");
-            dpEventStartDate.setStyle("-fx-border-color: red");
+        if (!validateAllFields()) {
+            updateMessageDisplay("All fields must be filled correctly.", true); // Show error inline
             return;
         }
+
 
         String eventName = txtEventTitle.getText();
         LocalDate eventDate = dpEventStartDate.getValue();
@@ -97,20 +108,89 @@ public class CoordinatorCreateEventsController implements IController {
         }
     }
 
+
+    private void setupValidationControl() {
+        setupControlValidation(txtEventTitle);
+        setupControlValidation(txtEventAddress);
+        setupControlValidation(txtEventCity);
+        setupControlValidation(txtEventZipCode);
+        setupControlValidation(txtEventStartTime);
+        setupControlValidation(txtEventEndTime);
+        setupControlValidation(dpEventStartDate);
+    }
+
+    private void setupControlValidation(Control control) {
+        if (control instanceof TextField) {
+            TextField textField = (TextField) control;
+            textField.textProperty().addListener((observable, oldValue, newValue) -> {
+                validateField(textField, !newValue.trim().isEmpty());
+            });
+        } else if (control instanceof DatePicker) {
+            DatePicker datePicker = (DatePicker) control;
+            datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+                validateDatePicker(datePicker, newValue != null);
+            });
+        }
+    }
+
+    private boolean validateAllFields() {
+        boolean hasErrors = false;
+
+        // Validate each required field and apply red border if empty
+        hasErrors |= !validateField(txtEventTitle, !txtEventTitle.getText().trim().isEmpty());
+        hasErrors |= !validateField(txtEventAddress, !txtEventAddress.getText().trim().isEmpty());
+        hasErrors |= !validateField(txtEventCity, !txtEventCity.getText().trim().isEmpty());
+        hasErrors |= !validateField(txtEventZipCode, !txtEventZipCode.getText().trim().isEmpty());
+        hasErrors |= !validateField(txtEventStartTime, !txtEventStartTime.getText().trim().isEmpty());
+        hasErrors |= !validateField(txtEventEndTime, !txtEventEndTime.getText().trim().isEmpty());
+        hasErrors |= !validateDatePicker(dpEventStartDate, dpEventStartDate.getValue() != null);
+
+        return !hasErrors;
+    }
+
+    private boolean validateDatePicker(DatePicker datePicker, boolean isValid) {
+        if (!isValid) {
+            datePicker.setStyle("-fx-border-color: red; -fx-border-width: 1px;");
+        } else {
+            datePicker.setStyle("");
+        }
+        return isValid;
+    }
+
+    private boolean validateField(TextField field, boolean isValid) {
+        if (!isValid) {
+            field.setStyle("-fx-border-color: red; -fx-border-width: 1px;");
+            return false;
+        } else {
+            field.setStyle("");
+        }
+        return true;
+    }
+
+
+
+    private void updateMessageDisplay(String message, boolean isError) {
+        Platform.runLater(() -> {
+            lblErrorText.setText(message);
+            if (isError) {
+                lblErrorText.setStyle("-fx-text-fill: red; -fx-font-size: 10px;");
+            } else {
+                lblErrorText.setStyle("-fx-text-fill: green; -fx-font-size: 10px;");
+            }
+
+            // Clear the message after 3 seconds
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(event -> lblErrorText.setText(""));
+            pause.play();
+        });
+    }
+
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        updateMessageDisplay(message, true);
     }
 
     private void showSuccessAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        updateMessageDisplay(message, false);
     }
 
     private void clearInputFields() {
@@ -134,6 +214,7 @@ public class CoordinatorCreateEventsController implements IController {
     public void setModel(UsersModel usersModel) {
 
     }
+
 
 
 }

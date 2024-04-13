@@ -7,9 +7,13 @@ import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -26,10 +30,12 @@ public class AdminHomePageController implements IController {
 
 
     private UsersModel usersModel;
+    @FXML
+    private Label lblErrorText;
 
     @FXML
     private void initialize()  {
-
+        listenerToTextFieldAndCombo();
     }
 
 
@@ -50,26 +56,23 @@ public class AdminHomePageController implements IController {
         String selectedRole = CreatecomboRole.getValue();
         String userPicture = ""; // Replace with get picture
 
-        if (selectedRole != null && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-            if (isValidEmail(email)) {
-                // Validate password using regex
-                String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
-                if (password.matches(passwordRegex)) {
-                    Users.Role role = Users.Role.valueOf(selectedRole);
-                    try {
-                        usersModel.createUser(firstName, lastName, email, password, role, userPicture);
-                        showAlert("Success", "The User Was Created", Alert.AlertType.INFORMATION);
-                    } catch (ValidationException e) {
-                        showAlert("Validation Error", e.getMessage(), Alert.AlertType.ERROR);
-                    }
-                } else {
-                    showAlert("Input Error", "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character, no whitespace, and be between 8 and 20 characters long.", Alert.AlertType.WARNING);
-                }
-            } else {
-                showAlert("Input Error", "Please enter a valid email address.", Alert.AlertType.WARNING);
+        validateField(txtCreateFirstName, !firstName.isEmpty());
+        validateField(txtCreateLastName, !lastName.isEmpty());
+        validateField(txtCreateEmail, isValidEmail(email));
+        validateField(txtCreatePassword, password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$"));
+        validateComboBox(CreatecomboRole, selectedRole != null);
+
+
+        if (!firstName.isEmpty() && !lastName.isEmpty() && isValidEmail(email) && isValidPassword(password) && selectedRole != null) {
+            try {
+                Users.Role role = Users.Role.valueOf(selectedRole);
+                usersModel.createUser(firstName, lastName, email, password, role, "");
+                updateMessageDisplay("The User Was Created", false);
+            } catch (ValidationException e) {
+                updateMessageDisplay(e.getMessage(), true);
             }
         } else {
-            showAlert("Input Error", "All fields must be filled out and a role must be selected.", Alert.AlertType.WARNING);
+            updateMessageDisplay("All fields must be filled out and a role must be selected.", true);
         }
     }
 
@@ -79,11 +82,73 @@ public class AdminHomePageController implements IController {
         return pattern.matcher(email).matches();
     }
 
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private boolean isValidPassword(String password) {
+        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+        return password.matches(passwordRegex);
+    }
+
+    private void validateField(TextField field, boolean isValid) {
+        if (!isValid) {
+            field.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 5px;");
+        } else {
+            field.setStyle("");
+        }
+    }
+
+    private void validateComboBox(ComboBox<String> comboBox, boolean isValid) {
+        if (!isValid) {
+            comboBox.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 15px;");
+        } else {
+            comboBox.setStyle("");
+        }
+    }
+
+    private void updateMessageDisplay(String message, boolean isError) {
+        Platform.runLater(() -> {
+            lblErrorText.setText(message);
+            if (isError) {
+                lblErrorText.setStyle("-fx-text-fill: red; -fx-font-size: 10px;");
+            } else {
+                lblErrorText.setStyle("-fx-text-fill: green; -fx-font-size: 10px;");
+            }
+
+            //Clear the message after 3 seconds
+            new Timeline(new KeyFrame(
+                    Duration.seconds(3),
+                    ae -> lblErrorText.setText("")
+            )).play();
+        });
+    }
+
+
+    private void listenerToTextFieldAndCombo() {
+        txtCreateFirstName.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateField(txtCreateFirstName, !newValue.isEmpty());
+        });
+        txtCreateLastName.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateField(txtCreateLastName, !newValue.isEmpty());
+        });
+        txtCreateEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!isValidEmail(newValue)) {
+                validateField(txtCreateEmail, false);
+                updateMessageDisplay("Please enter a valid email address.", true);  // Display error message for invalid email
+            } else {
+                validateField(txtCreateEmail, true);
+                updateMessageDisplay("", false);  // Clear message when valid
+            }
+        });
+        txtCreatePassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!isValidPassword(newValue)) {
+                validateField(txtCreatePassword, false);
+                updateMessageDisplay("At least one digit - One lowercase and one uppercase letter - One special character and 8-20 characters long No spaces", true);  // Display error message for invalid password
+            } else {
+                validateField(txtCreatePassword, true);
+                updateMessageDisplay("", false);  // Clear message when valid
+            }
+        });
+        // Initialize listener for the combo box
+        CreatecomboRole.valueProperty().addListener((observable, oldValue, newValue) -> {
+            validateComboBox(CreatecomboRole, newValue != null);
+        });
     }
 }

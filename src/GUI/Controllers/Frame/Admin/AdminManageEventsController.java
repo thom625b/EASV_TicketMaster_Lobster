@@ -4,20 +4,22 @@ package GUI.Controllers.Frame.Admin;
 import BE.Events;
 import BE.Users;
 import CostumException.ApplicationWideException;
+import GUI.Controllers.Frame.Coordinator.CoordinatorFrameController;
 import GUI.Controllers.IController;
 import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
@@ -33,6 +35,8 @@ public class AdminManageEventsController implements IController, Initializable {
     private ComboBox<Events> comboAdminManageEvent;
     @FXML
     private ImageView imgFromCombBox;
+    @FXML
+    private Label lblErrorText;
 
 
     @Override
@@ -41,10 +45,12 @@ public class AdminManageEventsController implements IController, Initializable {
             eventsModel = new EventsModel();
             setupEventComboBox();
             initializeImageView();
+            initializeValidationListeners();
         } catch (IOException | ApplicationWideException e) {
             throw new RuntimeException("Failed to initialize EventsModel", e);
         }
     }
+
     private void setupEventComboBox() {
 
         populateComboAdminManageEvent();
@@ -102,7 +108,7 @@ public class AdminManageEventsController implements IController, Initializable {
                         updateImage(defaultImageUrl);
                     }
                 } catch (ApplicationWideException e) {
-                    showAlert("Error", "Could not load image for user.");
+
                     updateImage(defaultImageUrl);
                 }
             } else {
@@ -156,39 +162,69 @@ public class AdminManageEventsController implements IController, Initializable {
 
     @FXML
     private void addCoordinatorToEvents(ActionEvent actionEvent) {
-        Users selectedCoordinator = comboAdminManageName.getSelectionModel().getSelectedItem();
-        Events selectedEvent = comboAdminManageEvent.getSelectionModel().getSelectedItem();
+        boolean isCoordinatorValid = comboAdminManageName.getSelectionModel().getSelectedItem() != null;
+        boolean isEventValid = comboAdminManageEvent.getSelectionModel().getSelectedItem() != null;
 
-        if (selectedCoordinator == null || selectedEvent == null) {
-            showAlert("Selection Required", "Please select both a coordinator and an event.");
+        validateComboBox(comboAdminManageName, isCoordinatorValid);
+        validateComboBox(comboAdminManageEvent, isEventValid);
+
+        if (!isCoordinatorValid || !isEventValid) {
+            updateMessageDisplay("Please select both a coordinator and an event.", true);
             return;
         }
 
-        int coordinatorId = selectedCoordinator.getUserId();
-        int eventId = selectedEvent.getEventID();
-
-
         try {
+            int coordinatorId = comboAdminManageName.getSelectionModel().getSelectedItem().getUserId();
+            int eventId = comboAdminManageEvent.getSelectionModel().getSelectedItem().getEventID();
             eventsModel.addCoordinatorToEvents(coordinatorId, eventId);
+            updateMessageDisplay("Coordinator has been added to the event successfully.", false);
         } catch (ApplicationWideException e) {
-            throw new RuntimeException(e); //TODO
+            updateMessageDisplay("Failed to add coordinator: " + e.getMessage(), true);
         }
-        // Optionally, show a success message to the user
-        showAlert("Success", "Coordinator has been added to the event successfully.");
+    }
+    private void validateComboBox(ComboBox<?> comboBox, boolean isValid) {
+        if (!isValid) {
+            comboBox.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 15px;");
+        } else {
+            comboBox.setStyle(""); // Clear the style if the value becomes valid
+        }
     }
 
+    private void initializeValidationListeners() {
+        // Listener for the coordinator ComboBox
+        comboAdminManageName.valueProperty().addListener((obs, oldVal, newVal) ->
+                validateComboBox(comboAdminManageName, newVal != null));
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-
-        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-        alert.getDialogPane().getButtonTypes().setAll(okButton);
-
-        alert.showAndWait();
+        // Listener for the event ComboBox
+        comboAdminManageEvent.valueProperty().addListener((obs, oldVal, newVal) ->
+                validateComboBox(comboAdminManageEvent, newVal != null));
     }
 
+    private void updateMessageDisplay(String message, boolean isError) {
+        Platform.runLater(() -> {
+            lblErrorText.setText(message);
+            if (isError) {
+                lblErrorText.setStyle("-fx-text-fill: red; -fx-font-size: 10px;");
+            } else {
+                lblErrorText.setStyle("-fx-text-fill: green; -fx-font-size: 10px;");
+            }
 
+            // Clear the message after 3 seconds
+            new Timeline(new KeyFrame(
+                    Duration.seconds(3),
+                    ae -> lblErrorText.setText("")
+            )).play();
+        });
+    }
+
+    @FXML
+    private void goToFrontPage(ActionEvent actionEvent) {
+        try {
+
+            AdminFrameController.getInstance().loadpage("/fxml/Admin/AdminHomePage");
+        } catch (IOException e) {
+            // Handle IOException show an error dialog)
+            e.printStackTrace(); //TODO
+        }
+    }
 }

@@ -9,22 +9,21 @@ import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 import GUI.Utility.UserContext;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import javafx.collections.FXCollections;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.function.Consumer;
 
 
 public class CoordinatorManageEventsController implements IController {
@@ -34,6 +33,8 @@ public class CoordinatorManageEventsController implements IController {
     private ComboBox<Users> btnCoordinatorsDropDown;
     @FXML
     private ComboBox<Events> btnEventsDropDown;
+    @FXML
+    private Label lblErrorText;
 
     @FXML
     public void initialize() throws ApplicationWideException, SQLServerException, IOException {
@@ -41,33 +42,37 @@ public class CoordinatorManageEventsController implements IController {
         eventsModel = new EventsModel();
         populateEventButton();
         populateCoordinatorButton();
+        setupComboBoxValidation();
     }
     @FXML
     private void linkCoordinatorAndEvent(ActionEvent actionEvent) {
-        Users selectedCoordinatorID = btnCoordinatorsDropDown.getSelectionModel().getSelectedItem();
-        Events selectedEventID = btnEventsDropDown.getSelectionModel().getSelectedItem();
+        boolean isValidCoordinator = btnCoordinatorsDropDown.getSelectionModel().getSelectedItem() != null;
+        boolean isValidEvent = btnEventsDropDown.getSelectionModel().getSelectedItem() != null;
 
-        if (selectedCoordinatorID == null && selectedEventID == null){
-            showAlert("Selection trouble", "Please select a coordinator and an event");
-        } else if (selectedCoordinatorID == null) {
-            showAlert("Selection trouble", "Please select a coordinator");
-        } else if (selectedEventID == null) {
-            showAlert("Selection trouble", "Please select an event");
+        validateComboBox(btnCoordinatorsDropDown, isValidCoordinator);
+        validateComboBox(btnEventsDropDown, isValidEvent);
+
+        if (!isValidCoordinator && !isValidEvent) {
+            updateMessageDisplay("Please select a coordinator and an event", true);
+            return;
+        } else if (!isValidCoordinator) {
+            updateMessageDisplay("Please select a coordinator", true);
+            return;
+        } else if (!isValidEvent) {
+            updateMessageDisplay("Please select an event", true);
             return;
         }
 
-        int coordinatorID = selectedCoordinatorID.getUserId();
-        int eventID = selectedEventID.getEventID();
-
         try {
+            int coordinatorID = btnCoordinatorsDropDown.getSelectionModel().getSelectedItem().getUserId();
+            int eventID = btnEventsDropDown.getSelectionModel().getSelectedItem().getEventID();
             eventsModel.addCoordinatorToEvents(coordinatorID, eventID);
-            showAlert("Succes", "The coordinator has been added to the event");
+            updateMessageDisplay("The coordinator has been added to the event", false);
         } catch (ApplicationWideException e){
-            showAlert("Error", "Coldn't add the coordinator to the event");
-            e.printStackTrace();
-            new ApplicationWideException("Error communicating with the database");
+            updateMessageDisplay("Couldn't add the coordinator to the event: " + e.getMessage(), true);
         }
     }
+
     private void populateCoordinatorButton() throws ApplicationWideException {
         int currentCoordinator = UserContext.getInstance().getCurrentUserId();
         ObservableList<Users> allCoordinator = usersModel.getCoordinatorsObservable();
@@ -117,12 +122,42 @@ public class CoordinatorManageEventsController implements IController {
         });
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+
+    private void updateMessageDisplay(String message, boolean isError) {
+        Platform.runLater(() -> {
+            lblErrorText.setText(message);
+            if (isError) {
+                lblErrorText.setStyle("-fx-text-fill: red; -fx-font-size: 10px;");
+            } else {
+                lblErrorText.setStyle("-fx-text-fill: green; -fx-font-size: 10px;");
+            }
+
+            // Clear the message after 5 seconds
+            new Timeline(new KeyFrame(
+                    Duration.seconds(5),
+                    ae -> lblErrorText.setText("")
+            )).play();
+        });
+    }
+
+    private void validateComboBox(ComboBox<?> comboBox, boolean isValid) {
+        if (!isValid) {
+            comboBox.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 15px;");
+        } else {
+            comboBox.setStyle("");
+        }
+    }
+
+    private void setupComboBoxValidation() {
+        // Validate Coordinator ComboBox
+        btnCoordinatorsDropDown.valueProperty().addListener((obs, oldVal, newVal) -> {
+            validateComboBox(btnCoordinatorsDropDown, newVal != null);
+        });
+
+        // Validate Events ComboBox
+        btnEventsDropDown.valueProperty().addListener((obs, oldVal, newVal) -> {
+            validateComboBox(btnEventsDropDown, newVal != null);
+        });
     }
 
     @Override
@@ -133,7 +168,7 @@ public class CoordinatorManageEventsController implements IController {
     private void closeCoordinatorManageEventPage(ActionEvent actionEvent) {
         try {
 
-            AdminFrameController.getInstance().loadpage("/fxml/Coordinator/CoordinatorHomePage");
+            CoordinatorFrameController.getInstance().loadpage("/fxml/Coordinator/CoordinatorTickets");
         } catch (IOException e) {
             // Handle IOException show an error dialog)
             e.printStackTrace(); //TODO

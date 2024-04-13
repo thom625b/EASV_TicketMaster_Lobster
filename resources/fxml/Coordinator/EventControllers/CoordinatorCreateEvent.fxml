@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderBackCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorCreateEventsController">
+<BorderPane fx:id="borderBackCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="776.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.Frame.Coordinator.CoordinatorCreateEventsController">
    <top>
       <HBox fx:id="hboxTopCreateCoor" maxHeight="80.0" BorderPane.alignment="CENTER">
          <children>
@@ -174,10 +174,13 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <HBox prefHeight="45.0">
+                        <HBox alignment="CENTER" prefHeight="45.0">
                            <VBox.margin>
                               <Insets top="8.0" />
                            </VBox.margin>
+                           <children>
+                              <Label fx:id="lblErrorText" alignment="CENTER" prefHeight="18.0" prefWidth="291.0" />
+                           </children>
                         </HBox>
                      </children>
                      <HBox.margin>
