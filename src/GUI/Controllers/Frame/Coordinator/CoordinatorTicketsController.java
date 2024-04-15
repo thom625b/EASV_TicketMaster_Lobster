@@ -334,19 +334,19 @@ public class CoordinatorTicketsController implements IController, Initializable 
      * Acces modifiers is set to package private
      */
 
-    int getTicketCount(){
+    int getTicketCount() {
         return ticketCount;
     }
 
-    Label getLblTicket(){
+    Label getLblTicket() {
         return lblTicket;
     }
 
-    void setTicketCount(int ticketCount){
+    void setTicketCount(int ticketCount) {
         this.ticketCount = ticketCount;
     }
 
-    void setLabel(){
+    void setLabel() {
         this.lblTicket = new Label();
     }
 
