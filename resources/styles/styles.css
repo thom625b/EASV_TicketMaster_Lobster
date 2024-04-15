@@ -126,6 +126,9 @@
      -fx-font-weight: bold;
  }
 
+ #btnChangePicture {
+     -fx-background-color: transparent;
+ }
 
 /*  Admin Coordinators
 ---------------------------------------------------------------------------------------------------------------*/
@@ -409,11 +412,13 @@
 ---------------------------------------------------------------------------------------------------------------*/
 
 #BPLoadPicture {
-    -fx-background-color: linear-gradient(to right, #f6f6f6, #F4E5FF);
+    -fx-background-color: #F0F0F6;
 }
 
 #hboxInsertPictcureAdmin {
-    -fx-background-color: White;
+    -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
 }
 
 #hBoxChangePictureAdmin{
@@ -422,11 +427,16 @@
 }
 
 #btnLoadPicture {
-    -fx-background-color: #F99417;
+    -fx-border-color: #F99417;
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #F99417;
 }
 
 #btnInsertPicture {
-    -fx-background-color: #108CDC ;
+    -fx-background-color: #108CDC;
+    -fx-text-fill: white;
+    -fx-background-radius: 15px;
 }
 
 #lblChangePictureAdminHeader {

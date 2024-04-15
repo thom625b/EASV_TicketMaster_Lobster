@@ -136,7 +136,7 @@ public class PdfHandler implements Initializable {
         Platform.runLater(() -> {
             try {
                 WritableImage writableImage = panePdfTicket.snapshot(new SnapshotParameters(), null);
-                futureImage.complete(writableImage); // Kompletter med snapshot result
+                futureImage.complete(writableImage);
             } catch (Exception e) {
                 futureImage.completeExceptionally(e);
             }

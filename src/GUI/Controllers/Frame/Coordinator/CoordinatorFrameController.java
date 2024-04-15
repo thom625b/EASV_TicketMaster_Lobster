@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -62,6 +63,10 @@ public class CoordinatorFrameController implements Initializable, IController {
     private String newUserPicturePath;
 
     private CustomersModel customerModel;
+    @FXML
+    private Button btnChangePicture;
+    @FXML
+    private StackPane stackPanePicture;
 
     @FXML
     private void homeScreenWindow() throws IOException {
@@ -114,7 +119,13 @@ public class CoordinatorFrameController implements Initializable, IController {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
-
+        Platform.runLater(() -> {
+            if (btnChangePicture != null) {
+                setupHoverEffects();
+            } else {
+                // System.out.println("btnChangePicture is not initialized.");
+            }
+        });
     }
 
 
@@ -128,7 +139,16 @@ public class CoordinatorFrameController implements Initializable, IController {
         imgCoordinatorFrame.setClip(clip);
     }
 
+    private void setupHoverEffects() {
+        // Hide button initially if not already set in FXML
+        btnChangePicture.setVisible(false);
 
+        // Mouse enters the image area
+        stackPanePicture.setOnMouseEntered(event -> btnChangePicture.setVisible(true));
+
+        // Mouse exits the image area
+        stackPanePicture.setOnMouseExited(event -> btnChangePicture.setVisible(false));
+    }
 
     public void btnGoToEventsPage(ActionEvent actionEvent) {
         try {
@@ -386,6 +406,21 @@ public class CoordinatorFrameController implements Initializable, IController {
         } catch (Exception e) {
             e.printStackTrace();
             // TODO
+        }
+    }
+
+    @FXML
+    private void changePictureCoordinator(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Coordinator/CreatePicturePageCoordinator.fxml"));
+            Parent root = loader.load();
+            IController controller = loader.getController();
+            controller.setModel(usersModel);
+            transitionToNewScene(root);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open the profile picture change window", e);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
         }
     }
 }

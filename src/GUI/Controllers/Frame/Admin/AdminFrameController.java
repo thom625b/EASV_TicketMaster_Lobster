@@ -8,6 +8,9 @@ import GUI.Model.EventsModel;
 import GUI.Model.UsersModel;
 
 import GUI.Utility.UserContext;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -28,6 +31,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.net.URL;
@@ -65,6 +69,12 @@ public class AdminFrameController implements Initializable, IController {
     private ImageView imgNewUserPictureAdmin = new ImageView();
 
     private String newUserPicturePath;
+    @FXML
+    private Button btnChangePicture;
+    @FXML
+    private StackPane stackPanePicture;
+    @FXML
+    private Button btnInsertPicture;
 
 
     @FXML
@@ -124,6 +134,14 @@ public class AdminFrameController implements Initializable, IController {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
+        Platform.runLater(() -> {
+            if (btnChangePicture != null) {
+                setupHoverEffects();
+            } else {
+               // System.out.println("btnChangePicture is not initialized.");
+            }
+        });
+
     }
 
 
@@ -137,9 +155,19 @@ public class AdminFrameController implements Initializable, IController {
         double radius = Math.min(imgProfilePictureAdmin.getFitWidth(), imgProfilePictureAdmin.getFitHeight()) / 2;
         Circle clip = new Circle(radius, radius, radius);
         imgProfilePictureAdmin.setClip(clip);
+
     }
 
+    private void setupHoverEffects() {
+        // Hide button initially if not already set in FXML
+        btnChangePicture.setVisible(false);
 
+        // Mouse enters the image area
+        stackPanePicture.setOnMouseEntered(event -> btnChangePicture.setVisible(true));
+
+        // Mouse exits the image area
+        stackPanePicture.setOnMouseExited(event -> btnChangePicture.setVisible(false));
+    }
     @FXML
     private void goToAdminHome(ActionEvent actionEvent) {
         try {
@@ -228,22 +256,6 @@ public class AdminFrameController implements Initializable, IController {
     }
 
 
-    @FXML
-    private void openChangeProfilePicture(MouseEvent mouseEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin/AdminCreatePicturePageAdmin.fxml"));
-            Parent root = loader.load();
-            IController controller = loader.getController();
-            controller.setModel(usersModel);
-            transitionToNewScene(root);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to open the profile picture change window", e);
-        } catch (ApplicationWideException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     private void copyFileWithChannel(File source, File destination) throws IOException {
         try (FileChannel sourceChannel = new FileInputStream(source).getChannel();
              FileChannel destChannel = new FileOutputStream(destination, true).getChannel()) {
@@ -320,32 +332,28 @@ public class AdminFrameController implements Initializable, IController {
 
     private void setUserPictureFromStart() {
 
-
         try {
-
             String imageName = usersModel.getCurrentUserImageName();
-
             if (imageName != null && !imageName.isEmpty()) { // Check if user has a profile picture
                 String imagePath = "/resources/Data/profile_images/user" + UserContext.getInstance().getCurrentUserId() + "/" + imageName;
                 File imageFile = new File(System.getProperty("user.dir") + imagePath);
 
                 if (imageFile.exists()) {
                     Image image = new Image(new FileInputStream(imageFile));
-
-
-
                     Platform.runLater(() -> {
                         imageObjectProperty.set(image);
+                        //btnChangePicture.setVisible(false); // Hide the button if an image exists
                     });
                 } else {
                     System.out.println("User image file not found: " + imagePath);
+                    btnChangePicture.setVisible(true); // Show button if image file not found
                 }
             } else {
                 System.out.println("User does not have a profile picture.");
+                btnChangePicture.setVisible(true); // Show button if no image name is provided
             }
         } catch (Exception e) {
-            e.printStackTrace(); //TODO
-            // Handle any exceptions silently (without showing an error message)
+            e.printStackTrace(); // Handle exceptions
         }
 
     }
@@ -358,5 +366,25 @@ public class AdminFrameController implements Initializable, IController {
         alert.showAndWait();
     }
 
+    private void checkImageAndSetVisibility() {
+        if (imageObjectProperty.get() != null) {
+            btnChangePicture.setVisible(false); // Hide when mouse exits and image exists
+        }
+    }
 
+
+    @FXML
+    private void changePictureAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin/AdminCreatePicturePageAdmin1.fxml"));
+            Parent root = loader.load();
+            IController controller = loader.getController();
+            controller.setModel(usersModel);
+            transitionToNewScene(root);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open the profile picture change window", e);
+        } catch (ApplicationWideException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
