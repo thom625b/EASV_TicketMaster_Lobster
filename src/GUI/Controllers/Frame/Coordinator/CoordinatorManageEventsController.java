@@ -15,6 +15,7 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.function.Consumer;
 
 
 public class CoordinatorManageEventsController implements IController {
@@ -63,6 +65,8 @@ public class CoordinatorManageEventsController implements IController {
             return;
         }
 
+
+
         try {
             int coordinatorID = btnCoordinatorsDropDown.getSelectionModel().getSelectedItem().getUserId();
             int eventID = btnEventsDropDown.getSelectionModel().getSelectedItem().getEventID();
@@ -72,7 +76,6 @@ public class CoordinatorManageEventsController implements IController {
             updateMessageDisplay("Couldn't add the coordinator to the event: " + e.getMessage(), true);
         }
     }
-
     private void populateCoordinatorButton() throws ApplicationWideException {
         int currentCoordinator = UserContext.getInstance().getCurrentUserId();
         ObservableList<Users> allCoordinator = usersModel.getCoordinatorsObservable();

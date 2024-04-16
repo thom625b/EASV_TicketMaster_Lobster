@@ -149,38 +149,45 @@ public class CoordinatorCreateEventsController implements IController, Initializ
     }
 
     private boolean validateDatePicker(DatePicker datePicker, boolean isValid) {
-        if (!isValid) {
-            datePicker.setStyle("-fx-border-color: red; -fx-border-width: 1px;");
-        } else {
-            datePicker.setStyle("");
-        }
+        Platform.runLater(()->{
+            datePicker.getStyleClass().removeAll("date-picker-error", "date-picker-normal");
+            if (!isValid) {
+                datePicker.getStyleClass().add("date-picker-error");
+            } else {
+                datePicker.getStyleClass().add("date-picker-normal");
+            }
+        });
         return isValid;
     }
 
     private boolean validateField(TextField field, boolean isValid) {
-        if (!isValid) {
-            field.setStyle("-fx-border-color: red; -fx-border-width: 1px;");
-            return false;
-        } else {
-            field.setStyle("");
-        }
-        return true;
+        Platform.runLater(()->{
+            field.getStyleClass().removeAll("field-errorAdmin", "field-normalAdmin", "field-selectedAdmin");
+            if (!isValid) {
+                field.getStyleClass().add("field-errorAdmin");
+            } else {
+                field.getStyleClass().add("field-normalAdmin");
+            }
+        });
+        return isValid;
     }
-
-
 
     private void updateMessageDisplay(String message, boolean isError) {
         Platform.runLater(() -> {
             lblErrorText.setText(message);
+            lblErrorText.getStyleClass().removeAll("error-text", "correct-text");
             if (isError) {
-                lblErrorText.setStyle("-fx-text-fill: red; -fx-font-size: 10px;");
+                lblErrorText.getStyleClass().add("error-text");
             } else {
-                lblErrorText.setStyle("-fx-text-fill: green; -fx-font-size: 10px;");
+                lblErrorText.getStyleClass().add("correct-text");
             }
 
             // Clear the message after 3 seconds
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
-            pause.setOnFinished(event -> lblErrorText.setText(""));
+            pause.setOnFinished(event -> {
+                lblErrorText.setText("");
+                lblErrorText.getStyleClass().removeAll("error-text", "correct-text");
+            });
             pause.play();
         });
     }

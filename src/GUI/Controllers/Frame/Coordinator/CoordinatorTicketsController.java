@@ -23,7 +23,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +36,8 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 
 public class CoordinatorTicketsController implements IController, Initializable {
 
@@ -49,7 +50,8 @@ public class CoordinatorTicketsController implements IController, Initializable 
     @FXML
     private Label lblTicket, lblErrorText, lblHeaderTicket;
     @FXML
-    private Button btnSubtract, btnAdd, btnCreateNewCoordinatorTicket;
+    private Button btnSubtract, btnAdd, btnCreateNewCoordinatorTicket, btnBuyTicketCoordinatorTicket;
+    private BooleanBinding allFieldsValid;
 
     private EventsModel eventsModel;
     private TicketsModel ticketsModel;
@@ -78,7 +80,9 @@ public class CoordinatorTicketsController implements IController, Initializable 
         }
         lblTicket.setText(Integer.toString(ticketCount));
         initializeTicketTypes();
+        setUpValidation();
         setupBordersToBlink();
+        buttonPropertiesBindings();
     }
 
 
@@ -189,27 +193,29 @@ public class CoordinatorTicketsController implements IController, Initializable 
     private void updateErrorDisplay(String message, Control field) {
         Platform.runLater(() -> {
             lblErrorText.setText(message);
+            lblErrorText.getStyleClass().removeAll("error-text", "success-text");
             if (!message.isEmpty()) {
-                lblErrorText.setStyle("-fx-text-fill: red;");
+                lblErrorText.getStyleClass().add("error-text");
             }
 
-            // clear the error message after 3 seconds
+            // wait 3 seconds to clear the message
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
-            pause.setOnFinished(e -> lblErrorText.setText(""));  // Clear the error message text
+            pause.setOnFinished(e -> {
+                lblErrorText.setText("");
+                lblErrorText.getStyleClass().removeAll("error-text", "success-text");
+            });
             pause.play();
-
         });
-
-
     }
 
     private void updateMessageDisplay(String message, boolean isError) {
         Platform.runLater(() -> {
             lblErrorText.setText(message);
+            lblErrorText.getStyleClass().removeAll("error-text", "success-text");
             if (isError) {
-                lblErrorText.setStyle("-fx-text-fill: red;");
+                lblErrorText.getStyleClass().add("error-text");
             } else {
-                lblErrorText.setStyle("-fx-text-fill: green;");
+                lblErrorText.getStyleClass().add("success-text");
             }
         });
     }
@@ -228,13 +234,15 @@ public class CoordinatorTicketsController implements IController, Initializable 
     }
 
     private boolean validateField(TextField field, boolean isValid) {
-        if (!isValid) {
-            field.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 15px;");
-            return false;
-        }
-        field.setStyle("");
-        return true;
-
+        Platform.runLater(() -> {
+            field.getStyleClass().removeAll("field-error", "field-normal");
+            if (!isValid) {
+                field.getStyleClass().add("field-error");
+            } else {
+                field.getStyleClass().add("field-normal");
+            }
+        });
+        return isValid;
     }
 
     private boolean validateComboBox(ComboBox<?> comboBox, boolean isValid) {
@@ -248,8 +256,6 @@ public class CoordinatorTicketsController implements IController, Initializable 
 
     }
 
-
-
     private void setupControlValidation(Control control) {
         if (control instanceof TextField) {
             TextField textField = (TextField) control;
@@ -262,6 +268,37 @@ public class CoordinatorTicketsController implements IController, Initializable 
                 validateComboBox(comboBox, newValue != null);
             });
         }
+    }
+
+    private void setUpValidation(){
+        //validates email
+        BooleanBinding validEmail = Bindings.createBooleanBinding(()->
+                isValidEmail(lblEmailTicket.getText()), lblEmailTicket.textProperty());
+        //validates first name
+        BooleanBinding firstNameValid = Bindings.createBooleanBinding(() ->
+                !lblFirstnameTicket.getText().trim().isEmpty(), lblFirstnameTicket.textProperty());
+        //validates last name
+        BooleanBinding lastNameValid = Bindings.createBooleanBinding(() ->
+                !lblLastnameTicket.getText().trim().isEmpty(), lblLastnameTicket.textProperty());
+        //validates selectedEvent
+        BooleanBinding eventSelected = Bindings.createBooleanBinding(() ->
+                comboTickets.getValue() != null, comboTickets.valueProperty());
+        //validates type of tickets
+        BooleanBinding typeSelected = Bindings.createBooleanBinding(() ->
+                comboType.getValue() != null, comboType.valueProperty());
+        allFieldsValid = validEmail.and(firstNameValid)
+                .and(lastNameValid)
+                .and(eventSelected)
+                .and(typeSelected);
+    }
+
+    private void buttonPropertiesBindings(){
+        btnBuyTicketCoordinatorTicket.disableProperty().bind(allFieldsValid.not());
+        btnBuyTicketCoordinatorTicket.opacityProperty().bind(
+                Bindings.when(allFieldsValid)
+                        .then(1.0)
+                        .otherwise(0.4)
+        );
     }
 
     @FXML

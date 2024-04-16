@@ -88,34 +88,44 @@ public class AdminHomePageController implements IController {
     }
 
     private void validateField(TextField field, boolean isValid) {
-        if (!isValid) {
-            field.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 5px;");
-        } else {
-            field.setStyle("");
-        }
+        Platform.runLater(() ->{
+            field.getStyleClass().removeAll("field-errorAdmin", "field-normalAdmin", "field-selectedAdmin");
+            if (!isValid){
+                field.getStyleClass().add("field-errorAdmin");
+            } else {
+                field.getStyleClass().add("field-normalAdmin");
+            }
+        });
     }
 
     private void validateComboBox(ComboBox<String> comboBox, boolean isValid) {
-        if (!isValid) {
-            comboBox.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 15px;");
-        } else {
-            comboBox.setStyle("");
-        }
+        Platform.runLater(() ->{
+            comboBox.getStyleClass().removeAll("field-errorAdmin", "field-normalAdmin", "field-selectedAdmin");
+            if (!isValid){
+                comboBox.getStyleClass().add("field-errorAdmin");
+            } else {
+                comboBox.getStyleClass().add("field-normalAdmin");
+            }
+        });
     }
 
     private void updateMessageDisplay(String message, boolean isError) {
         Platform.runLater(() -> {
             lblErrorText.setText(message);
+            lblErrorText.getStyleClass().removeAll("error-text", "success-text");
             if (isError) {
-                lblErrorText.setStyle("-fx-text-fill: red; -fx-font-size: 10px;");
+                lblErrorText.getStyleClass().add("error-text");
             } else {
-                lblErrorText.setStyle("-fx-text-fill: green; -fx-font-size: 10px;");
+                lblErrorText.getStyleClass().add("success-text");
             }
 
-            //Clear the message after 3 seconds
+            // Clear the message after 3 seconds
             new Timeline(new KeyFrame(
                     Duration.seconds(3),
-                    ae -> lblErrorText.setText("")
+                    ae -> {
+                        lblErrorText.setText("");
+                        lblErrorText.getStyleClass().removeAll();
+                    }
             )).play();
         });
     }

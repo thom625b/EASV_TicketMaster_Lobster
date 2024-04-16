@@ -29,6 +29,37 @@
     -fx-text-fill: #363062;
 }
 
+.field-normal{
+    -fx-border-color: none;
+    -fx-border-width: 0;
+}
+
+.field-error{
+    -fx-border-color: red;
+    -fx-border-width: 1px;
+    -fx-focus-color: rgba(255, 0, 0, 0.2);
+    -fx-faint-focus-color: rgba(255, 85, 85, 0.11);
+    -fx-focus-radius: 1px;
+}
+
+.field-selected{
+    -fx-border-width: 1px;
+    -fx-border-color: #108CDC;
+    -fx-border-radius: 15px;
+}
+
+.error-text {
+    -fx-text-fill: red;
+    -fx-font-size: 10px;
+}
+
+.correct-text {
+    -fx-text-fill: green;
+    -fx-font-size: 10px;
+}
+
+
+
 /* CSS til login side
 ---------------------------------------------------------------------------------------------------------------*/
 
@@ -96,6 +127,26 @@
 
 #stackImg {
     -fx-effect: dropshadow(three-pass-box, rgb(54, 48, 98), 10, 0, 0, 0);
+}
+
+.field-normalAdmin{
+    -fx-border-color: none;
+    -fx-border-width: 0;
+}
+
+.field-errorAdmin{
+    -fx-border-color: red;
+    -fx-focus-inner-border: 0;
+    -fx-focus-color: rgba(255, 0, 0, 0.2);
+    -fx-faint-focus-color: rgba(255, 85, 85, 0.11);
+    -fx-effect: null;
+    -fx-focus-radius: 1px;
+}
+
+.field-selectedAdmin{
+    -fx-border-width: 1px;
+    -fx-border-color: #108CDC;
+    -fx-border-radius: 15px;
 }
 
 /*  AdminFrame
@@ -663,6 +714,19 @@
     -fx-border-radius: 15px;
 }
 
+.date-picker-error {
+    -fx-border-color: red;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.date-picker-normal {
+    -fx-border-color: grey;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+
 
 
 /*  CoordinatorFrame
@@ -827,6 +891,33 @@
     -fx-effect: dropshadow(three-pass-box, rgba(10, 10, 10, 0.24), 10, 0, 0, 0);
 }
 
+.field-error {
+    -fx-border-color: red;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-effect: null;
+}
+
+.error-text {
+    -fx-text-fill: red;
+}
+
+.success-text {
+    -fx-text-fill: green;
+}
+
+#comboTickets, #comboType, #comboAmount .combo-box-error {
+    -fx-border-color: red;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+}
+
+#comboTickets, #comboType, #comboAmount .combo-box-normal {
+    -fx-background-color: #F9F9F9;
+    -fx-border-color: transparent;
+    -fx-border-radius: 15px;
+}
+
 /*  Coordinator: Assign to Event
 ---------------------------------------------------------------------------------------------------------------*/
 
@@ -970,10 +1061,4 @@
 
 #tblCostumerView:odd {
     -fx-background-color: #f2f2f2;
-}
-
-.error-border {
-    -fx-border-color: red;
-    -fx-border-width: 2px;
-    -fx-border-radius: 15px;
 }

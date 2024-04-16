@@ -313,16 +313,33 @@ public class LoginController implements Initializable {
     }
 
     private void addValidationListeners(TextField textField, boolean isEmail) {
+        textField.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+            if (newFocus) {
+                textField.getStyleClass().removeAll("field-error", "field-normal"); // removes all unnecessary focus
+                textField.getStyleClass().add("field-selected");
+                updateLoginMessage(textField, "Field cannot be empty.", true);
+            } else {
+                textField.getStyleClass().remove("field-selected");
+                boolean isValid = isEmail ? isValidEmail(textField.getText()) : isValidPassword(textField.getText());
+                updateFieldStyle(textField, isValid);
+                if (!isValid) {
+                    updateLoginMessage(textField, isEmail ? "Invalid email format." : "Password does not meet requirements.", true);
+                } else {
+                    updateLoginMessage(textField, "", false);
+                }
+            }
+        });
+
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             boolean isValid = isEmail ? isValidEmail(newValue) : isValidPassword(newValue);
             if (newValue.trim().isEmpty()) {
-                updateFieldStyle(textField, false);  // Set style for empty field
+                updateFieldStyle(textField, false);
                 updateLoginMessage(textField, "Field cannot be empty.", true);
             } else if (!isValid) {
-                updateFieldStyle(textField, false);  // Set style for invalid format
-                updateLoginMessage(textField, isEmail ? "Invalid email format." : "Password does not meet requirements.", true);
+                updateFieldStyle(textField, false);
+               updateLoginMessage(textField, isEmail ? "Invalid email format." : "Password does not meet requirements.", true);
             } else {
-                updateFieldStyle(textField, true);  // Clear style if valid
+                updateFieldStyle(textField, true);
                 updateLoginMessage(textField, "", false);
             }
         });
@@ -330,10 +347,11 @@ public class LoginController implements Initializable {
 
     private void updateFieldStyle(Control field, boolean isValid) {
         Platform.runLater(() -> {
+            field.getStyleClass().removeAll("field-error", "field-normal", "field-selected");
             if (!isValid) {
-                field.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-border-radius: 15px;");
+                field.getStyleClass().add("field-error");
             } else {
-                field.setStyle(""); // Clear style if validation passes
+                field.getStyleClass().add("field-selected");
             }
         });
     }

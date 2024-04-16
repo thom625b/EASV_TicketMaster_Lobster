@@ -196,7 +196,7 @@
                      <children>
                         <ImageView fx:id="ImgLogin" fitHeight="419.0" fitWidth="433.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../pictures/Ticketing%20System.jpg" />
+                              <Image url="@../pictures/easvbar.png" />
                            </image>
                         </ImageView>
                      </children>
