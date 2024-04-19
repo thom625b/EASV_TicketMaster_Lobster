@@ -15,6 +15,6 @@ Libraries:
 - junit.jupiter
 
 Users:
-- ADMIN: jes@nie.dk password: 123 
-- COORDINATOR: pet@nie.dk password: 123
+- ADMIN: soren365@easv365.dk password: Soren365! 
+- COORDINATOR: troels@easv365.dk password: Soren365!
 
